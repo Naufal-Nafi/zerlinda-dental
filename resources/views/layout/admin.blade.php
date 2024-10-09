@@ -15,30 +15,31 @@
     <div class="d-flex ">
         <!-- Sidebar -->
         <div class="sidebar">
+
             <nav class="sidenav" style="">
                 <div>
                     <h4 class="ms-3">Zerlinda Dental</h4>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="bi bi-house-door"></i>Home</a>
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.contact') }}"><i class="bi bi-envelope"></i>Contact</a>
+                            <a class="nav-link" href="{{ route('admin.contact') }}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.landingpage') }} "><i class="bi bi-file-earmark-text"></i>Landing Page</a>
+                            <a class="nav-link" href=" {{ route('admin.landingpage') }} ">Landing Page</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.blog') }} "><i class="bi bi-journal"></i>Artikel Blog</a>
+                            <a class="nav-link" href=" {{ route('admin.blog') }} ">Artikel Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.doctor') }} "><i class="bi bi-calendar"></i>Jadwal Dokter</a>
+                            <a class="nav-link" href=" {{ route('admin.doctor') }} ">Jadwal Dokter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.service') }} "> <i class="bi bi-gear"></i>Layanan</a>
+                            <a class="nav-link" href=" {{ route('admin.service') }} ">Layanan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.password') }} "><i class="bi bi-lock"></i>Ubah Password</a>
+                            <a class="nav-link" href=" {{ route('admin.password') }} ">Ubah Password</a>
                         </li>
                         <!-- Tambahkan menu lain di sini -->
                     </ul>
@@ -56,7 +57,7 @@
         <!-- Konten Utama -->
         <div class="flex-grow-1 " id="navbar">
             <!-- Navbar -->
-            <nav class="navbar px-3" style="width: calc(100% - 250px); left: 250px; ">
+            <nav class="navbar px-3">
                 <div class='navbar-brand mb-0 h1'>
                     <span>Admin Page - </span>
                     <span>@yield('page-title')</span>
@@ -68,7 +69,7 @@
         <!-- Konten Halaman -->
         <div class="container d-flex justify-content-center align-items-center"
             style="min-height: calc(100vh - 56px); width: calc(100% - 250px);">
-            <div class="text-center main-content">
+            <div class="text-center">
                 @yield('content')
             </div>
         </div>

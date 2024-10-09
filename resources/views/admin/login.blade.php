@@ -5,68 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">    
     <style>
         .navbar {
-            background-color: #DA0C81;
-        }
-
-        .card {
-            background-color: #FECEDA;
-        }
-
-        .btn-login {
-            background-color: #DA0C81 !important;
-            color: #fff !important;
-
-            &:hover {
-                background-color: #7C0649 !important;
+            background: #DA0C81;           
+            
+            & span {
+                color: #FFFFFF;
             }
         }
-
-        .forgot-password a:hover {
-            color: #DA0C81 !important;
-            text-decoration: underline !important;
+        .container {
+            height: 100vh;
+            display: flex;            
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            width: 400px;
+            height: 400px;
+            background-color: #FECEDA;
+            
+            justify-content: center;
+            align-items: center;
+        }
+        a {
+            width: 200px;
+            background-color: #DA0C81 !important;
         }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark position-fixed w-100">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <span>Zerlinda - Admin</span>
-            </a>
-        </div>
-    </nav>
-
-    <!-- Login Form -->
-    <div class="container d-flex align-items-center justify-content-center min-vh-100">
-        <div class="card shadow-sm p-5" style="max-width: 400px; width: 100%;">
-            <h1 class="text-center mb-4 fw-bold">Login</h1>
-            <form action="post">
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" placeholder="E-mail" name="email" id="email" > <!-- required -->
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label d-flex justify-content-between">
-                        Password
-                        <span class="forgot-password">
-                            <a href="#" class="text-decoration-none text-body">Forgot Password?</a>
-                        </span>
-                    </label>
-                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" > <!-- required -->
-                </div>
-                <!-- <button type="submit" class="btn btn-login w-100 mt-3">Login</button> -->
-                <a class='btn btn-login w-100' type="submit" href="{{ route('admin.dashboard') }}">Login</a>  
-            </form>
-        </div>
+    <div class="flex-grow-1 " id="navbar">
+        <nav class="navbar px-3">
+            <div class='navbar-brand mb-0 h1'>
+                <span>Zerlinda - Admin</span>                
+            </div>            
+        </nav>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container">
+        <div class="card p-5">
+            <h1>Login</h1>
+            <form action="post" class="">
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="text" class="form-control" placeholder="E-mail" name="email" id="email">
+                </div>
+                <div clas="">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="text" class="form-control" placeholder="Password" name="password" id="email">
+                </div>
+            </form>            
+            <a class='btn btn-primary my-3' type="submit" href="{{ route('admin.dashboard') }}">Login</a>            
+        </div>
+    </div>
+            
 </body>
-
 </html>
