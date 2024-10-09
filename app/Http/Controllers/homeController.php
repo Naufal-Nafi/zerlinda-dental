@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PasswordController
+class homeController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.password');
+        return view('user.home');
     }
 
     /**
@@ -35,7 +35,7 @@ class PasswordController
      */
     public function show(string $id)
     {
-        return view('confirmPassword');
+        //
     }
 
     /**
