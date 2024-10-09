@@ -2,54 +2,39 @@
     padding: 0;
     margin: 0;
     font-family: "Poppins", sans-serif;
-}
+  }
 
 :root {
-    --secondary-color: #feceda;
+    --sidebar-color: #FECEDA;
     --sidebar-hover-opacity: rgba(218, 12, 129, 0.25);
-    --primary-color: #da0c81;
+    --primary-color: #DA0C81;
     --text-color: #161347;
-    --white-color: #ffffff;
+    --white-color: #FFFFFF;
+
 }
 
 body {
     color: var(--text-color);
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-span {
-  cursor: default;
-}
-
-.bg-pink {
-    background-color: var(--primary-color);
-}
-
-.bg-light-pink {
-    background-color: var(--secondary-color);
-}
-
-.main-content .bi {
-    font-size: 1.5rem;
-}
-
-
-
 
 
 /* navbar */
+/* #navbar nav,#navbar nav span {
+    background-color: var(--primary-color);
+    color: #FFF;
+    
+} */
+
 .navbar {
     position: fixed;
     top: 0;
-    z-index: 1000;
+    left: 250px; /* Mengatur posisi navbar di sebelah kanan sidebar */
+    width: calc(100% - 250px); /* Lebar navbar menyesuaikan dengan sisa ruang */
+    z-index: 1000; /* Memastikan navbar berada di atas konten */
     background-color: var(--primary-color);
-    color: var(--white-color);
+    color: var(--white-color);        
+
     & span {
         color: var(--white-color);
     }
@@ -68,12 +53,13 @@ span {
     width: 250px; /* Lebar tetap untuk sidebar */
     height: 100vh; /* Sidebar memenuhi tinggi layar */
     padding-top: 20px;
-    background-color: var(--secondary-color);
+    background-color: var(--sidebar-color) ;
     color: var(--text-color);
     justify-content: space-between;
 }
 
-.sidebar a {
+
+.sidebar a {    
     text-decoration: none;
     color: inherit;
 
@@ -88,71 +74,13 @@ span {
     height: 100vh;
 }
 
-.sidebar .bi {
-    margin-right: 10px;
-}
 /* Sidebar ends */
 
 
-
-
-
-/* login */
-.card {
-    background-color: var(--secondary-color);
+.bg-pink {
+    background-color: #fbc3d4;
 }
 
-.btn-login {
-    background-color: var(--primary-color) !important;
-    color: #fff !important;
-
-    &:hover {
-        background-color: #7c0649 !important;
-    }
+.bg-light-pink {
+    background-color: #f9e3e9;
 }
-
-.forgot-password a:hover {
-    color: var(--primary-color) !important;
-    text-decoration: underline !important;
-}
-/* login ends */
-
-
-
-
-
-/* Tabel  */
-.table-responsive {
-    width: 1016px;
-    overflow-x: auto;
-}
-.table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 20px !important;
-    overflow: hidden;
-}
-thead th {
-    border: 2px solid #000;
-    border-right: 0px;
-    border-left: 0px;
-    white-space: nowrap;
-    color: var(--primary-color);
-}
-
-thead th:first-child {
-    border-left: 2px solid #000;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-thead th:last-child {
-    border-right: 2px solid #000;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
-
-tbody td {
-    color: var(--text-color) !important;
-}
-/* Tabel ends  */

@@ -35,7 +35,7 @@ class PasswordController
      */
     public function show(string $id)
     {
-        return view('confirmPassword');
+        //
     }
 
     /**
