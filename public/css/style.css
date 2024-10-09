@@ -1,0 +1,39 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --secondary-color: #feceda;
+    --sidebar-hover-opacity: rgba(218, 12, 129, 0.25);
+    --primary-color: #da0c81;
+    --text-color: #161347;
+    --white-color: #ffffff;
+}
+
+body {
+    color: var(--text-color);
+    height: 100vh;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  cursor: default;
+}
+
+
+#hero {
+    background-image: url('../images/landing-page.png');
+    background-size: cover;
+}
+
+
+
+
