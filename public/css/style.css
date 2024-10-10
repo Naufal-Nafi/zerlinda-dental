@@ -32,6 +32,11 @@ span {
 #hero {
     background-image: url('../images/landing-page.png');
     background-size: cover;
+    background-position: center;
+}
+
+.hero-2 {
+    background: linear-gradient(rgba(0,0,0,0),rgba(254, 206, 218, 0.7));
 }
 
 
