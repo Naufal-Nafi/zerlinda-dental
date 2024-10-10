@@ -39,9 +39,9 @@
             </nav>
         </div> -->
 
-        <!-- asdadad -->
-        <div class="flex-grow" id="navbar">
-            <nav class="border-b-4">
+        <!-- navbar -->
+        <div class="flex-grow " id="navbar">
+            <nav class="border-b-4 bg-white fixed top-0 left-0 right-0 z-50">
                 <div class="mx-auto px-4 py-3">
                     <div class="flex justify-between items-center">
                         <a class="text-xl font-bold text-pink-500" href="#">Zerlinda Dental</a>
@@ -53,7 +53,7 @@
                                     d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
                         </button>
-                        <div class="hidden lg:flex lg:items-center text-pink-1000 font-bold">
+                        <div class="hidden lg:flex lg:items-center text-pink-primary font-bold">
                             <a class="nav-link px-4 py-2 " href="#">Home</a>
                             <a class="nav-link px-4 py-2 " href="#">Lokasi</a>
                             <a class="nav-link px-4 py-2 " href="#">Pelayanan</a>
@@ -63,6 +63,9 @@
                     </div>
                 </div>
             </nav>
+        </div>
+
+        <div class="min-h-16">
         </div>
 
 
@@ -75,8 +78,8 @@
 
 
         <!-- Footer -->
-        <footer class="bg-pink-1100 min-h-48">
-            <div>
+        <footer class="bg-pink-secondary min-h-48">
+            <div class="container ">
                 ini footer
             </div>
         </footer>

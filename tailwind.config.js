@@ -9,8 +9,8 @@ export default {
     extend: {
       colors: {
         pink: {
-          1000: '#DA0C81',
-          1100: '#FECEDA'
+          primary: '#DA0C81',
+          secondary: '#FECEDA'
         },
       },
     },
