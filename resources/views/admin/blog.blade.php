@@ -6,7 +6,7 @@
 
 @section('content')
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBlogModal">
+<button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createBlogModal">
     Tambah Artikel
 </button>
 <div class="table-responsive text-center">
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody class="fw-semibold">
-            <tr class="bg-light-pink">
+            <tr >
                 <td></td>
                 <td></td>
                 <td>
@@ -41,8 +41,8 @@
 
 @section('createModalContent')
 <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Judul</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1">
+    <label for="exampleFormControlInput1" class="form-label ">Judul</label>
+    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
 </div>
 <div class="mb-3">
     <label for="formFile" class="form-label">Gambar</label>
@@ -54,10 +54,12 @@
 </div>
 @endsection
 
+
+
 @section('editModalContent')
-<div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Judul</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1">
+<div class="mb-3 ">
+    <label for="exampleFormControlInput1" class="form-label ">Judul</label>
+    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
 </div>
 <div class="mb-3">
     <label for="formFile" class="form-label">Gambar</label>

@@ -6,7 +6,7 @@
 
 @section('content')
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createServiceModal">
+<button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createServiceModal">
     Tambah Layanan
 </button>
 

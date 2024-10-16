@@ -28,11 +28,15 @@ span {
 }
 
 .bg-pink {
-    background-color: var(--primary-color) !important
+    background-color: var(--primary-color) !important;
+   
+}
+.bg-pink:hover {
+    background-color: #7c0649 !important;
 }
 
 .bg-light-pink {
-    background-color: var(--secondary-color) !important
+    background-color: var(--secondary-color) !important;
 }
 
 .main-content .bi {
@@ -72,7 +76,7 @@ span {
     justify-content: space-between;
 }
 
-.sidebar a {
+.nav-link {
     text-decoration: none;
     color: inherit;
 
@@ -154,4 +158,15 @@ thead th:last-child {
 tbody td {
     color: var(--text-color) !important;
 }
+.table tbody tr {
+    background-color: var(--secondary-color) !important;
+}
+
+.table tbody tr:hover {
+    background-color: #f8a9bc !important;
+}
 /* Tabel ends  */
+
+.text-20 {
+    font-size: 1.25rem;
+}

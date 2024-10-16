@@ -6,11 +6,11 @@
 
 @section('content')
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLandingPageModal">
+<button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createLandingPageModal">
     Tambah Gambar
 </button>
 <div class="table-responsive text-center">
-    <table class="table table-hover mt-4 fw-bold">
+    <table class="table  mt-4 fw-bold">
         <thead>
             <tr>
                 <th>Gambar</th>
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody class="fw-semibold">
-            <tr class="bg-light-pink">
+            <tr class="table-danger">
                 <td></td>
                 <td></td>
                 <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button></td>
