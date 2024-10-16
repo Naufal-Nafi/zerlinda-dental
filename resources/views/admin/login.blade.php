@@ -46,11 +46,11 @@
     <div class="container d-flex align-items-center justify-content-center min-vh-100">
         <div class="card shadow-sm p-5" style="max-width: 400px; width: 100%;">
             <h1 class="text-center mb-4 fw-bold">Login</h1>
-            <form action="post">
+            <!-- <form action="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" placeholder="E-mail" name="email" id="email" > <!-- required -->
-                </div>
+                    <input type="email" class="form-control" placeholder="E-mail" name="email" id="email" > -->
+                <!-- </div>
                 <div class="mb-3">
                     <label for="password" class="form-label d-flex justify-content-between">
                         Password
@@ -58,10 +58,27 @@
                             <a href="#" class="text-decoration-none text-body">Forgot Password?</a>
                         </span>
                     </label>
-                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" > <!-- required -->
-                </div>
+                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" > 
+                </div> -->
                 <!-- <button type="submit" class="btn btn-login w-100 mt-3">Login</button> -->
-                <a class='btn btn-login w-100' type="submit" href="{{ route('admin.dashboard') }}">Login</a>  
+                <form action="{{ route('admin.login.post') }}" method="POST">
+                    @csrf
+                        <div class="mb-3">
+                            <label for="username" class="form-label">E-mail</label>
+                            <input type="username" class="form-control" placeholder="username" name="username" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label d-flex justify-content-between">
+                                Password
+                            <span class="forgot-password">
+                                <a href="#" class="text-decoration-none text-body">Forgot Password?</a>
+                            </span>
+                            </label>
+                            <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-login w-100">Login</button>
+                    </form>
+
             </form>
         </div>
     </div>
