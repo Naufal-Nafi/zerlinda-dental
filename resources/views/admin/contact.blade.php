@@ -5,7 +5,7 @@
 @section('page-title', 'Ganti Kontak')
 
 @section('content')
-<div class="table-responsive">
+<div class="table-responsive text-center">
     <table class="table table-hover mt-4 fw-bold">
         <thead>
             <tr>
@@ -50,9 +50,10 @@
                 <td>WhatsApp</td>
                 <td>08999999999999</td>
                 <td>https://</td>
-                <td><button class="btn btn-primary">Edit</button></td>
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
         </tbody>
     </table>
 </div>
 @endsection
+@section('editModalName','editContactModal')
