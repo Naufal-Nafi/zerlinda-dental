@@ -5,7 +5,12 @@
 @section('page-title', 'Pelayanan')
 
 @section('content')
-<div class="table-responsive">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createServiceModal">
+    Tambah Layanan
+</button>
+
+<div class="table-responsive text-center">
     <table class="table table-hover mt-4 fw-bold">
         <thead>
             <tr>
@@ -19,11 +24,18 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <span><button class="btn btn-primary">Edit</button></span>
-                    <span><button class="btn btn-danger">Hapus</button></span>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editServiceModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
                 </td>
-            </tr>            
+            </tr>
         </tbody>
     </table>
 </div>
+
+
+
 @endsection
+@section('createModalName', 'createServiceModal')
+@section('editModalName', 'editServiceModal')

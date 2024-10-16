@@ -44,7 +44,7 @@
             <nav class="border-b-4 bg-white fixed top-0 left-0 right-0 z-50">
                 <div class="mx-auto px-4 py-3">
                     <div class="flex justify-between items-center">
-                        <a class="text-xl font-bold text-pink-500" href="#">Zerlinda Dental</a>
+                        <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" class="w-48">
                         <button class="navbar-toggler block lg:hidden p-2 rounded border focus:outline-none focus:ring"
                             type="button" aria-label="Toggle navigation">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -78,9 +78,17 @@
 
 
         <!-- Footer -->
-        <footer class="bg-pink-secondary min-h-48">
-            <div class="container ">
-                ini footer
+        <footer class="bg-pink-secondary min-h-48 flex items-center justify-center">
+            <div class="container md:mx-16 mx-4">
+                <div class="px-4">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid ullam, harum odio eos aspernatur delectus. Fugit dolore praesentium iure voluptatum illo. Eum veritatis provident expedita, voluptatum autem ab repellat totam?
+                    Tempore sunt vel soluta pariatur laboriosam. Reprehenderit in sed, perspiciatis mollitia ipsa error non exercitationem possimus accusamus nam? Cupiditate, necessitatibus beatae quam quibusdam excepturi iste nulla consequuntur quasi soluta repellendus.
+                    Natus architecto ad obcaecati soluta earum quod eveniet totam aspernatur, quam saepe, dolorum error officiis officia doloremque quae eligendi temporibus consequuntur nobis rerum expedita fuga perferendis pariatur, delectus animi! Distinctio?
+                    Illum culpa quibusdam commodi autem dolorum? Quisquam reprehenderit rem hic earum explicabo quasi iste voluptate, id nobis quas, molestiae fugit. Id est vero, laboriosam ab accusantium consectetur illum excepturi consequuntur.
+                    Rem, quas dolores id excepturi voluptas recusandae placeat iure totam beatae provident quos, nemo consequuntur vel eos exercitationem eum! Beatae impedit voluptatem soluta excepturi dignissimos sequi a, atque placeat dolorem?
+                    Et totam nostrum illo assumenda consectetur officiis dignissimos, eos eveniet vero at, est obcaecati reprehenderit aut! Eos, exercitationem error animi dolor, aliquam similique alias soluta nisi nulla obcaecati ex delectus?
+                    
+                </div>
             </div>
         </footer>
     </div>
