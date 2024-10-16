@@ -22,9 +22,7 @@ class LoginController extends Controller
         ]);
 
         $credentials = $request->only('username', 'password');
-
         $user = User::where('username', $credentials['username'])->first();
-
        if (!$user) {
            return back()->withErrors([
                'username' => 'Username yang Anda masukkan salah',
@@ -36,7 +34,7 @@ class LoginController extends Controller
         }
         else {
            Auth::login($user);
-           return redirect()->intended('admin.dashboard');
+           return redirect()->route('admin.dashboard');
        }
 
         
@@ -46,10 +44,5 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect()->route('admin.login');
-    }
-
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
     }
 }

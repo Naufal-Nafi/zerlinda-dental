@@ -15,9 +15,10 @@ class HashExistingPasswordsSeeder extends Seeder
     public function run(): void
     {
         $users = User::all();
+
         foreach($users as $user) {
-            if (!Hash::needsRehash($user->password)){
-                $user ->password = Hash::make($user->password);
+            if (Hash::needsRehash($user->password)){
+                $user ->password = Hash::make(value: $user->password);
                 $user->save();
             }
         }
