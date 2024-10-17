@@ -81,7 +81,7 @@
 
         <!-- Konten Halaman -->
         <div class="container d-flex justify-content-center align-items-center"
-            style="min-height: 100vh; width: calc(100% - 250px);">
+            style="min-height: 100vh; min-width: calc(100% - 250px);">
             <div class="main-content" style="width: 70%;">
                 @yield('content')
             </div>
@@ -96,7 +96,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
 
-                <div class="modal-body">
+                <div class="modal-body text-20">
                     @yield('createModalContent')
                 </div>
                 <div class="modal-footer">
@@ -113,8 +113,8 @@
     <div class="modal fade" id="@yield('editModalName')" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content bg-light-pink">                
-                <div class="modal-body " style="padding: 50px;">
+            <div class="modal-content bg-light-pink" style="padding: 50px;">
+                <div class="modal-body text-20">
                     @yield('editModalContent')
                 </div>
                 <div class="modal-footer">
@@ -129,7 +129,7 @@
     <!--Hapus Modal -->
     <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content bg-light-pink">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus?</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -149,27 +149,55 @@
 
     <!-- Script untuk menampilkan waktu saat ini -->
     <script>
+        // Update time
         function updateTime() {
             const now = new Date();
             document.getElementById('current-time').textContent = now.toLocaleTimeString();
         }
         setInterval(updateTime, 1000);
-        updateTime(); // Panggil sekali saat halaman dimuat
+        updateTime();
 
+        // Update Date
         const currentDate = new Date();
-        const formattedDate =currentDate.toLocaleDateString('en-us', {
+        const formattedDate = currentDate.toLocaleDateString('en-us', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
         });
+        
+        document.getElementById('current-date').textContent = formattedDate;
+        
+        // Image Input Preview Handler (use this for both existing and dynamically added inputs)
+        function initializeImagePreview() {            
+            document.querySelectorAll('.image-input').forEach(input => {
+                const previewImage = input.previousElementSibling;
 
-        document.getElementById('current-date').textContent =formattedDate;
+                input.addEventListener('change', function (event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            previewImage.src = e.target.result;
+                            previewImage.style.display = 'block';
+                        }
+                        reader.readAsDataURL(file);
+                    } else {
+                        previewImage.style.display = 'none';
+                        previewImage.src = '';
+                    }
+                });
+            });
+        }
+
+        // Initialize the preview for the first two inputs
+        initializeImagePreview();
+
 
     </script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
 
 </body>
 

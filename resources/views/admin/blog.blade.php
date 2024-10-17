@@ -18,8 +18,8 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody class="fw-semibold">
-            <tr >
+        <tbody class="fw-semibold table-danger">
+            <tr>
                 <td></td>
                 <td></td>
                 <td>
@@ -45,12 +45,13 @@
     <input type="text" class="form-control border-black" id="exampleFormControlInput1">
 </div>
 <div class="mb-3">
-    <label for="formFile" class="form-label">Gambar</label>
-    <input class="form-control" type="file" id="formFile">
+    <label for="formFile1" class="form-label">Gambar</label>
+    <img id="previewImage1" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+    <input class="form-control border-black image-input" type="file" id="formFile1">
 </div>
 <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Artikel</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control border-black" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 @endsection
 
@@ -62,11 +63,12 @@
     <input type="text" class="form-control border-black" id="exampleFormControlInput1">
 </div>
 <div class="mb-3">
-    <label for="formFile" class="form-label">Gambar</label>
-    <input class="form-control" type="file" id="formFile">
+    <label for="formFile2" class="form-label">Gambar</label>
+    <img id="previewImage2" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+    <input class="form-control border-black image-input" type="file" id="formFile2">
 </div>
 <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Artikel</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control border-black" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 @endsection

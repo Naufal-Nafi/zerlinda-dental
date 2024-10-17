@@ -19,8 +19,8 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody class="fw-semibold">
-            <tr class="bg-light-pink">
+        <tbody class="fw-semibold table-danger">
+            <tr>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -44,11 +44,12 @@
 @section('createModalContent')
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Nama</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1">
+    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
 </div>
 <div class="mb-3">
-    <label for="formFile" class="form-label">Foto</label>
-    <input class="form-control" type="file" id="formFile">
+    <label for="formFile1" class="form-label">Foto</label>
+    <img id="previewImage1" src="" alt="Preview Image " style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+    <input class="form-control border-black image-input" type="file" id="formFile1">
 </div>
 <div>
     <h5>Jadwal</h5>
@@ -102,25 +103,27 @@
         </div>
         <div class="mx-3">
             <label for="exampleFormControlInput1" class="form-label">Jam Mulai</label>
-            <input type="time" class="form-control" id="exampleFormControlInput1">
+            <input type="time" class="form-control border-black" id="exampleFormControlInput1">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Jam Akhir</label>
-            <input type="time" class="form-control" id="exampleFormControlInput1">
+            <input type="time" class="form-control border-black" id="exampleFormControlInput1">
         </div>
     </div>
 </div>
-
 @endsection
+
+
 
 @section('editModalContent')
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Nama</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1">
+    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
 </div>
 <div class="mb-3">
-    <label for="formFile" class="form-label">Foto</label>
-    <input class="form-control" type="file" id="formFile">
+    <label for="formFile2" class="form-label">Foto</label>
+    <img id="previewImage2" src="" alt="Preview Image " style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+    <input class="form-control border-black image-input" type="file" id="formFile2">
 </div>
 <div>
     <h5>Jadwal</h5>

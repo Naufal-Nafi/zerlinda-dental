@@ -170,3 +170,7 @@ tbody td {
 .text-20 {
     font-size: 1.25rem;
 }
+
+textarea {
+    min-height: 175px !important;
+}
