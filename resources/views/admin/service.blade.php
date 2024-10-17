@@ -19,7 +19,7 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody class="fw-semibold table-danger">
+        <tbody class="fw-semibold ">
             <tr>
                 <td></td>
                 <td></td>
@@ -42,34 +42,35 @@
 
 
 @section('createModalContent')
-<div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label ">Nama Pelayanan</label>
-        <input type="text" class="form-control border-black" id="exampleFormControlInput1">
-    </div>
-    <div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
-        <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
-            <label for="formFile1" class="form-label">Gambar</label>
-            <img id="previewImage1" src="" alt="Preview Image"
-                style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-            <input class="form-control border-black image-input" type="file" id="formFile1">
-        </div>
-        <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
-            <label for="formFile2" class="form-label">Contoh Perawatan</label>
-            <img id="previewImage2" src="" alt="Preview Image"
-                style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-            <input class="form-control border-black image-input" type="file" id="formFile2">
-        </div>
 
-        <div class="d-flex justify-content-center align-items-center" style="min-width: 200px; min-height:240px; cursor: pointer;" id="addNewField">
-            <i class="bi bi-plus-square" style="font-size: 83px;"></i>
-        </div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label ">Nama Pelayanan</label>
+    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
+</div>
+<div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
+    <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
+        <label for="formFile1" class="form-label">Gambar</label>
+        <img id="previewImage1" src="" alt="Preview Image"
+            style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+        <input class="form-control border-black image-input" type="file" id="formFile1">
     </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Informasi Pelayanan</label>
-        <textarea class="form-control border-black" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
+        <label for="formFile2" class="form-label">Contoh Perawatan</label>
+        <img id="previewImage2" src="" alt="Preview Image"
+            style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+        <input class="form-control border-black image-input" type="file" id="formFile2">
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center"
+        style="min-width: 200px; min-height:240px; cursor: pointer;" id="addNewField">
+        <i class="bi bi-plus-square" style="font-size: 83px;"></i>
     </div>
 </div>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Informasi Pelayanan</label>
+    <textarea class="form-control border-black" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
 
 <script>
     let counter = 3; // Start counter for new div IDs
@@ -89,9 +90,9 @@
 
         newDiv.innerHTML = `
         <div style='min-height:38px; '></div>
-    <img id="${newImgId}" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-    <input class="form-control border-black image-input" type="file" id="${newInputId}" >
-`;
+        <img id="${newImgId}" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+        <input class="form-control border-black image-input" type="file" id="${newInputId}" >
+        `;
 
         // Append the new div to the container
         container.insertBefore(newDiv, document.getElementById('addNewField'));
@@ -102,4 +103,30 @@
         counter++;
     });
 </script>
+@endsection
+
+@section('editModalContent')
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label ">Nama Pelayanan</label>
+    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
+</div>
+<div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
+    <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
+        <label for="formFile1" class="form-label">Gambar</label>
+        <img id="previewImage1" src="" alt="Preview Image"
+            style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+        <input class="form-control border-black image-input" type="file" id="formFile1">
+    </div>
+    <!-- for each  -->
+    <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
+        <label for="formFile2" class="form-label">Contoh Perawatan</label>
+        <img id="previewImage2" src="" alt="Preview Image"
+            style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+        <input class="form-control border-black image-input" type="file" id="formFile2">
+    </div>
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Informasi Pelayanan</label>
+    <textarea class="form-control border-black" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
 @endsection

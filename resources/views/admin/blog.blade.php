@@ -18,7 +18,7 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody class="fw-semibold table-danger">
+        <tbody class="fw-semibold">
             <tr>
                 <td></td>
                 <td></td>

@@ -95,7 +95,6 @@
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
-
                 <div class="modal-body text-20">
                     @yield('createModalContent')
                 </div>
@@ -138,7 +137,7 @@
                     <p>Apakah anda yakin ingin menghapus data ini?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-danger">Hapus</button>
                 </div>
             </div>
