@@ -57,7 +57,10 @@
 </div>
 @endsection
 
-@section('editModalName','editContactModal')
+@php
+    $editModalName = 'editContactModal';  // ID modal
+    $routeName = ''; // Nama route
+@endphp
 
 @section('editModalContent')
 <div>

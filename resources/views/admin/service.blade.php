@@ -37,8 +37,11 @@
 
 
 @endsection
-@section('createModalName', 'createServiceModal')
-@section('editModalName', 'editServiceModal')
+@php
+    $createModalName = 'createServiceModal';
+    $editModalName = 'editServiceModal';  // ID modal
+    $routeName = ''; // Nama route
+@endphp
 
 
 @section('createModalContent')
@@ -62,8 +65,8 @@
     </div>
 
     <div class="d-flex justify-content-center align-items-center"
-        style="min-width: 200px; min-height:240px; cursor: pointer;" >
-        <i class="bi bi-plus-square" style="font-size: 83px;" id="addNewField"></i>
+        style="min-width: 200px; min-height:240px; cursor: pointer;" id="addNewField">
+        <i class="bi bi-plus-square" style="font-size: 83px;"></i>
     </div>
 </div>
 <div class="mb-3">

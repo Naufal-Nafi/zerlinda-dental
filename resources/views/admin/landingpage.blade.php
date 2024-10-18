@@ -29,7 +29,11 @@
 </div>
 
 @endsection
-@section('createModalName','createLandingPageModal')
+@php
+    $createModalName = 'createLandingPageModal';
+    $editModalName = '';  // ID modal
+    $routeName = ''; // Nama route
+@endphp
 
 
 @section('createModalContent')

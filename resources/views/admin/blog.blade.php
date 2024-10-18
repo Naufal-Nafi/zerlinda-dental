@@ -36,8 +36,14 @@
 
 @endsection
 
-@section('createModalName', 'createBlogModal')
-@section('editModalName', 'editBlogModal')
+@php
+    $createModalName = 'createBlogModal';
+    $editModalName = 'editBlogModal';  // ID modal
+    $routeName = ''; // Nama route
+@endphp
+
+
+
 
 @section('createModalContent')
 <div class="mb-3">

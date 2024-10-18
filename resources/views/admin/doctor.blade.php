@@ -36,8 +36,11 @@
 </div>
 
 @endsection
-@section('createModalName', 'createDoctorModal')
-@section('editModalName', 'editDoctorModal')
+@php
+    $createModalName = 'createDoctorModal';
+    $editModalName = 'editDoctorModal';  // ID modal
+    $routeName = ''; // Nama route
+@endphp
 
 
 

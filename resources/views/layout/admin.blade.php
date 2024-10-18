@@ -91,37 +91,45 @@
     </div>
 
 
+    
 
     <!--Create Modal -->
-    <div class="modal fade" id="@yield('createModalName')" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="{{ $createModalName ?? 'defaultModalId' }}" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
-                <div class="modal-body text-20">
-                    @yield('createModalContent')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn text-white bg-pink">Submit</button>
-                </div>
+                <form action="" method="">
+                    @csrf
+                    <div class="modal-body text-20">
+                        @yield('createModalContent')
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn text-white bg-pink">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
 
 
+
     <!--Edit Modal -->
-    <div class="modal fade" id="@yield('editModalName')" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="{{ $editModalName ?? 'defaultModalId'}}" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
-                <div class="modal-body text-20">
-                    @yield('editModalContent')
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn text-white bg-pink">Submit</button>
-                </div>
+                <form action="" method="">
+                    @csrf
+                    <div class="modal-body text-20">
+                        @yield('editModalContent')
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn text-white bg-pink">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
