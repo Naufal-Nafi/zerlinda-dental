@@ -2,63 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
-class LoginController
+class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function showLoginForm()
     {
         return view('admin.login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function login(Request $request)
     {
-        //
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('username', 'password');
+        $user = User::where('username', $credentials['username'])->first();
+       if (!$user) {
+           return back()->withErrors([
+               'username' => 'Username yang Anda masukkan salah',
+           ]);
+       } elseif (!Hash::check($credentials['password'], $user->password)) {
+    return back()->withErrors([
+        'password' => 'Password yang Anda masukkan salah',
+    ]);
+        }
+        else {
+           Auth::login($user);
+           return redirect()->route('admin.dashboard');
+       }
+
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function logout()
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Auth::logout();
+        return redirect()->route('admin.login');
     }
 }

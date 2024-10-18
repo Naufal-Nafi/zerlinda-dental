@@ -3,62 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class PasswordController
+class PasswordController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show the form for changing the password.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        return view('admin.password');
+        return view('auth.passwords.change'); // Form ubah password
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Update the user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function create()
+    public function update(Request $request)
     {
-        //
-    }
+        // Validasi input
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Periksa apakah password saat ini sesuai
+        if (!Hash::check($request->current_password, Auth::user()->password)) {
+            return back()->withErrors(['current_password' => 'Password saat ini salah']);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        return view('confirmPassword');
-    }
+        // Update password
+        Auth::user()->update([
+            'password' => Hash::make($request->new_password),
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('admin.dashboard')->with('status', 'Password berhasil diperbarui');
     }
 }
