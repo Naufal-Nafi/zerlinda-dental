@@ -177,3 +177,7 @@ tbody td {
 textarea {
     min-height: 175px !important;
 }
+#addNewField:hover {
+    transform: translateY(-4px);
+    transition: 0.4s;
+}

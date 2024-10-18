@@ -62,8 +62,8 @@
     </div>
 
     <div class="d-flex justify-content-center align-items-center"
-        style="min-width: 200px; min-height:240px; cursor: pointer;" id="addNewField">
-        <i class="bi bi-plus-square" style="font-size: 83px;"></i>
+        style="min-width: 200px; min-height:240px; cursor: pointer;" >
+        <i class="bi bi-plus-square" style="font-size: 83px;" id="addNewField"></i>
     </div>
 </div>
 <div class="mb-3">
@@ -78,10 +78,7 @@
     document.getElementById('addNewField').addEventListener('click', function () {
         const container = document.querySelector('.gambar-pelayanan');
         const newDiv = document.createElement('div');
-        newDiv.classList.add('me-3');
-        newDiv.classList.add('d-flex');
-        newDiv.classList.add('flex-column');
-        newDiv.classList.add('justify-content-between');
+        newDiv.classList.add('me-3', 'd-flex', 'flex-column', 'justify-content-between');     
         newDiv.style.minWidth = '300px';
         newDiv.style.minHeight = '240px';
 
@@ -124,6 +121,7 @@
             style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
         <input class="form-control border-black image-input" type="file" id="formFile2">
     </div>
+    <!-- end for each  -->
 </div>
 <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Informasi Pelayanan</label>

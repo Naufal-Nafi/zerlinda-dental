@@ -16,7 +16,9 @@
     <div class="d-flex ">
         <!-- Sidebar -->
         <div class="sidebar top-0">
-            <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" class="mb-4" style="width: 80%;">
+            <div class="w-100 mb-4 d-flex justify-content-center">
+                <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" style="width: 80%;">
+            </div>
             <nav class="sidenav" style="">
                 <div>
                     <ul class="nav flex-column">
@@ -163,11 +165,11 @@
             month: 'long',
             year: 'numeric'
         });
-        
+
         document.getElementById('current-date').textContent = formattedDate;
-        
+
         // Image Input Preview Handler (use this for both existing and dynamically added inputs)
-        function initializeImagePreview() {            
+        function initializeImagePreview() {
             document.querySelectorAll('.image-input').forEach(input => {
                 const previewImage = input.previousElementSibling;
 
@@ -190,6 +192,49 @@
 
         // Initialize the preview for the first two inputs
         initializeImagePreview();
+
+
+
+        // Ambil semua checkbox
+        const checkboxes = document.querySelectorAll('.form-check-input');
+
+        // Fungsi untuk menambahkan atau menghapus form jam mulai dan jam akhir
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                const day = this.value; // Hari yang dipilih
+                const parentDiv = this.closest('.form-check'); // Dapatkan parent div dari checkbox
+
+                // Cek jika checkbox di centang
+                if (this.checked) {
+                    // Buat div untuk jam mulai dan akhir
+                    const scheduleDiv = document.createElement('div');
+                    scheduleDiv.id = `schedule-${day}`;
+                    scheduleDiv.classList.add('schedule-times', 'mx-3', 'mb-3');
+                    scheduleDiv.style.width = '100px';
+
+                    // Isi div dengan form jam mulai dan akhir
+                    scheduleDiv.innerHTML = `
+                <div class="">
+                    <label for="startTime-${day}" class="form-label">Jam Mulai - ${day}</label>
+                    <input type="time" class="form-control border-black" id="startTime-${day}">
+                </div>
+                <div class="">
+                    <label for="endTime-${day}" class="form-label">Jam Akhir - ${day}</label>
+                    <input type="time" class="form-control border-black" id="endTime-${day}">
+                </div>
+            `;
+
+                    // Tambahkan ke dalam div form-check setelah label
+                    parentDiv.appendChild(scheduleDiv);
+                } else {
+                    // Hapus div jika checkbox tidak dicentang
+                    const scheduleDiv = document.getElementById(`schedule-${day}`);
+                    if (scheduleDiv) {
+                        parentDiv.removeChild(scheduleDiv);
+                    }
+                }
+            });
+        });
 
 
     </script>
