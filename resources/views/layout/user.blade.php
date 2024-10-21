@@ -8,8 +8,9 @@
     <!-- Tambahkan CSS untuk Bootstrap atau framework CSS lain jika diperlukan -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @vite('resources/css/app.css')
+    <link rel="icon" href="{{ asset('images/logo_simple.png') }}">
 </head>
 
 <body>
@@ -54,9 +55,9 @@
                             </svg>
                         </button>
                         <div class="hidden lg:flex lg:items-center text-pink-primary font-bold">
-                            <a class="nav-link px-4 py-2 " href="#">Home</a>
-                            <a class="nav-link px-4 py-2 " href="#">Lokasi</a>
-                            <a class="nav-link px-4 py-2 " href="#">Pelayanan</a>
+                            <a class="nav-link px-4 py-2 " href="{{ '/home' }}">Home</a>
+                            <a class="nav-link px-4 py-2 " href="{{ '/location' }}">Lokasi</a>
+                            <a class="nav-link px-4 py-2 " href="{{ '/pelayanan' }}">Pelayanan</a>
                             <a class="nav-link px-4 py-2 " href="#">Blog</a>
                             <a class="nav-link px-4 py-2 " href="#">Jadwal</a>
                         </div>
@@ -65,7 +66,7 @@
             </nav>
         </div>
 
-        <div class="min-h-16">
+        <div style="min-height: 88.5px;">
         </div>
 
 
@@ -78,19 +79,68 @@
 
 
         <!-- Footer -->
-        <footer class="bg-pink-secondary min-h-48 flex items-center justify-center">
+        <!-- <footer class="bg-pink-secondary min-h-48 flex items-center justify-center text-blue-primary">
             <div class="container md:mx-16 mx-4">
                 <div class="px-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid ullam, harum odio eos aspernatur delectus. Fugit dolore praesentium iure voluptatum illo. Eum veritatis provident expedita, voluptatum autem ab repellat totam?
-                    Tempore sunt vel soluta pariatur laboriosam. Reprehenderit in sed, perspiciatis mollitia ipsa error non exercitationem possimus accusamus nam? Cupiditate, necessitatibus beatae quam quibusdam excepturi iste nulla consequuntur quasi soluta repellendus.
-                    Natus architecto ad obcaecati soluta earum quod eveniet totam aspernatur, quam saepe, dolorum error officiis officia doloremque quae eligendi temporibus consequuntur nobis rerum expedita fuga perferendis pariatur, delectus animi! Distinctio?
-                    Illum culpa quibusdam commodi autem dolorum? Quisquam reprehenderit rem hic earum explicabo quasi iste voluptate, id nobis quas, molestiae fugit. Id est vero, laboriosam ab accusantium consectetur illum excepturi consequuntur.
-                    Rem, quas dolores id excepturi voluptas recusandae placeat iure totam beatae provident quos, nemo consequuntur vel eos exercitationem eum! Beatae impedit voluptatem soluta excepturi dignissimos sequi a, atque placeat dolorem?
-                    Et totam nostrum illo assumenda consectetur officiis dignissimos, eos eveniet vero at, est obcaecati reprehenderit aut! Eos, exercitationem error animi dolor, aliquam similique alias soluta nisi nulla obcaecati ex delectus?
-                    
+                    <h1 class="text-4xl font-bold">Zerlinda Dental Care</h1>                
+                </div>
+                <div class="flex ">
+                    <div></div>
                 </div>
             </div>
+        </footer> -->
+        <footer class="bg-pink-200 py-8 px-4">
+            <div class="max-w-6xl mx-auto gap-4 md:text-left text-center text-blue-primary">
+
+                <!-- Logo Section -->
+                <div>
+                    <h2 class="text-4xl font-bold mb-4">Zerlinda Dental Care</h2>
+                </div>
+
+                <!-- Halaman Lain -->
+                <div class="md:flex md:justify-between block">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Halaman Lain :</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="">Pelayanan Dewasa</a></li>
+                            <li><a href="#" class="">Pelayanan Anak</a></li>
+                            <li><a href="#" class="">Jadwal Dokter</a></li>
+                            <li><a href="#" class="">Blog</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Kontak -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Kontak :</h3>
+                        <ul class="space-y-2">
+                            <li class=""><span class="font-bold">M</span> zerlindadentalcare@gmail.com
+                            </li>
+                            <li class=""><span class="font-bold">IG</span> zerlindadentalcare</li>
+                            <li class=""><span class="font-bold">FB</span> Zerlinda Dental Care</li>
+                            <li class=""><span class="font-bold">TikTok</span> zerlindadentalcare</li>
+                            <li class=""><span class="font-bold">WA</span> 08999999999999</li>
+                        </ul>
+                    </div>
+
+                    <!-- Jadwal Klinik & Lokasi Klinik -->
+                    <div>
+                        <h3 class="text-xl font-semibold  mb-4">Jadwal Klinik :</h3>
+                        <p class="">Senin - Jumat : 15:00 - 21:00</p>
+                        <p class="">Sabtu : 18:00 - 20:00</p>
+
+                        <h3 class="text-xl font-semibold  mt-6 mb-4">Lokasi Klinik :</h3>
+                        <p class="">Jalan Kalasan</p>
+                    </div>
+                </div>
+
+                <div class="md:flex justify-between mt-12">
+                    <p >&copy; Zerlinda Dental Care</p>
+                    <p style="margin-right: 70px">Developed by NPN</p>
+                </div>
+            </div>
+
         </footer>
+
     </div>
 
 </body>

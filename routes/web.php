@@ -42,4 +42,5 @@ Route::post('/admin/password/change', [PasswordController::class, 'update'])->na
 
 Route::get('/home',[homeController::class, 'index'])->name('user.home');
 
-
+Route::view('/location', 'user.maps');
+Route::get('/pelayanan', [\App\Http\Controllers\Public\ServiceController::class, 'index']);

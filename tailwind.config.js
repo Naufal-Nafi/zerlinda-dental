@@ -12,6 +12,9 @@ export default {
           primary: '#DA0C81',
           secondary: '#FECEDA'
         },
+        blue: {
+          primary: '#161347'
+        },
       },
     },
   },
