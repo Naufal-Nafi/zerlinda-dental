@@ -29,10 +29,8 @@ Route::post('/admin/password/update', [PasswordController::class, 'update'])->na
 Route::get('/admin/confirmpassword', [PasswordController::class, 'show'])->name('admin.confirmPassword');
 
 // Rute Layanan
-Route::post('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
-Route::get('/admin/service/{id}/edit', [ServiceController::class, 'edit'])->name('admin.service.edit');
-Route::put('/admin/service/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
-Route::delete('/admin/service/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
+Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
+
 
 
 Route::get('/admin/logout',[LoginController::class, 'logout'])->name('admin.logout');
