@@ -16,6 +16,9 @@ export default {
           primary: '#161347'
         },
       },
+      height: {
+        450: '450px'
+      },
     },
   },
   plugins: [],
