@@ -1,7 +1,5 @@
 @extends('layout.admin')
 
-@section('title', 'Ganti Kontak')
-
 @section('page-title', 'Ganti Kontak')
 
 @section('content')

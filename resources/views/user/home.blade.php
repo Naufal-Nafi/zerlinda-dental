@@ -5,7 +5,7 @@
 @section('content')
 <section id="hero" class="min-h-screen flex items-end ">
     <div class="hero-2">
-        <div class=" mx-auto block mb-10 mx-10 ">
+        <div class=" mx-4 block mb-10 mx-10 ">
             <div class="text-left">
                 <h1 data-aos="fade-left" class="text-white font-semibold lg:text-8xl md:text-6xl text-4xl">
                     Selamat Datang
