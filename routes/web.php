@@ -25,18 +25,23 @@ Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog');
 Route::get('/admin/doctor', [DoctorController::class, 'index'])->name('admin.doctor');
 Route::get('/admin/landingpage', [LandingPageController::class, 'index'])->name('admin.landingpage');
 Route::get('/admin/password', [PasswordController::class, 'index'])->name('admin.password');
+Route::post('/admin/password/update', [PasswordController::class, 'update'])->name('admin.password.update');
 Route::get('/admin/confirmpassword', [PasswordController::class, 'show'])->name('admin.confirmPassword');
-Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
+
+// Rute Layanan
+Route::post('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
+Route::get('/admin/service/{id}/edit', [ServiceController::class, 'edit'])->name('admin.service.edit');
+Route::put('/admin/service/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
+Route::delete('/admin/service/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
+
 
 Route::get('/admin/logout',[LoginController::class, 'logout'])->name('admin.logout');
 
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
 Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
 // Rute untuk mengubah password pengguna
-Route::get('/admin/password/change', [PasswordController::class, 'index'])->name('password.change');
-Route::post('/admin/password/change', [PasswordController::class, 'update'])->name('password.update');
+
 
 
 

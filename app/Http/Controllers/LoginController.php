@@ -15,30 +15,21 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-
-        $credentials = $request->only('username', 'password');
-        $user = User::where('username', $credentials['username'])->first();
-       if (!$user) {
-           return back()->withErrors([
-               'username' => 'Username yang Anda masukkan salah',
-           ]);
-       } elseif (!Hash::check($credentials['password'], $user->password)) {
-    return back()->withErrors([
-        'password' => 'Password yang Anda masukkan salah',
+{
+    $credentials = $request->validate([
+        'username' => 'required',
+        'password' => 'required',
     ]);
-        }
-        else {
-           Auth::login($user);
-           return redirect()->route('admin.dashboard');
-       }
 
-        
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->route('admin.dashboard');
     }
+
+    return back()->withErrors([
+        'username' => 'The provided credentials do not match our records.',
+    ]);
+}
 
     public function logout()
     {

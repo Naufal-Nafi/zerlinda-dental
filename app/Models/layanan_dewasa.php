@@ -9,5 +9,9 @@ class layanan_dewasa extends Model
 {
     use HasFactory;
 
-    protected $table = 'layanan_dewasa';
+    protected $fillable = [
+        'nama_layanan',
+        'deskripsi',
+        'gambar',
+    ];
 }

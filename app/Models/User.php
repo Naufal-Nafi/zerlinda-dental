@@ -21,6 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
+        'email',
         'password',
     ];
 
@@ -32,16 +33,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
-    /**
-     * Mutator untuk meng-hash password menggunakan Bcrypt
-     * 
-     * @param string $password
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = Hash::make($password); // Menggunakan Hash::make yang menggunakan Bcrypt
-    }
 
     /**
      * Get the attributes that should be cast.
