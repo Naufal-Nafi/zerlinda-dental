@@ -8,6 +8,9 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\public\AdultServiceController;
+use App\Http\Controllers\Public\KidsServiceController;
+use App\Http\Controllers\public\PublicServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -45,5 +48,12 @@ Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkE
 
 Route::get('/home',[homeController::class, 'index'])->name('user.home');
 
-Route::view('/location', 'user.maps');
-Route::get('/pelayanan', [\App\Http\Controllers\Public\ServiceController::class, 'index']);
+Route::view('/location', 'user.maps')->name('location');
+Route::get('/layananGigiAnak', [PublicServiceController::class, 'childService'])->name('service.child');
+Route::get('/layananGigiDewasa', [PublicServiceController::class, 'adultService'])->name('service.adult');
+// Route::get('/services/{type}/{id}', [PublicServiceController::class, 'show'])->name('service.show');
+
+Route::get('/typeServices', [PublicServiceController::class, 'show'])->name('service.show');
+
+// Route::get('/layananAnak', [KidsServiceController::class, 'index']);
+// Route::get('/layananDewasa', [AdultServiceController::class, 'index']);

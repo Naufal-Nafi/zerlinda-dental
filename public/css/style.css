@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 * {
     padding: 0;
@@ -28,20 +27,81 @@ h4,
 h5,
 h6,
 span {
-  cursor: default;
+    cursor: default;
 }
 
-
 #hero {
-    background-image: url('../images/landing-page.png');
+    background-image: url("../images/landing-page.png");
     background-size: cover;
     background-position: center;
 }
 
 .hero-2 {
-    background: linear-gradient(rgba(0,0,0,0),rgba(254, 206, 218, 0.7));
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(254, 206, 218, 0.7));
 }
 
+/* service */
+.service-container {
+    transition: 0.4s;
+
+    &:hover {
+        transform: translateY(-4px);
+
+        & img {
+            filter: opacity(75%);
+        }
+
+        & p {
+            color: var(--text-color);
+        }
+    }
+
+    & img,
+    p {
+        transition: 0.4s;
+    }
+}
+/* end service */
 
 
+.slider {
+    width: 100%;
+    height: calc(var(--sliderWidth) / 1.70);
+    overflow-x: hidden;    
+}
+
+.slider ul {
+    display: flex !important;
+    width: 100%;
+    height: calc(var(--sliderWidth) / 1.79);
+    overflow: hidden;
+    min-width: calc(var(--sliderWidth) * var(--quantity));
+    position: relative;
+}
+
+.slider ul li {
+    width: var(--sliderWidth);    
+    position: absolute;
+    left: 100%;
+    flex-wrap: nowrap;
+    animation: AutoRun var(--time) linear infinite;
+    animation-delay: calc(var(--time) / var(--quantity) * (var(--index) - 1) - var(--time));
+    transition: 0.4s;
+}
+
+@keyframes AutoRun {
+    to{
+        left: calc(-1 * var(--sliderWidth));
+    }
+}
+
+.slider:hover ul li{
+    animation-play-state: paused;
+    filter: grayscale(1);
+}
+
+.slider ul li:hover{
+    filter: grayscale(0);
+    transform: scale(1.05)
+}
 

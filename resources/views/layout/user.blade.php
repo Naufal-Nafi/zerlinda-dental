@@ -55,11 +55,28 @@
                             </svg>
                         </button>
                         <div class="hidden lg:flex lg:items-center text-pink-primary font-bold">
-                            <a class="nav-link px-4 py-2 " href="{{ '/home' }}">Home</a>
-                            <a class="nav-link px-4 py-2 " href="{{ '/location' }}">Lokasi</a>
-                            <a class="nav-link px-4 py-2 " href="{{ '/pelayanan' }}">Pelayanan</a>
-                            <a class="nav-link px-4 py-2 " href="#">Blog</a>
-                            <a class="nav-link px-4 py-2 " href="#">Jadwal</a>
+                            <a class="nav-link px-6 py-2 " href="{{ '/home' }}">Home</a>
+                            <a class="nav-link px-6 py-2 " href="{{ route('location') }}">Lokasi</a>
+                            <div class="relative group">
+                                <button class="nav-link px-6 py-2 flex items-center">
+                                    Pelayanan
+                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+
+                                <!-- Dropdown Menu -->
+                                <div class="absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
+                                    <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
+                                        href="{{ route('service.adult') }}">Dewasa</a>
+                                    <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
+                                        href="{{ route('service.child') }}">Anak-anak</a>
+                                </div>
+                            </div>
+                            <a class="nav-link px-6 py-2 " href="#">Blog</a>
+                            <a class="nav-link px-6 py-2 " href="#">Jadwal</a>
                         </div>
                     </div>
                 </div>
@@ -72,24 +89,14 @@
 
         <!-- Konten Halaman -->
         <div class="d-flex justify-content-center align-items-center">
-            <div class="text-center main-content">
+            <div class="text-center main-content overflow-x-hidden">
                 @yield('content')
             </div>
         </div>
 
 
-        <!-- Footer -->
-        <!-- <footer class="bg-pink-secondary min-h-48 flex items-center justify-center text-blue-primary">
-            <div class="container md:mx-16 mx-4">
-                <div class="px-4">
-                    <h1 class="text-4xl font-bold">Zerlinda Dental Care</h1>                
-                </div>
-                <div class="flex ">
-                    <div></div>
-                </div>
-            </div>
-        </footer> -->
-        <footer class="bg-pink-200 py-8 px-4">
+        <!-- Footer -->        
+        <footer class="bg-pink-200 py-8 px-4 rounded-t-3xl">
             <div class="max-w-6xl mx-auto gap-4 md:text-left text-center text-blue-primary">
 
                 <!-- Logo Section -->
@@ -134,7 +141,7 @@
                 </div>
 
                 <div class="md:flex justify-between mt-12">
-                    <p >&copy; Zerlinda Dental Care</p>
+                    <p>&copy; Zerlinda Dental Care</p>
                     <p style="margin-right: 70px">Developed by NPN</p>
                 </div>
             </div>
