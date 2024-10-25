@@ -205,7 +205,7 @@
 
 
         // Ambil semua checkbox
-        const checkboxes = document.querySelectorAll('.form-check-input');
+        const checkboxes = document.querySelectorAll('.form-check-input-doctor');
 
         // Fungsi untuk menambahkan atau menghapus form jam mulai dan jam akhir
         checkboxes.forEach(checkbox => {

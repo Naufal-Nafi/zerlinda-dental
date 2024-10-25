@@ -59,43 +59,43 @@
             <p>Pilih Hari</p>
             <div class="d-flex overflow-x-auto w-100" >
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Senin" id="flexCheckSenin">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Senin" id="flexCheckSenin">
                     <label class="form-check-label" for="flexCheckSenin">
                         Senin
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Selasa" id="flexCheckSelasa">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Selasa" id="flexCheckSelasa">
                     <label class="form-check-label" for="flexCheckSelasa">
                         Selasa
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Rabu" id="flexCheckRabu">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Rabu" id="flexCheckRabu">
                     <label class="form-check-label" for="flexCheckRabu">
                         Rabu
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Kamis" id="flexCheckKamis">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Kamis" id="flexCheckKamis">
                     <label class="form-check-label" for="flexCheckKamis">
                         Kamis
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Jumat" id="flexCheckJumat">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Jumat" id="flexCheckJumat">
                     <label class="form-check-label" for="flexCheckJumat">
                         Jumat
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Sabtu" id="flexCheckSabtu">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Sabtu" id="flexCheckSabtu">
                     <label class="form-check-label" for="flexCheckSabtu">
                         Sabtu
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Minggu" id="flexCheckMinggu">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Minggu" id="flexCheckMinggu">
                     <label class="form-check-label" for="flexCheckMinggu">
                         Minggu
                     </label>
@@ -125,43 +125,43 @@
             <p>Pilih Hari</p>
             <div class="d-flex overflow-x-auto w-100" >
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Senin" id="flexCheckSenin">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Senin" id="flexCheckSenin">
                     <label class="form-check-label" for="flexCheckSenin">
                         Senin
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Selasa" id="flexCheckSelasa">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Selasa" id="flexCheckSelasa">
                     <label class="form-check-label" for="flexCheckSelasa">
                         Selasa
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Rabu" id="flexCheckRabu">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Rabu" id="flexCheckRabu">
                     <label class="form-check-label" for="flexCheckRabu">
                         Rabu
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Kamis" id="flexCheckKamis">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Kamis" id="flexCheckKamis">
                     <label class="form-check-label" for="flexCheckKamis">
                         Kamis
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Jumat" id="flexCheckJumat">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Jumat" id="flexCheckJumat">
                     <label class="form-check-label" for="flexCheckJumat">
                         Jumat
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Sabtu" id="flexCheckSabtu">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Sabtu" id="flexCheckSabtu">
                     <label class="form-check-label" for="flexCheckSabtu">
                         Sabtu
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Minggu" id="flexCheckMinggu">
+                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Minggu" id="flexCheckMinggu">
                     <label class="form-check-label" for="flexCheckMinggu">
                         Minggu
                     </label>

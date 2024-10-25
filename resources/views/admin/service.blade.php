@@ -43,7 +43,20 @@
 
 
 @section('createModalContent')
-
+<div class="mb-3 d-flex">
+    <div class="form-check me-5">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+        <label class="form-check-label" for="flexRadioDefault1">
+            Dewasa
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault2">
+            Anak-anak
+        </label>
+    </div>
+</div>
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label ">Nama Pelayanan</label>
     <input type="text" class="form-control border-black" id="exampleFormControlInput1">
@@ -79,7 +92,7 @@
     document.getElementById('addNewField').addEventListener('click', function () {
         const container = document.querySelector('.gambar-pelayanan');
         const newDiv = document.createElement('div');
-        newDiv.classList.add('me-3', 'd-flex', 'flex-column', 'justify-content-between');     
+        newDiv.classList.add('me-3', 'd-flex', 'flex-column', 'justify-content-between');
         newDiv.style.minWidth = '300px';
         newDiv.style.minHeight = '240px';
 
@@ -104,6 +117,20 @@
 @endsection
 
 @section('editModalContent')
+<div class="mb-3 d-flex">
+    <div class="form-check me-5">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+        <label class="form-check-label" for="flexRadioDefault1">
+            Dewasa
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault2">
+            Anak-anak
+        </label>
+    </div>
+</div>
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label ">Nama Pelayanan</label>
     <input type="text" class="form-control border-black" id="exampleFormControlInput1">

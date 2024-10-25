@@ -35,23 +35,33 @@
         officiis?
     </p>
     <h1 class="lg:text-5xl text-xl font-bold lg:my-20 my-12">Contoh Foto Perawatan</h1>
-    
-    
+
+
 </div>
-<div class="slider my-12" style="--sliderWidth: 450px; sliderHeight:50px;">
+<div class="slider my-12">
     <ul class="list" style="
+        --sliderWidth: 450px;
         --time: 27s;
         --quantity: 9
     ">
-        <li class="item" style="--index: 1"><img src="{{ asset('images/landing-page.png') }}" alt=""></li>
-        <li class="item" style="--index: 2"><img src="{{ asset('images/landing-page.png') }}" alt=""></li>
-        <li class="item" style="--index: 3"><img src="{{ asset('images/landing-page.png') }}" alt=""></li>
-        <li class="item" style="--index: 4"><img src="{{ asset('images/landing-page.png') }}" alt=""></li>
-        <li class="item" style="--index: 5"><img src="{{ asset('images/logo_simple.png') }}" alt=""></li>
-        <li class="item" style="--index: 6"><img src="{{ asset('images/landing-page.png') }}" alt=""></li>
-        <li class="item" style="--index: 7"><img src="{{ asset('images/landing-page.png') }}" alt=""></li>
-        <li class="item" style="--index: 8"><img src="{{ asset('images/landing-page.png') }}" alt=""></li>
-        <li class="item" style="--index: 9"><img src="{{ asset('images/landing-page.png') }}" alt=""></li>
+        <li class="" style="--index: 1"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
+        <li class="" style="--index: 2"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
+        <li class="" style="--index: 3"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
+        <li class="" style="--index: 4"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
+        <li class="" style="--index: 5"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
+        <li class="" style="--index: 6"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
+        <li class="" style="--index: 7"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
+        <li class="" style="--index: 8"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
+        <li class="" style="--index: 9"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
+        </li>
 
     </ul>
 </div>

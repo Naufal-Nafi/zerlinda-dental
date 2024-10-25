@@ -68,7 +68,8 @@
                                 </button>
 
                                 <!-- Dropdown Menu -->
-                                <div class="absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
+                                <div
+                                    class="absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
                                     <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
                                         href="{{ route('service.adult') }}">Dewasa</a>
                                     <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
@@ -95,7 +96,7 @@
         </div>
 
 
-        <!-- Footer -->        
+        <!-- Footer -->
         <footer class="bg-pink-200 py-8 px-4 rounded-t-3xl">
             <div class="max-w-6xl mx-auto gap-4 md:text-left text-center text-blue-primary">
 
@@ -120,12 +121,34 @@
                     <div>
                         <h3 class="text-xl font-semibold mb-4">Kontak :</h3>
                         <ul class="space-y-2">
-                            <li class=""><span class="font-bold">M</span> zerlindadentalcare@gmail.com
-                            </li>
-                            <li class=""><span class="font-bold">IG</span> zerlindadentalcare</li>
-                            <li class=""><span class="font-bold">FB</span> Zerlinda Dental Care</li>
-                            <li class=""><span class="font-bold">TikTok</span> zerlindadentalcare</li>
-                            <li class=""><span class="font-bold">WA</span> 08999999999999</li>
+                            <ul>
+                                <li class="flex items-center mb-4">
+                                    <span><img src="{{ asset('icons/icon_gmail_.png') }}" alt="Facebook Icon"
+                                            class="w-7 me-4"></span>
+                                    <span>zerlindadentalcare@gmail.com</span>
+                                </li>
+                                <li class="flex items-center mb-4">
+                                    <span><img src="{{ asset('icons/icon_instagram_.png') }}" alt="Gmail Icon"
+                                            class="w-7 me-4"></span>
+                                    <span>zerlindadentalcare</span>
+                                </li>
+                                <li class="flex items-center mb-4">
+                                    <span><img src="{{ asset('icons/icon_facebook_.png') }}" alt="Instagram Icon"
+                                            class="w-7 me-4"></span>
+                                    <span>Zerlinda Dental Care</span>
+                                </li>
+                                <li class="flex items-center mb-4">
+                                    <span><img src="{{ asset('icons/icon_tiktok_.png') }}" alt="TikTok Icon"
+                                            class="w-7 me-4"></span>
+                                    <span>zerlindadentalcare</span>
+                                </li>
+                                <li class="flex items-center mb-4">
+                                    <span><img src="{{ asset('icons/icon_whatsapp_.png') }}" alt="WhatsApp Icon"
+                                            class="w-7 me-4"></span>
+                                    <span>08999999999999</span>
+                                </li>
+                            </ul>
+
                         </ul>
                     </div>
 
