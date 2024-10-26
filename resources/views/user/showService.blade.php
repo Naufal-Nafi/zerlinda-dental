@@ -3,8 +3,8 @@
 @section('title', 'p')
 
 @section('content')
-<div class="min-h-screen mx-auto text-pink-primary w-4/5">
-    <h1 class="lg:text-5xl text-xl font-bold lg:my-20 my-12">Judul Pelayanan</h1>
+<div class="min-h-screen mx-auto text-pink-primary md:w-4/5 w-[85%]">
+    <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">Judul Pelayanan</h1>
     <img src="{{ asset('images/landing-page.png') }}" alt="" class="border-2 border-pink-secondary rounded-lg">
     <p class="mt-12 text-black text-justify">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum perferendis quos natus ut expedita accusantium,
@@ -39,8 +39,7 @@
 
 </div>
 <div class="slider my-12">
-    <ul class="list" style="
-        --sliderWidth: 450px;
+    <ul class="list" style="        
         --time: 27s;
         --quantity: 9
     ">

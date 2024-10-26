@@ -12,6 +12,7 @@
     --primary-color: #da0c81;
     --text-color: #161347;
     --white-color: #ffffff;
+    --sliderWidth: 450px;
 }
 
 body {
@@ -86,7 +87,7 @@ span {
     flex-wrap: nowrap;
     animation: AutoRun var(--time) linear infinite;
     animation-delay: calc(var(--time) / var(--quantity) * (var(--index) - 1) - var(--time));
-    transition: 0.4s;
+    transition: 0.5s cubic-bezier(.87,-1.38,.03,1.54);
 }
 
 @keyframes AutoRun {
@@ -105,3 +106,28 @@ span {
     transform: scale(1.05)
 }
 
+.contact ul li a {
+    position: relative;
+}
+
+.contact ul li a::after {
+    content: "➜";
+    position: absolute;
+    right: -20px;
+    top: 0;
+    opacity: 0;
+    transform: translateX(-20px); /* Initial position off-screen to the left */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.contact ul li a:hover::after {
+    opacity: 1; /* Makes the arrow visible */
+    transform: translateX(0); /* Slides arrow to its normal position */
+}
+
+
+@media (max-width: 426px){
+    :root{
+        --sliderWidth: 300px;
+    }
+}
