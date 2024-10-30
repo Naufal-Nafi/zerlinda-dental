@@ -14,6 +14,7 @@ use App\Http\Controllers\public\PublicServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +34,10 @@ Route::get('/admin/confirmpassword', [PasswordController::class, 'show'])->name(
 
 // Rute Layanan
 Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
+Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
+Route::post('/admin/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
+Route::post('/admin/service/destroy', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
+
 
 
 
@@ -42,8 +47,10 @@ Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequest
 Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
 // Rute untuk mengubah password pengguna
-
-
+Route::get('/password/forgot',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot_password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('forgot_password.email');
+// Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+// Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 
 Route::get('/home',[homeController::class, 'index'])->name('user.home');

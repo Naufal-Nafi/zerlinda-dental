@@ -19,7 +19,7 @@ class DoctorController
      */
     public function create()
     {
-        //
+        
     }
 
     /**
