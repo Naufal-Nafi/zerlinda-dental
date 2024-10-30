@@ -16,6 +16,7 @@
 <body>
     <div class=" d-block">
 
+        
         <!-- navbar -->
         <div class="flex-grow " id="navbar">
             <nav class="border-b-4 bg-white fixed top-0 left-0 right-0 z-50">
@@ -35,7 +36,7 @@
 
                         <!-- Offcanvas / Drawer Menu -->
                         <div id="offcanvas-navbar"
-                            class="fixed inset-y-0 left-0 w-full  bg-white shadow-lg transform -translate-y-full transition-transform duration-300 lg:hidden z-40">
+                            class="fixed top-0 left-0 w-full h-1/2 bg-white shadow-lg transform -translate-y-full transition-transform duration-300 lg:hidden z-40">
                             <div class="p-4 border-b flex justify-between">
                                 <p class="text-3xl text-pink-primary font-bold">Menu</p>
                                 <button class="text-gray-500 focus:outline-none" onclick="toggleNavbar()">
@@ -49,8 +50,8 @@
                             <div class="flex flex-col text-center text-pink-primary font-bold p-4">
                                 <a class="nav-link px-4 py-2" href="{{ route('home') }}">Home</a>
                                 <a class="nav-link px-4 py-2" href="{{ route('location') }}">Lokasi</a>
-                                <a class="nav-link px-4 py-2" href="#">Blog</a>
-                                <a class="nav-link px-4 py-2" href="#">Jadwal</a>
+                                <a class="nav-link px-4 py-2" href="{{ route('blog') }}">Blog</a>
+                                <a class="nav-link px-4 py-2" href="{{ route('schedule') }}">Jadwal</a>
                                 <!-- Pelayanan Dropdown -->
                                 <div class="relative group mx-auto">
                                     <button class="nav-link px-4 py-2 flex items-center">
@@ -96,8 +97,8 @@
                                         href="{{ route('service.child') }}">Anak-anak</a>
                                 </div>
                             </div>
-                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300" href="#">Blog</a>
-                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300" href="#">Jadwal</a>
+                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300" href="{{ route('blog') }}">Blog</a>
+                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300" href="{{ route('schedule') }}">Jadwal</a>
                         </div>
                     </div>
                 </div>

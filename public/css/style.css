@@ -131,3 +131,34 @@ span {
         --sliderWidth: 300px;
     }
 }
+
+/* .dots {
+    list-style: disc;
+} */
+
+
+
+/* .carousel {
+    width: 1300px;
+    max-width: 100vw;
+    height: 700px;
+    margin: auto;
+    position: relative;
+
+}
+
+.clist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    width: max-content;
+
+    &img {
+        width: 1300px;
+        max-width: 100vw;
+        height: 100%;
+        object-fit: cover;
+    }
+} */

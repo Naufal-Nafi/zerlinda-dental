@@ -10,6 +10,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\public\AdultServiceController;
 use App\Http\Controllers\Public\KidsServiceController;
+use App\Http\Controllers\public\PublicBlogController;
+use App\Http\Controllers\public\PublicDoctorController;
 use App\Http\Controllers\public\PublicServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -57,3 +59,6 @@ Route::get('/typeServices', [PublicServiceController::class, 'show'])->name('ser
 
 // Route::get('/layananAnak', [KidsServiceController::class, 'index']);
 // Route::get('/layananDewasa', [AdultServiceController::class, 'index']);
+
+Route::get('/blog',[PublicBlogController::class, 'show'])->name('blog');
+Route::get('/jadwal',[PublicDoctorController::class, 'show'])->name('schedule');

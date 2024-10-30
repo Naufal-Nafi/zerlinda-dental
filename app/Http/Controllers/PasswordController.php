@@ -18,7 +18,7 @@ class PasswordController extends Controller
      */
     public function index()
     {
-        return view('admin.Reset_password'); // Form ubah password
+        return view('admin.password'); // Form ubah password
     }
 
     /**

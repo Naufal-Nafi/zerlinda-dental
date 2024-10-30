@@ -3,6 +3,27 @@
 @section('title', 'Zerlinda Dental')
 
 @section('content')
+<!-- <section class="min-h-screen carousel">
+    <div class="clist">
+        <div class="citem">
+            <img src="{{ asset('images/landing-page.png') }}" alt="">
+        </div>
+        <div class="citem">
+            <img src="{{ asset('images/landing-page.png') }}" alt="">
+        </div>
+        <div class="citem">
+            <img src="{{ asset('images/landing-page.png') }}" alt="">
+        </div>
+        <div class="citem">
+            <img src="{{ asset('images/landing-page.png') }}" alt="">
+        </div>
+        <div class="citem">
+            <img src="{{ asset('images/landing-page.png') }}" alt="">
+        </div>
+    </div>
+
+</section> -->
+
 <section id="hero" class="min-h-screen flex items-end ">
     <div class="hero-2">
         <div class=" mx-4 block mb-10 mx-10 ">

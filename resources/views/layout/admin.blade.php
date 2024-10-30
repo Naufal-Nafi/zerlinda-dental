@@ -99,7 +99,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
-                <form action="" method="">
+                <form action="@yield('formAction')" method="">
                     @csrf
                     <div class="modal-body text-20">
                         @yield('createModalContent')
