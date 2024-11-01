@@ -81,13 +81,13 @@
                                 href="{{ route('location') }}">Lokasi</a>
                             <div class="relative group">
                                 <button
-                                    class="nav-link px-6 py-2 flex items-center hover:text-blue-primary duration-300">
+                                    class="pelayanan nav-link px-6 py-2 flex items-center hover:text-blue-primary duration-300">
                                     Pelayanan
-                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    <!-- <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M19 9l-7 7-7-7"></path>
-                                    </svg>
+                                    </svg> -->
                                 </button>
                                 <div
                                     class="absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
@@ -127,7 +127,7 @@
 
 
         <!-- Footer -->
-        <footer class="bg-pink-200 py-8 px-4 rounded-t-3xl">
+        <footer class="bg-pink-secondary py-8 px-4 rounded-t-3xl">
             <div class="max-w-6xl mx-auto gap-4 text-left  text-blue-primary">
 
                 <!-- Logo Section -->
@@ -144,8 +144,8 @@
                                     Dewasa</a></li>
                             <li><a href="{{ route('service.child') }}" class="hover:text-pink-primary">Pelayanan
                                     Anak</a></li>
-                            <li><a href="#" class="hover:text-pink-primary">Jadwal Dokter</a></li>
-                            <li><a href="#" class="hover:text-pink-primary">Blog</a></li>
+                            <li><a href="{{ route('schedule') }}" class="hover:text-pink-primary">Jadwal Dokter</a></li>
+                            <li><a href="{{ route('blog') }}" class="hover:text-pink-primary">Blog</a></li>
                         </ul>
                     </div>
 

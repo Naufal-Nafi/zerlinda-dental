@@ -40,6 +40,8 @@ Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.s
 
 Route::get('/admin/logout',[LoginController::class, 'logout'])->name('admin.logout');
 
+
+Route::get('/password/forgot', [ForgotPasswordController::class, 'index'])->name('admin.forgotPassword');
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
 Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
@@ -60,5 +62,6 @@ Route::get('/typeServices', [PublicServiceController::class, 'show'])->name('ser
 // Route::get('/layananAnak', [KidsServiceController::class, 'index']);
 // Route::get('/layananDewasa', [AdultServiceController::class, 'index']);
 
-Route::get('/blog',[PublicBlogController::class, 'show'])->name('blog');
+Route::get('/blog',[PublicBlogController::class, 'index'])->name('blog');
+Route::get('/showBlog',[PublicBlogController::class, 'show'])->name('blog.show');
 Route::get('/jadwal',[PublicDoctorController::class, 'show'])->name('schedule');

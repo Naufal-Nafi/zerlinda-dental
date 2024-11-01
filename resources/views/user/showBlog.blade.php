@@ -1,12 +1,9 @@
 @extends('layout.user')
-
-@section('title', 'p')
-
 @section('content')
 <div class="min-h-screen mx-auto text-pink-primary md:w-4/5 w-[85%]">
-    <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">Judul Pelayanan</h1>
-    <img src="{{ asset('images/landing-page.png') }}" alt="" class="border-2 border-pink-secondary rounded-lg">
-    <p class="mt-12 text-black text-justify">
+    <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">Judul Blog</h1>
+    <img src="{{ asset('images/landing-page.png') }}" alt="" class="border-4 border-pink-secondary rounded-lg">
+    <p class="my-12 text-black text-justify">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum perferendis quos natus ut expedita accusantium,
         dolore incidunt qui ipsum ex omnis sed, nemo est ab dolorem impedit pariatur reiciendis deserunt.
         Doloribus fuga autem nesciunt dolore asperiores iusto reiciendis molestiae deleniti ipsam delectus? Ipsum
@@ -34,35 +31,5 @@
         numquam beatae sequi. Est autem explicabo quisquam hic aut eius, suscipit aspernatur tempore dolores. Ipsa,
         officiis?
     </p>
-    <h1 class="lg:text-5xl text-xl font-bold lg:my-20 my-12">Contoh Foto Perawatan</h1>
-
-
 </div>
-<div class="slider my-12">
-    <ul class="list py-4" style="        
-        --time: 27s;
-        --quantity: 9
-    ">
-        <li class="" style="--index: 1"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-        <li class="" style="--index: 2"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-        <li class="" style="--index: 3"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-        <li class="" style="--index: 4"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-        <li class="" style="--index: 5"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-        <li class="" style="--index: 6"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-        <li class="" style="--index: 7"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-        <li class="" style="--index: 8"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-        <li class="" style="--index: 9"><img class="rounded-3xl" src="{{ asset('images/landing-page.png') }}" alt="">
-        </li>
-
-    </ul>
-</div>
-
 @endsection

@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 class PublicBlogController extends Controller
 {
-    function show() {
+    function index() {
         return view('user.blog');
     }
+    function show() {
+        return view('user.showBlog');
+    }
+
+    
 }
