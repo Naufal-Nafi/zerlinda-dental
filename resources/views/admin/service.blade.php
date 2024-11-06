@@ -52,15 +52,13 @@
 @endphp
 
 @section('formAction')
-{{route('admin.dashboard')}}
+{{route('admin.service.store')}}
 @endsection
 
 
 
 
 @section('createModalContent')
-<form action="{{ route('admin.service.store') }}" method="POST" enctype="multipart/form-data" id="createServiceForm">
-    @csrf
     
     <div class="mb-3">
         <label class="form-label">Tipe Layanan</label>
@@ -112,7 +110,7 @@
     </div>
     
     
-</form>
+
 
 
 <script>

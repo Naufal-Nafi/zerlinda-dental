@@ -79,7 +79,7 @@ Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkE
 // Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 
-Route::get('/home',[homeController::class, 'index'])->name('user.home');
+Route::get('/home',[homeController::class, 'index'])->name('home');
 
 Route::view('/location', 'user.maps')->name('location');
 Route::get('/layananGigiAnak', [PublicServiceController::class, 'childService'])->name('service.child');

@@ -209,7 +209,7 @@
 
         <!-- Ikon WhatsApp di pojok kanan bawah -->
         <a href="https://wa.me/6289604299993" target="_blank" class="fixed bottom-5 right-5">
-            <div class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
+            <div class="bg-pink-primary text-white p-4 rounded-full shadow-lg hover:-translate-y-4  transition duration-300">
                 <!-- SVG Ikon WhatsApp -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
                     <path

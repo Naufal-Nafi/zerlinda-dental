@@ -108,7 +108,7 @@
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn text-white bg-pink">Submit</button>
                     </div>
-                
+                </form>
             </div>
         </div>
     </div>
