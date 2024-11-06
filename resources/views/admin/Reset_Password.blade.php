@@ -18,11 +18,6 @@
         
         <form action="{{ route('admin.password.update') }}" method="POST">
             @csrf
-            <!-- Password Saat Ini -->
-            <div class="mb-3">
-                <input type="password" name="current_password" class="form-control" placeholder="Password Saat Ini" required>
-            </div>
-
             <!-- Password Baru -->
             <div class="mb-3">
                 <input type="password" name="new_password" class="form-control" placeholder="Password Baru" required>
@@ -33,7 +28,8 @@
                 <input type="password" name="new_password_confirmation" class="form-control" placeholder="Konfirmasi Password Baru" required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Ubah Password</button>
+            <button type="submit" class="btn btn- w-100 mt-3">Ubah Password</button>
+            
         </form>
     </div>
 </div>

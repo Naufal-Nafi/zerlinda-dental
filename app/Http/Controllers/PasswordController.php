@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
-use App\Models\User; // Perbaiki namespace model User
+
+use App\Models\User; 
 
 class PasswordController extends Controller
 {
@@ -18,7 +19,38 @@ class PasswordController extends Controller
      */
     public function index()
     {
-        return view('admin.Reset_password'); // Form ubah password
+        return view('admin.password'); // Form ubah password
+    }
+
+    /**
+     * Update the user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
+     public function validateCurrentPassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|string',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Password saat ini salah']);
+        }
+
+        return redirect()->route('admin.Reset_Password');
+    }
+     /**
+     * Show the form for resetting the password.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showResetForm(Request $request)
+    {
+        return view('admin.reset_password');
     }
 
     /**
@@ -31,37 +63,16 @@ class PasswordController extends Controller
 {
     // Validasi input
     $request->validate([
-        // ... validasi lainnya
-        'new_password' => [
-            'required',
-            'string',
-            'confirmed',
-            function ($attribute, $value, $fail) use ($request) {
-                if (Hash::check($value, Auth::user()->password)) {
-                    $fail('The new password cannot be the same as your current password.');
-                }
-            },
-        ],
+        'password' => 'required|string|confirmed',
     ]);
-
-    $user = User::find(Auth::id());
-
-    // Periksa apakah password saat ini sesuai
-    if (!Hash::check($request->current_password, $user->password)) {
-        return back()->withErrors(['current_password' => 'Password saat ini salah']);
-    }
-
-    // Cek apakah password baru dan konfirmasi password cocok
-    if ($request->new_password !== $request->new_password_confirmation) {
-        return back()->withErrors(['new_password_confirmation' => 'Konfirmasi password tidak sesuai dengan password baru']);
-    }
-
-    // Update password
-    $user->password = Hash::make($request->new_password);
+    
+    // Ambil user yang sedang login
+    
+    // Perbarui password
+    $userId = Auth::user()->id;
+    $user = User::findOrFail($userId);
+    $user->password = Hash::make($request->password);
     $user->save();
-
-    // Menambahkan log (opsional)
-    Log::info('Password changed for user: ' . $user->email);
 
     return redirect()->route('admin.dashboard')->with('status', 'Password berhasil diperbarui');
 }

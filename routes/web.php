@@ -20,17 +20,33 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+// login&logout
 Route::get('/admin', [LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [LoginController::class, 'login']) ->name('admin.login.post');
+Route::get('/admin/logout',[LoginController::class, 'logout'])->name('admin.logout');
+
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+
 Route::get('/admin/contact', [ContactController::class, 'index'])->name('admin.contact');
+
 Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog');
+Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
+Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('admin.blog.store');
+Route::post('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
+Route::post('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
+
+
 Route::get('/admin/doctor', [DoctorController::class, 'index'])->name('admin.doctor');
 Route::get('/admin/landingpage', [LandingPageController::class, 'index'])->name('admin.landingpage');
-Route::get('/admin/password', [PasswordController::class, 'index'])->name('admin.password');
-Route::post('/admin/password/update', [PasswordController::class, 'update'])->name('admin.password.update');
-Route::get('/admin/confirmpassword', [PasswordController::class, 'show'])->name('admin.confirmPassword');
+
+
+
+Route::get('/admin/change-password', [PasswordController::class, 'index'])->name('password.change');
+Route::post('/admin/validate-current-password', [PasswordController::class, 'validateCurrentPassword'])->name('password.validate');
+Route::get('/admin/reset-password', [PasswordController::class, 'showResetForm'])->name('admin.Reset_Password');
+Route::post('/admin/update-password', [PasswordController::class, 'update'])->name('password.update');
+
 
 // Rute Layanan
 Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
@@ -41,10 +57,9 @@ Route::post('/admin/service/destroy', [ServiceController::class, 'destroy'])->na
 
 
 
-Route::get('/admin/logout',[LoginController::class, 'logout'])->name('admin.logout');
 
-Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
-Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+
 
 // Rute untuk mengubah password pengguna
 Route::get('/password/forgot',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot_password.request');

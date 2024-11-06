@@ -48,7 +48,7 @@
                                     class="bi bi-gear"></i>Layanan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.password') }} "><i class="bi bi-lock"></i>Ubah
+                            <a class="nav-link" href=" {{ route('password.change') }} "><i class="bi bi-lock"></i>Ubah
                                 Password</a>
                         </li>
                     </ul>
