@@ -12,6 +12,7 @@
     --primary-color: #da0c81;
     --text-color: #161347;
     --white-color: #ffffff;
+    --sliderWidth: 450px;
 }
 
 body {
@@ -45,15 +46,12 @@ span {
     transition: 0.4s;
 
     &:hover {
-        transform: translateY(-4px);
+        transform: translateY(-24px);
 
         & img {
             filter: opacity(75%);
         }
-
-        & p {
-            color: var(--text-color);
-        }
+        
     }
 
     & img,
@@ -66,14 +64,14 @@ span {
 
 .slider {
     width: 100%;
-    height: calc(var(--sliderWidth) / 1.70);
+    height: calc(var(--sliderWidth) / 1.62);
     overflow-x: hidden;    
 }
 
 .slider ul {
     display: flex !important;
     width: 100%;
-    height: calc(var(--sliderWidth) / 1.79);
+    height: calc(var(--sliderWidth) / 1.62);
     overflow: hidden;
     min-width: calc(var(--sliderWidth) * var(--quantity));
     position: relative;
@@ -86,7 +84,7 @@ span {
     flex-wrap: nowrap;
     animation: AutoRun var(--time) linear infinite;
     animation-delay: calc(var(--time) / var(--quantity) * (var(--index) - 1) - var(--time));
-    transition: 0.4s;
+    transition: 0.5s ;
 }
 
 @keyframes AutoRun {
@@ -105,3 +103,75 @@ span {
     transform: scale(1.05)
 }
 
+
+
+.contact ul li a {
+    position: relative;
+}
+
+.contact ul li a::after {
+    content: "➜";
+    position: absolute;
+    right: -20px;
+    top: 0;
+    opacity: 0;
+    transform: translateX(-20px); /* Initial position off-screen to the left */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+.contact ul li a:hover::after {
+    opacity: 1; /* Makes the arrow visible */
+    transform: translateX(0); /* Slides arrow to its normal position */
+}
+
+.isi-navbar .pelayanan::after {
+    content: "▼";
+    position: absolute;
+    right: 0px;
+    top: 0;
+    opacity: 1;
+    transform: translateY(9px) rotate(0deg); /* Default arrow pointing down */
+    transition: transform 0.3s ease; /* Smooth rotation animation */
+}
+
+.isi-navbar .pelayanan:hover::after {
+    transform: translateY(9px) rotate(180deg); /* Rotate arrow to point up */
+}
+
+
+
+@media (max-width: 426px){
+    :root{
+        --sliderWidth: 300px;
+    }
+}
+
+/* .dots {
+    list-style: disc;
+} */
+
+
+
+/* .carousel {
+    width: 1300px;
+    max-width: 100vw;
+    height: 700px;
+    margin: auto;
+    position: relative;
+
+}
+
+.clist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    width: max-content;
+
+    &img {
+        width: 1300px;
+        max-width: 100vw;
+        height: 100%;
+        object-fit: cover;
+    }
+} */

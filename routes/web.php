@@ -10,6 +10,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\public\AdultServiceController;
 use App\Http\Controllers\Public\KidsServiceController;
+use App\Http\Controllers\public\PublicBlogController;
+use App\Http\Controllers\public\PublicDoctorController;
 use App\Http\Controllers\public\PublicServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -61,6 +63,15 @@ Route::post('/admin/service/destroy', [ServiceController::class, 'destroy'])->na
 
 
 
+
+
+Route::get('/admin/logout',[LoginController::class, 'logout'])->name('admin.logout');
+
+
+Route::get('/password/forgot', [ForgotPasswordController::class, 'index'])->name('admin.forgotPassword');
+Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
 // Rute untuk mengubah password pengguna
 Route::get('/password/forgot',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot_password.request');
 Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('forgot_password.email');
@@ -79,3 +90,7 @@ Route::get('/typeServices', [PublicServiceController::class, 'show'])->name('ser
 
 // Route::get('/layananAnak', [KidsServiceController::class, 'index']);
 // Route::get('/layananDewasa', [AdultServiceController::class, 'index']);
+
+Route::get('/blog',[PublicBlogController::class, 'index'])->name('blog');
+Route::get('/showBlog',[PublicBlogController::class, 'show'])->name('blog.show');
+Route::get('/jadwal',[PublicDoctorController::class, 'show'])->name('schedule');

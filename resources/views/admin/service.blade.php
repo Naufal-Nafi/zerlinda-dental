@@ -48,8 +48,14 @@
 @php
     $createModalName = 'createServiceModal';
     $editModalName = 'editServiceModal';  // ID modal
-    $routeName = ''; // Nama route
+    $routeName = 'admin.dashboard'; // Nama route
 @endphp
+
+@section('formAction')
+{{route('admin.dashboard')}}
+@endsection
+
+
 
 
 @section('createModalContent')

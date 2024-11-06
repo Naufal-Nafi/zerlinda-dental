@@ -9,13 +9,17 @@ use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
-    use SendsPasswordResetEmails;
+    // use SendsPasswordResetEmails;
 
     /**
      * Display the form to request a password reset link.
      *
      * @return \Illuminate\View\View
      */
+
+    public function index() {
+        return view('admin.forgotPassword');
+    }
     public function showLinkRequestForm()
     {
         return view('admin.Forgot_Password'); // Ensure you have the appropriate view
