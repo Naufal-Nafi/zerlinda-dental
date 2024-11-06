@@ -23,13 +23,18 @@ class ServiceController extends Controller
         $validatedData = $request->validate([
             'nama_layanan' => 'required|max:100',
             'deskripsi' => 'required',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'gambar1' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'gambar2' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'tipe_layanan' => 'required|in:anak,dewasa'
         ]);
 
-        $image = $request->file('gambar');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/layanan'), $imageName);
+        $image = $request->file('gambar1');
+        $imageName = time() . '_' . $image->getClientOriginalExtension();
+        $image->storeAs(public_path('images/layanan'), $imageName);
+
+        $image = $request->file('gambar1');
+        $imageName = time() . '_' . $image->getClientOriginalExtension();
+        $image->storeAs(public_path('images/layanan'), $imageName);
 
         $galeri = Galeri::create([
             'judul' => $validatedData['nama_layanan'],
@@ -50,7 +55,7 @@ class ServiceController extends Controller
                 'deskripsi' => $validatedData['deskripsi']
             ]);
         }
-
+        dd($request->all());
         return redirect()->back()->with('success', 'Layanan berhasil ditambahkan!');
     }
 

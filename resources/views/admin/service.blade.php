@@ -59,18 +59,28 @@
 
 
 @section('createModalContent')
-    
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <div class="mb-3">
         <label class="form-label">Tipe Layanan</label>
         <div class="d-flex gap-3">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="tipe_layanan" value="anak" id="tipeAnak" required>
+                <input class="form-check-input" type="radio" name="tipe_layanan" value="anak" id="tipeAnak" re>
                 <label class="form-check-label" for="tipeAnak">
                     Anak
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="tipe_layanan" value="dewasa" id="tipeDewasa" required>
+                <input class="form-check-input" type="radio" name="tipe_layanan" value="dewasa" id="tipeDewasa" >
                 <label class="form-check-label" for="tipeDewasa">
                     Dewasa
                 </label>
@@ -86,7 +96,7 @@
     <div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
         <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
             <label for="gambar1" class="form-label">Gambar</label>
-            <img id="previewImage1" src="" alt="Preview Image"
+            <img id="previewImage1" src="" alt="Preview Image" 
                 style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
             <input class="form-control border-black image-input" type="file" id="gambar1" name="gambar1" required accept="image/*">
         </div>

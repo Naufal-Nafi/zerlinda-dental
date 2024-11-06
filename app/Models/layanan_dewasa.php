@@ -16,10 +16,5 @@ class layanan_dewasa extends Model
         'deskripsi'
     ];
 
-    public function galeri()
-    {
-        return $this->belongsTo(Galeri::class, 'id_galeri');
-    }
-
     
 }

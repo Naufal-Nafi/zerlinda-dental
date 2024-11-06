@@ -12,28 +12,21 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::create('galeri', function (Blueprint $table) {
-        $table->increments('id_galeri');
-        $table->string('judul', 100);
-        $table->text('deskripsi');
-        $table->string('url_media', 100);
-        $table->date('tanggal_upload');
-        $table->timestamps();
-    });
+    
 
     Schema::create('artikel', function (Blueprint $table) {
-        $table->increments('id_artikel'); // Primary key
+        $table->id('id_artikel'); // Primary key
         $table->unsignedInteger('id_galeri'); 
         $table->string('judul', 255);
         $table->text('konten')->nullable();
         $table->date('tanggal_publikasi');
         $table->timestamps();
 
-        $table->foreign('id_galeri')->references('id_galeri')->on('galeri')->onDelete('cascade');
+        
     });
 
     Schema::create('dokter', function (Blueprint $table) {
-        $table->increments('id_dokter'); // Primary key
+        $table->id('id_dokter'); // Primary key
         $table->unsignedInteger('id_galeri'); 
         $table->string('nama', 100);
         $table->enum('jadwal', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
@@ -41,25 +34,25 @@ return new class extends Migration
         $table->time('jadwal_akhir');
         $table->timestamps();
 
-        $table->foreign('id_galeri')->references('id_galeri')->on('galeri')->onDelete('cascade');
+        
     });
 
     Schema::create('layanan_anak', function (Blueprint $table) {
-        $table->increments('id_layanan_ank'); // Primary key
+        $table->id('id_layanan_ank'); // Primary key
         $table->unsignedInteger('id_galeri');
         $table->string('nama_layanan', 100);
         $table->text('deskripsi');
         $table->timestamps();
-        $table->foreign('id_galeri')->references('id_galeri')->on('galeri')->onDelete('cascade');
+        
     });
 
     Schema::create('layanan_dewasa', function (Blueprint $table) {
-        $table->increments('id_layanan_dws'); // Primary key
+        $table->id('id_layanan_dws'); // Primary key
         $table->unsignedInteger('id_galeri');
         $table->string('nama_layanan', 100);
         $table->text('deskripsi');
         $table->timestamps();
-        $table->foreign('id_galeri')->references('id_galeri')->on('galeri')->onDelete('cascade');
+        
     });
 
     Schema::create('kontak', function (Blueprint $table) {
@@ -76,6 +69,53 @@ return new class extends Migration
         $table->string('password', 255);
         $table->timestamps();
     });
+    
+    Schema::create('galeri_layanan_anak', function (Blueprint $table) {
+        $table->id('id_galeri');
+        
+        $table->string('judul', 100);
+        $table->text('deskripsi');
+        $table->string('url_media', 100);
+        $table->date('tanggal_upload');
+        $table->timestamps();
+
+        $table->foreignId('fk_layanan_ank')->references('id_layanan_ank')->on('layanan_anak');
+    });
+
+    Schema::create('galeri_layanan_dewasa', function (Blueprint $table) {
+        $table->id('id_galeri');
+        $table->string('judul', 100);
+        $table->text('deskripsi');
+        $table->string('url_media', 100);
+        $table->date('tanggal_upload');
+        $table->timestamps();
+
+        $table->foreignId('id_layanan_dws')->references('id_layanan_dws')->on('layanan_dewasa')->onDelete('cascade');
+    });
+
+    Schema::create('galeri_layanan_dokter', function (Blueprint $table) {
+        $table->id('id_galeri');
+        $table->string('judul', 100);
+        $table->text('deskripsi');
+        $table->string('url_media', 100);
+        $table->date('tanggal_upload');
+        $table->timestamps();
+
+        $table->foreignId('id_dokter')->references('id_dokter')->on('dokter')->onDelete('cascade');
+    });
+
+    Schema::create('galeri_layanan_artikel', function (Blueprint $table) {
+        $table->id('id_galeri');
+        $table->string('judul', 100);
+        $table->text('deskripsi');
+        $table->string('url_media', 100);
+        $table->date('tanggal_upload');
+        $table->timestamps();
+
+        $table->foreignId('id_artikel')->references('id_artikel')->on('artikel')->onDelete('cascade');
+    });
+
+
 }
 
     /**
@@ -83,6 +123,14 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('galeri_layanan_dokter');
+        Schema::dropIfExists('galeri_layanan_dewasa');
+        Schema::dropIfExists('galeri_layanan_anak');
+        Schema::dropIfExists('pengguna');
+        Schema::dropIfExists('kontak');
+        Schema::dropIfExists('layanan_dewasa');
+        Schema::dropIfExists('layanan_anak');
+        Schema::dropIfExists('dokter');
+        Schema::dropIfExists('artikel');
     }
 };
