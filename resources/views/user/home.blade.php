@@ -46,13 +46,15 @@
 <section class="min-h-screen flex items-center">
     <div class="mx-auto">
         <hr class="border-2 border-pink-primary w-3/4 mx-auto my-6">
-        <p class="lg:text-5xl md:text-3xl text-xl text-pink-primary">Kami percaya bahwa setiap senyum itu unik, dan tujuan
+        <p class="lg:text-5xl md:text-3xl text-xl text-pink-primary">Kami percaya bahwa setiap senyum itu unik, dan
+            tujuan
             kami adalah menciptakan senyum terbaik melalui perawatan gigi yang nyaman, modern, dan tentunya berkualitas
             tinggi.</p>
         <hr class="border-2 border-pink-primary w-1/2 mx-auto my-6">
     </div>
 </section>
 <!-- kata-kata mutiara ends -->
+
 
 <section class="min-h-screen flex items-center">
     <div class="container mx-auto">
@@ -63,9 +65,27 @@
             </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
-            <div class="bg-pink-primary p-4 rounded-md">1</div>
-            <div class="bg-pink-secondary p-4 rounded-md">2</div>
-            <div class="bg-pink-primary p-4 rounded-md">3</div>
+            <a href="{{ route('service.show') }}" class="service-container block py-6 cursor-pointer">
+                <div class="flex justify-center items-center ">
+                    <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                        class="xl:w-[250px] w-[200px] xl:h-[250px] h-[200px] rounded-full object-cover">
+                </div>
+                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
+            </a>
+            <a href="{{ route('service.show') }}" class="service-container block py-6 cursor-pointer">
+                <div class="flex justify-center items-center ">
+                    <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                        class="xl:w-[250px] w-[200px] xl:h-[250px] h-[200px] rounded-full object-cover">
+                </div>
+                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
+            </a>
+            <a href="{{ route('service.show') }}" class="service-container block py-6 cursor-pointer">
+                <div class="flex justify-center items-center bg-pink-secondary">
+                    >
+                </div>
+                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">lainnya</p>
+            </a>
+            
         </div>
     </div>
 </section>

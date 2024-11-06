@@ -19,7 +19,9 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 
-
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
 
 
 Route::get('/admin', [LoginController::class, 'showLoginForm'])->name('admin.login');

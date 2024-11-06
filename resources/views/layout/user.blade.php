@@ -16,7 +16,7 @@
 <body>
     <div class=" d-block">
 
-        
+
         <!-- navbar -->
         <div class="flex-grow " id="navbar">
             <nav class="border-b-4 bg-white fixed top-0 left-0 right-0 z-50">
@@ -90,15 +90,17 @@
                                     </svg> -->
                                 </button>
                                 <div
-                                    class="absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
+                                    class="dropdown absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
                                     <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
                                         href="{{ route('service.adult') }}">Dewasa</a>
                                     <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
                                         href="{{ route('service.child') }}">Anak-anak</a>
                                 </div>
                             </div>
-                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300" href="{{ route('blog') }}">Blog</a>
-                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300" href="{{ route('schedule') }}">Jadwal</a>
+                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300"
+                                href="{{ route('blog') }}">Blog</a>
+                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300"
+                                href="{{ route('schedule') }}">Jadwal</a>
                         </div>
                     </div>
                 </div>
@@ -180,8 +182,7 @@
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_whatsapp_.png') }}" alt="WhatsApp Icon"
                                         class="w-7 me-4"></span>
-                                <span href="" target="_blank"
-                                    class="">089604299993</span>
+                                <span href="" target="_blank" class="">089604299993</span>
                             </li>
                         </ul>
 
