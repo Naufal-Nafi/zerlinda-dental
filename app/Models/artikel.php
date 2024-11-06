@@ -18,8 +18,5 @@ class artikel extends Model
         'konten'
     ];
 
-    public function galeri()
-    {
-        return $this->belongsTo(Galeri::class, 'id_galeri');
-    }
+    
 }

@@ -34,7 +34,7 @@ Route::get('/admin/contact', [ContactController::class, 'index'])->name('admin.c
 
 Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog');
 Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
-Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('admin.blog.store');
+Route::post('/admin/blog/store', action: [BlogController::class, 'store'])->name('admin.blog.store');
 Route::post('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
 Route::post('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
 
@@ -49,6 +49,7 @@ Route::post('/admin/validate-current-password', [PasswordController::class, 'val
 Route::get('/admin/reset-password', [PasswordController::class, 'showResetForm'])->name('admin.Reset_Password');
 Route::post('/admin/update-password', [PasswordController::class, 'update'])->name('password.update');
 
+Route::get('/admin/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.forgotPassword');
 
 // Rute Layanan
 Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');

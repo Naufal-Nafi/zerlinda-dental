@@ -21,8 +21,6 @@ class Dokter extends Model
         'jadwal_akhir',
     ];
 
-    public function galeri()
-    {
-        return $this->belongsTo(Galeri::class, 'id_galeri');
-    }
+    
+    
 }

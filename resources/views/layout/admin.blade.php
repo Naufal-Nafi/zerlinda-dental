@@ -99,7 +99,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
-                <form action="@yield('formAction')" method="">
+                <form action="@yield('formAction')" method="POST">
                     @csrf
                     <div class="modal-body text-20">
                         @yield('createModalContent')
@@ -108,7 +108,7 @@
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn text-white bg-pink">Submit</button>
                     </div>
-                
+                </form>
             </div>
         </div>
     </div>
