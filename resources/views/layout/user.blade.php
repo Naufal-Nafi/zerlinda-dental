@@ -158,25 +158,25 @@
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_gmail_.png') }}" alt="Gmail Icon"
                                         class="w-7 me-4"></span>
-                                <a href="mailto:zerlindadentalcare@gmail.com" target="_blank"
+                                <a href="mailto:" target="_blank"
                                     class="hover:text-pink-primary">zerlindadentalcare@gmail.com</a>
                             </li>
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_instagram_.png') }}" alt="Instagram Icon"
                                         class="w-7 me-4"></span>
-                                <a href="https://www.instagram.com/zerlindadentalcare" target="_blank"
+                                <a href="https://www.instagram.com/" target="_blank"
                                     class="hover:text-pink-primary">zerlindadentalcare</a>
                             </li>
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_facebook_.png') }}" alt="Facebook Icon"
                                         class="w-7 me-4"></span>
-                                <a href="https://www.facebook.com/ZerlindaDentalCare" target="_blank"
+                                <a href="https://www.facebook.com/" target="_blank"
                                     class="hover:text-pink-primary">Zerlinda Dental Care</a>
                             </li>
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_tiktok_.png') }}" alt="TikTok Icon"
                                         class="w-7 me-4"></span>
-                                <a href="https://www.tiktok.com/@zerlindadentalcare" target="_blank"
+                                <a href="https://www.tiktok.com" target="_blank"
                                     class="hover:text-pink-primary">zerlindadentalcare</a>
                             </li>
                             <li class="flex items-center mb-4">
@@ -209,7 +209,7 @@
 
         <!-- Ikon WhatsApp di pojok kanan bawah -->
         <a href="https://wa.me/6289604299993" target="_blank" class="fixed bottom-5 right-5">
-            <div class="bg-pink-primary text-white p-4 rounded-full shadow-lg hover:-translate-y-4  transition duration-300">
+            <div class="bg-pink-primary text-white p-4 rounded-full shadow-lg hover:-translate-y-2  transition duration-300">
                 <!-- SVG Ikon WhatsApp -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
                     <path

@@ -14,6 +14,20 @@
             </div>
             <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
         </a>
+        <a href="{{ route('service.show') }}" class="service-container block py-6 cursor-pointer">
+            <div class="flex justify-center items-center ">
+                <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                    class="xl:w-[250px] w-[200px] xl:h-[250px] h-[200px] rounded-full object-cover">
+            </div>
+            <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
+        </a>
+        <a href="{{ route('service.show') }}" class="service-container block py-6 cursor-pointer">
+            <div class="flex justify-center items-center ">
+                <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                    class="xl:w-[250px] w-[200px] xl:h-[250px] h-[200px] rounded-full object-cover">
+            </div>
+            <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
+        </a>
         <!-- end for each  -->
     </div>
 </div>
