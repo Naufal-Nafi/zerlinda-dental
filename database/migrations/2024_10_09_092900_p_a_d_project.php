@@ -79,7 +79,7 @@ return new class extends Migration
         $table->date('tanggal_upload');
         $table->timestamps();
 
-        $table->foreignId('fk_layanan_ank')->references('id_layanan_ank')->on('layanan_anak');
+        $table->foreignId('id_layanan_ank')->references('id_layanan_ank')->on('layanan_anak');
     });
 
     Schema::create('galeri_layanan_dewasa', function (Blueprint $table) {

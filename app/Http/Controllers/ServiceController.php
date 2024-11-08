@@ -5,107 +5,141 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\layanan_anak;
 use App\Models\layanan_dewasa;
-use App\Models\Galeri;
+use App\Models\galeri_anak;
+use App\Models\galeri_dewasa;
 
 class ServiceController extends Controller
 {
     public function index()
     {
-        $layanan_anak = layanan_anak::all();
-        $layanan_dewasa = layanan_dewasa::all();
+        
+        $layanan_anak = layanan_anak::with("galeri_anak")->get();
+        $layanan_dewasa = layanan_dewasa::with("galeri_dewasa")->get();
         $services = $layanan_anak->merge($layanan_dewasa);
-
-        return view('admin.service', compact('services'));
+        return view('admin.service', compact('services', 'layanan_anak', 'layanan_dewasa'));
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'nama_layanan' => 'required|max:100',
-            'deskripsi' => 'required',
-            'gambar1' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'gambar2' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'tipe_layanan' => 'required|in:anak,dewasa'
-        ]);
+{
 
-        $image = $request->file('gambar1');
-        $imageName = time() . '_' . $image->getClientOriginalExtension();
-        $image->storeAs(public_path('images/layanan'), $imageName);
 
-        $image = $request->file('gambar1');
-        $imageName = time() . '_' . $image->getClientOriginalExtension();
-        $image->storeAs(public_path('images/layanan'), $imageName);
+    $validatedData = $request->validate([
+        
+        'nama_layanan' => 'required|max:100',
+        'deskripsi' => 'required',
+        'gambar.*   ' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        'tipe_layanan' => 'required|in:anak,dewasa'
+    ]);
 
-        $galeri = Galeri::create([
-            'judul' => $validatedData['nama_layanan'],
-            'deskripsi' => $validatedData['deskripsi'],
-            'url_media' => 'images/layanan/' . $imageName,
-        ]);
+    switch ($request->tipe_layanan) {
+        case 'anak':
+            $galeriModel = galeri_anak::class;
+            $layananModel = layanan_anak::class;
+            $foreignKey = 'id_layanan_ank';
+            break;
+        case 'dewasa':
+            $galeriModel = galeri_dewasa::class;
+            $layananModel = layanan_dewasa::class;
+            $foreignKey = 'id_layanan_dws';
+            break;
+        default:
+            // Handle invalid tipe_layanan value
+            throw new \Exception('Invalid tipe_layanan value');
+    }
+    
 
-        if ($request->tipe_layanan == 'anak') {
-            layanan_anak::create([
-                'id_galeri' => $galeri->id_galeri,
-                'nama_layanan' => $validatedData['nama_layanan'],
-                'deskripsi' => $validatedData['deskripsi']
-            ]);
-        } else {
-            layanan_dewasa::create([
-                'id_galeri' => $galeri->id_galeri,
-                'nama_layanan' => $validatedData['nama_layanan'],
-                'deskripsi' => $validatedData['deskripsi']
+    
+    $layanan=$layananModel::create([
+        'nama_layanan' => $validatedData['nama_layanan'],
+        'deskripsi' => $validatedData['deskripsi']
+    ]);
+
+    
+    if ($request->gambar) {
+        foreach ($request->gambar as $image) {
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            
+            // Store each image in the 'public/images/layanan' folder
+            $image->storeAs('public/images/layanan', $imageName);
+            
+            // Create galeri entry for each image
+            $galeriModel::create([
+                'judul' => $validatedData['nama_layanan'],
+                'deskripsi' => $validatedData['deskripsi'],
+                'url_media' => 'images/layanan/' . $imageName, // Laravel will use the 'storage' symlink
+                $foreignKey => $layanan[$foreignKey]
             ]);
         }
-        dd($request->all());
-        return redirect()->back()->with('success', 'Layanan berhasil ditambahkan!');
     }
 
-    public function update(Request $request, $id)
+    return redirect()->back()->with('success', 'Layanan berhasil ditambahkan!');
+}
+
+    public function edit(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'nama_layanan' => 'required|max:100',
+            'nama_pelayanan' => 'required|max:100',
             'deskripsi' => 'required',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'tipe_layanan' => 'required|in:anak,dewasa'
         ]);
-
-        if ($request->tipe_layanan == 'anak') {
-            $layanan = layanan_anak::find($id);
-        } else {
-            $layanan = layanan_dewasa::find($id);
+    
+        switch ($request->tipe_layanan) {
+            case 'anak':
+                $layananModel = layanan_anak::class;
+                $galeriModel = galeri_anak::class;
+                break;
+            case 'dewasa':
+                $layananModel = layanan_dewasa::class;
+                $galeriModel = galeri_dewasa::class;
+                break;
+            default:
+                throw new \Exception('Invalid tipe_layanan value');
         }
-
+    
+        $layanan = $layananModel::find($id);
+    
+        if (!$layanan) {
+            return redirect()->back()->with('error', 'Layanan tidak ditemukan.');
+        }
+    
+        $layanan->update([
+            'nama_pelayanan' => $validatedData['nama_pelayanan'],
+            'deskripsi' => $validatedData['deskripsi']
+        ]);
+    
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images/layanan'), $imageName);
-
-            $galeri = Galeri::find($layanan->id_galeri);
-            $galeri->judul = $validatedData['nama_layanan'];
-            $galeri->deskripsi = $validatedData['deskripsi'];
-            $galeri->url_media = "images/layanan/$imageName";
-            $galeri->save();
+    
+            $galeri = $galeriModel::find($layanan->id_galeri);
+            $galeri->update([
+                'judul' => $validatedData['nama_pelayanan'],
+                'deskripsi' => $validatedData['deskripsi'],
+                'url_media' => 'images/layanan/' . $imageName
+            ]);
         }
-
-        $layanan->nama_layanan = $validatedData['nama_layanan'];
-        $layanan->deskripsi = $validatedData['deskripsi'];
-        
-        $layanan->save();
-
-        return redirect()->back()->with('success', 'Layanan berhasil diperbarui!');
+    
+        return redirect()->back()->with('success', 'Layanan berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        if (request()->tipe_layanan == 'anak') {
-            $layanan = layanan_anak::find($id);
+        $tipe_layanan = layanan_anak::find($id);
+        
+        if ($tipe_layanan) {
+            $tipe_layanan->delete();
         } else {
-            $layanan = layanan_dewasa::find($id);
+            $tipe_layanan = layanan_dewasa::find($id);
+            
+            if ($tipe_layanan) {
+                $tipe_layanan->delete();
+            } else {
+                return redirect()->back()->with('error', 'Layanan tidak ditemukan.');
+            }
         }
-
-        $galeri = Galeri::find($layanan->id_galeri);
-        $galeri->delete();
-        $layanan->delete();
-
+        
         return redirect()->back()->with('success', 'Layanan berhasil dihapus!');
     }
 }

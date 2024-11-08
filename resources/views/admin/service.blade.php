@@ -23,7 +23,12 @@
             <tbody class="fw-semibold">
                 @foreach($services as $service)
                     <tr>
-                        <td><img src="{{ asset($service->galeri->url_media) }}" alt="{{ $service->nama_layanan }}" width="50"></td>
+                    @if (isset($service->galeri))
+                    
+                    <td><img src="{{ asset($service->galeri->url_media) }}" alt="{{ $service->nama_layanan }}" width="50"></td>
+                    @else
+                    <td></td>
+                    @endif
                         <td>{{ $service->nama_layanan }}</td>
                         <!-- tombol edit/delete -->
                         <td>
@@ -90,7 +95,7 @@
 
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label ">Nama Pelayanan</label>
-        <input type="text" class="form-control border-black" id="exampleFormControlInput1" name="nama_pelayanan" required>
+        <input type="text" class="form-control border-black" id="exampleFormControlInput1" name="nama_layanan" required>
     </div>
 
     <div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
@@ -98,14 +103,14 @@
             <label for="gambar1" class="form-label">Gambar</label>
             <img id="previewImage1" src="" alt="Preview Image" 
                 style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-            <input class="form-control border-black image-input" type="file" id="gambar1" name="gambar1" required accept="image/*">
+            <input class="form-control border-black image-input" type="file" id="gambar1" name="gambar[]" required accept="image/*">
         </div>
 
         <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
             <label for="gambar2" class="form-label">Contoh Perawatan</label>
             <img id="previewImage2" src="" alt="Preview Image"
                 style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-            <input class="form-control border-black image-input" type="file" id="gambar2" name="gambar2" required accept="image/*">
+            <input class="form-control border-black image-input" type="file" id="gambar2" name="gambar[]" required accept="image/*">
         </div>
 
         <div class="d-flex justify-content-center align-items-center"

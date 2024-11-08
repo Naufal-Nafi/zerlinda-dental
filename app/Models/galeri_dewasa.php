@@ -23,6 +23,6 @@ class galeri_dewasa extends Model
 
     public function layanan_dewasa()
     {
-        return $this->belongsTo(layanan_dewasa::class, 'id_layanan_dws');
+        return $this->belongsTo(layanan_dewasa::class, 'id_layanan_dws', 'id_layanan_dws');
     }
 }

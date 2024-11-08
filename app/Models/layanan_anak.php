@@ -17,5 +17,9 @@ class layanan_anak extends Model
         'deskripsi'
     ];
 
+    function galeri_anak()
+    {
+        return $this->hasMany(galeri_anak::class, 'id_galeri', 'id_galeri');
+    }
     
 }

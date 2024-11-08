@@ -16,5 +16,10 @@ class layanan_dewasa extends Model
         'deskripsi'
     ];
 
+    function galeri_dewasa()
+    {
+        return $this->hasMany(galeri_dewasa::class, 'id_layanan_dws', 'id_layanan_dws   ');
+    }
+
     
 }
