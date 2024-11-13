@@ -17,6 +17,7 @@
                 <tr>
                     <th>Gambar</th>
                     <th>Judul</th>
+                    <th>Jenis</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                     <tr>
                         <td><img src="{{ asset($service->galeri->url_media) }}" alt="{{ $service->nama_layanan }}" width="50"></td>
                         <td>{{ $service->nama_layanan }}</td>
+                        <td></td>
                         <!-- tombol edit/delete -->
                         <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal-{{ $service->id }}">
@@ -34,7 +36,7 @@
                             Hapus
                             </button>
                         </td>
-                    </tr>
+                    </tr>                    
                 @endforeach
             </tbody>
         </table>

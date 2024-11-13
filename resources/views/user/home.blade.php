@@ -76,7 +76,7 @@
 
         <!-- Adult section -->
         <div id="dewasa-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 ">
-            <div data-aos="fade-right">
+            <div data-aos="fade-right" data-aos-delay="500">
                 <a href="{{ route('service.show') }}"
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center ">
@@ -87,7 +87,7 @@
                 </a>
             </div>
 
-            <div data-aos="fade-up">
+            <div data-aos="fade-up" data-aos-delay="500">
                 <a href="{{ route('service.show') }}"
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center ">
@@ -98,7 +98,7 @@
                 </a>
             </div>
             <!-- lainnya  -->
-            <div data-aos="fade-left">
+            <div data-aos="fade-left" data-aos-delay="500">
                 <a href="{{ route('service.child') }}"
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center">
@@ -191,8 +191,10 @@
 <div class="w-4/5 mx-auto min-h-[300px] my-40">
     <!-- judul & arrow  -->
     <div class="flex justify-between">
-        <h2 class="text-3xl font-bold text-pink-primary mb-4">Informasi Terbaru</h2>
-        <div>
+        <h2 class="text-3xl font-bold text-pink-primary mb-4" data-aos="fade-right">
+            Informasi Terbaru
+        </h2>
+        <div data-aos="fade-left">
             <button class="bg-pink-primary text-white rounded-full py-2 px-4 mr-2">
                 <span>&lt;</span>
             </button>
@@ -203,7 +205,7 @@
     </div>
 
     <!-- artikel section  -->
-    <div id="wrapper" class="relative h-full w-full flex items-center">
+    <div id="wrapper" class="relative h-full w-full flex items-center" data-aos="fade-up" data-aos-delay="500">
         <div id="slider-area-artikel" class="owl-carousel absolute  w-full top-0 left-0  ">
             <a href="{{ route('blog.show') }}" class="">
                 <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] duration-300 overflow-hidden shadow-lg">
@@ -275,8 +277,10 @@
 <!-- Testimoni  -->
 <section class="my-40">
     <div class="text-start w-4/5 mx-auto">
-        <h2 class="text-3xl font-bold text-pink-600 mb-4">Testimoni Pasien</h2>
-        <div class="grid md:grid-cols-3 grid-cols-1 gap-9">
+        <h2 class="text-3xl font-bold text-pink-600 mb-4" data-aos="fade-right">
+            Testimoni Pasien
+        </h2>
+        <div class="grid md:grid-cols-3 grid-cols-1 gap-9" data-aos="fade-up" data-aos-delay="500">
             <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
                 <p class="text-2xl mb-12">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 <div class="flex items-center">
@@ -311,16 +315,20 @@
 
 <!-- Lokasi  -->
 <div class="my-40 flex flex-col items-center justify-center text-start text-pink-primary">
-    <h1 class="md:text-5xl text-3xl font-bold md:mb-20 mb-12">Lokasi Klinik</h1>
+    <h1 class="md:text-5xl text-3xl font-bold md:mb-20 mb-12" data-aos="fade-up">
+        Lokasi Klinik
+    </h1>
     <div class="w-4/5">
-        <p class="md:text-3xl text-xl font-bold mb-9">Kunjungi</p>
-        <div class="md:border-4 border-2 border-pink-secondary h-450 rounded-3xl ">
+        <p class="md:text-3xl text-xl font-bold mb-9" data-aos="fade-right" data-aos-delay="400">
+            Kunjungi
+        </p>
+        <div class="md:border-4 border-2 border-pink-secondary h-450 rounded-3xl " data-aos="fade-up" data-aos-delay="500">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13296.709523125111!2d110.37424616862342!3d-7.77546504897429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59d1b10eefdd%3A0xe65afca3cae0ac31!2sDepartemen%20Teknik%20Elektro%20Dan%20Informatika%20UGM!5e0!3m2!1sid!2sid!4v1729664735391!5m2!1sid!2sid"
                 width="100%" height="100%" class="rounded-3xl " style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <p class="text-base mt-4">Jalan Kalasan</p>
+        <p class="text-base mt-4" data-aos="fade-up">Jalan Kalasan</p>
     </div>
 </div>
 <!-- Lokasi ends  -->

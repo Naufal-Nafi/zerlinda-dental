@@ -31,38 +31,50 @@ span {
     cursor: default;
 }
 
-/* .isi-navbar a{
+.isi-navbar a {
     position: relative;
-} */
-.isi-navbar a span{
-    transition: 0.3s;
+    overflow-y: hidden;
+}
+
+.isi-navbar a span {
+    transition:  0.3s ease;
     display: block;
     opacity: 1;
+    position: relative;
 }
+
 .isi-navbar a:hover span {
     transform: translateY(100%);
     opacity: 0;
 }
-.isi-navbar a:before{
+
+.isi-navbar a:before {
     position: absolute;
     content: attr(data-link-alt);
-    top: 0;
+    top: -10px; /* Mulai di atas elemen */
     opacity: 0;
-    transition: 0.3s;
+    transition: top 0.3s ease, opacity 0.3s ease;
     color: var(--text-color);
+    left: 0;
+    width: 100%;
+    text-align: center;
 }
+
 .isi-navbar a:hover:before {
-    top: 35%;
+    top: 25%; /* Geser ke posisi aslinya */
     opacity: 1;
 }
+
 .group:hover .pelayanan span {
     transform: translateY(100%);
     opacity: 0;
 }
+
 .group:hover .pelayanan:before {
-    top: 35%;
+    top: 25%;
     opacity: 1;
 }
+
 
 
 

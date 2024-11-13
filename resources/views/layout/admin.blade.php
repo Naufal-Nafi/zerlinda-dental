@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="icon" href="{{ asset('images/logo_simple.png') }}">
 </head>
@@ -71,9 +71,15 @@
 
 
 
+
+
         <!-- Navbar -->
-        <div class="flex-grow-1 " id="navbar">
-            <nav class="navbar px-3" style="width: 83%; left: 17%; ">
+        <div class="flex" id="navbar">
+            <nav class="navbar px-3">
+                <button class="btn bg-light-pink btn-offcanvas" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    Menu
+                </button>
                 <div class='navbar-brand mb-0 h1'>
                     <span>Admin Page - </span>
                     <span>@yield('page-title')</span>
@@ -85,12 +91,62 @@
             </nav>
         </div>
 
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header bg-light-pink">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Zerlinda Dental Admin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body bg-light-pink">
+                <div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}"><i
+                                    class="bi bi-house-door"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.contact') }}"><i
+                                    class="bi bi-envelope"></i>Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('admin.landingpage') }} "><i
+                                    class="bi bi-file-earmark-text"></i>Landing Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('admin.blog') }} "><i class="bi bi-journal"></i>Artikel
+                                Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('admin.doctor') }} "><i
+                                    class="bi bi-calendar"></i>Jadwal Dokter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('admin.service') }} "> <i
+                                    class="bi bi-gear"></i>Layanan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('password.change') }} "><i class="bi bi-lock"></i>Ubah
+                                Password</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="position-absolute bottom-0 w-100" style="margin-bottom: 150px;">
+                    <ul class="nav flex-column w-100">
+                        <li class="nav-item d-flex justify-content-center ">
+                            <a class="nav-link text-decoration-none text-danger"
+                                href=" {{ route('admin.login') }} ">LogOut</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
 
 
         <!-- Konten Halaman -->
-        <div class="container d-flex justify-content-center align-items-center"
-            style="min-height: 100vh; width: 83%; left: 17%;">
-            <div class="main-content" style="width: 75%;">
+        <div class="main-content container d-flex justify-content-center align-items-center"
+            >
+            <div  style="width: 85%;">
                 @yield('content')
             </div>
         </div>
@@ -189,7 +245,7 @@
                     if (file) {
                         const reader = new FileReader();
                         reader.onload = function (e) {
-                            previewImage.attr('src', e.target.result).css('display','block');
+                            previewImage.attr('src', e.target.result).css('display', 'block');
                         }
                         reader.readAsDataURL(file);
                     } else {
