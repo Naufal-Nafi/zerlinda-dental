@@ -21,6 +21,9 @@ class Dokter extends Model
         'jadwal_akhir',
     ];
 
-    
-    
+    function galeri_dokter()
+    {
+        return $this->hasMany(galeri_dokter::class, 'id_galeri', 'id_galeri');
+    }
+        
 }

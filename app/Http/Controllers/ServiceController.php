@@ -7,6 +7,7 @@ use App\Models\layanan_anak;
 use App\Models\layanan_dewasa;
 use App\Models\galeri_anak;
 use App\Models\galeri_dewasa;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
@@ -127,19 +128,29 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $tipe_layanan = layanan_anak::find($id);
+
+    if ($tipe_layanan) {
+        $galeri_anak = galeri_anak::where('id_layanan_ank', $id)->get();
+        foreach ($galeri_anak as $galeri) {
+            Storage::delete('public/images/layanan/' . basename($galeri->url_media));
+            $galeri->delete();
+        }
+        $tipe_layanan->delete();
+    } else {
+        $tipe_layanan = layanan_dewasa::find($id);
         
         if ($tipe_layanan) {
+            $galeri_dewasa = galeri_dewasa::where('id_layanan_dws', $id)->get();
+            foreach ($galeri_dewasa as $galeri) {
+                Storage::delete('public/images/layanan/' . basename($galeri->url_media));
+                $galeri->delete();
+            }
             $tipe_layanan->delete();
         } else {
-            $tipe_layanan = layanan_dewasa::find($id);
-            
-            if ($tipe_layanan) {
-                $tipe_layanan->delete();
-            } else {
-                return redirect()->back()->with('error', 'Layanan tidak ditemukan.');
-            }
+            return redirect()->back()->with('error', 'Layanan tidak ditemukan.');
         }
-        
-        return redirect()->back()->with('success', 'Layanan berhasil dihapus!');
+    }
+
+    return redirect()->back()->with('success', 'Layanan berhasil dihapus!');
     }
 }

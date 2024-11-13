@@ -23,6 +23,6 @@ class galeri_anak extends Model
 
     public function layanan_anak()
     {
-        return $this->belongsTo(layanan_anak::class, 'id_layanan_ank');
+        return $this->belongsTo(layanan_anak::class, 'id_layanan_ank', 'id_layanan_ank');
     }
 }

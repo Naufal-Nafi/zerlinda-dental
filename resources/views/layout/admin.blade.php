@@ -141,24 +141,43 @@
 
 
     <!--Hapus Modal -->
-    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-light-pink">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus?</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah anda yakin ingin menghapus data ini?</p>
-                </div>
+    <div class="modal fade" id="hapusModalService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-light-pink">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin ingin menghapus data ini?</p>
+            </div>
+            <!-- Form dengan action yang akan diubah oleh JavaScript -->
+            <form id="deleteForm" action="" method="POST">
+                @csrf
+                @method('DELETE')
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-danger">Hapus</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var hapusModal = document.getElementById('hapusModalService');
+        hapusModal.addEventListener('show.bs.modal', function (event) {
+            // Dapatkan tombol yang diklik
+            var button = event.relatedTarget;
+            var serviceId = button.getAttribute('data-id');
+            var form = document.getElementById('deleteForm');
+            
+            // Set action form berdasarkan ID service
+            form.action = '/admin' + serviceId;
+        });
+    });
+</script>
 
 
     <!-- Script untuk menampilkan waktu saat ini -->

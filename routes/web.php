@@ -44,6 +44,9 @@ Route::get('/admin/landingpage', [LandingPageController::class, 'index'])->name(
 
 
 
+Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Rute untuk mengubah password pengguna
 Route::get('/admin/change-password', [PasswordController::class, 'index'])->name('password.change');
 Route::post('/admin/validate-current-password', [PasswordController::class, 'validateCurrentPassword'])->name('password.validate');
 Route::get('/admin/reset-password', [PasswordController::class, 'showResetForm'])->name('admin.Reset_Password');
@@ -55,15 +58,7 @@ Route::get('/admin/forgot-password', [ForgotPasswordController::class, 'showLink
 Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
 Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
 Route::post('/admin/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
-Route::post('/admin/service/destroy', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
-
-
-
-
-
-
-
-
+Route::delete('/admin/service/destroy/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
 
 
 Route::get('/admin/logout',[LoginController::class, 'logout'])->name('admin.logout');
@@ -73,11 +68,7 @@ Route::get('/password/forgot', [ForgotPasswordController::class, 'index'])->name
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
 Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
-// Rute untuk mengubah password pengguna
-Route::get('/password/forgot',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot_password.request');
-Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('forgot_password.email');
-// Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-// Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
 
 
 Route::get('/home',[homeController::class, 'index'])->name('user.home');
