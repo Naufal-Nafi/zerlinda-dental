@@ -141,7 +141,7 @@
 
 
     <!--Hapus Modal -->
-    <div class="modal fade" id="hapusModalService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-light-pink">
             <div class="modal-header">
@@ -166,7 +166,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var hapusModal = document.getElementById('hapusModalService');
+        var hapusModal = document.getElementById('hapusModal');
         hapusModal.addEventListener('show.bs.modal', function (event) {
             // Dapatkan tombol yang diklik
             var button = event.relatedTarget;

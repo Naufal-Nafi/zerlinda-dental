@@ -31,10 +31,10 @@
         <td>{{ $service->nama_layanan }}</td>
         <!-- tombol edit/delete -->
         <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal-{{ $service->id }}">
                 Edit
             </button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModalService" data-id="{{'/service/destroy/'.$service->getKey()}}">
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{'/service/destroy/'.$service->getKey()}}">
                 
                 Hapus
             </button>
@@ -60,6 +60,9 @@
     $routeName = 'admin.dashboard'; // Nama route
 @endphp
 
+@section('formAction')
+{{route('admin.service.store')}}
+@endsection
 
 
 @section('createModalContent')
