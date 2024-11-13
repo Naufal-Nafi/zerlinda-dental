@@ -31,35 +31,74 @@ span {
     cursor: default;
 }
 
-#hero {
-    background-image: url("../images/landing-page.png");
+.isi-navbar a {
+    position: relative;
+    overflow-y: hidden;
+}
+
+.isi-navbar a span {
+    transition:  0.3s ease;
+    display: block;
+    opacity: 1;
+    position: relative;
+}
+
+.isi-navbar a:hover span {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.isi-navbar a:before {
+    position: absolute;
+    content: attr(data-link-alt);
+    top: -10px; /* Mulai di atas elemen */
+    opacity: 0;
+    transition: top 0.3s ease, opacity 0.3s ease;
+    color: var(--text-color);
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.isi-navbar a:hover:before {
+    top: 25%; /* Geser ke posisi aslinya */
+    opacity: 1;
+}
+
+.group:hover .pelayanan span {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.group:hover .pelayanan:before {
+    top: 25%;
+    opacity: 1;
+}
+
+
+
+
+/* hero  */
+#slider-area:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#slider-area .owl-item div {
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
 }
+/* hero ends  */
 
-.hero-2 {
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(254, 206, 218, 0.7));
-}
 
-/* service */
-.service-container {
-    transition: 0.4s;
-
-    &:hover {
-        transform: translateY(-24px);
-
-        & img {
-            filter: opacity(75%);
-        }
-        
-    }
-
-    & img,
-    p {
-        transition: 0.4s;
-    }
-}
-/* end service */
 
 
 .slider {
@@ -105,6 +144,7 @@ span {
 
 
 
+/* contact  */
 .contact ul li a {
     position: relative;
 }
@@ -115,63 +155,20 @@ span {
     right: -20px;
     top: 0;
     opacity: 0;
-    transform: translateX(-20px); /* Initial position off-screen to the left */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    transform: translateX(-20px); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
 }
 .contact ul li a:hover::after {
-    opacity: 1; /* Makes the arrow visible */
-    transform: translateX(0); /* Slides arrow to its normal position */
-}
-
-.isi-navbar .pelayanan::after {
-    content: "▼";
-    position: absolute;
-    right: 0px;
-    top: 0;
     opacity: 1;
-    transform: translateY(9px) rotate(0deg); /* Default arrow pointing down */
-    transition: transform 0.3s ease; /* Smooth rotation animation */
+    transform: translateX(0);
 }
-
-.isi-navbar .pelayanan:hover::after {
-    transform: translateY(9px) rotate(180deg); /* Rotate arrow to point up */
-}
+/* contact ends  */
 
 
 
+/* for responsive slider  */
 @media (max-width: 426px){
     :root{
         --sliderWidth: 300px;
     }
 }
-
-/* .dots {
-    list-style: disc;
-} */
-
-
-
-/* .carousel {
-    width: 1300px;
-    max-width: 100vw;
-    height: 700px;
-    margin: auto;
-    position: relative;
-
-}
-
-.clist {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    display: flex;
-    width: max-content;
-
-    &img {
-        width: 1300px;
-        max-width: 100vw;
-        height: 100%;
-        object-fit: cover;
-    }
-} */

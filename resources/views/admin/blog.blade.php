@@ -41,6 +41,10 @@
 @endphp
 
 
+@section('formAction')
+{{route('admin.blog.store')}}
+@endsection
+
 
 
 @section('createModalContent')

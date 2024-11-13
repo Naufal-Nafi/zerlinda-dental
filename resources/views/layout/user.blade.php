@@ -5,10 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <!-- Tambahkan CSS untuk Bootstrap atau framework CSS lain jika diperlukan -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- jquery  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- owl carousel  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+        integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"
+        integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- aos  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     @vite('resources/css/app.css')
     <link rel="icon" href="{{ asset('images/logo_simple.png') }}">
 </head>
@@ -16,13 +26,12 @@
 <body>
     <div class=" d-block">
 
-
         <!-- navbar -->
         <div class="flex-grow " id="navbar">
             <nav class="border-b-4 bg-white fixed top-0 left-0 right-0 z-50">
                 <div class="mx-auto px-4 py-3">
                     <div class="flex justify-between items-center">
-                        <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" class="w-48">
+                        <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" class="w-40">
 
                         <!-- Navbar Toggler -->
                         <button class="navbar-toggler block lg:hidden p-2 rounded border focus:outline-none focus:ring"
@@ -34,7 +43,7 @@
                             </svg>
                         </button>
 
-                        <!-- Offcanvas / Drawer Menu -->
+                        <!-- Offcanvas / Drawer Menu (for small screen)-->
                         <div id="offcanvas-navbar"
                             class="fixed top-0 left-0 w-full h-1/2 bg-white shadow-lg transform -translate-y-full transition-transform duration-300 lg:hidden z-40">
                             <div class="p-4 border-b flex justify-between">
@@ -48,13 +57,17 @@
                                 </button>
                             </div>
                             <div class="flex flex-col text-center text-pink-primary font-bold p-4">
-                                <a class="nav-link px-4 py-2" href="{{ route('home') }}">Home</a>
-                                <a class="nav-link px-4 py-2" href="{{ route('location') }}">Lokasi</a>
-                                <a class="nav-link px-4 py-2" href="{{ route('blog') }}">Blog</a>
-                                <a class="nav-link px-4 py-2" href="{{ route('schedule') }}">Jadwal</a>
+                                <a class="nav-link px-4 py-2 active:text-blue-primary"
+                                    href="{{ route('home') }}">Home</a>
+                                <a class="nav-link px-4 py-2 active:text-blue-primary"
+                                    href="{{ route('location') }}">Lokasi</a>
+                                <a class="nav-link px-4 py-2 active:text-blue-primary"
+                                    href="{{ route('blog') }}">Blog</a>
+                                <a class="nav-link px-4 py-2 active:text-blue-primary"
+                                    href="{{ route('schedule') }}">Jadwal</a>
                                 <!-- Pelayanan Dropdown -->
                                 <div class="relative group mx-auto">
-                                    <button class="nav-link px-4 py-2 flex items-center">
+                                    <button class="nav-link px-4 py-2 active:text-blue-primary flex items-center">
                                         Pelayanan
                                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -64,9 +77,9 @@
                                     </button>
                                     <div
                                         class="absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
-                                        <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
+                                        <a class="block px-4 py-2 active:text-blue-primary text-black hover:bg-pink-secondary"
                                             href="{{ route('service.adult') }}">Dewasa</a>
-                                        <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
+                                        <a class="block px-4 py-2 active:text-blue-primary2 text-black hover:bg-pink-secondary"
                                             href="{{ route('service.child') }}">Anak-anak</a>
                                     </div>
                                 </div>
@@ -75,32 +88,27 @@
 
                         <!-- Normal Navbar Links for Larger Screens -->
                         <div class="isi-navbar hidden lg:flex lg:items-center text-pink-primary font-bold ">
-                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300"
-                                href="{{ '/home' }}">Home</a>
-                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300"
-                                href="{{ route('location') }}">Lokasi</a>
-                            <div class="relative group">
-                                <button
-                                    class="pelayanan nav-link px-6 py-2 flex items-center hover:text-blue-primary duration-300">
-                                    Pelayanan
-                                    <!-- <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7"></path>
-                                    </svg> -->
-                                </button>
+                            <a class="nav-link px-6 py-2  duration-300" data-link-alt="Home"
+                                href="{{ '/home' }}"><span>Home</span></a>
+                            <a class="nav-link px-6 py-2  duration-300" data-link-alt="Lokasi"
+                                href="{{ route('location') }}"><span>Lokasi</span></a>
+                            <div class="group">
+                                <a class="pelayanan nav-link px-6 py-2 flex items-center duration-300 cursor-pointer"
+                                    data-link-alt="Pelayanan">
+                                    <span>Pelayanan</span>
+                                </a>
                                 <div
-                                    class="dropdown absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
+                                    class="dropdown absolute peer py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
                                     <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
                                         href="{{ route('service.adult') }}">Dewasa</a>
                                     <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
                                         href="{{ route('service.child') }}">Anak-anak</a>
                                 </div>
                             </div>
-                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300"
-                                href="{{ route('blog') }}">Blog</a>
-                            <a class="nav-link px-6 py-2 hover:text-blue-primary duration-300"
-                                href="{{ route('schedule') }}">Jadwal</a>
+                            <a class="nav-link px-6 py-2  duration-300" data-link-alt="Blog"
+                                href="{{ route('blog') }}"><span>Blog</span></a>
+                            <a class="nav-link px-6 py-2  duration-300" data-link-alt="Jadwal"
+                                href="{{ route('schedule') }}"><span>Jadwal</span></a>
                         </div>
                     </div>
                 </div>
@@ -110,13 +118,12 @@
         <script>
             // Offcanvas / Drawer toggler
             function toggleNavbar() {
-                const offcanvas = document.getElementById('offcanvas-navbar');
-                offcanvas.classList.toggle('-translate-y-full');
+                $('#offcanvas-navbar').toggleClass('-translate-y-full');
             }
         </script>
 
-
-        <div style="min-height: 88.5px;">
+        <!-- Buat atas halaman  -->
+        <div style="min-height: 77px;">
         </div>
 
 
@@ -126,6 +133,8 @@
                 @yield('content')
             </div>
         </div>
+        <!-- konten halaman ends  -->
+
 
 
         <!-- Footer -->
@@ -137,8 +146,8 @@
                     <h2 class="text-4xl font-bold mb-12">Zerlinda Dental Care</h2>
                 </div>
 
-                <!-- Halaman Lain -->
                 <div class="md:flex md:justify-between block">
+                    <!-- Halaman Lain -->
                     <div>
                         <h3 class="text-xl font-semibold mb-4">Halaman Lain :</h3>
                         <ul class="space-y-2">
@@ -158,25 +167,25 @@
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_gmail_.png') }}" alt="Gmail Icon"
                                         class="w-7 me-4"></span>
-                                <a href="mailto:zerlindadentalcare@gmail.com" target="_blank"
+                                <a href="mailto:" target="_blank"
                                     class="hover:text-pink-primary">zerlindadentalcare@gmail.com</a>
                             </li>
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_instagram_.png') }}" alt="Instagram Icon"
                                         class="w-7 me-4"></span>
-                                <a href="https://www.instagram.com/zerlindadentalcare" target="_blank"
+                                <a href="https://www.instagram.com/" target="_blank"
                                     class="hover:text-pink-primary">zerlindadentalcare</a>
                             </li>
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_facebook_.png') }}" alt="Facebook Icon"
                                         class="w-7 me-4"></span>
-                                <a href="https://www.facebook.com/ZerlindaDentalCare" target="_blank"
+                                <a href="https://www.facebook.com/" target="_blank"
                                     class="hover:text-pink-primary">Zerlinda Dental Care</a>
                             </li>
                             <li class="flex items-center mb-4">
                                 <span><img src="{{ asset('icons/icon_tiktok_.png') }}" alt="TikTok Icon"
                                         class="w-7 me-4"></span>
-                                <a href="https://www.tiktok.com/@zerlindadentalcare" target="_blank"
+                                <a href="https://www.tiktok.com" target="_blank"
                                     class="hover:text-pink-primary">zerlindadentalcare</a>
                             </li>
                             <li class="flex items-center mb-4">
@@ -199,17 +208,21 @@
                     </div>
                 </div>
 
+                <!-- copyright & credit  -->
                 <div class="md:flex justify-between mt-12">
                     <p>&copy; Zerlinda Dental Care 2024</p>
                     <p style="margin-right: 70px">Developed by NPN</p>
                 </div>
             </div>
-
         </footer>
+        <!-- footer ends  -->
+
+
 
         <!-- Ikon WhatsApp di pojok kanan bawah -->
         <a href="https://wa.me/6289604299993" target="_blank" class="fixed bottom-5 right-5">
-            <div class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
+            <div
+                class="bg-pink-primary text-white p-4 rounded-full shadow-lg hover:-translate-y-2  transition duration-300">
                 <!-- SVG Ikon WhatsApp -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
                     <path
@@ -217,9 +230,17 @@
                 </svg>
             </div>
         </a>
-
+        <!-- ikon whatsapp  -->
     </div>
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

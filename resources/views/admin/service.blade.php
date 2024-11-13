@@ -17,6 +17,7 @@
                 <tr>
                     <th>Gambar</th>
                     <th>Judul</th>
+                    <th>Jenis</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -144,10 +145,10 @@
         const newImgId = `previewImage${counter}`;
 
         newDiv.innerHTML = `
-        // <div style='min-height:38px; '></div>
+        <div style='min-height:38px;'></div>
         <label for="${newInputId}" class="form-label">Gambar ${counter}</label>
         <img id="${newImgId}" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-        <input class="form-control border-black image-input" type="file" id="${newInputId}" name="${newInputId}" accept="image/*" required >
+        <input class="form-control border-black image-input" type="file" id="${newInputId}" name="image[]" accept="image/*" required >
         `;
 
         // Append the new div to the container

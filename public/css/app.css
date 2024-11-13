@@ -41,10 +41,15 @@ span {
     background-color: var(--secondary-color) !important;
 }
 
-.main-content .bi {
-    font-size: 1.5rem;
-}
+.main-content {
+    min-height: 100vh;
+    width: 100%;
+    left: 0 !important;
 
+    .bi {        
+        font-size: 1.5rem;
+    }
+}
 
 .modal-footer {
     border-top: none;
@@ -59,6 +64,8 @@ span {
 .navbar {
     position: fixed;
     top: 0;
+    width: 100%;
+    left: 0;
     z-index: 1000;
     background-color: var(--primary-color);
     color: var(--white-color);
@@ -69,7 +76,23 @@ span {
 /* navbar ends */
 
 
-
+@media (min-width: 1023px) {
+    .navbar {
+        width: 80%;
+        left: 20%;
+    }
+    .main-content {
+        width: 80%;
+        left: 20% !important;
+        position: absolute;
+    }
+    .btn-offcanvas {
+    display: none;
+    }
+    .sidebar {
+        display: block !important;
+    }
+}
 
 
 /* Sidebar */
@@ -77,11 +100,12 @@ span {
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* Lebar tetap untuk sidebar */
-    height: 100vh; /* Sidebar memenuhi tinggi layar */    
+    width: 20%; 
+    height: 100vh;
     background-color: var(--secondary-color);
     color: var(--text-color);
     justify-content: space-between;
+    display: none;
 }
 
 .nav-link {
@@ -183,3 +207,50 @@ textarea {
     transform: translateY(-4px);
     transition: 0.4s;
 }
+
+
+
+
+/* 
+
+.isi-navbar a {
+    position: relative;
+}
+
+.isi-navbar a span {
+    transition: opacity 0.3s ease;
+    display: block;
+    opacity: 1;
+    position: relative;
+}
+
+.isi-navbar a:hover span {
+    top: 100%;
+    opacity: 0;
+}
+
+.isi-navbar a:before {
+    position: absolute;
+    content: attr(data-link-alt);
+    top: 0;
+    opacity: 0;
+    transition: top 0.3s ease, opacity 0.3s ease;
+    color: var(--text-color);
+    left: 0;
+    width: 100%;
+}
+
+.isi-navbar a:hover:before {
+    top: 35%;
+    opacity: 1;
+}
+
+.group:hover .pelayanan span {
+    top: 100%;
+    opacity: 0;
+}
+
+.group:hover .pelayanan:before {
+    top: 35%;
+    opacity: 1;
+} */

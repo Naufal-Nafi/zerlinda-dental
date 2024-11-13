@@ -1,6 +1,7 @@
 @extends('layout.user')
 @section('content')
 <div class="min-h-screen w-4/5 mx-auto">
+    <!-- kotak pencarian jadwal  -->
     <div class="py-12 bg-pink-secondary md:my-20 my-12 md:rounded-[65px] rounded-xl">
         <div class="w-4/5 mx-auto grid grid-cols-1 gap-6">
             <div class="">
@@ -18,7 +19,26 @@
             </div>
         </div>
     </div>
+
+    <!-- list dokter  -->
     <div class="grid grid-cols-1 gap-6 mb-20">
+        <!-- foreach  -->
+        <div class="p-4 bg-pink-secondary rounded-xl md:flex justify-between block font-bold md:text-xl text-base">
+            <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
+                <img class="mx-auto rounded-xl" src="{{ asset('images/doctor_photo.png')  }}" alt="">
+                <div class="md:text-left my-auto">
+                    <p>Dokter</p>
+                    <p>Nama Dokter</p>
+                </div>
+            </div>
+            <div class="my-auto gap-max">
+                <p>Jam</p>
+                <p>15:00 - 21:00 WIB</p>
+            </div>
+        </div>
+        <!-- end for each  -->
+         
+        <!-- contoh lain  -->
         <div class="p-4 bg-pink-secondary rounded-xl md:flex justify-between block font-bold md:text-xl text-base">
             <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
                 <img class="mx-auto rounded-xl" src="{{ asset('images/doctor_photo.png')  }}" alt="">
@@ -44,21 +64,7 @@
                 <p>Jam</p>
                 <p>15:00 - 21:00 WIB</p>
             </div>
-        </div>
-        <div class="p-4 bg-pink-secondary rounded-xl md:flex justify-between block font-bold md:text-xl text-base">
-            <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
-                <img class="mx-auto rounded-xl" src="{{ asset('images/doctor_photo.png')  }}" alt="">
-                <div class="md:text-left my-auto">
-                    <p>Dokter</p>
-                    <p>Nama Dokter</p>
-                </div>
-            </div>
-            <div class="my-auto gap-max">
-                <p>Jam</p>
-                <p>15:00 - 21:00 WIB</p>
-            </div>
-        </div>
-        
+        </div>        
     </div>
 </div>
 @endsection

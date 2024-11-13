@@ -1,9 +1,15 @@
 @extends('layout.user')
 @section('content')
 <div class="min-h-screen mx-auto text-pink-primary md:w-4/5 w-[85%]">
+    <p class="text-start mt-8 md:text-base text-xs">
+        <span onclick="window.location.href='{{ route('home') }}'" class="hover:font-bold cursor-pointer">home</span> /
+        <span onclick="window.location.href='{{ route('blog') }}'" class="hover:font-bold cursor-pointer">blog</span> /
+        <span>Judul Artikel</span>
+    </p>
+
     <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">Judul Blog</h1>
     <img src="{{ asset('images/landing-page.png') }}" alt="" class="border-4 border-pink-secondary rounded-lg">
-    <p class="my-12 text-black text-justify">
+    <p class="my-12 text-black text-justify text-xs md:text-base">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum perferendis quos natus ut expedita accusantium,
         dolore incidunt qui ipsum ex omnis sed, nemo est ab dolorem impedit pariatur reiciendis deserunt.
         Doloribus fuga autem nesciunt dolore asperiores iusto reiciendis molestiae deleniti ipsam delectus? Ipsum
