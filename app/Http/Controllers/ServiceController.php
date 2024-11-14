@@ -17,6 +17,7 @@ class ServiceController extends Controller
         $layanan_anak = layanan_anak::with("galeri_anak")->get();
         $layanan_dewasa = layanan_dewasa::with("galeri_dewasa")->get();
         $services = $layanan_anak->merge($layanan_dewasa);
+        
         return view('admin.service', compact('services', 'layanan_anak', 'layanan_dewasa'));
     }
 

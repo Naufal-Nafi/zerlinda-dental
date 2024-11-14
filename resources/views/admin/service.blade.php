@@ -30,9 +30,10 @@
             <td></td>
         @endif
         <td>{{ $service->nama_layanan }}</td>
+        <td>{{ $service -> getKeyName()=="id_layanan_ank"?"anak":"dewasa"; }}</td>
         <!-- tombol edit/delete -->
         <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal-{{ $service->id }}">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal" data-id="{{'/service/update/'.$service->getKey()}}">
                 Edit
             </button>
             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{'/service/destroy/'.$service->getKey()}}">
@@ -163,23 +164,24 @@
 @endsection
 
 @section('editModalContent')
+
 <div class="mb-3 d-flex">
     <div class="form-check me-5">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-        <label class="form-check-label" for="flexRadioDefault1">
-            Dewasa
+        <input class="form-check-input" type="radio" name="tipe_layanan" value="anak" id="tipeAnak" {{ old('tipe_layanan', 'anak') == 'anak' ? 'checked' : '' }}>
+        <label class="form-check-label" for="tipeAnak">
+            Anak
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-        <label class="form-check-label" for="flexRadioDefault2">
-            Anak-anak
+        <input class="form-check-input" type="radio" name="tipe_layanan" value="dewasa" id="tipeDewasa" {{ old('tipe_layanan', 'dewasa') == 'dewasa' ? 'checked' : '' }}>
+        <label class="form-check-label" for="tipeDewasa">
+            Dewasa
         </label>
     </div>
 </div>
 <div class="mb-3">
     <label for="edit_nama_layanan" class="form-label ">Nama Pelayanan</label>
-    <input type="text" class="form-control border-black" id="edit_nama_layanan" name="nama_layanan" required maxlength="100">
+    <input type="text" class="form-control border-black" id="edit_nama_layanan" name="nama_pelayanan" required maxlength="100">
 </div>
 
 <div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
@@ -192,10 +194,10 @@
 
     <!-- for each  -->
     <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
-        <label for="formFile2" class="form-label">Contoh Perawatan</label>
+        <label for="edit_gambar" class="form-label">Contoh Perawatan</label>
         <img id="previewImage2" src="" alt="Preview Image"
             style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-        <input class="form-control border-black image-input" type="file" id="formFile2">
+        <input class="form-control border-black image-input" type="file" id="edit_gambar" name="gambar" accept="image/*">
     </div>
 
     <!-- end for each  -->

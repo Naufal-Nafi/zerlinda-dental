@@ -181,7 +181,7 @@
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
-                <form action="{{ route('admin.service.update', ['id' => $service->id ?? 'defaultId']) }}" method="POST">
+                <form action="{{ route('admin.service.update', ['id' => $service->id ?? 'defaultId']) }}" method="POST" enctype="multipart/form-data>
                     @csrf
                     <div class="modal-body text-20">
                         @yield('editModalContent')
