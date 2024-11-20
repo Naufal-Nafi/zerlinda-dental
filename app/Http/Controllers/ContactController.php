@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\kontak;
 
 class ContactController
 {
@@ -15,19 +16,17 @@ class ContactController
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'jenis_kontak' => 'required',
+            'nama_akun' => 'required',
+            'url' => 'required',
+        ]);
+        kontak::create($validateData);
+        return redirect()->back()->with('success', 'Kontak berhasil ditambahkan!');
     }
 
     /**
@@ -35,15 +34,28 @@ class ContactController
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'jenis_kontak' => 'required',
+            'nama_akun' => 'required',
+            'url' => 'required',
+        ]);
+
+        $kontak = kontak::find($id);
+
+        $kontak->update([
+            'jenis_kontak' => $validateData['jenis_kontak'],
+            'nama_akun' => $validateData['nama_akun'],
+            'url' => $validateData['url']
+        ]);
+        return redirect()->back()->with('success', 'Kontak berhasil diupdate!');
     }
 
     /**

@@ -3,62 +3,112 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\artikel;
+use App\Models\galeri_artikel;
+use Illuminate\Support\Facades\Storage;
 
-class BlogController
+
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.blog');
+        $artikel = artikel::all();
+        return view('admin.blog',compact('artikel'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $validatedData = $request->validate([
+            'judul' => 'required|max:100',
+            'konten' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+    
+        $artikel = artikel::create([
+            'judul' => $validatedData['judul'],
+            'konten' => $validatedData['konten'],
+        ]);
+    
+        $foreignKey = 'id_artikel';
+    
+        if ($request->gambar) {
+            foreach ($request->gambar as $image) {
+                
+            
+            $imageName = time() . '_' . $request->gambar->getClientOriginalName();
+            $request->file('gambar')->storeAs('public/galeri_artikel', $imageName);
+            galeri_artikel::create([
+                'id_artikel' => $artikel->id_artikel,
+                'judul' => $validatedData['judul'],
+                'deskripsi' => $validatedData['konten'],
+                'url_media' => 'images/galeri_artikel/' . $imageName,
+                $foreignKey => $artikel[$foreignKey],
+            ]);
+            }
+        }
+    
+        return redirect()->back()->with('success', 'Artikel berhasil ditambahkan!');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'judul' => 'required|max:100',
+            'konten' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+    
+        $artikel = artikel::find($id);
+    
+        if (!$artikel) {
+            return redirect()->back()->with('error', 'Artikel tidak ditemukan.');
+        }
+    
+        $artikel->update([
+            'judul' => $validatedData['judul'],
+            'konten' => $validatedData['konten'],
+        ]);
+    
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/galeri_artikel'), $imageName);
+    
+            $galeri = galeri_artikel::find($artikel->id_galeri);
+            $galeri->update([
+                'judul' => $validatedData['judul'],
+                'deskripsi' => $validatedData['konten'],
+                'url_media' => 'images/galeri_artikel/' . $imageName,
+            ]);
+        }
+    
+        return redirect()->back()->with('success', 'Artikel berhasil diupdate!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $artikel = artikel::find($id);
+        if ($artikel) {
+            $galeri = galeri_artikel::where('id_artikel', $id)->get();
+            foreach ($galeri as $galeriItem) {
+                Storage::delete('public/images/galeri_artikel/' . basename($galeriItem->url_media));
+                $galeriItem->delete();
+            }
+            $artikel->delete();
+        } else {
+            return redirect()->back()->with('error', 'Artikel tidak ditemukan.');
+        }
+        return redirect()->back()->with('success', 'Artikel berhasil dihapus!');
     }
 }

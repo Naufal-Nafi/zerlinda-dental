@@ -17,16 +17,22 @@
             </tr>
         </thead>
         <tbody class="fw-semibold">
+            @foreach ($artikel as $service)
             <tr>
+                @if (isset($service->galeri))
+                <td><img src="{{ asset('storage/'.$service->gambar) }}" alt="" width="50"></td>
+                @else
                 <td></td>
-                <td></td>
+                @endif
+                <td>{{ $service->judul }}</td>
                 <td>
                     <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#editBlogModal">Edit</button></span>
+                            data-bs-target="#editBlogModal" data-id="{{'/blog/update/'.$service->getKey()}}">Edit</button></span>
                     <span><button class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#hapusModal">Hapus</button></span>
+                            data-bs-target="#hapusModal" data-id="{{'/blog/destroy/'.$service->getKey()}}">Hapus</button></span>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

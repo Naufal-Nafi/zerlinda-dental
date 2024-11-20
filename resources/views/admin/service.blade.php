@@ -30,7 +30,7 @@
             <td></td>
         @endif
         <td>{{ $service->nama_layanan }}</td>
-        <td>{{ $service -> getKeyName()=="id_layanan_ank"?"anak":"dewasa"; }}</td>
+        <td>{{ $service -> getKeyName()=="id_layanan_ank"?"anak":"dewasa" }}</td>
         <!-- tombol edit/delete -->
         <td>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal" data-id="{{'/service/update/'.$service->getKey()}}">
@@ -41,11 +41,8 @@
                 Hapus
             </button>
         </td>
-    </tr>
-
-    <!-- Hapus Modal -->
-    
-@endforeach
+    </tr>    
+                @endforeach
 
             </tbody>
         </table>
@@ -209,6 +206,8 @@
 </div>
 
 </form>
+
+
 
 <script>
     document.getElementById('edit_gambar').addEventListener('change', function () {

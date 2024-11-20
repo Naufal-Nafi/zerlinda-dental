@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Dokter;
+use App\Models\galeri_dokter;
+use Illuminate\Support\Facades\Storage;
 
 class DoctorController
 {
@@ -15,35 +18,79 @@ class DoctorController
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'jadwal' => 'required',
+            'jadwal_awal'=>'required',
+            'jadwal_akhir'=>'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $dokter = dokter::create([
+            'nama' => $validatedData['nama'],
+            'jadwal' => $validatedData['jadwal'],
+            'jadwal_awal' => $validatedData['jadwal_awal'],
+            'jadwal_akhir' => $validatedData['jadwal_akhir'],
+        ]);
+
+        $foreignKey = 'id_dokter';
+
+        if ($request->gambar) {
+            $imageName = time() . '_' . $request->gambar->getClientOriginalName();
+            $request->file('gambar')->storeAs('public/galeri_dokter', $imageName);
+            galeri_dokter::create([
+                'id_dokter' => $dokter->id_dokter,
+                'judul' => $validatedData['nama'],
+                'deskripsi' => $validatedData['jadwal'],
+                'url_media' => 'galeri_dokter/' . $imageName,
+                $foreignKey => $dokter[$foreignKey],
+            ]);
+        }
+        return redirect()->route('admin.doctor')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'nama' => 'required',
+            'jadwal'=> 'required',
+            'jadwal_awal' =>'required',
+            'jadwal_akhir'=> 'required',
+        ]);
+
+        $dokter = dokter::find($id);
+
+        if (!$dokter){
+            return redirect()->back()->with('error', 'data tidak ditemukan');
+        }
+
+        $dokter->update([
+            'nama' => $validateData['nama'],
+            'jadwal'=> $validateData['jadwal'],
+            'jadwal_awal'=> $validateData['jadwal_awal'],
+            'jadwal_akhir'=> $validateData['jadwal_akhir']
+
+        ]);
+
+        if ($request->hasFile('gambar')) {
+            $images = $request->file('gambar');
+            $imagesname = time().'.'. $images->getClientOriginalExtension();
+            $images->move(public_path('galeri_dokter'), $imagesname);
+
+            $galeri = galeri_dokter::find($dokter->id_galeri);
+            $galeri->update([
+                'judul' => $validateData['nama'],
+                'deskripsi' => $validateData['jadwal'],
+                'url_media' => 'galeri_dokter/' . $imagesname,
+            ]);
+        }
+        return redirect()->back()->with('success', 'Dokter berhasil diupdate!');
     }
 
     /**
@@ -59,6 +106,15 @@ class DoctorController
      */
     public function destroy(string $id)
     {
-        //
+        $dokter = Dokter::find($id);
+        if ($dokter) {
+            $galeri = galeri_dokter::where('id_dokter', $id)->get();
+            foreach ($galeri as $galeriItem) {
+                Storage::delete('public/galeri_dokter/' . basename($galeriItem->url_media));
+                $galeriItem->delete();
+            }
+            $dokter->delete();
+        }
+        return redirect()->back()->with('success', 'Dokter berhasil dihapus!');
     }
 }

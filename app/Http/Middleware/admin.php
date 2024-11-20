@@ -16,11 +16,13 @@ class admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check() || !Auth::user()->isAdmin()) {
-            // Jika user tidak login atau bukan admin, redirect ke halaman login
-            return redirect()->route('admin.login');
-        }
-
-        return $next($request);
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            return $next($request);
+        } 
+        
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('admin.login')->with('error', 'Anda bukan admin');
     }
 }
