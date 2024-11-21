@@ -31,9 +31,10 @@
         @endif
         <td>{{ $service->nama_layanan }}</td>
         <td>{{ $service -> getKeyName()=="id_layanan_ank"?"anak":"dewasa" }}</td>
+        <td style="display: none; ">{{ $service->deskripsi }}</td>
         <!-- tombol edit/delete -->
         <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal" data-id="{{'/service/update/'.$service->getKey()}}">
+            <button type="button" id="editbtn{{$service->getKey()}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal" data-id="{{'/service/update/'.$service->getKey()}}" onclick="openEditModal({{$service->getKey()}})">
                 Edit
             </button>
             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{'/service/destroy/'.$service->getKey()}}">
@@ -164,14 +165,14 @@
 
 <div class="mb-3 d-flex">
     <div class="form-check me-5">
-        <input class="form-check-input" type="radio" name="tipe_layanan" value="anak" id="tipeAnak" {{ old('tipe_layanan', 'anak') == 'anak' ? 'checked' : '' }}>
-        <label class="form-check-label" for="tipeAnak">
+        <input class="form-check-input" id="edttipeAnak" type="radio" name="tipe_layanan" value="anak"  >
+        <label class="form-check-label" for="edttipeAnak">
             Anak
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="tipe_layanan" value="dewasa" id="tipeDewasa" {{ old('tipe_layanan', 'dewasa') == 'dewasa' ? 'checked' : '' }}>
-        <label class="form-check-label" for="tipeDewasa">
+        <input class="form-check-input" id="edttipeDewasa" type="radio" name="tipe_layanan" value="dewasa"   >
+        <label class="form-check-label" for="edttipeDewasa">
             Dewasa
         </label>
     </div>
@@ -205,7 +206,7 @@
     <textarea class="form-control border-black" id="edit_deskripsi" name="deskripsi" rows="3" required></textarea>
 </div>
 
-</form>
+
 
 
 
@@ -224,5 +225,35 @@
             reader.readAsDataURL(file);
         }
     });
+</script>
+@endsection
+
+@section('script')
+<script>
+    function openEditModal(id) {
+        
+        var editbtn = document.getElementById("editbtn"+id);
+        var row = editbtn.closest('tr');
+        var data = row.getElementsByTagName('td');
+        const service = data[2].innerText;
+        
+        // // Ambil nilai tipe layanan dari atribut value
+        // var tipeLayanan = row.cells[1].textContent;
+        
+        // Isi edit modal dengan dataeditForm
+        document.getElementById("editForm").action = "{{route('admin.service.update',"" )}}/"+id;
+        document.getElementById("edit_nama_layanan").value = data[1].innerText;
+        document.getElementById("edit_deskripsi").value = data[3].innerText;
+
+        
+        // Set radio button yang sesuai
+        if(service == 'anak') {
+
+            document.getElementById("edttipeAnak").checked = true;
+        } else {
+
+            document.getElementById("edttipeDewasa").checked = true;
+        }
+    }
 </script>
 @endsection

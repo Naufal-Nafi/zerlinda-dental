@@ -44,14 +44,14 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
     Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
     Route::post('/admin/blog/store', action: [BlogController::class, 'store'])->name('admin.blog.store');
     Route::post('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
-    Route::post('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
+    Route::delete('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
 
     Route::get('/admin/doctor', [DoctorController::class, 'index'])->name('admin.doctor');
     Route::get('/admin/landingpage', [LandingPageController::class, 'index'])->name('admin.landingpage');
 
     Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
     Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
-    Route::post('/admin/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
+    Route::post('/admin/service/edit/{id}', [ServiceController::class, 'edit'])->name('admin.service.update');
     Route::delete('/admin/service/destroy/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
 
     Route::get('/admin/change-password', [PasswordController::class, 'index'])->name('password.change');

@@ -34,21 +34,19 @@ class BlogController extends Controller
         ]);
     
         $foreignKey = 'id_artikel';
+        
     
-        if ($request->gambar) {
-            foreach ($request->gambar as $image) {
-                
+        if ($request->hasFile("gambar")) {
             
             $imageName = time() . '_' . $request->gambar->getClientOriginalName();
-            $request->file('gambar')->storeAs('public/galeri_artikel', $imageName);
+            $request->file('gambar')->storeAs('images/galeri_artikel', $imageName, 'public');
             galeri_artikel::create([
-                'id_artikel' => $artikel->id_artikel,
-                'judul' => $validatedData['judul'],
-                'deskripsi' => $validatedData['konten'],
-                'url_media' => 'images/galeri_artikel/' . $imageName,
-                $foreignKey => $artikel[$foreignKey],
+                            'id_artikel' => $artikel->id_artikel,
+                            'judul' => $validatedData['judul'],
+                            'deskripsi' => $validatedData['konten'],
+                            'url_media' => 'images/galeri_artikel/' . $imageName,
+                            $foreignKey => $artikel[$foreignKey],
             ]);
-            }
         }
     
         return redirect()->back()->with('success', 'Artikel berhasil ditambahkan!');
@@ -57,13 +55,14 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'judul' => 'required|max:100',
             'konten' => 'required',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
+        
     
         $artikel = artikel::find($id);
     
@@ -75,18 +74,35 @@ class BlogController extends Controller
             'judul' => $validatedData['judul'],
             'konten' => $validatedData['konten'],
         ]);
+
     
         if ($request->hasFile('gambar')) {
+            $oldImage = galeri_artikel::where('id_artikel', $artikel->id)->first();
+            if ($oldImage) {
+                Storage::delete('public/' . $oldImage->url_media);
+            }
             $image = $request->file('gambar');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/galeri_artikel'), $imageName);
+            $image->storeAs('public/images/galeri_artikel', $imageName,'public');
     
-            $galeri = galeri_artikel::find($artikel->id_galeri);
-            $galeri->update([
-                'judul' => $validatedData['judul'],
-                'deskripsi' => $validatedData['konten'],
-                'url_media' => 'images/galeri_artikel/' . $imageName,
-            ]);
+            if ($oldImage) {
+                $oldImage->update([
+                    'judul' => $validatedData['judul'],
+                    'deskripsi' => $validatedData['konten'],
+                    'url_media' => 'images/galeri_artikel/' . $imageName,
+                ]);
+            }
+            else
+            {
+                
+            galeri_artikel::Create(
+                [
+                    'id_artikel' => $artikel->id_artikel,
+                    'judul' => $validatedData['judul'],
+                    'deskripsi' => $validatedData['konten'],
+                    'url_media' => 'images/galeri_artikel/' . $imageName,
+                ]
+            );}
         }
     
         return redirect()->back()->with('success', 'Artikel berhasil diupdate!');
