@@ -7,35 +7,52 @@
         <span>Judul Artikel</span>
     </p>
 
-    <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">Judul Blog</h1>
-    <img src="{{ asset('images/landing-page.png') }}" alt="" class="border-4 border-pink-secondary rounded-lg">
+    <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">10 Cara Menghilangkan Karang Gigi, Efektif dan Mudah!</h1>
+    <img src="{{ asset('images/artikel_isi.png') }}" alt="" class="border-4 border-pink-secondary rounded-lg mx-auto">
     <p class="my-12 text-black text-justify text-xs md:text-base">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum perferendis quos natus ut expedita accusantium,
-        dolore incidunt qui ipsum ex omnis sed, nemo est ab dolorem impedit pariatur reiciendis deserunt.
-        Doloribus fuga autem nesciunt dolore asperiores iusto reiciendis molestiae deleniti ipsam delectus? Ipsum
-        explicabo inventore cumque ad fugiat deleniti, quibusdam, alias nobis at commodi cum, architecto illum excepturi
-        laborum id?
-        Repudiandae ducimus voluptate ut distinctio numquam! Rem minus enim dicta animi aliquid minima veritatis quos
-        voluptas ut, asperiores nobis ipsum quae pariatur neque porro dolorum blanditiis ex odio repellat facere.
-        Vel quaerat inventore cupiditate maiores asperiores sapiente atque voluptate, at illum fuga aspernatur,
-        consequatur, nobis incidunt. Eum id dignissimos voluptas quo illum, asperiores modi optio obcaecati praesentium
-        corporis incidunt dolore!
-        Nobis mollitia commodi architecto deserunt sint rerum ipsam laborum consectetur hic, ad placeat. Cum repellendus
-        in sint atque recusandae minus, ratione dolorum nihil corporis, nam similique. Consectetur ut laborum
-        exercitationem.
-        Odit facere inventore esse enim molestiae illum, maiores soluta ex expedita porro quaerat earum temporibus
-        consequatur laboriosam natus. Dolor expedita quod eius sequi quisquam ullam deserunt aperiam, optio voluptas
-        corporis?
-        Obcaecati pariatur consequatur eos distinctio est doloremque eius, tempore fugit in non facere, ad hic dolorum
-        dolore. Saepe molestiae, aliquam dolorem iste modi reprehenderit harum, perspiciatis expedita ea, nobis alias.
-        Vitae deserunt praesentium doloremque debitis accusantium animi culpa ad, consequatur alias rerum minima
-        nesciunt quae at modi suscipit impedit eveniet eos unde nobis ex sapiente nam. Error voluptatum libero maiores?
-        Delectus accusantium praesentium, laudantium sed voluptas ut nostrum! Ullam, similique? Voluptatem ipsa veniam
-        culpa fugiat quaerat explicabo assumenda accusamus iure quo! Fugit necessitatibus molestias harum autem? Eum
-        assumenda esse eos.
-        Possimus rem labore eveniet aperiam provident dolorum, voluptatum dicta magnam optio deleniti adipisci voluptas
-        numquam beatae sequi. Est autem explicabo quisquam hic aut eius, suscipit aspernatur tempore dolores. Ipsa,
-        officiis?
+        Karang gigi terbentuk dari plak yang mengeras akibat sisa makanan dan bakteri yang tidak dibersihkan. Jika
+        dibiarkan, karang gigi dapat menyebabkan masalah kesehatan seperti radang gusi dan bau mulut. Berikut 10 cara
+        efektif untuk mencegah dan menghilangkan karang gigi:
+
+        Rajin Menggosok Gigi
+        Menyikat gigi dua kali sehari dengan pasta gigi berfluoride sangat penting untuk mencegah penumpukan plak dan
+        karang.
+
+        Gunakan Mouthwash Antiseptik
+        Berkumur dengan mouthwash yang mengandung fluoride membantu membunuh bakteri dan mencegah pembentukan plak.
+
+        Menggunakan Benang Gigi
+        Benang gigi efektif untuk membersihkan sela-sela gigi yang tidak bisa dijangkau oleh sikat gigi, sehingga
+        membantu mencegah plak menjadi karang.
+
+        Berkumur dengan Air Garam
+        Air garam adalah antiseptik alami yang dapat mengurangi bakteri di mulut dan mencegah penumpukan karang.
+
+        Menggunakan Baking Soda
+        Baking soda bisa digunakan seminggu sekali untuk mengikis plak dan memutihkan gigi, namun harus digunakan dengan
+        hati-hati agar tidak merusak enamel.
+
+        Konsumsi Buah dan Sayuran Renyah
+        Buah seperti apel dan sayuran renyah seperti wortel membantu mengikis plak dan merangsang produksi air liur,
+        yang secara alami membersihkan gigi.
+
+        Minum Air Putih
+        Air putih membantu membersihkan sisa makanan dan bakteri setelah makan, serta menjaga keseimbangan kadar asam di
+        mulut.
+
+        Batasi Makanan Manis
+        Mengurangi konsumsi makanan dan minuman yang manis dapat mencegah plak dan karang gigi terbentuk lebih cepat.
+
+        Rutin Periksa ke Dokter Gigi
+        Pemeriksaan rutin ke dokter gigi setiap enam bulan sekali penting untuk menjaga kebersihan dan kesehatan gigi
+        secara keseluruhan.
+
+        Lakukan Scaling Gigi
+        Jika karang gigi sudah menumpuk, lakukan scaling di dokter gigi untuk membersihkan karang secara profesional.
+
+        Kesimpulannya, cara yang efektif seperti menggosok gigi, menggunakan benang gigi, berkumur dengan mouthwash atau
+        air garam, serta memeriksakan gigi ke dokter secara rutin dapat mencegah dan menghilangkan karang gigi. Hal ini
+        penting untuk menjaga kesehatan mulut, khususnya kesehatan gusi dan gigi.
     </p>
 </div>
 @endsection

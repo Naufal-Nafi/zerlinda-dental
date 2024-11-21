@@ -12,9 +12,9 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark position-fixed w-100">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+    <nav class="navbar-login w-100 position-fixed w-100" style="height: 50px; background: var(--primary-color)">
+        <div class="container-fluid my-auto">
+            <a class="navbar-brand my-auto text-white text" href="#">
                 <span>Zerlinda - Admin</span>
             </a>
         </div>
