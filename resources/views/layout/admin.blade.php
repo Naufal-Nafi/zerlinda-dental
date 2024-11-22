@@ -144,8 +144,7 @@
 
 
         <!-- Konten Halaman -->
-        <div class="main-content container d-flex justify-content-center align-items-center"
-            >
+        <div class="main-content container d-flex justify-content-center align-items-center" style="top:10%">
             <div  style="width: 85%;">
                 @yield('content')
             </div>

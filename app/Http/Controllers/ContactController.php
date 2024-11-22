@@ -12,7 +12,8 @@ class ContactController
      */
     public function index()
     {
-        return view('admin.contact');
+        $contact = kontak::all();
+        return view('admin.contact', compact('contact'));
     }
 
     /**
