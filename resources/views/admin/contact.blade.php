@@ -21,6 +21,7 @@
             @if ($service->jenis_kontak == "Gmail")
             <tr>
                 <td><i class="bi bi-envelope"></i></td> 
+                <td display="none" visible="false">Gmail</td>
                 <td>{{ $service->jenis_kontak }}</td>
                 <td>{{ $service->nama_akun }}</td>
                 <td>{{ $service->url }}</td>
@@ -80,11 +81,11 @@
 </div>
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Nama Akun</label>
-    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
+    <input type="text" class="form-control border-black" id="edtnamaakun">
 </div>
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Link</label>
-    <input type="text" class="form-control border-black" id="exampleFormControlInput2">
+    <input type="text" class="form-control border-black" id="edtlink">
 </div>
 
 <script>
@@ -102,4 +103,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+@endsection
+
+@section('script')
+<script>
+
+    function openEditModal(id) {
+        var editbtn = document.getElementById("editbtn"+id);
+        var row = editbtn.closest('tr');
+        var data = row.getElementsByTagName('td');
+        console.log("{{route('admin.contact.edit',parameters: "" )}}/"+id);
+        
+
+        document.getElementById("editForm").action = "{{route('admin.contact.edit',"" )}}/"+id;
+        document.getElementById("edtnamaakun").value = data[3].innerText;
+        document.getElementById("edtlink").value = data[4].innerText;
+    }
+</script>
 @endsection

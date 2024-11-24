@@ -42,12 +42,17 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
     Route::get('/admin/contact/edit/{id}', [ContactController::class, 'edit'])->name('admin.contact.edit');
 
     Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog');
-    Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
     Route::post('/admin/blog/store', action: [BlogController::class, 'store'])->name('admin.blog.store');
     Route::post('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
     Route::delete('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
 
     Route::get('/admin/doctor', [DoctorController::class, 'index'])->name('admin.doctor');
+    Route::get('/admin/doctor/create', [DoctorController::class, 'create'])->name('admin.doctor.create');
+    Route::post('/admin/doctor/store', [DoctorController::class, 'store'])->name('admin.doctor.store');
+    Route::get('/admin/doctor/edit/{id}', [DoctorController::class, 'edit'])->name('admin.doctor.edit');
+    Route::delete('/admin/doctor/destroy/{id}', [DoctorController::class, 'destroy'])->name('admin.doctor.destroy');
+
+    
     Route::get('/admin/landingpage', [LandingPageController::class, 'index'])->name('admin.landingpage');
 
     Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
