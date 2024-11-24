@@ -30,9 +30,11 @@
             <td></td>
         @endif
         <td>{{ $service->nama_layanan }}</td>
+        <td>{{ $service -> getKeyName()=="id_layanan_ank"?"anak":"dewasa" }}</td>
+        <td style="display: none; ">{{ $service->deskripsi }}</td>
         <!-- tombol edit/delete -->
         <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal-{{ $service->id }}">
+            <button type="button" id="editbtn{{$service->getKey()}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal" data-id="{{'/service/update/'.$service->getKey()}}" onclick="openEditModal({{$service->getKey()}})">
                 Edit
             </button>
             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{'/service/destroy/'.$service->getKey()}}">
@@ -40,11 +42,8 @@
                 Hapus
             </button>
         </td>
-    </tr>
-
-    <!-- Hapus Modal -->
-    
-@endforeach
+    </tr>    
+                @endforeach
 
             </tbody>
         </table>
@@ -163,23 +162,24 @@
 @endsection
 
 @section('editModalContent')
+
 <div class="mb-3 d-flex">
     <div class="form-check me-5">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-        <label class="form-check-label" for="flexRadioDefault1">
-            Dewasa
+        <input class="form-check-input" id="edttipeAnak" type="radio" name="tipe_layanan" value="anak"  >
+        <label class="form-check-label" for="edttipeAnak">
+            Anak
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-        <label class="form-check-label" for="flexRadioDefault2">
-            Anak-anak
+        <input class="form-check-input" id="edttipeDewasa" type="radio" name="tipe_layanan" value="dewasa"   >
+        <label class="form-check-label" for="edttipeDewasa">
+            Dewasa
         </label>
     </div>
 </div>
 <div class="mb-3">
     <label for="edit_nama_layanan" class="form-label ">Nama Pelayanan</label>
-    <input type="text" class="form-control border-black" id="edit_nama_layanan" name="nama_layanan" required maxlength="100">
+    <input type="text" class="form-control border-black" id="edit_nama_layanan" name="nama_pelayanan" required maxlength="100">
 </div>
 
 <div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
@@ -192,10 +192,10 @@
 
     <!-- for each  -->
     <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
-        <label for="formFile2" class="form-label">Contoh Perawatan</label>
+        <label for="edit_gambar" class="form-label">Contoh Perawatan</label>
         <img id="previewImage2" src="" alt="Preview Image"
             style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-        <input class="form-control border-black image-input" type="file" id="formFile2">
+        <input class="form-control border-black image-input" type="file" id="edit_gambar" name="gambar" accept="image/*">
     </div>
 
     <!-- end for each  -->
@@ -206,7 +206,9 @@
     <textarea class="form-control border-black" id="edit_deskripsi" name="deskripsi" rows="3" required></textarea>
 </div>
 
-</form>
+
+
+
 
 <script>
     document.getElementById('edit_gambar').addEventListener('change', function () {
@@ -223,5 +225,35 @@
             reader.readAsDataURL(file);
         }
     });
+</script>
+@endsection
+
+@section('script')
+<script>
+    function openEditModal(id) {
+        
+        var editbtn = document.getElementById("editbtn"+id);
+        var row = editbtn.closest('tr');
+        var data = row.getElementsByTagName('td');
+        const service = data[2].innerText;
+        
+        // // Ambil nilai tipe layanan dari atribut value
+        // var tipeLayanan = row.cells[1].textContent;
+        
+        // Isi edit modal dengan dataeditForm
+        document.getElementById("editForm").action = "{{route('admin.service.update',"" )}}/"+id;
+        document.getElementById("edit_nama_layanan").value = data[1].innerText;
+        document.getElementById("edit_deskripsi").value = data[3].innerText;
+
+        
+        // Set radio button yang sesuai
+        if(service == 'anak') {
+
+            document.getElementById("edttipeAnak").checked = true;
+        } else {
+
+            document.getElementById("edttipeDewasa").checked = true;
+        }
+    }
 </script>
 @endsection

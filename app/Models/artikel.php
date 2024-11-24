@@ -18,5 +18,8 @@ class artikel extends Model
         'konten'
     ];
 
-    
+    function galeri_artikel()
+    {
+        return $this->hasMany(galeri_artikel::class, 'id_galeri', 'id_galeri');
+    }
 }

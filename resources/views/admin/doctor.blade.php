@@ -18,17 +18,19 @@
             </tr>
         </thead>
         <tbody class="fw-semibold">
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#editDoctorModal">Edit</button></span>
-                    <span><button class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#hapusModal">Hapus</button></span>
-                </td>
-            </tr>
+            @foreach($doctors as $doctor)
+                <tr>
+                    <td><img src="{{ asset('storage/'.$doctor->foto) }}" alt="Foto Dokter" width="100px"></td>
+                    <td>{{ $doctor->nama }}</td>
+                    <td>{{ $doctor->jadwal }}</td>
+                    <td>
+                        <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#editDoctorModal{{ $doctor->id }}">Edit</button></span>
+                        <span><button class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#hapusModal{{ $doctor->id }}">Hapus</button></span>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
