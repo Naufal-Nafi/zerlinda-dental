@@ -27,6 +27,96 @@
                             data-bs-target="#hapusModal">Hapus</button></span>
                 </td>
             </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editBlogModal">Edit</button></span>
+                    <span><button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#hapusModal">Hapus</button></span>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

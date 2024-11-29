@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div class="d-flex ">
+    <div class="d-flex caret-pink-primary">
         <!-- Sidebar -->
         <div class="sidebar top-0">
             <div class="w-100 mb-4 d-flex justify-content-center">
@@ -147,8 +147,8 @@
 
 
         <!-- Konten Halaman -->
-        <div class="main-content container d-flex justify-content-center align-items-center">
-            <div style="width: 85%;">
+        <div class="main-content container d-flex justify-content-center align-items-center" style="top: 8%;">
+            <div style="width: 85%; ">
                 @yield('content')
             </div>
         </div>

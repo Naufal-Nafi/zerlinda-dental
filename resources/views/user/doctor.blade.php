@@ -15,7 +15,7 @@
                 </form>
             </div>
             <div>
-                <button class="bg-pink-primary rounded-md text-white w-full p-2 font-bold md:text-xl text-base">Cari</button>
+                <button class="bg-pink-primary hover:bg-pink-800 duration-300 rounded-md text-white w-full p-2 font-bold md:text-xl text-base">Cari</button>
             </div>
         </div>
     </div>
@@ -23,12 +23,12 @@
     <!-- list dokter  -->
     <div class="grid grid-cols-1 gap-6 mb-20">
         <!-- foreach  -->
-        <div class="p-4 bg-pink-secondary rounded-xl md:flex justify-between block font-bold md:text-xl text-base">
+        <div class="group p-4 bg-pink-secondary rounded-xl md:flex justify-between block font-bold md:text-xl text-base">
             <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
                 <img class="mx-auto rounded-xl" src="{{ asset('images/doctor_photo.png')  }}" alt="">
                 <div class="md:text-left my-auto">
                     <p>Dokter</p>
-                    <p>Nama Dokter</p>
+                    <p class="group-hover:text-2xl duration-300">Nama Dokter</p>
                 </div>
             </div>
             <div class="my-auto gap-max">

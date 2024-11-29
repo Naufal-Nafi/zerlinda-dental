@@ -8,8 +8,7 @@
     <div id="slider-area" class="owl-carousel absolute h-screen w-full top-0 left-0 -z-10 ">
         <div style="background-image: url('{{ asset('images/landing-page.png') }}')"></div>
         <div style="background-image: url('{{ asset('images/artikel_3.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/artikel_4.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/artikel_isi.png') }}')"></div>
+        <div style="background-image: url('{{ asset('images/artikel_4.png') }}')"></div>        
         <div style="background-image: url('{{ asset('images/Vector.png') }}')"></div>
 
     </div>
