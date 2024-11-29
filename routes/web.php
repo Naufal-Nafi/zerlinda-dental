@@ -84,8 +84,8 @@ Route::get('/admin/forgot-password', [ForgotPasswordController::class, 'showLink
 
 
 
-
-Route::get('/home',[homeController::class, 'index'])->name('home');
+// Route::get('/', '');
+Route::get('/',[homeController::class, 'index'])->name('home');
 
 Route::view('/location', 'user.maps')->name('location');
 Route::get('/layananGigiAnak', [PublicServiceController::class, 'childService'])->name('service.child');

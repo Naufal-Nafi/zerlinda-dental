@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div class="d-flex ">
+    <div class="d-flex caret-pink-primary">
         <!-- Sidebar -->
         <div class="sidebar top-0">
             <div class="w-100 mb-4 d-flex justify-content-center">
@@ -61,8 +61,8 @@
                 <div class="position-absolute bottom-0 w-100" style="margin-bottom: 150px;">
                     <ul class="nav flex-column w-100">
                         <li class="nav-item d-flex justify-content-center ">
-                            <a class="nav-link text-decoration-none text-danger"
-                                href=" {{ route('admin.login') }} ">LogOut</a>
+                            <a class="btn bg-pink nav-link text-decoration-none text-white"
+                                href=" {{ route('admin.login') }} "><i class="bi bi-box-arrow-right"></i>LogOut</a>
                         </li>
                     </ul>
                 </div>
@@ -94,7 +94,9 @@
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
             aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header bg-light-pink">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Zerlinda Dental Admin</h5>
+                <div class="w-100 mb-4 d-flex justify-content-center">
+                    <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" style="width: 80%;">
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body bg-light-pink">
@@ -102,39 +104,40 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.dashboard') }}"><i
-                                    class="bi bi-house-door"></i>Home</a>
+                                    class="bi bi-house-door me-2"></i>Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.contact') }}"><i
-                                    class="bi bi-envelope"></i>Contact</a>
+                                    class="bi bi-envelope me-2"></i>Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href=" {{ route('admin.landingpage') }} "><i
-                                    class="bi bi-file-earmark-text"></i>Landing Page</a>
+                                    class="bi bi-file-earmark-text me-2"></i>Landing Page</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.blog') }} "><i class="bi bi-journal"></i>Artikel
+                            <a class="nav-link" href=" {{ route('admin.blog') }} ">
+                                <i class="bi bi-journal me-2"></i>Artikel
                                 Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href=" {{ route('admin.doctor') }} "><i
-                                    class="bi bi-calendar"></i>Jadwal Dokter</a>
+                                    class="bi bi-calendar me-2"></i>Jadwal Dokter</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href=" {{ route('admin.service') }} "> <i
-                                    class="bi bi-gear"></i>Layanan</a>
+                                    class="bi bi-gear me-2"></i>Layanan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('password.change') }} "><i class="bi bi-lock"></i>Ubah
-                                Password</a>
+                            <a class="nav-link" href=" {{ route('password.change') }} ">
+                                <i class="bi bi-lock me-2"></i>Ubah Password</a>
                         </li>
                     </ul>
                 </div>
                 <div class="position-absolute bottom-0 w-100" style="margin-bottom: 150px;">
                     <ul class="nav flex-column w-100">
                         <li class="nav-item d-flex justify-content-center ">
-                            <a class="nav-link text-decoration-none text-danger"
-                                href=" {{ route('admin.login') }} ">LogOut</a>
+                            <a class="btn bg-pink nav-link text-decoration-none text-white"
+                                href=" {{ route('admin.login') }} "><i class="bi bi-box-arrow-right me-2"></i>LogOut</a>
                         </li>
                     </ul>
                 </div>
@@ -144,8 +147,8 @@
 
 
         <!-- Konten Halaman -->
-        <div class="main-content container d-flex justify-content-center align-items-center" style="top:10%">
-            <div  style="width: 85%;">
+        <div class="main-content container d-flex justify-content-center align-items-center" style="top: 8%;">
+            <div style="width: 85%; ">
                 @yield('content')
             </div>
         </div>
@@ -197,42 +200,42 @@
 
     <!--Hapus Modal -->
     <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-light-pink">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Apakah anda yakin ingin menghapus data ini?</p>
-            </div>
-            <!-- Form dengan action yang akan diubah oleh JavaScript -->
-            <form id="deleteForm" action="" method="POST">
-                @csrf
-                @method('DELETE')
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Hapus</button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-light-pink">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </form>
+                <div class="modal-body">
+                    <p>Apakah anda yakin ingin menghapus data ini?</p>
+                </div>
+                <!-- Form dengan action yang akan diubah oleh JavaScript -->
+                <form id="deleteForm" action="" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var hapusModal = document.getElementById('hapusModal');
-        hapusModal.addEventListener('show.bs.modal', function (event) {
-            // Dapatkan tombol yang diklik
-            var button = event.relatedTarget;
-            var serviceId = button.getAttribute('data-id');
-            var form = document.getElementById('deleteForm');
-            
-            // Set action form berdasarkan ID service
-            form.action = '/admin' + serviceId;
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var hapusModal = document.getElementById('hapusModal');
+            hapusModal.addEventListener('show.bs.modal', function (event) {
+                // Dapatkan tombol yang diklik
+                var button = event.relatedTarget;
+                var serviceId = button.getAttribute('data-id');
+                var form = document.getElementById('deleteForm');
+
+                // Set action form berdasarkan ID service
+                form.action = '/admin' + serviceId;
+            });
         });
-    });
-</script>
+    </script>
 
     <script>
         // Update time
