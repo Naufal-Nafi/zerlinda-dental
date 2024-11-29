@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
                 'url' => 'F5E5O@example.com',
             ],
             [
-                // isi array baru disini
                 'jenis_kontak' => 'Instagram',
                 'nama_akun' => 'admin',
                 'url' => 'admin',
@@ -52,6 +51,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         
-        
+
     }
 }

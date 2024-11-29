@@ -21,7 +21,6 @@
             @if ($service->jenis_kontak == "Gmail")
             <tr>
                 <td><i class="bi bi-envelope"></i></td> 
-                <td display="none" visible="false">Gmail</td>
                 <td>{{ $service->jenis_kontak }}</td>
                 <td>{{ $service->nama_akun }}</td>
                 <td>{{ $service->url }}</td>
@@ -72,7 +71,7 @@
 
 @php
     $editModalName = 'editContactModal';  // ID modal
-    $routeName = ''; // Nama route
+    $routeName = 'adnmin.dashboard'; // Nama route
 @endphp
 
 @section('editModalContent')
@@ -80,11 +79,11 @@
     <h2 class="mb-3 fw-bold"></h2>
 </div>
 <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Nama Akun</label>
+    <label for="nama_akun" class="form-label">Nama Akun</label>
     <input type="text" class="form-control border-black" id="edtnamaakun">
 </div>
 <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Link</label>
+    <label for="url" class="form-label">Link</label>
     <input type="text" class="form-control border-black" id="edtlink">
 </div>
 

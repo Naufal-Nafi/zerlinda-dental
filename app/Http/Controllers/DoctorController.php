@@ -14,7 +14,8 @@ class DoctorController
      */
     public function index()
     {
-        return view('admin.doctor');
+        $dokter = Dokter::all();
+        return view('admin.doctor', compact('dokter'));
     }
 
     /**
@@ -22,16 +23,19 @@ class DoctorController
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $validatedData = $request->validate([
             'nama' => 'required',
-            'jadwal' => 'required',
+            'gambar' => 'required',
+            'jadwal' => 'required|array',
+            'jadwal.*' => 'required|in:senin,selasa,rabu,kamis,jumat,sabtu,minggu',
             'jadwal_awal'=>'required',
             'jadwal_akhir'=>'required',
         ]);
 
         $dokter = dokter::create([
             'nama' => $validatedData['nama'],
-            'jadwal' => $validatedData['jadwal'],
+            'jadwal' => json_encode($validatedData['jadwal']),
             'jadwal_awal' => $validatedData['jadwal_awal'],
             'jadwal_akhir' => $validatedData['jadwal_akhir'],
         ]);
@@ -59,9 +63,11 @@ class DoctorController
     {
         $validateData = $request->validate([
             'nama' => 'required',
-            'jadwal'=> 'required',
-            'jadwal_awal' =>'required',
-            'jadwal_akhir'=> 'required',
+            'gambar' => 'required',
+            'jadwal' => 'required|array',
+            'jadwal.*' => 'required|in:senin,selasa,rabu,kamis,jumat,sabtu,minggu',
+            'jadwal_awal'=>'required',
+            'jadwal_akhir'=>'required',
         ]);
 
         $dokter = dokter::find($id);
@@ -72,7 +78,7 @@ class DoctorController
 
         $dokter->update([
             'nama' => $validateData['nama'],
-            'jadwal'=> $validateData['jadwal'],
+            'jadwal' => json_encode($validateData['jadwal']),
             'jadwal_awal'=> $validateData['jadwal_awal'],
             'jadwal_akhir'=> $validateData['jadwal_akhir']
 

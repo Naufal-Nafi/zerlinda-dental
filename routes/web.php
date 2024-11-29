@@ -54,6 +54,9 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
 
     
     Route::get('/admin/landingpage', [LandingPageController::class, 'index'])->name('admin.landingpage');
+    Route::post('/admin/landingpage/store', [LandingPageController::class, 'store'])->name('admin.landingpage.store');
+    Route::post('/admin/landingpage/edit/{id}', [LandingPageController::class, 'edit'])->name('admin.landingpage.update');
+    Route::delete('/admin/landingpage/destroy/{id}', [LandingPageController::class, 'destroy'])->name('admin.landingpage.destroy');
 
     Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
     Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
