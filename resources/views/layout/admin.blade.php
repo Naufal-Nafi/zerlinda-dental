@@ -183,9 +183,9 @@
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
-                <form action="{{ route('admin.service.update', ['id' => $service->id ?? 'defaultId']) }}" method="POST">
+                <form id="editForm"  method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="modal-body text-20">
+                    <div class="modal-body text-20" id="editModalContent">
                         @yield('editModalContent')
                     </div>
                     <div class="modal-footer">
@@ -313,6 +313,14 @@
             });
         });
     </script>
+
+    @section('edit_script')
+    <script>
+
+    </script>
+    @endsection
+
+@yield('script')
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

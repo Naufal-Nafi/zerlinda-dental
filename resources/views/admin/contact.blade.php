@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="table-responsive text-center">
+    
     <table class="table table-hover mt-4 fw-bold">
         <thead>
             <tr>
@@ -14,42 +15,56 @@
                 <th>Aksi</th>
             </tr>
         </thead>
+
         <tbody class="fw-semibold">
+            @foreach ($contact as $service)
+            @if ($service->jenis_kontak == "Gmail")
             <tr>
                 <td><i class="bi bi-envelope"></i></td> 
-                <td>Gmail</td>
-                <td>zerlindadentalcare@gmail.com</td>
-                <td>https://</td>
+                <td display="none" visible="false">Gmail</td>
+                <td>{{ $service->jenis_kontak }}</td>
+                <td>{{ $service->nama_akun }}</td>
+                <td>{{ $service->url }}</td>
                 <td><button type="button" class="btn btn-primary" data-contact="Gmail" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
+            @endif
+            @if ($service->jenis_kontak == "Instagram")
             <tr>
                 <td><i class="bi bi-instagram"></i></td>
-                <td>Instagram</td>
-                <td>zerlindadentalcare</td>
-                <td>https://</td>
+                <td>{{ $service->jenis_kontak }}</td>
+                <td>{{ $service->nama_akun }}</td>
+                <td>{{ $service->url }}</td>
                 <td><button type="button" class="btn btn-primary" data-contact="Instagram" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
+            @endif
+            @if ($service->jenis_kontak == "Facebook")
             <tr>
                 <td><i class="bi bi-facebook"></i></td>
-                <td>Facebook</td>
-                <td>Zerlinda Dental Care</td>
-                <td>https://</td>
+                <td>{{ $service->jenis_kontak }}</td>
+                <td>{{ $service->nama_akun }}</td>
+                <td>{{ $service->url }}</td>
                 <td><button type="button" class="btn btn-primary" data-contact="Facebook" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
+            @endif
+            @if ($service->jenis_kontak == "Tiktok")
             <tr>
                 <td><i class="bi bi-tiktok"></i></td>
-                <td>TikTok</td>
-                <td>zerlindadentalcare</td>
-                <td>https://</td>
+                <td>{{ $service->jenis_kontak }}</td>
+                <td>{{ $service->nama_akun }}</td>
+                <td>{{ $service->url }}</td>
                 <td><button type="button" class="btn btn-primary" data-contact="TikTok" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
+            @endif
+            @if ($service->jenis_kontak == "WhatsApp")
             <tr>
                 <td><i class="bi bi-whatsapp"></i></td>
-                <td>WhatsApp</td>
-                <td>08999999999999</td>
-                <td>https://</td>
+                <td>{{ $service->jenis_kontak }}</td>
+                <td>{{ $service->nama_akun }}</td>
+                <td>{{ $service->url }}</td>
                 <td><button type="button" class="btn btn-primary" data-contact="WhatsApp" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
+            @endif
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -66,11 +81,11 @@
 </div>
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Nama Akun</label>
-    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
+    <input type="text" class="form-control border-black" id="edtnamaakun">
 </div>
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Link</label>
-    <input type="text" class="form-control border-black" id="exampleFormControlInput2">
+    <input type="text" class="form-control border-black" id="edtlink">
 </div>
 
 <script>
@@ -88,4 +103,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+@endsection
+
+@section('script')
+<script>
+
+    function openEditModal(id) {
+        var editbtn = document.getElementById("editbtn"+id);
+        var row = editbtn.closest('tr');
+        var data = row.getElementsByTagName('td');
+        console.log("{{route('admin.contact.edit',parameters: "" )}}/"+id);
+        
+
+        document.getElementById("editForm").action = "{{route('admin.contact.edit',"" )}}/"+id;
+        document.getElementById("edtnamaakun").value = data[3].innerText;
+        document.getElementById("edtlink").value = data[4].innerText;
+    }
+</script>
 @endsection

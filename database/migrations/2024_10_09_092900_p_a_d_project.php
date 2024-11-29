@@ -16,10 +16,8 @@ return new class extends Migration
 
     Schema::create('artikel', function (Blueprint $table) {
         $table->id('id_artikel'); // Primary key
-        
         $table->string('judul', 255);
         $table->text('konten')->nullable();
-        $table->date('tanggal_publikasi');
         $table->timestamps();
 
         
@@ -68,6 +66,7 @@ return new class extends Migration
         $table->string('email', 100);
         $table->string('username', 255);
         $table->string('password', 255);
+        $table->string('level', 255);
         $table->string('token', 255);
         $table->timestamps();
     });
@@ -96,18 +95,18 @@ return new class extends Migration
         $table->string('judul', 100);
         $table->text('deskripsi');
         $table->string('url_media', 100);
-        $table->date('tanggal_upload');
+        
         $table->timestamps();
 
         $table->foreignId('id_dokter')->references('id_dokter')->on('dokter')->onDelete('cascade');
     });
 
-    Schema::create('galeri_layanan_artikel', function (Blueprint $table) {
+    Schema::create('galeri_artikel', function (Blueprint $table) {
         $table->id('id_galeri');
         $table->string('judul', 100);
         $table->text('deskripsi');
         $table->string('url_media', 100);
-        $table->date('tanggal_upload');
+        
         $table->timestamps();
 
         $table->foreignId('id_artikel')->references('id_artikel')->on('artikel')->onDelete('cascade');
