@@ -10,12 +10,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- owl carousel  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
-        integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+    <!-- carousel  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"
-        integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA=="
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- aos  -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -24,7 +25,7 @@
 </head>
 
 <body>
-    <div class=" d-block">
+    <div class=" d-block selection:bg-blue-500 caret-pink-primary">
 
         <!-- navbar -->
         <div class="flex-grow " id="navbar">
@@ -34,7 +35,8 @@
                         <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" class="w-40">
 
                         <!-- Navbar Toggler -->
-                        <button class="navbar-toggler block lg:hidden p-2 rounded border focus:outline-none focus:ring"
+                        <button
+                            class="navbar-toggler block lg:hidden p-2 rounded border focus:outline-none focus:ring ring-pink-primary"
                             type="button" aria-label="Toggle navigation" onclick="toggleNavbar()">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +91,7 @@
                         <!-- Normal Navbar Links for Larger Screens -->
                         <div class="isi-navbar hidden lg:flex lg:items-center text-pink-primary font-bold ">
                             <a class="nav-link px-6 py-2  duration-300" data-link-alt="Home"
-                                href="{{ '/home' }}"><span>Home</span></a>
+                                href="{{ route('home') }}"><span>Home</span></a>
                             <a class="nav-link px-6 py-2  duration-300" data-link-alt="Lokasi"
                                 href="{{ route('location') }}"><span>Lokasi</span></a>
                             <div class="group">
@@ -220,14 +222,23 @@
 
 
         <!-- Ikon WhatsApp di pojok kanan bawah -->
-        <a href="https://wa.me/6289604299993" target="_blank" class="fixed bottom-5 right-5">
+        <a href="https://wa.me/6289604299993" target="_blank" class="fixed bottom-5 right-5 group">
             <div
-                class="bg-pink-primary text-white p-4 rounded-full shadow-lg hover:-translate-y-2  transition duration-300">
+                class="bg-pink-primary text-white p-4 rounded-full hover:scale-105 shadow-lg transition duration-300">
                 <!-- SVG Ikon WhatsApp -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
                     <path
                         d="M20.52 3.47A11.42 11.42 0 0012 0a11.42 11.42 0 00-8.48 3.47A11.56 11.56 0 000 12.06a11.25 11.25 0 001.56 5.77L.03 24l6.4-1.66a11.5 11.5 0 005.57 1.44h.01a11.56 11.56 0 008.47-3.47A11.56 11.56 0 0024 12.06a11.42 11.42 0 00-3.48-8.59zM12 21.45a9.77 9.77 0 01-5-1.36l-.36-.21-3.8 1 1-3.7-.24-.38A9.9 9.9 0 012.4 12.06a9.92 9.92 0 012.93-7.07A9.77 9.77 0 0112 2.28c2.63 0 5.1 1.03 7 2.91a9.77 9.77 0 012.92 7.07c0 2.64-1.03 5.12-2.92 7.01a9.82 9.82 0 01-7 2.91zm5.38-7.71c-.3-.15-1.78-.88-2.06-.98s-.48-.15-.68.15-.78.98-.96 1.18-.35.22-.65.07a8.12 8.12 0 01-2.38-1.47 8.64 8.64 0 01-1.6-1.99c-.16-.3 0-.45.14-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5s.05-.38-.02-.52c-.07-.15-.68-1.65-.94-2.27-.25-.6-.5-.5-.68-.5h-.58c-.2 0-.5.07-.76.38s-1 1-.98 2.42 1.03 2.78 1.17 2.98c.15.2 2.03 3.1 4.9 4.34.68.3 1.2.48 1.6.62.67.21 1.28.18 1.75.11.54-.08 1.78-.73 2.03-1.44.25-.7.25-1.3.18-1.44-.08-.15-.28-.22-.58-.37z" />
                 </svg>
+            </div>
+            <div class="hidden group-hover:block">
+                <div
+                    class="group absolute -top-16 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center rounded-sm text-center text-sm text-slate-300 before:-top-2">
+                    <div class="rounded-sm bg-black py-1 px-2">
+                        <p class="whitespace-nowrap">Chat via <br> Whatsapp</p>
+                    </div>
+                    <div class="h-0 w-fit border-l-8 border-r-8 border-t-8 border-transparent border-t-black"></div>
+                </div>
             </div>
         </a>
         <!-- ikon whatsapp  -->

@@ -7,9 +7,9 @@
 <div id="wrapper" class="relative h-screen flex items-center">
     <div id="slider-area" class="owl-carousel absolute h-screen w-full top-0 left-0 -z-10 ">
         <div style="background-image: url('{{ asset('images/landing-page.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/logo_horizontal.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/landing-page.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/doctor_photo.png') }}')"></div>
+        <div style="background-image: url('{{ asset('images/artikel_3.png') }}')"></div>
+        <div style="background-image: url('{{ asset('images/artikel_4.png') }}')"></div>        
+        <div style="background-image: url('{{ asset('images/Vector.png') }}')"></div>
 
     </div>
     <div class="slider-text z-10 text-left mx-5 md:mx-12" data-aos="fade-up" data-aos-delay="100">
@@ -29,11 +29,8 @@
         $('#slider-area').owlCarousel({
             loop: true,
             autoplay: true,
-            responsive: {
-                0: { items: 1 },
-                600: { items: 1 },
-                1000: { items: 1 }
-            }
+            dots:false,
+            items: 1
         });
     });
 </script>
@@ -42,8 +39,8 @@
 
 
 <!-- Quotes section -->
-<section class="my-40 flex items-center " data-aos="fade-up">
-    <div class="mx-auto">
+<section class="my-40 flex items-center mx-12" data-aos="fade-up">
+    <div class="">
         <hr class="border-2 border-pink-primary w-3/4 mx-auto my-6">
         <p class="lg:text-5xl md:text-3xl text-xl text-pink-primary">Kami percaya bahwa setiap senyum itu unik, dan
             tujuan
@@ -80,10 +77,10 @@
                 <a href="{{ route('service.show') }}"
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center ">
-                        <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                        <img src="{{ asset('images/person_1.png') }}" alt="Circular Image"
                             class="xl:size-[250px] size-[200px] rounded-full object-cover">
                     </div>
-                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan dewasa</p>
+                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Behel Gigi</p>
                 </a>
             </div>
 
@@ -91,10 +88,10 @@
                 <a href="{{ route('service.show') }}"
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center ">
-                        <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                        <img src="{{ asset('images/pelayanan_7.png') }}" alt="Circular Image"
                             class="xl:size-[250px] size-[200px] rounded-full object-cover">
                     </div>
-                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan dewasa</p>
+                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
                 </a>
             </div>
             <!-- lainnya  -->
@@ -120,16 +117,16 @@
             <a href="{{ route('service.show') }}"
                 class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                 <div class="flex justify-center items-center ">
-                    <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                    <img src="{{ asset('images/person_2.png') }}" alt="Circular Image"
                         class="xl:size-[250px] size-[200px] rounded-full object-cover">
                 </div>
-                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan anak</p>
+                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Behel Gigi</p>
             </a>
 
             <a href="{{ route('service.show') }}"
                 class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                 <div class="flex justify-center items-center ">
-                    <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                    <img src="{{ asset('images/pelayanan_7.png') }}" alt="Circular Image"
                         class="xl:size-[250px] size-[200px] rounded-full object-cover">
                 </div>
                 <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
@@ -191,14 +188,14 @@
 <div class="w-4/5 mx-auto min-h-[300px] my-40">
     <!-- judul & arrow  -->
     <div class="flex justify-between">
-        <h2 class="text-3xl font-bold text-pink-primary mb-4" data-aos="fade-right">
+        <h2 class="md:text-3xl text-xl font-bold text-pink-primary mb-4" data-aos="fade-right">
             Informasi Terbaru
         </h2>
         <div data-aos="fade-left">
-            <button class="bg-pink-primary text-white rounded-full py-2 px-4 mr-2">
+            <button id="customPrevBtn" class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
                 <span>&lt;</span>
             </button>
-            <button class="bg-pink-primary text-white rounded-full py-2 px-4">
+            <button id="customNextBtn" class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
                 <span>&gt;</span>
             </button>
         </div>
@@ -208,48 +205,48 @@
     <div id="wrapper" class="relative h-full w-full flex items-center" data-aos="fade-up" data-aos-delay="500">
         <div id="slider-area-artikel" class="owl-carousel absolute  w-full top-0 left-0  ">
             <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] duration-300 overflow-hidden shadow-lg">
-                    <img src="https://via.placeholder.com/300" alt="Gambar" class="w-full h-40 object-cover">
+                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
+                    <img src="{{ asset('images/artikel_1.png') }}" alt="Gambar" class="w-full h-40 object-cover">
                     <div class="p-4">
                         <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
                     </div>
                 </div>
             </a>
             <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-yellow-200 rounded-lg hover:rounded-[45px] duration-300 overflow-hidden shadow-lg">
-                    <img src="https://via.placeholder.com/300" alt="Gambar" class="w-full h-40 object-cover">
+                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
+                    <img src="{{ asset('images/artikel_2.png') }}" alt="Gambar" class="w-full h-40 object-cover">
                     <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Gigi</p>
+                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
                     </div>
                 </div>
             </a>
             <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] duration-300 overflow-hidden shadow-lg">
-                    <img src="https://via.placeholder.com/300" alt="Gambar" class="w-full h-40 object-cover">
+                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
+                    <img src="{{ asset('images/artikel_3.png') }}" alt="Gambar" class="w-full h-40 object-cover">
                     <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Pasang</p>
+                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
                     </div>
                 </div>
             </a>
             <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] duration-300 overflow-hidden shadow-lg">
-                    <img src="https://via.placeholder.com/300" alt="Gambar" class="w-full h-40 object-cover">
+                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
+                    <img src="{{ asset('images/artikel_4.png') }}" alt="Gambar" class="w-full h-40 object-cover">
                     <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lapas</p>
+                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
                     </div>
                 </div>
             </a>
             <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-blue-200 rounded-lg hover:rounded-[45px] duration-300 overflow-hidden shadow-lg">
-                    <img src="https://via.placeholder.com/300" alt="Gambar" class="w-full h-40 object-cover">
+                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
+                    <img src="{{ asset('images/artikel_5.png') }}" alt="Gambar" class="w-full h-40 object-cover">
                     <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak raffi</p>
+                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
                     </div>
                 </div>
             </a>
             <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] duration-300 overflow-hidden shadow-lg">
-                    <img src="https://via.placeholder.com/300" alt="Gambar" class="w-full h-40 object-cover">
+                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
+                    <img src="{{ asset('images/artikel_6.png') }}" alt="Gambar" class="w-full h-40 object-cover">
                     <div class="p-4">
                         <p class="font-semibold">Cara Agar Gigi Palsu Tidak surut</p>
                     </div>
@@ -261,11 +258,34 @@
 <!-- jquery untuk article carousel  -->
 <script>
     $(document).ready(function () {
-        $('#slider-area-artikel').owlCarousel({
+        const owl = $('#slider-area-artikel');
+        owl.owlCarousel({
             loop: true,
-            autoplay: true,
-            item: 2,
-            margin: 20
+            autoplay: true,            
+            autoplayHoverPause:true,
+            margin: 20,
+            nav: false,    
+            dots:false,            
+            responsive: {
+                0: {
+                    items: 1,
+                    
+                },
+                600: {
+                    items: 2
+                },
+                960: {
+                    items: 3
+                }
+            }
+        });
+
+        $('#customPrevBtn').click(function() {
+            owl.trigger('prev.owl.carousel');  // Pindah ke slide sebelumnya
+        });
+
+        $('#customNextBtn').click(function() {
+            owl.trigger('next.owl.carousel');  // Pindah ke slide berikutnya
         });
     });
 </script>
@@ -280,29 +300,38 @@
         <h2 class="text-3xl font-bold text-pink-600 mb-4" data-aos="fade-right">
             Testimoni Pasien
         </h2>
-        <div class="grid md:grid-cols-3 grid-cols-1 gap-9" data-aos="fade-up" data-aos-delay="500">
+        <div class="grid lg:grid-cols-3 grid-cols-1 gap-9" data-aos="fade-up" data-aos-delay="500">
             <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
-                <p class="text-2xl mb-12">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p class="text-xl mb-12">
+                Pelayanan di Zerlinda Dental Care sangat ramah dan profesional,
+                 tempatnya bersih dan nyaman sekali.
+                </p>
                 <div class="flex items-center">
                     <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
-                        src="https://via.placeholder.com/300" alt="">
-                    <h2 class="ms-4 font-bold text-2xl">LOREM</h2>
+                        src="{{ asset('images/person_3.png') }}" alt="">
+                    <h2 class="ms-4 font-bold text-xl">Nino</h2>
                 </div>
             </div>
             <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
-                <p class="text-2xl mb-12">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p class="text-xl mb-12">
+                Perawatan gigi di Zerlinda Dental Care sangat memuaskan, 
+                hasilnya rapi dengan dokter yang berpengalaman.
+                </p>
                 <div class="flex items-center">
                     <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
-                        src="https://via.placeholder.com/300" alt="">
-                    <h2 class="ms-4 font-bold text-2xl">LOREM</h2>
+                        src="{{ asset('images/person_4.png') }}" alt="">
+                    <h2 class="ms-4 font-bold text-xl">Naufal</h2>
                 </div>
             </div>
             <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
-                <p class="text-2xl mb-12">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p class="text-xl mb-12">
+                Tempatnya modern dan steril, pelayanan cepat dan perawatan 
+                di Zerlinda Dental Care sangat berkualitas.
+                </p>
                 <div class="flex items-center">
                     <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
-                        src="https://via.placeholder.com/300" alt="">
-                    <h2 class="ms-4 font-bold text-2xl">LOREM</h2>
+                        src="{{ asset('images/person_5.png') }}" alt="">
+                    <h2 class="ms-4 font-bold text-xl">Queen Elizabeth II</h2>
                 </div>
             </div>
         </div>
@@ -315,14 +344,12 @@
 
 <!-- Lokasi  -->
 <div class="my-40 flex flex-col items-center justify-center text-start text-pink-primary">
-    <h1 class="md:text-5xl text-3xl font-bold md:mb-20 mb-12" data-aos="fade-up">
-        Lokasi Klinik
-    </h1>
-    <div class="w-4/5">
-        <p class="md:text-3xl text-xl font-bold mb-9" data-aos="fade-right" data-aos-delay="400">
-            Kunjungi
-        </p>
-        <div class="md:border-4 border-2 border-pink-secondary h-450 rounded-3xl " data-aos="fade-up" data-aos-delay="500">
+    <div class="w-4/5">        
+        <h1 class=" text-3xl font-bold mb-4 " data-aos="fade-right">
+            Lokasi Klinik
+        </h1>
+        <div class="md:border-4 border-2 border-pink-secondary h-450 rounded-3xl " data-aos="fade-up"
+            data-aos-delay="500">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13296.709523125111!2d110.37424616862342!3d-7.77546504897429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59d1b10eefdd%3A0xe65afca3cae0ac31!2sDepartemen%20Teknik%20Elektro%20Dan%20Informatika%20UGM!5e0!3m2!1sid!2sid!4v1729664735391!5m2!1sid!2sid"
                 width="100%" height="100%" class="rounded-3xl " style="border:0;" allowfullscreen="" loading="lazy"

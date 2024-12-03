@@ -9,26 +9,47 @@
         <!-- for each  -->
         <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
             <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                <img src="{{ asset('images/person_2.png') }}" alt="Circular Image"
                     class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
             </div>
-            <p class="md:text-3xl text-xl mt-12">Gigi Tiruan</p>
+            <p class="md:text-3xl text-xl mt-12">Behel Gigi</p>
         </a>
         <!-- end for each  -->
         <!-- example  -->
         <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
             <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                <img src="{{ asset('images/pelayanan_5.png') }}" alt="Circular Image"
                     class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
             </div>
             <p class="md:text-3xl text-xl mt-12">Gigi Tiruan</p>
         </a>
         <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
             <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/landing-page.png') }}" alt="Circular Image"
+                <img src="{{ asset('images/pelayanan_6.png') }}" alt="Circular Image"
+                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
+            </div>
+            <p class="md:text-3xl text-xl mt-12">Cabut Gigi</p>
+        </a>        
+        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
+            <div class="flex justify-center items-center ">
+                <img src="{{ asset('images/person_2.png') }}" alt="Circular Image"
+                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
+            </div>
+            <p class="md:text-3xl text-xl mt-12">Behel Gigi</p>
+        </a>        
+        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
+            <div class="flex justify-center items-center ">
+                <img src="{{ asset('images/pelayanan_5.png') }}" alt="Circular Image"
                     class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
             </div>
             <p class="md:text-3xl text-xl mt-12">Gigi Tiruan</p>
+        </a>
+        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
+            <div class="flex justify-center items-center ">
+                <img src="{{ asset('images/pelayanan_6.png') }}" alt="Circular Image"
+                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
+            </div>
+            <p class="md:text-3xl text-xl mt-12">Cabut Gigi</p>
         </a>        
     </div>
 </div>

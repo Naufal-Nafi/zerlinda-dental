@@ -86,8 +86,8 @@ Route::post('admin/password/email', [ForgotPasswordController::class, 'sendReset
 
 
 
-
-Route::get('/home',[homeController::class, 'index'])->name('home');
+// Route::get('/', '');
+Route::get('/',[homeController::class, 'index'])->name('home');
 
 Route::view('/location', 'user.maps')->name('location');
 Route::get('/layananGigiAnak', [PublicServiceController::class, 'childService'])->name('service.child');
