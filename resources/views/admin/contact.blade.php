@@ -24,7 +24,7 @@
                 <td>{{ $service->jenis_kontak }}</td>
                 <td>{{ $service->nama_akun }}</td>
                 <td>{{ $service->url }}</td>
-                <td><button type="button" class="btn btn-primary" data-contact="Gmail" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
+                <td><button id="editbtn" type="button" class="btn btn-primary" data-contact="Gmail" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
             @endif
             @if ($service->jenis_kontak == "Instagram")
@@ -33,7 +33,7 @@
                 <td>{{ $service->jenis_kontak }}</td>
                 <td>{{ $service->nama_akun }}</td>
                 <td>{{ $service->url }}</td>
-                <td><button type="button" class="btn btn-primary" data-contact="Instagram" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
+                <td><button id="editbtn" type="button" class="btn btn-primary" data-contact="Instagram" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
             @endif
             @if ($service->jenis_kontak == "Facebook")
@@ -42,7 +42,7 @@
                 <td>{{ $service->jenis_kontak }}</td>
                 <td>{{ $service->nama_akun }}</td>
                 <td>{{ $service->url }}</td>
-                <td><button type="button" class="btn btn-primary" data-contact="Facebook" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
+                <td><button id="editbtn" type="button" class="btn btn-primary" data-contact="Facebook" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
             @endif
             @if ($service->jenis_kontak == "Tiktok")
@@ -51,7 +51,7 @@
                 <td>{{ $service->jenis_kontak }}</td>
                 <td>{{ $service->nama_akun }}</td>
                 <td>{{ $service->url }}</td>
-                <td><button type="button" class="btn btn-primary" data-contact="TikTok" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
+                <td><button id="editbtn" type="button" class="btn btn-primary" data-contact="TikTok" data-bs-toggle="modal" data-bs-target="#editContactModal" data-id="">Edit</button></td>
             </tr>
             @endif
             @if ($service->jenis_kontak == "WhatsApp")
@@ -60,7 +60,7 @@
                 <td>{{ $service->jenis_kontak }}</td>
                 <td>{{ $service->nama_akun }}</td>
                 <td>{{ $service->url }}</td>
-                <td><button type="button" class="btn btn-primary" data-contact="WhatsApp" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
+                <td><button id="editbtn" type="button" class="btn btn-primary" data-contact="WhatsApp" data-bs-toggle="modal" data-bs-target="#editContactModal">Edit</button></td>
             </tr>
             @endif
             @endforeach
@@ -80,14 +80,14 @@
 </div>
 <div class="mb-3">
     <label for="nama_akun" class="form-label">Nama Akun</label>
-    <input type="text" class="form-control border-black" id="edtnamaakun">
+    <input type="text" class="form-control border-black" id="edtnamaakun" name="nama_akun">
 </div>
 <div class="mb-3">
     <label for="url" class="form-label">Link</label>
-    <input type="text" class="form-control border-black" id="edtlink">
+    <input type="text" class="form-control border-black" id="edtlink" name="url">
 </div>
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     var editContactModal = document.getElementById('editContactModal');
     editContactModal.addEventListener('show.bs.modal', function (event) {
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modalTitle.textContent = contactName;
     });
 });
-</script>
+</script> -->
 
 @endsection
 
@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
         document.getElementById("editForm").action = "{{route('admin.contact.edit',"" )}}/"+id;
-        document.getElementById("edtnamaakun").value = data[3].innerText;
-        document.getElementById("edtlink").value = data[4].innerText;
+        document.getElementById("edtnamaakun").value = data[1].innerText;
+        document.getElementById("edtlink").value = data[2].innerText;
     }
 </script>
 @endsection

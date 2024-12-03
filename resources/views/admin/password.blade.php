@@ -6,7 +6,8 @@
 <div class="container d-flex align-items-center justify-content-center min-vh-100">
     <div class="card shadow-sm p-5" style="max-width: 400px; width: 100%;">
         <h1 class="text-center mb-4 fw-bold">Ubah Password</h1>
-        <form action="{{ route('password.change') }}" method="POST">            
+        <form action="{{ route('password.validate') }}" method="POST">       
+            @csrf     
             <div class="mb-3">        
                 <input type="password" class="form-control" placeholder="Current Password" name="current_password" id="current_password"> <!-- required -->
             </div>

@@ -277,10 +277,15 @@
         initializeImagePreview();
 
         // Ambil semua checkbox
-        const checkboxes = $('.form-check-input-doctor');
+        
 
         // Fungsi untuk menambahkan atau menghapus form jam mulai dan jam akhir
-        checkboxes.each(function () {
+
+        $(document).ready(function () {
+
+            const checkboxes = $('input[name="jadwal[]"]');
+
+            checkboxes.each(function () {
             $(this).on('change', function () {
                 const day = $(this).val(); // Hari yang dipilih
                 const parentDiv = $(this).closest('.form-check'); // Dapatkan parent div dari checkbox
@@ -291,12 +296,12 @@
                     const scheduleDiv = $(`
                     <div id="schedule-${day}" class="schedule-times mx-3 mb-3" style="width: 100px;">
                         <div class="">
-                            <label for="startTime-${day}" class="form-label">Jam Mulai - ${day}</label>
-                            <input type="time" class="form-control border-black" id="startTime-${day}">
+                            <label for="jadwal_awal-${day}" class="form-label">Jam Mulai - ${day}</label>
+                            <input type="time" class="form-control border-black" id="jadwal_awal-${day}">
                         </div>
                         <div class="">
-                            <label for="endTime-${day}" class="form-label">Jam Akhir - ${day}</label>
-                            <input type="time" class="form-control border-black" id="endTime-${day}">
+                            <label for="jadwal_akhir-${day}" class="form-label">Jam Akhir - ${day}</label>
+                            <input type="time" class="form-control border-black" id="jadwal_akhir-${day}">
                         </div>
                     </div>
                 `);
@@ -309,6 +314,8 @@
                 }
             });
         });
+        })
+        
     </script>
 
     @section('edit_script')

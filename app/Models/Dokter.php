@@ -21,6 +21,10 @@ class Dokter extends Model
         'jadwal_akhir',
     ];
 
+    protected $casts = [
+        'jadwal' => 'array',
+    ];
+
     function galeri_dokter()
     {
         return $this->hasMany(galeri_dokter::class, 'id_galeri', 'id_galeri');

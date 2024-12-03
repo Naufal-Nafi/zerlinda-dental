@@ -35,6 +35,8 @@ class PasswordController extends Controller
             'current_password' => 'required|string',
         ]);
 
+        
+
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
@@ -65,14 +67,16 @@ class PasswordController extends Controller
     $request->validate([
         'password' => 'required|string|confirmed',
     ]);
+
     
     // Ambil user yang sedang login
     
     // Perbarui password
     $userId = Auth::user()->id;
-    $user = User::findOrFail($userId);
-    $user->password = Hash::make($request->password);
+    $user = User::findOrFail(id: $userId);
+    $user->password = Hash::make(value: $request->password);
     $user->save();
+    dd($user);
 
     return redirect()->route('admin.dashboard')->with('status', 'Password berhasil diperbarui');
 }

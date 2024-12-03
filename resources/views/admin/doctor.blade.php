@@ -23,7 +23,7 @@
                 <tr>
                     <td><img src="{{ asset('storage/'.$service->foto) }}" alt="Foto Dokter" width="100px"></td>
                     <td>{{ $service->nama }}</td>
-                    <td>{{ $service->jadwal }}</td>
+                    <td><p>{{implode(', ', $service->jadwal)}}</p></td>
                     <td>
                         <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#editDoctorModal{{ $service->id }}">Edit</button></span>
@@ -65,44 +65,44 @@
             <p>Pilih Hari</p>
             <div class="d-flex overflow-x-auto w-100" >
                 <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="senin" id="flexCheckSenin">
-                    <label class="form-check-label" for="Senin">
+                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="senin" id="senin">
+                    <label class="form-check-label" for="senin">
                         Senin
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="selasa" id="flexCheckSelasa">
-                    <label class="form-check-label" for="Selasa">
+                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="selasa" id="selasa">
+                    <label class="form-check-label" for="selasa">
                         Selasa
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="rabu" id="flexCheckRabu">
-                    <label class="form-check-label" for="Rabu">
+                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="rabu" id="rabu">
+                    <label class="form-check-label" for="rabu">
                         Rabu
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="kamis" id="flexCheckKamis">
-                    <label class="form-check-label" for="Kamis">
+                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="kamis" id="kamis">
+                    <label class="form-check-label" for="kamis">
                         Kamis
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="jumat" id="flexCheckJumat">
-                    <label class="form-check-label" for="Jumat">
+                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="jumat" id="jumat">
+                    <label class="form-check-label" for="jumat">
                         Jumat
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="sabtu" id="flexCheckSabtu">
-                    <label class="form-check-label" for="Sabtu">
+                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="sabtu" id="sabtu">
+                    <label class="form-check-label" for="sabtu">
                         Sabtu
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="minggu" id="flexCheckMinggu">
-                    <label class="form-check-label" for="Minggu">
+                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="minggu" id="minggu">
+                    <label class="form-check-label" for="minggu">
                         Minggu
                     </label>
                 </div>

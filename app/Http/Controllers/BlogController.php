@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\artikel;
 use App\Models\galeri_artikel;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 
 
 class BlogController extends Controller
@@ -15,7 +17,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $artikel = artikel::all();
+        $artikel = artikel::paginate(5);
         return view('admin.blog',compact('artikel'));
     }
 
@@ -36,15 +38,15 @@ class BlogController extends Controller
         $foreignKey = 'id_artikel';
         
     
-        if ($request->hasFile("gambar")) {
+        if ($request->file("gambar")) {
             
-            $imageName = time() . '_' . $request->gambar->getClientOriginalName();
-            $request->file('gambar')->storeAs('images/galeri_artikel', $imageName, 'public');
+            $destinationPath = 'images/galeri_artikel/';
+            $imageName = time() . '_' . $request->file("gambar")->getClientOriginalName();
             galeri_artikel::create([
                             'id_artikel' => $artikel->id_artikel,
                             'judul' => $validatedData['judul'],
                             'deskripsi' => $validatedData['konten'],
-                            'url_media' => 'images/galeri_artikel/' . $imageName,
+                            'url_media' => $destinationPath . $imageName,
                             $foreignKey => $artikel[$foreignKey],
             ]);
         }
@@ -127,4 +129,7 @@ class BlogController extends Controller
         }
         return redirect()->back()->with('success', 'Artikel berhasil dihapus!');
     }
+
+    
+
 }

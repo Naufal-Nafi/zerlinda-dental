@@ -23,19 +23,21 @@ class DoctorController
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        
         $validatedData = $request->validate([
             'nama' => 'required',
             'gambar' => 'required',
             'jadwal' => 'required|array',
             'jadwal.*' => 'required|in:senin,selasa,rabu,kamis,jumat,sabtu,minggu',
-            'jadwal_awal'=>'required',
-            'jadwal_akhir'=>'required',
+            'jadwal_awal'=>'required|date_format:H:i',
+            'jadwal_akhir'=>'required|date_format:H:i|after:jadwal_awal',
         ]);
+
+        dd($validatedData);
 
         $dokter = dokter::create([
             'nama' => $validatedData['nama'],
-            'jadwal' => json_encode($validatedData['jadwal']),
+            'jadwal' => $validatedData['jadwal'],
             'jadwal_awal' => $validatedData['jadwal_awal'],
             'jadwal_akhir' => $validatedData['jadwal_akhir'],
         ]);
@@ -78,7 +80,7 @@ class DoctorController
 
         $dokter->update([
             'nama' => $validateData['nama'],
-            'jadwal' => json_encode($validateData['jadwal']),
+            'jadwal' => $validateData['jadwal'],
             'jadwal_awal'=> $validateData['jadwal_awal'],
             'jadwal_akhir'=> $validateData['jadwal_akhir']
 

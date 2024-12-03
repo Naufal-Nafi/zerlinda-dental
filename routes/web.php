@@ -30,11 +30,13 @@ use Illuminate\Support\Facades\Route;
 Route::controller(LoginController::class)->group(function () {
   Route::get('/admin', 'showLoginForm')->name('admin.login');
   Route::post('/admin/login', 'login')->name('admin.login.post');
+  
 });
 
 Route::middleware([CustomAuthRedirect::class])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/logout', [LoginController::class,'logout'])->name('admin.logout');
+    Route::get('/admin/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.forgotPassword');
 });
 
 Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () {
@@ -75,7 +77,7 @@ Route::post('admin/password/email', [ForgotPasswordController::class, 'sendReset
 
 
 
-Route::get('/admin/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.forgotPassword');
+
 
 // Rute Layanan
 // Route::get('/password/forgot', [ForgotPasswordController::class, 'index'])->name('admin.forgotPassword');

@@ -25,4 +25,6 @@ class galeri_dewasa extends Model
     {
         return $this->belongsTo(layanan_dewasa::class, 'id_layanan_dws', 'id_layanan_dws');
     }
+
+    
 }

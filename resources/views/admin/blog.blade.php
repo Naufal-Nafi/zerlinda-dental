@@ -20,9 +20,10 @@
         </thead>
         <tbody class="fw-semibold">
             @foreach ($artikel as $service)
+            
             <tr>
                 @if (isset($service->galeri))
-                <td><img src="{{ asset('storage/'.$service->gambar) }}" alt="" width="50"></td>
+                <td><img src="{{ asset('storage/public/images/galeri_artikel'.$service->gambar) }}" alt="" width="50"></td>
                 @else
                 <td></td>
                 @endif
@@ -66,9 +67,9 @@ $routeName = 'admin.dashboard'; // Nama route
         <input type="text" class="form-control border-black" id="CreateForm" name="judul">
     </div>
     <div class="mb-3">
-        <label for="gambar1" class="form-label">Gambar</label>
+        <label for="gambar" class="form-label">Gambar</label>
         <img id="previewImage1" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-        <input class="form-control border-black image-input" type="file" id="formFile1" name="gambar" id="gambar_create">
+        <input class="form-control border-black image-input" type="file" name="gambar" id="gambar">
     </div>
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Artikel</label>
@@ -107,6 +108,7 @@ $routeName = 'admin.dashboard'; // Nama route
         
 
         document.getElementById("editForm").action = "{{route('admin.blog.update',"" )}}/"+id;
+        
         document.getElementById("EditFormJudul").value = data[1].innerText;
         document.getElementById("EditFormKonten").value = data[2].innerText;
     }
