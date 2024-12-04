@@ -44,18 +44,18 @@ class ContactController
     public function edit(Request $request, $id)
     {
         $validateData = $request->validate([
-            'jenis_kontak' => 'required',
+            
             'nama_akun' => 'required',
             'url' => 'required',
         ]);
 
-        $kontak = kontak::find($id);
+        $contact = kontak::findOrFail($id);
 
-        $kontak->update([
-            'jenis_kontak' => $validateData['jenis_kontak'],
-            'nama_akun' => $validateData['nama_akun'],
-            'url' => $validateData['url']
-        ]);
+        $contact->nama_akun = $validateData['nama_akun'];
+        $contact->url = $validateData['url'];
+        $contact->save();
+
+
         return redirect()->back()->with('success', 'Kontak berhasil diupdate!');
     }
 
@@ -64,7 +64,7 @@ class ContactController
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**

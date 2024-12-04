@@ -11,7 +11,7 @@ class layanan_dewasa extends Model
     protected $table = 'layanan_dewasa';
     protected $primaryKey = 'id_layanan_dws';
     protected $fillable = [
-        'id_galeri',
+        'id_layanan_dws',
         'nama_layanan',
         'deskripsi',
         

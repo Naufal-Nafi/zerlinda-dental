@@ -13,13 +13,13 @@ class artikel extends Model
     protected $primaryKey = 'id_artikel';
 
     protected $fillable = [
-        'id_galeri',
+        'id_artikel',
         'judul',
         'konten'
     ];
 
     function galeri_artikel()
     {
-        return $this->hasMany(galeri_artikel::class, 'id_galeri', 'id_galeri');
+        return $this->hasMany(galeri_artikel::class, 'id_galeri', 'id_artikel');
     }
 }

@@ -179,23 +179,7 @@
 
 
     <!--Edit Modal -->
-    <div class="modal fade" id="{{ $editModalName ?? 'defaultModalId'}}" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content bg-light-pink" style="padding: 50px;">
-                <form id="editForm"  method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body text-20" id="editModalContent">
-                        @yield('editModalContent')
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn text-white bg-pink">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    
 
 
     <!--Hapus Modal -->

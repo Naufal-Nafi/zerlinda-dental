@@ -14,7 +14,7 @@ class Dokter extends Model
     protected $primaryKey = 'id_dokter';
 
     protected $fillable = [
-        'id_galeri',
+        
         'nama',
         'jadwal',
         'jadwal_awal',
@@ -27,7 +27,7 @@ class Dokter extends Model
 
     function galeri_dokter()
     {
-        return $this->hasMany(galeri_dokter::class, 'id_galeri', 'id_galeri');
+        return $this->hasMany(galeri_dokter::class, 'id_galeri', 'id_dokter');
     }
         
 }
