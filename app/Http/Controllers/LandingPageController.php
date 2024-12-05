@@ -36,7 +36,7 @@ class LandingPageController
             // Simpan data ke database tanpa $filePath
             $image = landing_page::create([
                 'keterangan' => $request->keterangan,
-                'url_media' => 'storage/uploads/' . $fileName,
+                'url_media' => 'uploads/' . $fileName,
             ]);
 
                
