@@ -30,7 +30,7 @@ class galeri_artikel extends Model
 
     public function artikel()
     {
-        return $this->belongsTo(artikel::class, 'id_artikel');
+        return $this->belongsTo(artikel::class, 'id_artikel', 'id_artikel');
     }
 
     /**

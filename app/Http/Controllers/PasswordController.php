@@ -52,7 +52,7 @@ class PasswordController extends Controller
      */
     public function showResetForm(Request $request)
     {
-        return view('admin.reset_password');
+        return view('admin.Reset_Password');
     }
 
     /**
