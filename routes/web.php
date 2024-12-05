@@ -62,7 +62,7 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
 
     Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
     Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
-    Route::post('/admin/service/edit/{id}', [ServiceController::class, 'edit'])->name('admin.service.update');
+    Route::put('/admin/service/edit/{id}', [ServiceController::class, 'edit'])->name('admin.service.update');
     Route::delete('/admin/service/destroy/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
 
     Route::get('/admin/change-password', [PasswordController::class, 'index'])->name('password.change');

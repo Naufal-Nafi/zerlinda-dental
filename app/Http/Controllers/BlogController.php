@@ -188,11 +188,11 @@ class BlogController extends Controller
 
     public function show($id) {
         $artikel = artikel::with('galeri_artikel')->find($id);
-
+    
         if (!$artikel) {
             return redirect()->route('blog')->with('error', 'Artikel tidak ditemukan.');
         }
-
+    
         return view('user.showBlog', compact('artikel'));
     }
 }

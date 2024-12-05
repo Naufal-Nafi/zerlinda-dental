@@ -28,16 +28,20 @@ class DoctorController extends Controller
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'jadwal' => 'required|array',
             'jadwal.*' => 'required|in:senin,selasa,rabu,kamis,jumat,sabtu,minggu',
+            'jadwal_awal' => 'required|date_format:H:i',
+            'jadwal_akhir' => 'required|date_format:H:i|after:jadwal_awal',
         ]);
-
+    
         // Create the doctor
         $dokter = Dokter::create([
             'nama' => $validatedData['nama'],
-            'jadwal' => json_encode($validatedData['jadwal']), // Simpan jadwal sebagai JSON
-            'jadwal_awal' => $validatedData['jadwal_awal'],
-            'jadwal_akhir' => $validatedData['jadwal_akhir'],
+            'jadwal' => json_encode([
+                'days' => $validatedData['jadwal'], 
+                'jadwal_awal' => $validatedData['jadwal_awal'],
+                'jadwal_akhir' => $validatedData['jadwal_akhir']
+            ]),
         ]);
-
+    
         // Handle image upload
         if ($request->hasFile('gambar')) {
             $imageName = time() . '_' . $request->gambar->getClientOriginalName();
@@ -49,7 +53,7 @@ class DoctorController extends Controller
                 'url_media' => 'images/galeri_dokter/' . $imageName,
             ]);
         }
-
+    
         return redirect()->route('admin.doctor')->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -66,20 +70,21 @@ class DoctorController extends Controller
             'jadwal_awal' => 'required|date_format:H:i',
             'jadwal_akhir' => 'required|date_format:H:i|after:jadwal_awal',
         ]);
-
+    
         $dokter = Dokter::find($id);
-
         if (!$dokter) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
-
+    
         $dokter->update([
             'nama' => $validatedData['nama'],
-            'jadwal' => json_encode($validatedData['jadwal']),
-            'jadwal_awal' => $validatedData['jadwal_awal'],
-            'jadwal_akhir' => $validatedData['jadwal_akhir'],
+            'jadwal' => json_encode([
+                'days' => $validatedData['jadwal'],
+                'jadwal_awal' => $validatedData['jadwal_awal'],
+                'jadwal_akhir' => $validatedData['jadwal_akhir']
+            ]),
         ]);
-
+    
         // Handle image upload if provided
         if ($request->hasFile('gambar')) {
             // Delete old image if exists
@@ -88,10 +93,10 @@ class DoctorController extends Controller
                 Storage::delete('public/' . $galeri->url_media);
                 $galeri->delete();
             }
-
+    
             $imageName = time() . '.' . $request->gambar->getClientOriginalExtension();
             $request->file('gambar')->storeAs('public/galeri_dokter', $imageName);
-
+    
             galeri_dokter::create([
                 'id_dokter' => $dokter->id,
                 'judul' => $validatedData['nama'],
@@ -99,7 +104,7 @@ class DoctorController extends Controller
                 'url_media' => 'galeri_dokter/' . $imageName,
             ]);
         }
-
+    
         return redirect()->back()->with('success', 'Dokter berhasil diupdate!');
     }
 

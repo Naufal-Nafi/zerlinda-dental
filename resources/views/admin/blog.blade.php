@@ -22,7 +22,7 @@
                 @foreach ($artikels as $artikel)
                     <tr>
                         @foreach ($artikel->galeri_artikel as $galeri)                
-                            <td><img src="{{ asset('storage/' . $galeri->url_media) }}" alt="" width="250"></td>
+                            <td><img src="{{ asset('storage/' . $galeri->url_media) }}" alt="asas" width="250"></td>
                         @endforeach
                         <td>{{ $artikel->judul }}</td>
                         <td style="display: none; ">{{ $artikel->konten }}</td>
@@ -125,10 +125,10 @@
         var editbtn = document.getElementById("editbtn" + id);
         var row = editbtn.closest('tr');
         var data = row.getElementsByTagName('td');
-        console.log("{{route('admin.blog.update', "")}}/" + id);
+        console.log("{{route('admin.blog.update', '')}}/" + id);
 
 
-        document.getElementById("editForm").action = "{{route('admin.blog.update', "")}}/" + id;
+        document.getElementById("editForm").action = "{{ route('admin.blog.update', '') }}/" + id;
         document.getElementById("EditFormJudul").value = data[1].innerText;
         document.getElementById("EditFormKonten").value = data[2].innerText;
     }

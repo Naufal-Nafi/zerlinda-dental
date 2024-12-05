@@ -128,6 +128,7 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        // Function to toggle the visibility of the schedule input fields based on checkbox state
         function toggleSchedule(day, isChecked) {
             const parentDiv = $(`#${day}`).closest('.form-check');
             if (isChecked) {
@@ -135,11 +136,11 @@
                     <div id="schedule-${day}" class="schedule-times mx-3 mb-3" style="width: 100px;">
                         <div class="">
                             <label for="jadwal_awal-${day}" class="form-label">Jam Mulai - ${day}</label>
-                            <input type="time" class="form-control border-black" id="jadwal_awal-${day}">
+                            <input type="time" class="form-control border-black" id="jadwal_awal-${day}" name="jadwal_awal[${day}]">
                         </div>
                         <div class="">
                             <label for="jadwal_akhir-${day}" class="form-label">Jam Akhir - ${day}</label>
-                            <input type="time" class="form-control border-black" id="jadwal_akhir-${day}">
+                            <input type="time" class="form-control border-black" id="jadwal_akhir-${day}" name="jadwal_akhir[${day}]">
                         </div>
                     </div>
                 `);
@@ -149,9 +150,41 @@
             }
         }
 
+        // Event listener for changes to the day checkboxes
         $('input[name="jadwal[]"]').on('change', function() {
             toggleSchedule($(this).val(), $(this).is(':checked'));
         });
+
+        // Form submission handler
+        $('#createDoctorForm').on('submit', function(event) {
+            event.preventDefault();
+            let selectedDays = [];
+            let times = {};
+
+            // Collect the selected days
+            $('input[name="jadwal[]"]:checked').each(function() {
+                selectedDays.push($(this).val());
+                const day = $(this).val();
+                const jadwalAwal = $(`#jadwal_awal-${day}`).val();
+                const jadwalAkhir = $(`#jadwal_akhir-${day}`).val();
+                if (jadwalAwal && jadwalAkhir) {
+                    times[day] = { jadwal_awal: jadwalAwal, jadwal_akhir: jadwalAkhir };
+                }
+            });
+
+            // Create the JSON object
+            const scheduleJSON = JSON.stringify({
+                days: selectedDays,
+                times: times
+            });
+
+            // Attach the JSON to the hidden input field or directly to the form data
+            $('#jadwal').val(scheduleJSON); // Assuming there's a hidden input with id "jadwal"
+            
+            // Submit the form
+            this.submit();
+        });
     });
 </script>
+
 @endsection
