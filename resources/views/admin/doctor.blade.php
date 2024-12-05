@@ -8,172 +8,150 @@
     Tambah Dokter
 </button>
 <div class="table-responsive text-center">
-    @if ($dokter->count() > 0)
-    <table class="table table-hover mt-4 fw-bold">
-        <thead>
-            <tr>
-                <th>Foto</th>
-                <th>Nama</th>
-                <th>Jadwal</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody class="fw-semibold">
-            @foreach($dokter as $service)
+    @forelse($dokter as $service)
+        <table class="table table-hover mt-4 fw-bold">
+            <thead>
                 <tr>
-                    <td><img src="{{ asset('storage/'.$service->foto) }}" alt="Foto Dokter" width="100px"></td>
+                    <th>Foto</th>
+                    <th>Nama</th>
+                    <th>Jadwal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="fw-semibold">
+                <tr>
+                    <td><img src="{{ asset('storage/'.$service->foto) }}" alt="Foto Dokter {{ $service->nama }}" width="100px"></td>
                     <td>{{ $service->nama }}</td>
-                    <td><p>{{implode(', ', $service->jadwal)}}</p></td>
                     <td>
-                        <span><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#editDoctorModal{{ $service->id }}">Edit</button></span>
-                        <span><button class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#hapusModal{{ $service->id }}">Hapus</button></span>
+                        <p>{{ implode(', ', $service->jadwal) }}</p>
+                    </td>
+                    <td>
+                        <span><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editDoctorModal{{ $service->id }}">Edit</button></span>
+                        <span><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $service->id }}">Hapus</button></span>
                     </td>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-    @endif
+            </tbody>
+        </table>
+    @empty
+        <p>Tidak ada dokter yang tersedia.</p>
+    @endforelse
 </div>
 
 @endsection
-@php
-    $createModalName = 'createDoctorModal';
-    $editModalName = 'editDoctorModal';  // ID modal
-    $routeName = 'admin.dashboard'; // Nama route
-@endphp
 
 @section('formAction')
-{{route('admin.doctor.store')}}
+{{ route('admin.doctor.store') }}
 @endsection
 
-@section('createModalContent')
-<div class="mb-3">
-    <label for="nama" class="form-label">Nama</label>
-    <input type="text" class="form-control border-black" id="nama" name="nama">
-</div>
-<div class="mb-3">
-    <label for="gambar" class="form-label">Foto</label>
-    <img id="previewImage1" src="" alt="Preview Image " style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-    <input class="form-control border-black image-input" type="file" id="gambar" name="gambar">
-</div>
-<div>
-    <h5>Jadwal</h5>
-    <div class="d-flex">
-        <div class="d-block w-100">
-            <p>Pilih Hari</p>
-            <div class="d-flex overflow-x-auto w-100" >
-                <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="senin" id="senin">
-                    <label class="form-check-label" for="senin">
-                        Senin
-                    </label>
+<div class="modal fade" id="createDoctorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-light-pink" style="padding: 50px;">
+            <form action="@yield('formAction')" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body text-20">
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control border-black" id="nama" name="nama" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Foto</label>
+                        <img id="previewImage1" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+                        <input class="form-control border-black image-input" type="file" id="gambar" name="gambar" required>
+                    </div>
+                    <div>
+                        <h5>Jadwal</h5>
+                        <div class="d-flex">
+                            <div class="d-block w-100">
+                                <p>Pilih Hari</p>
+                                <div class="d-flex overflow-x-auto w-100">
+                                    @foreach(['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'] as $day)
+                                        <div class="form-check form-check-inline">
+                                            <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="{{ $day }}" id="{{ $day }}">
+                                            <label class="form-check-label" for="{{ $day }}">{{ ucfirst($day) }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="selasa" id="selasa">
-                    <label class="form-check-label" for="selasa">
-                        Selasa
-                    </label>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn text-white bg-pink">Submit</button>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="rabu" id="rabu">
-                    <label class="form-check-label" for="rabu">
-                        Rabu
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="kamis" id="kamis">
-                    <label class="form-check-label" for="kamis">
-                        Kamis
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="jumat" id="jumat">
-                    <label class="form-check-label" for="jumat">
-                        Jumat
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="sabtu" id="sabtu">
-                    <label class="form-check-label" for="sabtu">
-                        Sabtu
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="jadwal[]" class="form-check-input form-check-input-doctor" type="checkbox" value="minggu" id="minggu">
-                    <label class="form-check-label" for="minggu">
-                        Minggu
-                    </label>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-@endsection
 
-
-
-@section('editModalContent')
-<div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Nama</label>
-    <input type="text" class="form-control border-black" id="exampleFormControlInput1">
-</div>
-<div class="mb-3">
-    <label for="formFile1" class="form-label">Foto</label>
-    <img id="previewImage1" src="" alt="Preview Image " style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-    <input class="form-control border-black image-input" type="file" id="formFile1">
-</div>
-<div>
-    <h5>Jadwal</h5>
-    <div class="d-flex">
-        <div class="d-block w-100">
-            <p>Pilih Hari</p>
-            <div class="d-flex overflow-x-auto w-100" >
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Senin" id="flexCheckSenin">
-                    <label class="form-check-label" for="flexCheckSenin">
-                        Senin
-                    </label>
+@foreach($dokter as $service)
+<div class="modal fade" id="editDoctorModal{{ $service->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-light-pink" style="padding: 50px;">
+            <form id="editForm{{ $service->id }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nama</label>
+                    <input type="text" class=" form-control border-black" id="exampleFormControlInput1" name="nama" value="{{ $service->nama }}" required>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Selasa" id="flexCheckSelasa">
-                    <label class="form-check-label" for="flexCheckSelasa">
-                        Selasa
-                    </label>
+                <div class="mb-3">
+                    <label for="formFile1" class="form-label">Foto</label>
+                    <img id="previewImage1" src="{{ asset('storage/'.$service->foto) }}" alt="Preview Image" style="display:block; max-width: 276px; height: auto; margin-bottom: 10px;">
+                    <input class="form-control border-black image-input" type="file" id="formFile1" name="gambar">
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Rabu" id="flexCheckRabu">
-                    <label class="form-check-label" for="flexCheckRabu">
-                        Rabu
-                    </label>
+                <div>
+                    <h5>Jadwal</h5>
+                    <div class="d-flex">
+                        <div class="d-block w-100">
+                            <p>Pilih Hari</p>
+                            <div class="d-flex overflow-x-auto w-100">
+                                @foreach(['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'] as $day)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input form-check-input-doctor" type="checkbox" value="{{ ucfirst($day) }}" id="flexCheck{{ ucfirst($day) }}" name="jadwal[]" {{ in_array($day, $service->jadwal) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="flexCheck{{ ucfirst($day) }}">{{ ucfirst($day) }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Kamis" id="flexCheckKamis">
-                    <label class="form-check-label" for="flexCheckKamis">
-                        Kamis
-                    </label>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn text-white bg-pink">Submit</button>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Jumat" id="flexCheckJumat">
-                    <label class="form-check-label" for="flexCheckJumat">
-                        Jumat
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Sabtu" id="flexCheckSabtu">
-                    <label class="form-check-label" for="flexCheckSabtu">
-                        Sabtu
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input form-check-input-doctor" type="checkbox" value="Minggu" id="flexCheckMinggu">
-                    <label class="form-check-label" for="flexCheckMinggu">
-                        Minggu
-                    </label>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+@endforeach
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        function toggleSchedule(day, isChecked) {
+            const parentDiv = $(`#${day}`).closest('.form-check');
+            if (isChecked) {
+                const scheduleDiv = $(`
+                    <div id="schedule-${day}" class="schedule-times mx-3 mb-3" style="width: 100px;">
+                        <div class="">
+                            <label for="jadwal_awal-${day}" class="form-label">Jam Mulai - ${day}</label>
+                            <input type="time" class="form-control border-black" id="jadwal_awal-${day}">
+                        </div>
+                        <div class="">
+                            <label for="jadwal_akhir-${day}" class="form-label">Jam Akhir - ${day}</label>
+                            <input type="time" class="form-control border-black" id="jadwal_akhir-${day}">
+                        </div>
+                    </div>
+                `);
+                parentDiv.append(scheduleDiv);
+            } else {
+                $(`#schedule-${day}`).remove();
+            }
+        }
+
+        $('input[name="jadwal[]"]').on('change', function() {
+            toggleSchedule($(this).val(), $(this).is(':checked'));
+        });
+    });
+</script>
 @endsection

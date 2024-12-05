@@ -41,7 +41,7 @@
                                     class="bi bi-file-earmark-text"></i>Landing Page</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.blog') }} "><i class="bi bi-journal"></i>Artikel
+                            <a class="nav-link" href=" {{ route('admin.blog.index') }} "><i class="bi bi-journal"></i>Artikel
                                 Blog</a>
                         </li>
                         <li class="nav-item">
@@ -115,7 +115,7 @@
                                     class="bi bi-file-earmark-text me-2"></i>Landing Page</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.blog') }} ">
+                            <a class="nav-link" href=" {{ route('admin.blog.index') }} ">
                                 <i class="bi bi-journal me-2"></i>Artikel
                                 Blog</a>
                         </li>
@@ -268,40 +268,7 @@
 
         // Fungsi untuk menambahkan atau menghapus form jam mulai dan jam akhir
 
-        $(document).ready(function () {
-
-            const checkboxes = $('input[name="jadwal[]"]');
-
-            checkboxes.each(function () {
-            $(this).on('change', function () {
-                const day = $(this).val(); // Hari yang dipilih
-                const parentDiv = $(this).closest('.form-check'); // Dapatkan parent div dari checkbox
-
-                // Cek jika checkbox di centang
-                if ($(this).is(':checked')) {
-                    // Buat div untuk jam mulai dan akhir
-                    const scheduleDiv = $(`
-                    <div id="schedule-${day}" class="schedule-times mx-3 mb-3" style="width: 100px;">
-                        <div class="">
-                            <label for="jadwal_awal-${day}" class="form-label">Jam Mulai - ${day}</label>
-                            <input type="time" class="form-control border-black" id="jadwal_awal-${day}">
-                        </div>
-                        <div class="">
-                            <label for="jadwal_akhir-${day}" class="form-label">Jam Akhir - ${day}</label>
-                            <input type="time" class="form-control border-black" id="jadwal_akhir-${day}">
-                        </div>
-                    </div>
-                `);
-
-                    // Tambahkan ke dalam div form-check setelah label
-                    parentDiv.append(scheduleDiv);
-                } else {
-                    // Hapus div jika checkbox tidak dicentang
-                    $(`#schedule-${day}`).remove();
-                }
-            });
-        });
-        })
+        
         
     </script>
 

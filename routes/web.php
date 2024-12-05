@@ -43,7 +43,7 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
     Route::get('/admin/contact', [ContactController::class, 'index'])->name('admin.contact');
     Route::post('/admin/contact/edit/{id}', [ContactController::class, 'edit'])->name('admin.contact.edit');
 
-    Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog');
+    Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog.index');
     Route::post('/admin/blog/store', action: [BlogController::class, 'store'])->name('admin.blog.store');
     Route::post('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
     Route::delete('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');

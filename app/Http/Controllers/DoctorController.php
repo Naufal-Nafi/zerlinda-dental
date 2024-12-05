@@ -7,15 +7,15 @@ use App\Models\Dokter;
 use App\Models\galeri_dokter;
 use Illuminate\Support\Facades\Storage;
 
-class DoctorController
+class DoctorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $dokter = Dokter::all();
-        return view('admin.doctor', compact('dokter'));
+        $dokter = Dokter::with('galeri_dokter')->get();
+        return view('admin.doctor', compact('dokter' ));
     }
 
     /**
@@ -23,38 +23,33 @@ class DoctorController
      */
     public function store(Request $request)
     {
-        
         $validatedData = $request->validate([
-            'nama' => 'required',
-            'gambar' => 'required',
+            'nama' => 'required|string|max:255',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'jadwal' => 'required|array',
             'jadwal.*' => 'required|in:senin,selasa,rabu,kamis,jumat,sabtu,minggu',
-            'jadwal_awal'=>'required|date_format:H:i',
-            'jadwal_akhir'=>'required|date_format:H:i|after:jadwal_awal',
         ]);
 
-        dd($validatedData);
-
-        $dokter = dokter::create([
+        // Create the doctor
+        $dokter = Dokter::create([
             'nama' => $validatedData['nama'],
-            'jadwal' => $validatedData['jadwal'],
+            'jadwal' => json_encode($validatedData['jadwal']), // Simpan jadwal sebagai JSON
             'jadwal_awal' => $validatedData['jadwal_awal'],
             'jadwal_akhir' => $validatedData['jadwal_akhir'],
         ]);
 
-        $foreignKey = 'id_dokter';
-
-        if ($request->gambar) {
+        // Handle image upload
+        if ($request->hasFile('gambar')) {
             $imageName = time() . '_' . $request->gambar->getClientOriginalName();
             $request->file('gambar')->storeAs('public/galeri_dokter', $imageName);
             galeri_dokter::create([
-                'id_dokter' => $dokter->id_dokter,
+                'id_dokter' => $dokter->id,
                 'judul' => $validatedData['nama'],
-                'deskripsi' => $validatedData['jadwal'],
-                'url_media' => 'galeri_dokter/' . $imageName,
-                $foreignKey => $dokter[$foreignKey],
+                'deskripsi' => json_encode($validatedData['jadwal']),
+                'url_media' => 'images/galeri_dokter/' . $imageName,
             ]);
         }
+
         return redirect()->route('admin.doctor')->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -63,50 +58,49 @@ class DoctorController
      */
     public function edit(Request $request, $id)
     {
-        $validateData = $request->validate([
-            'nama' => 'required',
-            'gambar' => 'required',
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'jadwal' => 'required|array',
             'jadwal.*' => 'required|in:senin,selasa,rabu,kamis,jumat,sabtu,minggu',
-            'jadwal_awal'=>'required',
-            'jadwal_akhir'=>'required',
+            'jadwal_awal' => 'required|date_format:H:i',
+            'jadwal_akhir' => 'required|date_format:H:i|after:jadwal_awal',
         ]);
 
-        $dokter = dokter::find($id);
+        $dokter = Dokter::find($id);
 
-        if (!$dokter){
-            return redirect()->back()->with('error', 'data tidak ditemukan');
+        if (!$dokter) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
         $dokter->update([
-            'nama' => $validateData['nama'],
-            'jadwal' => $validateData['jadwal'],
-            'jadwal_awal'=> $validateData['jadwal_awal'],
-            'jadwal_akhir'=> $validateData['jadwal_akhir']
-
+            'nama' => $validatedData['nama'],
+            'jadwal' => json_encode($validatedData['jadwal']),
+            'jadwal_awal' => $validatedData['jadwal_awal'],
+            'jadwal_akhir' => $validatedData['jadwal_akhir'],
         ]);
 
+        // Handle image upload if provided
         if ($request->hasFile('gambar')) {
-            $images = $request->file('gambar');
-            $imagesname = time().'.'. $images->getClientOriginalExtension();
-            $images->move(public_path('galeri_dokter'), $imagesname);
+            // Delete old image if exists
+            $galeri = galeri_dokter::where('id_dokter', $dokter->id)->first();
+            if ($galeri) {
+                Storage::delete('public/' . $galeri->url_media);
+                $galeri->delete();
+            }
 
-            $galeri = galeri_dokter::find($dokter->id_galeri);
-            $galeri->update([
-                'judul' => $validateData['nama'],
-                'deskripsi' => $validateData['jadwal'],
-                'url_media' => 'galeri_dokter/' . $imagesname,
+            $imageName = time() . '.' . $request->gambar->getClientOriginalExtension();
+            $request->file('gambar')->storeAs('public/galeri_dokter', $imageName);
+
+            galeri_dokter::create([
+                'id_dokter' => $dokter->id,
+                'judul' => $validatedData['nama'],
+                'deskripsi' => json_encode($validatedData['jadwal']),
+                'url_media' => 'galeri_dokter/' . $imageName,
             ]);
         }
-        return redirect()->back()->with('success', 'Dokter berhasil diupdate!');
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return redirect()->back()->with('success', 'Dokter berhasil diupdate!');
     }
 
     /**
@@ -115,10 +109,11 @@ class DoctorController
     public function destroy(string $id)
     {
         $dokter = Dokter::find($id);
+        
         if ($dokter) {
             $galeri = galeri_dokter::where('id_dokter', $id)->get();
             foreach ($galeri as $galeriItem) {
-                Storage::delete('public/galeri_dokter/' . basename($galeriItem->url_media));
+                Storage::delete('public/' . $galeriItem->url_media);
                 $galeriItem->delete();
             }
             $dokter->delete();

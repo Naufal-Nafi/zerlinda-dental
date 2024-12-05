@@ -23,9 +23,7 @@ return new class extends Migration
         Schema::create('dokter', function (Blueprint $table) {
             $table->id('id_dokter'); // Primary key
             $table->string('nama', 100);
-            $table->json('jadwal');
-            $table->time('jadwal_awal');
-            $table->time('jadwal_akhir');
+            $table->json('jadwal')->nullable();
             $table->timestamps();
 
             

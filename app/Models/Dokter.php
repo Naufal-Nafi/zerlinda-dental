@@ -17,8 +17,6 @@ class Dokter extends Model
         
         'nama',
         'jadwal',
-        'jadwal_awal',
-        'jadwal_akhir',
     ];
 
     protected $casts = [
