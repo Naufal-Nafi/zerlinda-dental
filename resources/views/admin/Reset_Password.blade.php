@@ -16,7 +16,7 @@
             <!-- <a class='btn btn-login w-100' type="submit" href="{{ route('admin.login') }}">Masukkan</a>
         </form> -->
         
-        <form action="{{ route('password.update') }}" method="post">
+        <form action="{{ route('password.update') }}" method="POST">
             @csrf
             <!-- Password Saat Ini -->   
 

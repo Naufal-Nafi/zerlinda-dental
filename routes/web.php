@@ -45,7 +45,7 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
 
     Route::get('/admin/blog', [BlogController::class, 'index'])->name('admin.blog.index');
     Route::post('/admin/blog/store', action: [BlogController::class, 'store'])->name('admin.blog.store');
-    Route::post('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
+    Route::put('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
     Route::delete('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
 
     Route::get('/admin/doctor', [DoctorController::class, 'index'])->name('admin.doctor');
@@ -99,6 +99,7 @@ Route::get('/typeServices', [PublicServiceController::class, 'show'])->name('ser
 // Route::get('/layananAnak', [KidsServiceController::class, 'index']);
 // Route::get('/layananDewasa', [AdultServiceController::class, 'index']);
 
-Route::get('/blog',[PublicBlogController::class, 'index'])->name('blog');
-Route::get('/showBlog',[PublicBlogController::class, 'show'])->name('blog.show');
+Route::get('/blog',[BlogController::class, 'indexPublic'])->name('blog');
+Route::get('/artikel/{id}',[BlogController::class, 'show'])->name('blog.show');
+// Route::get('/showBlog',[PublicBlogController::class, 'show'])->name('blog.show');
 Route::get('/jadwal',[PublicDoctorController::class, 'show'])->name('schedule');

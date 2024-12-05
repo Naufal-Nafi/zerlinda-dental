@@ -20,7 +20,7 @@
         @foreach($landingpages as $landingpage)
         <tbody class="fw-semibold">
             <tr>
-                <td><img src="{{ asset($landingpage->url_media) }}" alt="{{ $landingpage->keterangan }}" width="50"></td>
+                <td><img src="{{ asset($landingpage->url_media) }}" alt="{{ $landingpage->keterangan }}" width="250"></td>
                 <td>{{ $landingpage->keterangan }}</td>
                 <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{'/landingpage/destroy/'.$landingpage->getKey()}}">Hapus</button></td>
             </tr>            

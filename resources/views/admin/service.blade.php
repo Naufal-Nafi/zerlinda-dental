@@ -4,12 +4,12 @@
 
 @section('content')
 <!-- Button trigger modal -->
-    <button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createServiceModal">
-        Tambah Layanan
-    </button>
+<button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createServiceModal">
+    Tambah Layanan
+</button>
 
 <!-- Table to display services -->
- 
+
 <div class="table-responsive text-center">
     @if ($services->count() > 0)
         <table class="table table-hover mt-4 fw-bold">
@@ -22,27 +22,35 @@
                 </tr>
             </thead>
             <tbody class="fw-semibold">
-                @foreach($services as $service)
-    <tr>
-        @if (isset($service->galeri))
-            <td><img src="{{ asset($service->galeri->url_media) }}" alt="{{ $service->nama_layanan }}" width="50"></td>
-        @else
-            <td></td>
-        @endif
-        <td>{{ $service->nama_layanan }}</td>
-        <td>{{ $service -> getKeyName()=="id_layanan_ank"?"anak":"dewasa" }}</td>
-        <td style="display: none; ">{{ $service->deskripsi }}</td>
-        <!-- tombol edit/delete -->
-        <td>
-            <button type="button" id="editbtn{{$service->getKey()}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal" data-id="{{'/service/update/'.$service->getKey()}}" onclick="openEditModal({{$service->getKey()}})">
-                Edit
-            </button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{'/service/destroy/'.$service->getKey()}}">
-                
-                Hapus
-            </button>
-        </td>
-    </tr>    
+                @foreach($services as $service)                    
+                    <tr>
+                        <td>
+                            @if ($service->galeri_anak)
+                                <img src="{{ asset('storage/public/' . $service->galeri_anak->url_media) }}"
+                                    alt="{{ $service->nama_layanan }}" width="250">
+                            @elseif ($service->galeri_dewasa)
+                                <img src="{{ asset('storage/public/' . $service->galeri_dewasa->url_media) }}"
+                                    alt="{{ $service->nama_layanan }}" width="250">
+                            @endif
+                        </td>
+                        <td>{{ $service->nama_layanan }}</td>
+                        <td>{{ $service->getKeyName() == "id_layanan_ank" ? "anak" : "dewasa" }}</td>
+
+                        <!-- tombol edit/delete -->
+                        <td>
+                            <button type="button" id="editbtn{{$service->getKey()}}" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#editServiceModal"
+                                data-id="{{'/service/update/' . $service->getKey()}}"
+                                onclick="openEditModal({{$service->getKey()}})">
+                                Edit
+                            </button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal"
+                                data-id="{{'/service/destroy/' . $service->getKey()}}">
+
+                                Hapus
+                            </button>
+                        </td>
+                    </tr>
                 @endforeach
 
             </tbody>
@@ -77,61 +85,63 @@
     </div>
 @endif
 
-    <div class="mb-3">
-        <label class="form-label">Tipe Layanan</label>
-        <div class="d-flex gap-3">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="tipe_layanan" value="anak" id="tipeAnak" re>
-                <label class="form-check-label" for="tipeAnak">
-                    Anak
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="tipe_layanan" value="dewasa" id="tipeDewasa" >
-                <label class="form-check-label" for="tipeDewasa">
-                    Dewasa
-                </label>
-            </div>
+<div class="mb-3">
+    <label class="form-label">Tipe Layanan</label>
+    <div class="d-flex gap-3">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipe_layanan" value="anak" id="tipeAnak" re>
+            <label class="form-check-label" for="tipeAnak">
+                Anak
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipe_layanan" value="dewasa" id="tipeDewasa">
+            <label class="form-check-label" for="tipeDewasa">
+                Dewasa
+            </label>
         </div>
     </div>
+</div>
 
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label ">Nama Pelayanan</label>
-        <input type="text" class="form-control border-black" id="exampleFormControlInput1" name="nama_layanan" required>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label ">Nama Pelayanan</label>
+    <input type="text" class="form-control border-black" id="exampleFormControlInput1" name="nama_layanan" required>
+</div>
+
+<div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
+    <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
+        <label for="gambar1" class="form-label">Gambar</label>
+        <img id="previewImage1" src="" alt="Preview Image"
+            style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+        <input class="form-control border-black image-input" type="file" id="gambar1" name="gambar[]" required
+            accept="image/*">
     </div>
 
-    <div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
-        <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
-            <label for="gambar1" class="form-label">Gambar</label>
-            <img id="previewImage1" src="" alt="Preview Image" 
-                style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-            <input class="form-control border-black image-input" type="file" id="gambar1" name="gambar[]" required accept="image/*">
-        </div>
-
-        <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
-            <label for="gambar2" class="form-label">Contoh Perawatan</label>
-            <img id="previewImage2" src="" alt="Preview Image"
-                style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-            <input class="form-control border-black image-input" type="file" id="gambar2" name="gambar[]" required accept="image/*">
-        </div>
-
-        <div class="d-flex justify-content-center align-items-center"
-            style="min-width: 200px; min-height:240px; cursor: pointer;" id="addNewField">
-            <i class="bi bi-plus-square" style="font-size: 83px;"></i>
-        </div>
-
+    <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height:240px;">
+        <label for="gambar2" class="form-label">Contoh Perawatan</label>
+        <img id="previewImage2" src="" alt="Preview Image"
+            style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+        <input class="form-control border-black image-input" type="file" id="gambar2" name="gambar[]" required
+            accept="image/*">
     </div>
-    <div class="mb-3">
-        <label for="deskripsi" class="form-label">Informasi Pelayanan</label>
-        <textarea class="form-control border-black" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+
+    <div class="d-flex justify-content-center align-items-center"
+        style="min-width: 200px; min-height:240px; cursor: pointer;" id="addNewField">
+        <i class="bi bi-plus-square" style="font-size: 83px;"></i>
     </div>
-    
-    
+
+</div>
+<div class="mb-3">
+    <label for="deskripsi" class="form-label">Informasi Pelayanan</label>
+    <textarea class="form-control border-black" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+</div>
+
+
 
 
 
 <script>
-        let counter = 3; // Start counter for new div IDs
+    let counter = 3; // Start counter for new div IDs
 
     document.getElementById('addNewField').addEventListener('click', function () {
         const container = document.querySelector('.gambar-pelayanan');
@@ -154,7 +164,7 @@
         container.insertBefore(newDiv, document.getElementById('addNewField'));
 
         // Re-initialize image preview event listeners after adding new input
-        initializeImagePreview(newInputId, newImgId );
+        initializeImagePreview(newInputId, newImgId);
 
         counter++;
     });
@@ -165,13 +175,13 @@
 
 <div class="mb-3 d-flex">
     <div class="form-check me-5">
-        <input class="form-check-input" id="edttipeAnak" type="radio" name="tipe_layanan" value="anak"  >
+        <input class="form-check-input" id="edttipeAnak" type="radio" name="tipe_layanan" value="anak">
         <label class="form-check-label" for="edttipeAnak">
             Anak
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" id="edttipeDewasa" type="radio" name="tipe_layanan" value="dewasa"   >
+        <input class="form-check-input" id="edttipeDewasa" type="radio" name="tipe_layanan" value="dewasa">
         <label class="form-check-label" for="edttipeDewasa">
             Dewasa
         </label>
@@ -179,7 +189,8 @@
 </div>
 <div class="mb-3">
     <label for="edit_nama_layanan" class="form-label ">Nama Pelayanan</label>
-    <input type="text" class="form-control border-black" id="edit_nama_layanan" name="nama_pelayanan" required maxlength="100">
+    <input type="text" class="form-control border-black" id="edit_nama_layanan" name="nama_pelayanan" required
+        maxlength="100">
 </div>
 
 <div class="gambar-pelayanan mb-3 d-flex overflow-x-auto" style="white-space: nowrap;">
@@ -187,7 +198,8 @@
         <label for="edit_gambar" class="form-label">Gambar</label>
         <img id="edit_previewImage" src="" alt="Preview Image"
             style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-        <input class="form-control border-black image-input" type="file" id="edit_gambar" name="gambar" accept="image/*">
+        <input class="form-control border-black image-input" type="file" id="edit_gambar" name="gambar"
+            accept="image/*">
     </div>
 
     <!-- for each  -->
@@ -195,7 +207,8 @@
         <label for="edit_gambar" class="form-label">Contoh Perawatan</label>
         <img id="previewImage2" src="" alt="Preview Image"
             style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-        <input class="form-control border-black image-input" type="file" id="edit_gambar" name="gambar" accept="image/*">
+        <input class="form-control border-black image-input" type="file" id="edit_gambar" name="gambar"
+            accept="image/*">
     </div>
 
     <!-- end for each  -->
@@ -215,13 +228,13 @@
         const preview = document.getElementById('edit_previewImage');
         const file = e.target.files[0];
         const reader = new FileReader();
-        
-        reader.onload =function(e){
+
+        reader.onload = function (e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
         }
 
-        if(file) {
+        if (file) {
             reader.readAsDataURL(file);
         }
     });
@@ -231,23 +244,23 @@
 @section('script')
 <script>
     function openEditModal(id) {
-        
-        var editbtn = document.getElementById("editbtn"+id);
+
+        var editbtn = document.getElementById("editbtn" + id);
         var row = editbtn.closest('tr');
         var data = row.getElementsByTagName('td');
         const service = data[2].innerText;
-        
+
         // // Ambil nilai tipe layanan dari atribut value
         // var tipeLayanan = row.cells[1].textContent;
-        
+
         // Isi edit modal dengan dataeditForm
-        document.getElementById("editForm").action = "{{route('admin.service.update',"" )}}/"+id;
+        document.getElementById("editForm").action = "{{route('admin.service.update', "")}}/" + id;
         document.getElementById("edit_nama_layanan").value = data[1].innerText;
         document.getElementById("edit_deskripsi").value = data[3].innerText;
 
-        
+
         // Set radio button yang sesuai
-        if(service == 'anak') {
+        if (service == 'anak') {
 
             document.getElementById("edttipeAnak").checked = true;
         } else {

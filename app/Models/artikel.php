@@ -20,6 +20,6 @@ class artikel extends Model
 
     function galeri_artikel()
     {
-        return $this->hasMany(galeri_artikel::class, 'id_galeri', 'id_artikel');
+        return $this->hasMany(galeri_artikel::class, 'id_artikel', 'id_artikel');
     }
 }

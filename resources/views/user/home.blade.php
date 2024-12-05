@@ -6,10 +6,13 @@
 <!-- Hero section  -->
 <div id="wrapper" class="relative h-screen flex items-center">
     <div id="slider-area" class="owl-carousel absolute h-screen w-full top-0 left-0 -z-10 ">
-        <div style="background-image: url('{{ asset('images/landing-page.png') }}')"></div>
+        @foreach ($images as $image)
+            <div style="background-image: url('{{ asset($image->url_media) }}')"></div>
+        @endforeach
+        <!-- <div style="background-image: url('{{ asset('images/landing-page.png') }}')"></div>
         <div style="background-image: url('{{ asset('images/artikel_3.png') }}')"></div>
         <div style="background-image: url('{{ asset('images/artikel_4.png') }}')"></div>        
-        <div style="background-image: url('{{ asset('images/Vector.png') }}')"></div>
+        <div style="background-image: url('{{ asset('images/Vector.png') }}')"></div> -->
 
     </div>
     <div class="slider-text z-10 text-left mx-5 md:mx-12" data-aos="fade-up" data-aos-delay="100">
