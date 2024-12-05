@@ -16,7 +16,7 @@
             <!-- <a class='btn btn-login w-100' type="submit" href="{{ route('admin.login') }}">Masukkan</a>
         </form> -->
         
-        <form action="{{ route('admin.password.update') }}" method="POST">
+        <form action="{{ route('password.update') }}" method="POST">
             @csrf
             <!-- Password Saat Ini -->   
 
@@ -30,7 +30,7 @@
                 <input type="password" name="new_password_confirmation" class="form-control" placeholder="Konfirmasi Password Baru" required>
             </div>
 
-            <button type="submit" class="btn btn- w-100 mt-3">Ubah Password</button>
+            <button type="submit" class="btn bg-pink text-white w-100 mt-3">Ubah Password</button>
             
         </form>
     </div>

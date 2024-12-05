@@ -15,7 +15,7 @@
     <nav class="navbar-login w-100 position-fixed w-100" style="height: 50px; background: var(--primary-color)">
         <div class="container-fluid my-auto">
             <a class="navbar-brand my-auto text-white text" href="#">
-                <span>Zerlinda - Admin</span>
+                <span><img class="img-fluid" src="{{ asset('images/logo_horizontal.png') }}" style="width: 150px; " alt=""></span>
             </a>
         </div>
     </nav>

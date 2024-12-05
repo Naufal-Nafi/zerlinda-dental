@@ -22,16 +22,9 @@
     <!-- Login Form -->
     <div class="container d-flex align-items-center justify-content-center min-vh-100">
         <div class="card shadow-sm p-5" style="max-width: 400px; width: 100%;">
-            <h1 class="text-center mb-4 fw-bold">Ubah Password</h1>
-            <!-- <form action="post">            
-            <div class="mb-3">        
-                <input type="password" class="form-control" placeholder="Current Password" name="" id=""> <!-- required -->
+            <h1 class="text-center mb-4 fw-bold">Ubah Password</h1>            
 
-            <!-- <button type="submit" class="btn btn-login w-100 mt-3">Login</button> -->
-            <!-- <a class='btn btn-login w-100' type="submit" href="{{ route('admin.login') }}">Masukkan</a>
-        </form> -->
-
-            <form action="{{ route('admin.password.update') }}" method="POST">
+            <form action="{{ route('password.update') }}" method="POST">
                 @csrf
                 <!-- Password Saat Ini -->
 

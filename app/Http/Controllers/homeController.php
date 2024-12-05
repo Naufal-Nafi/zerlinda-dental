@@ -11,7 +11,8 @@ class homeController
      */
     public function index()
     {
-        return view('user.home');
+        $images = \App\Models\landing_page::all();
+        return view('user.home', compact('images'));
     }
 
     /**

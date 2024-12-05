@@ -31,12 +31,12 @@ class LandingPageController
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/uploads', $fileName);
+            $file->move(public_path('uploads'), $fileName); // Simpan langsung di 'public/uploads'
     
             // Simpan data ke database tanpa $filePath
             $image = landing_page::create([
                 'keterangan' => $request->keterangan,
-                'url_media' => 'storage/uploads/' . $fileName,
+                'url_media' => 'uploads/' . $fileName, // URL relatif
             ]);
 
                
