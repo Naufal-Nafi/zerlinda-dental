@@ -72,8 +72,9 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
 });
 
 
-Route::get('admin/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
-Route::post('admin/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('admin/password/reset', [ForgotPasswordController::class, 'index'])->name('admin.password.request');
+Route::post('admin/password/reset/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('admin/password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');
 
 
 

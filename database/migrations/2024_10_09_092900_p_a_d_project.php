@@ -60,6 +60,8 @@ return new class extends Migration
         $table->string('password', 255);
         $table->string('level', 255);
         $table->string('token', 255);
+        $table->string('reset_token', 255)->nullable();
+        $table->timestamp('token_expires_at')->nullable();
         $table->timestamps();
     });
     

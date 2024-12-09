@@ -34,7 +34,7 @@
                             <label for="password" class="form-label d-flex justify-content-between">
                                 Password
                             <span class="forgot-password">
-                                <a href="{{ route('admin.forgotPassword') }}" class="text-decoration-none text-body">Forgot Password?</a>
+                                <a href="{{ route('admin.password.request') }}" class="text-decoration-none text-body">Forgot Password?</a>
                             </span>
                             </label>
                             <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>

@@ -29,7 +29,7 @@ class ServiceController extends Controller
                 return $carry->merge($item);
             }, collect());
 
-        
+
 
         return view('admin.service', compact('services', 'layanan_anak', 'layanan_dewasa'));
     }
@@ -163,16 +163,27 @@ class ServiceController extends Controller
             $image->move(public_path('images/layanan'), $imageName);
 
             $galeri = $galeriModel::find($currentLayanan->id_galeri);
-            $galeri->update([
-                'judul' => $validatedData['nama_pelayanan'],
-                'deskripsi' => $validatedData['deskripsi'],
-                'url_media' => 'images/layanan/' . $imageName
-            ]);
+            if ($galeri) {
+                // Update galeri jika ditemukan
+                $galeri->update([
+                    'judul' => $validatedData['nama_pelayanan'],
+                    'deskripsi' => $validatedData['deskripsi'],
+                    'url_media' => 'images/layanan/' . $imageName
+                ]);
+            } else {
+                // Buat galeri baru jika tidak ditemukan
+                $galeriModel::create([
+                    'judul' => $validatedData['nama_pelayanan'],
+                    'deskripsi' => $validatedData['deskripsi'],
+                    'url_media' => 'images/layanan/' . $imageName,
+                    'layanan_id' => $currentLayanan->id,
+                ]);
+            }
         }
 
         return redirect()->back()->with('success', 'Data layanan berhasil diperbarui.');
-
     }
+
 
     public function destroy($id)
     {
