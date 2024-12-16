@@ -13,8 +13,7 @@ class layanan_dewasa extends Model
     protected $fillable = [
         'id_layanan_dws',
         'nama_layanan',
-        'deskripsi',
-        
+        'deskripsi',        
     ];
 
     function galeri_dewasa()

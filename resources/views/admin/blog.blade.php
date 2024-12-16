@@ -35,7 +35,7 @@
                                     data-id="{{'/blog/destroy/' . $artikel->getKey()}}">Hapus</button></span>
                         </td>
                     </tr>
-                    <div class="modal fade" id="editBlogModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade text-start" id="editBlogModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl modal-dialog-centered">
                             <div class="modal-content bg-light-pink" style="padding: 50px;">
                                 <form id="editForm" action="{{ route('admin.blog.update', $artikel->id_artikel) }}" method="POST" enctype="multipart/form-data">
@@ -74,7 +74,19 @@
         <p>Belum ada artikel</p>
     @endif
 </div>
+<script>
+    function openEditModal(id) {
+        var editbtn = document.getElementById("editbtn" + id);
+        var row = editbtn.closest('tr');
+        var data = row.getElementsByTagName('td');
+        console.log("{{route('admin.blog.update', "")}}/" + id);
 
+
+        document.getElementById("editForm").action = "{{route('admin.blog.update', "")}}/" + id;
+        document.getElementById("EditFormJudul").value = data[1].innerText;
+        document.getElementById("EditFormKonten").value = data[2].innerText;
+    }
+</script>
 
 @endsection
 
@@ -118,22 +130,3 @@
 
 
 
-@section('script')
-<script>
-
-    function openEditModal(id) {
-        var editbtn = document.getElementById("editbtn" + id);
-        var row = editbtn.closest('tr');
-        var data = row.getElementsByTagName('td');
-        console.log("{{route('admin.blog.update', "")}}/" + id);
-
-
-        document.getElementById("editForm").action = "{{route('admin.blog.update', "")}}/" + id;
-        document.getElementById("EditFormJudul").value = data[1].innerText;
-        document.getElementById("EditFormKonten").value = data[2].innerText;
-    }
-
-
-
-</script>
-@endsection

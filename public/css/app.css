@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     font-family: "Poppins", sans-serif;
+    scrollbar-gutter: stable;
 }
 
 :root {
@@ -15,7 +16,7 @@
 }
 
 body {
-    color: var(--text-color);
+    color: var(--text-color);    
 }
 
 p,
@@ -203,9 +204,13 @@ tbody td {
 textarea {
     min-height: 175px !important;
 }
-#addNewField:hover {
-    transform: translateY(-4px);
+
+#addNewField, #addNewFieldEdit {    
     transition: 0.4s;
+}
+
+#addNewField:hover, #addNewFieldEdit:hover {
+    transform: translateY(-4px);    
 }
 
 

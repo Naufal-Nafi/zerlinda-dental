@@ -29,21 +29,14 @@ return new class extends Migration
             
         });
 
-    Schema::create('layanan_anak', function (Blueprint $table) {
-        $table->id('id_layanan_ank'); // Primary key
-        $table->string('nama_layanan', 100);
-        $table->text('deskripsi');
-        $table->timestamps();
+        Schema::create('layanan', function (Blueprint $table) {
+            $table->id('id_layanan'); // Primary key
+            $table->string('nama_layanan', 100);
+            $table->text('deskripsi');
+            $table->enum('jenis_layanan', ['anak', 'dewasa']);
+            $table->timestamps();
+        });
         
-    });
-
-    Schema::create('layanan_dewasa', function (Blueprint $table) {
-        $table->id('id_layanan_dws'); // Primary key
-        $table->string('nama_layanan', 100);
-        $table->text('deskripsi');
-        $table->timestamps();
-        
-    });
 
     Schema::create('kontak', function (Blueprint $table) {
         $table->id('id_kontak');
@@ -63,23 +56,15 @@ return new class extends Migration
         $table->timestamps();
     });
     
-    Schema::create('galeri_layanan_anak', function (Blueprint $table) {
+    Schema::create('galeri_layanan', function (Blueprint $table) {
         $table->id('id_galeri');
         $table->string('judul', 100);
         $table->string('deskripsi');
         $table->text('url_media');
         $table->timestamps();
-        $table->foreignId('id_layanan_ank')->references('id_layanan_ank')->on('layanan_anak');
+        $table->foreignId('id_layanan')->references('id_layanan')->on('layanan')->onDelete('cascade');
     });
-
-    Schema::create('galeri_layanan_dewasa', function (Blueprint $table) {
-        $table->id('id_galeri');
-        $table->string('judul', 100);
-        $table->string('deskripsi');
-        $table->text('url_media');
-        $table->timestamps();
-        $table->foreignId('id_layanan_dws')->references('id_layanan_dws')->on('layanan_dewasa')->onDelete('cascade');
-    });
+    
 
     Schema::create('galeri_dokter', function (Blueprint $table) {
         $table->id('id_galeri');

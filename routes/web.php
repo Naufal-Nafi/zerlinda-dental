@@ -4,12 +4,10 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\homeController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
-use App\Http\Controllers\public\AdultServiceController;
-use App\Http\Controllers\Public\KidsServiceController;
+use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\public\PublicBlogController;
 use App\Http\Controllers\public\PublicDoctorController;
 use App\Http\Controllers\public\PublicServiceController;
@@ -18,6 +16,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Middleware\CustomAuthRedirect;
 use App\Http\Middleware\admin;
+use App\Models\kontak;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -61,8 +60,8 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
     Route::delete('/admin/landingpage/destroy/{id}', [LandingPageController::class, 'destroy'])->name('admin.landingpage.destroy');
 
     Route::get('/admin/service', [ServiceController::class, 'index'])->name('admin.service');
-    Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('admin.service.store');
-    Route::post('/admin/service/edit/{id}', [ServiceController::class, 'edit'])->name('admin.service.update');
+    Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('admin.service.store');    
+    Route::put('/service/update/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
     Route::delete('/admin/service/destroy/{id}', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
 
     Route::get('/admin/change-password', [PasswordController::class, 'index'])->name('password.change');
@@ -89,17 +88,16 @@ Route::post('admin/password/email', [ForgotPasswordController::class, 'sendReset
 // Route::get('/', '');
 Route::get('/',[homeController::class, 'index'])->name('home');
 
-Route::view('/location', 'user.maps')->name('location');
+Route::get('/location', function () {
+  $contacts = kontak::all(); // Mengambil semua data dari model Kontak
+  return view('user.maps', compact('contacts')); // Mengirim data ke view
+})->name('location');
+
 Route::get('/layananGigiAnak', [PublicServiceController::class, 'childService'])->name('service.child');
 Route::get('/layananGigiDewasa', [PublicServiceController::class, 'adultService'])->name('service.adult');
-// Route::get('/services/{type}/{id}', [PublicServiceController::class, 'show'])->name('service.show');
 
-Route::get('/typeServices', [PublicServiceController::class, 'show'])->name('service.show');
+Route::get('/pelayanan/{id}', [PublicServiceController::class, 'show'])->name('service.show');
 
-// Route::get('/layananAnak', [KidsServiceController::class, 'index']);
-// Route::get('/layananDewasa', [AdultServiceController::class, 'index']);
-
-Route::get('/blog',[BlogController::class, 'indexPublic'])->name('blog');
-Route::get('/artikel/{id}',[BlogController::class, 'show'])->name('blog.show');
-// Route::get('/showBlog',[PublicBlogController::class, 'show'])->name('blog.show');
-Route::get('/jadwal',[PublicDoctorController::class, 'show'])->name('schedule');
+Route::get('/blog',[PublicBlogController::class, 'index'])->name('blog');
+Route::get('/artikel/{id}',[PublicBlogController::class, 'show'])->name('blog.show');
+Route::get('/jadwal',[PublicDoctorController::class, 'index'])->name('schedule');

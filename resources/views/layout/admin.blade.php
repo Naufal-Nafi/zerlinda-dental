@@ -62,7 +62,7 @@
                     <ul class="nav flex-column w-100">
                         <li class="nav-item d-flex justify-content-center ">
                             <a class="btn bg-pink nav-link text-decoration-none text-white"
-                                href=" {{ route('admin.login') }} "><i class="bi bi-box-arrow-right"></i>LogOut</a>
+                                href=" {{ route('admin.logout') }} "><i class="bi bi-box-arrow-right"></i>LogOut</a>
                         </li>
                     </ul>
                 </div>
@@ -175,10 +175,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <!--Edit Modal -->
     
 
 
