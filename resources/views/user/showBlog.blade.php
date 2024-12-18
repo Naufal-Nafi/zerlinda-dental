@@ -12,7 +12,7 @@
     <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="" class="border-4 border-pink-secondary rounded-lg mx-auto">
     @endforeach
     <p class="my-12 text-black text-justify text-xs md:text-base">
-        {{!! nl2br(e($artikel->konten)) !!}}
+        {!! Str::of($artikel->konten)->replace("\n", '<br>') !!}
     </p>
 </div>
 @endsection

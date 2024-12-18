@@ -7,50 +7,18 @@
     <h1 class="md:text-5xl text-3xl my-20">Layanan Gigi Dewasa</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 xl:mx-60 lg:mx-32 mx-10 mb-20">
         <!-- for each  -->
-        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
-            <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/person_1.png') }}" alt="Circular Image"
-                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
-            </div>
-            <p class="md:text-3xl text-xl mt-12">Behel Gigi</p>
-        </a>
+        @foreach ($services as $service)                  
+            <a href="{{ route('service.show', $service->id_layanan) }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
+                <div class="flex justify-center items-center ">
+                    @if ($galeri = $service->galeri_layanan->first())
+                        <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt="Circular Image"
+                            class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
+                    @endif
+                </div>
+                <p class="md:text-3xl text-xl mt-12">{{ $service->nama_layanan }}</p>
+            </a>
+        @endforeach
         <!-- end for each  -->
-        <!-- example  -->
-        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
-            <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/pelayanan_5.png') }}" alt="Circular Image"
-                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
-            </div>
-            <p class="md:text-3xl text-xl mt-12">Gigi Tiruan</p>
-        </a>
-        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
-            <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/pelayanan_6.png') }}" alt="Circular Image"
-                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
-            </div>
-            <p class="md:text-3xl text-xl mt-12">Cabut Gigi</p>
-        </a>        
-        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
-            <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/person_1.png') }}" alt="Circular Image"
-                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
-            </div>
-            <p class="md:text-3xl text-xl mt-12">Behel Gigi</p>
-        </a>        
-        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
-            <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/pelayanan_5.png') }}" alt="Circular Image"
-                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
-            </div>
-            <p class="md:text-3xl text-xl mt-12">Gigi Tiruan</p>
-        </a>
-        <a href="{{ route('service.show') }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
-            <div class="flex justify-center items-center ">
-                <img src="{{ asset('images/pelayanan_6.png') }}" alt="Circular Image"
-                    class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
-            </div>
-            <p class="md:text-3xl text-xl mt-12">Cabut Gigi</p>
-        </a>        
     </div>
 </div>
 @endsection

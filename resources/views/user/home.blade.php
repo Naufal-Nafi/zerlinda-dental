@@ -32,7 +32,7 @@
         $('#slider-area').owlCarousel({
             loop: true,
             autoplay: true,
-            dots:false,
+            dots: false,
             items: 1
         });
     });
@@ -75,31 +75,25 @@
 
 
         <!-- Adult section -->
-        <div id="dewasa-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 ">
-            <div data-aos="fade-right" data-aos-delay="500">
-                <a href="{{ route('service.show') }}"
-                    class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                    <div class="flex justify-center items-center ">
-                        <img src="{{ asset('images/person_1.png') }}" alt="Circular Image"
-                            class="xl:size-[250px] size-[200px] rounded-full object-cover">
-                    </div>
-                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Behel Gigi</p>
-                </a>
-            </div>
+        <div id="dewasa-section" class="">
+            <div data-aos="fade-right" data-aos-delay="500"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
+                @foreach ($layanan2_dewasa as $service)                                
+                    <a href="{{ route('service.show', $service->id_layanan) }}"
+                        class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
+                        <div class="flex justify-center items-center ">
+                            @if ($galeri = $service->galeri_layanan->first())
+                                <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt="Circular Image"
+                                    class="xl:size-[250px] size-[200px] rounded-full object-cover">
+                            @endif
+                        </div>
+                        <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}
+                        </p>
+                    </a>
+                @endforeach
 
-            <div data-aos="fade-up" data-aos-delay="500">
-                <a href="{{ route('service.show') }}"
-                    class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                    <div class="flex justify-center items-center ">
-                        <img src="{{ asset('images/pelayanan_7.png') }}" alt="Circular Image"
-                            class="xl:size-[250px] size-[200px] rounded-full object-cover">
-                    </div>
-                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
-                </a>
-            </div>
-            <!-- lainnya  -->
-            <div data-aos="fade-left" data-aos-delay="500">
-                <a href="{{ route('service.child') }}"
+                <!-- lainnya  -->
+                <a href="{{ route('service.adult') }}"
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center">
                         <svg class="xl:size-[250px] size-[200px] p-12 bg-pink-secondary rounded-full" width="75"
@@ -117,23 +111,19 @@
 
         <!-- Child section -->
         <div id="anak-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 hidden">
-            <a href="{{ route('service.show') }}"
-                class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                <div class="flex justify-center items-center ">
-                    <img src="{{ asset('images/person_2.png') }}" alt="Circular Image"
-                        class="xl:size-[250px] size-[200px] rounded-full object-cover">
-                </div>
-                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Behel Gigi</p>
-            </a>
+            @foreach ($layanan2_anak as $service)                        
+                <a href="{{ route('service.show', $service->id_layanan) }}"
+                    class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
+                    <div class="flex justify-center items-center ">
+                        @if ($galeri = $service->galeri_layanan->first())
+                            <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt="Circular Image"
+                                class="xl:size-[250px] size-[200px] rounded-full object-cover">
+                        @endif
+                    </div>
+                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}</p>
+                </a>
+            @endforeach
 
-            <a href="{{ route('service.show') }}"
-                class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                <div class="flex justify-center items-center ">
-                    <img src="{{ asset('images/pelayanan_7.png') }}" alt="Circular Image"
-                        class="xl:size-[250px] size-[200px] rounded-full object-cover">
-                </div>
-                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">Gigi Tiruan</p>
-            </a>
             <!-- lainnya  -->
             <a href="{{ route('service.child') }}"
                 class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
@@ -195,10 +185,12 @@
             Informasi Terbaru
         </h2>
         <div data-aos="fade-left">
-            <button id="customPrevBtn" class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
+            <button id="customPrevBtn"
+                class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
                 <span>&lt;</span>
             </button>
-            <button id="customNextBtn" class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
+            <button id="customNextBtn"
+                class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
                 <span>&gt;</span>
             </button>
         </div>
@@ -207,54 +199,20 @@
     <!-- artikel section  -->
     <div id="wrapper" class="relative h-full w-full flex items-center" data-aos="fade-up" data-aos-delay="500">
         <div id="slider-area-artikel" class="owl-carousel absolute  w-full top-0 left-0  ">
-            <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
-                    <img src="{{ asset('images/artikel_1.png') }}" alt="Gambar" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
+            @foreach ($artikels as $artikel)                        
+                <a href="{{ route('blog.show', $artikel->id_artikel) }}" class="">
+                    <div
+                        class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
+                        @foreach ($artikel->galeri_artikel as $galeri)
+                            <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Gambar"
+                                class="w-full h-40 object-cover">
+                        @endforeach
+                        <div class="p-4">
+                            <p class="font-semibold">{{ $artikel->judul }}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
-                    <img src="{{ asset('images/artikel_2.png') }}" alt="Gambar" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
-                    </div>
-                </div>
-            </a>
-            <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
-                    <img src="{{ asset('images/artikel_3.png') }}" alt="Gambar" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
-                    </div>
-                </div>
-            </a>
-            <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
-                    <img src="{{ asset('images/artikel_4.png') }}" alt="Gambar" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
-                    </div>
-                </div>
-            </a>
-            <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
-                    <img src="{{ asset('images/artikel_5.png') }}" alt="Gambar" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak Lepas</p>
-                    </div>
-                </div>
-            </a>
-            <a href="{{ route('blog.show') }}" class="">
-                <div class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
-                    <img src="{{ asset('images/artikel_6.png') }}" alt="Gambar" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <p class="font-semibold">Cara Agar Gigi Palsu Tidak surut</p>
-                    </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
     </div>
 </div>
@@ -264,15 +222,15 @@
         const owl = $('#slider-area-artikel');
         owl.owlCarousel({
             loop: true,
-            autoplay: true,            
-            autoplayHoverPause:true,
+            autoplay: true,
+            autoplayHoverPause: true,
             margin: 20,
-            nav: false,    
-            dots:false,            
+            nav: false,
+            dots: false,
             responsive: {
                 0: {
                     items: 1,
-                    
+
                 },
                 600: {
                     items: 2
@@ -283,11 +241,11 @@
             }
         });
 
-        $('#customPrevBtn').click(function() {
+        $('#customPrevBtn').click(function () {
             owl.trigger('prev.owl.carousel');  // Pindah ke slide sebelumnya
         });
 
-        $('#customNextBtn').click(function() {
+        $('#customNextBtn').click(function () {
             owl.trigger('next.owl.carousel');  // Pindah ke slide berikutnya
         });
     });
@@ -306,8 +264,8 @@
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-9" data-aos="fade-up" data-aos-delay="500">
             <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
                 <p class="text-xl mb-12">
-                Pelayanan di Zerlinda Dental Care sangat ramah dan profesional,
-                 tempatnya bersih dan nyaman sekali.
+                    Pelayanan di Zerlinda Dental Care sangat ramah dan profesional,
+                    tempatnya bersih dan nyaman sekali.
                 </p>
                 <div class="flex items-center">
                     <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
@@ -317,8 +275,8 @@
             </div>
             <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
                 <p class="text-xl mb-12">
-                Perawatan gigi di Zerlinda Dental Care sangat memuaskan, 
-                hasilnya rapi dengan dokter yang berpengalaman.
+                    Perawatan gigi di Zerlinda Dental Care sangat memuaskan,
+                    hasilnya rapi dengan dokter yang berpengalaman.
                 </p>
                 <div class="flex items-center">
                     <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
@@ -328,8 +286,8 @@
             </div>
             <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
                 <p class="text-xl mb-12">
-                Tempatnya modern dan steril, pelayanan cepat dan perawatan 
-                di Zerlinda Dental Care sangat berkualitas.
+                    Tempatnya modern dan steril, pelayanan cepat dan perawatan
+                    di Zerlinda Dental Care sangat berkualitas.
                 </p>
                 <div class="flex items-center">
                     <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
@@ -347,7 +305,7 @@
 
 <!-- Lokasi  -->
 <div class="my-40 flex flex-col items-center justify-center text-start text-pink-primary">
-    <div class="w-4/5">        
+    <div class="w-4/5">
         <h1 class=" text-3xl font-bold mb-4 " data-aos="fade-right">
             Lokasi Klinik
         </h1>
