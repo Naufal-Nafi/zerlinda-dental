@@ -35,41 +35,44 @@
                                     data-id="{{'/blog/destroy/' . $artikel->getKey()}}">Hapus</button></span>
                         </td>
                     </tr>
-                    <div class="modal fade text-start" id="editBlogModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xl modal-dialog-centered">
-                            <div class="modal-content bg-light-pink" style="padding: 50px;">
-                                <form id="editForm" action="{{ route('admin.blog.update', $artikel->id_artikel) }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-                                    
-                                    <div class="modal-body text-20" id="editModalContent">
-                                        <div class="mb-3 ">
-                                            <label for="exampleFormControlInput1" class="form-label ">Judul</label>
-                                            <input type="text" class="form-control border-black" id="EditFormJudul" name="judul">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="formFile2" class="form-label">Gambar</label>
-                                            <img id="previewImage2" src="" alt="Preview Image"
-                                                style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-                                            <input class="form-control border-black image-input" type="file" id="gambar_edit" name="gambar">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Artikel</label>
-                                            <textarea class="form-control border-black" id="EditFormKonten" rows="3"
-                                                name="konten"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn text-white bg-pink">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 @endforeach
             </tbody>
         </table>
+        <div class="modal fade text-start" id="editBlogModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content bg-light-pink" style="padding: 50px;">
+                    <form id="editForm" action="{{ route('admin.blog.update', $artikel->id_artikel) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="modal-body text-20" id="editModalContent">
+                            <div class="mb-3 ">
+                                <label for="exampleFormControlInput1" class="form-label ">Judul</label>
+                                <input type="text" class="form-control border-black" id="EditFormJudul" name="judul">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formFile2" class="form-label">Gambar</label>
+                                <img id="previewImage2" src="" alt="Preview Image"
+                                    style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
+                                <input class="form-control border-black image-input" type="file" id="gambar_edit"
+                                    name="gambar">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Artikel</label>
+                                <textarea class="form-control border-black" id="EditFormKonten" rows="3"
+                                    name="konten"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn text-white bg-pink">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     @else
         <p>Belum ada artikel</p>
     @endif
@@ -120,13 +123,3 @@
     <textarea class="form-control border-black" id="exampleFormControlTextarea1" rows="3" name="konten"></textarea>
 </div>
 @endsection
-
-
-
-
-
-
-
-
-
-

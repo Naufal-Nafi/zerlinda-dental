@@ -94,8 +94,8 @@
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
             aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header bg-light-pink">
-                <div class="w-100 mb-4 d-flex justify-content-center">
-                    <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" style="width: 80%;">
+                <div class="w-100 d-flex justify-content-between">
+                    <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" style="width: 70%;">
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
@@ -103,33 +103,33 @@
                 <div>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}"><i
-                                    class="bi bi-house-door me-2"></i>Home</a>
+                            <a class="nav-link px-2" href="{{ route('admin.dashboard') }}"><i
+                                    class="bi bi-house-door me-3"></i>Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.contact') }}"><i
-                                    class="bi bi-envelope me-2"></i>Contact</a>
+                            <a class="nav-link px-2" href="{{ route('admin.contact') }}"><i
+                                    class="bi bi-envelope me-3"></i>Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.landingpage') }} "><i
-                                    class="bi bi-file-earmark-text me-2"></i>Landing Page</a>
+                            <a class="nav-link px-2" href=" {{ route('admin.landingpage') }} "><i
+                                    class="bi bi-file-earmark-text me-3"></i>Landing Page</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.blog.index') }} ">
-                                <i class="bi bi-journal me-2"></i>Artikel
+                            <a class="nav-link px-2" href=" {{ route('admin.blog.index') }} ">
+                                <i class="bi bi-journal me-3"></i>Artikel
                                 Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.doctor') }} "><i
-                                    class="bi bi-calendar me-2"></i>Jadwal Dokter</a>
+                            <a class="nav-link px-2" href=" {{ route('admin.doctor') }} "><i
+                                    class="bi bi-calendar me-3"></i>Jadwal Dokter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('admin.service') }} "> <i
-                                    class="bi bi-gear me-2"></i>Layanan</a>
+                            <a class="nav-link px-2" href=" {{ route('admin.service') }} "> <i
+                                    class="bi bi-gear me-3"></i>Layanan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('password.change') }} ">
-                                <i class="bi bi-lock me-2"></i>Ubah Password</a>
+                            <a class="nav-link px-2" href=" {{ route('password.change') }} ">
+                                <i class="bi bi-lock me-3"></i>Ubah Password</a>
                         </li>
                     </ul>
                 </div>
@@ -147,7 +147,7 @@
 
 
         <!-- Konten Halaman -->
-        <div class="main-content container d-flex justify-content-center align-items-center" style="top: 8%;">
+        <div class="main-content container d-flex justify-content-center align-items-center" style="margin-top: 120px;">
             <div style="width: 85%; ">
                 @yield('content')
             </div>

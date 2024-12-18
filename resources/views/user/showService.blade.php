@@ -14,7 +14,7 @@
     @endif
 
     <p class="mt-12 text-black text-justify">
-        {{ $service->deskripsi }}
+        {!! Str::of($service->deskripsi)->replace("\n", '<br>') !!}
     </p>
     <h1 class="lg:text-5xl text-xl font-bold lg:my-20 my-12">Contoh Foto Perawatan</h1>
 
