@@ -16,6 +16,8 @@ class forgotpassword extends Model
     protected $fillable = [
         'email',
         'password',
-        'token'
+        'token',
+        'reset_token',
+        'token_expires_at',
     ];
 }

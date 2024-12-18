@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class ForgotPasswordController extends Controller
 {
@@ -22,50 +24,52 @@ class ForgotPasswordController extends Controller
 
     public function index()
     {
-        return view();
+        $token = Str::random(5);
+        return view("admin.forgotPassword", compact('token'));
     }
 
-    public function verify_token($token)
+    public function passwordform()
     {
+        $user = User::all();
+        return view("admin.newPassword", compact('user'));
+    }
+
+    public function verify_token(Request $request)
+    {
+        $token = $request->input('token');
 
         $user = User::where('reset_token', $token)
-            ->where('reset_token_expires_at', '>', now())
+            ->where('token_expires_at', '>=', now())
             ->first();
 
         if (!$user) {
             return redirect()->route('admin.login')->with('error', 'Token tidak valid atau telah kadaluarsa.');
+        } else {
+            return redirect()->route('admin.password.reset.form')->with('success', 'Token valid.');
         }
-
-        return view('admin.forgotPassword', compact('token'));
     }
 
-    public function showLinkRequestForm()
-    {
-        return view('admin.Forgot_Password'); // Ensure you have the appropriate view
-    }
+    
 
     public function resetPassword(Request $request)
     {
         $request->validate([
-            'token' => 'required',
-            'password' => 'required',
+            'password' => 'required|string|confirmed',
         ]);
 
-        $user = User::where('reset_token', $request->token)
-            ->where('token_expires_at', '>', now())
-            ->first();
-
-        if (!$user) {
-            return back()->with('error', 'Token tidak valid atau sudah kedaluwarsa.');
-        }
+        $userId = Auth::user()->id;
+        $user = User::findOrFail(id: $userId);
+        dd($user);
+        
 
         $user->update([
             'password' => bcrypt($request->password),
             'reset_token' => null,
             'token_expires_at' => null,
         ]);
+        
 
-        return redirect()->route('login')->with('success', 'Password berhasil diubah.');
+        return redirect()->view('admin.login')->with('success', 'Password berhasil diubah.');
     }
 
 
@@ -75,29 +79,25 @@ class ForgotPasswordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sendResetLinkEmail(Request $request)
+    public function sendResetLinkEmail()
     {
-        // Validate email input
-        $request->validate(['email' => 'required|email']);
-
+        
         // Send password reset link
-        $user = User::where('email', $request->email)->first();
+        $user = User::first();
 
-        if (!$user) {
-            return back()->withErrors(['email' => 'Email tidak ditemukan.']);
-        }
-
-        $token = Str::random(64);
+        $token = Str::random(5);
         $user->update([
             'reset_token' => $token,
-            'reset_token_expires_at' => now()->addMinutes(30),
+            'token_expires_at' => now()->addMinutes(30),
         ]);
+        
+
 
         Mail::send('email.form_email', ['token' => $token], function ($message) use ($user) {
             $message->to($user->email);
             $message->subject('Reset Password');
         });
 
-        return back()->with('success', 'Link reset password telah dikirim ke email Anda.');
+        return Redirect()->route('admin.password.request')-> with('success', 'Link reset password telah dikirim ke email Anda.');
     }
 }

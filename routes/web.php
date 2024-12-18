@@ -73,15 +73,19 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
 
 
 Route::get('admin/password/reset', [ForgotPasswordController::class, 'index'])->name('admin.password.request');
-Route::post('admin/password/reset/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('admin/password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');
+Route::get('admin/password/reset/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+
+Route::post('admin/password/reset/form', [ForgotPasswordController::class, 'verify_token'])->name('admin.password.request.verify');
+Route::get('admin/password/reset/password', [ForgotPasswordController::class, 'passwordform'])->name('admin.password.reset.form');
+
+Route::post('admin/password/reset/password/update', [ForgotPasswordController::class, 'resetPassword'])->name('admin.password.reset');
 
 
 
 
 
 // Rute Layanan
-// Route::get('/password/forgot', [ForgotPasswordController::class, 'index'])->name('admin.forgotPassword');
+// // Route::get('/password/forgot', [ForgotPasswordController::class, 'index'])->name('admin.forgotPassword');
 // Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
 // Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 

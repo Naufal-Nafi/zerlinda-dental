@@ -24,7 +24,8 @@
         <div class="card shadow-sm p-5" style="max-width: 400px; width: 100%;">
             <h1 class="text-center mb-4 fw-bold">Ubah Password</h1>            
 
-            <form action="{{ route('password.update') }}" method="POST">
+            <form action="{{ route('admin.password.reset') }}" method="POST">
+
                 @csrf
                
                 <!-- Password Baru -->
@@ -35,7 +36,7 @@
 
                 <!-- Konfirmasi Password Baru -->
                 <div class="mb-3">
-                    <input type="password" name="password" class="form-control"
+                    <input type="password" name="password_confirmation" class="form-control"
                         placeholder="Konfirmasi Password Baru" required>
                 </div>
 
