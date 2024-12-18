@@ -27,6 +27,8 @@
             <form action="{{ route('admin.password.reset') }}" method="POST">
 
                 @csrf
+
+                <input type="hidden" name="token" value="{{ Request::get('token') }}">
                
                 <!-- Password Baru -->
                 <div class="mb-3">

@@ -45,31 +45,38 @@ class ForgotPasswordController extends Controller
         if (!$user) {
             return redirect()->route('admin.login')->with('error', 'Token tidak valid atau telah kadaluarsa.');
         } else {
-            return redirect()->route('admin.password.reset.form')->with('success', 'Token valid.');
+            return redirect()->route('admin.password.reset.form', compact('token'))->with('success', 'Token valid.');
         }
     }
 
-    
+
 
     public function resetPassword(Request $request)
     {
-        $request->validate([
-            'password' => 'required|string|confirmed',
-        ]);
-
-        $userId = Auth::user()->id;
-        $user = User::findOrFail(id: $userId);
-        dd($user);
         
+        $request->validate([
+            'token' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+        
+
+        $user = User::first();
+        if ($user->reset_token !== $request->token) {
+            $user->update([
+                'reset_token' => null,
+                'token_expires_at' => null,
+            ]);
+            return redirect()->route('admin.login')->with('error', 'Token tidak valid atau telah kadaluarsa.');
+        }
 
         $user->update([
             'password' => bcrypt($request->password),
             'reset_token' => null,
             'token_expires_at' => null,
         ]);
-        
 
-        return redirect()->view('admin.login')->with('success', 'Password berhasil diubah.');
+
+        return redirect()->route('admin.login')->with('success', 'Password berhasil diubah.');
     }
 
 
@@ -81,7 +88,7 @@ class ForgotPasswordController extends Controller
      */
     public function sendResetLinkEmail()
     {
-        
+
         // Send password reset link
         $user = User::first();
 
@@ -90,7 +97,7 @@ class ForgotPasswordController extends Controller
             'reset_token' => $token,
             'token_expires_at' => now()->addMinutes(30),
         ]);
-        
+
 
 
         Mail::send('email.form_email', ['token' => $token], function ($message) use ($user) {
@@ -98,6 +105,6 @@ class ForgotPasswordController extends Controller
             $message->subject('Reset Password');
         });
 
-        return Redirect()->route('admin.password.request')-> with('success', 'Link reset password telah dikirim ke email Anda.');
+        return Redirect()->route('admin.password.request')->with('success', 'Link reset password telah dikirim ke email Anda.');
     }
 }

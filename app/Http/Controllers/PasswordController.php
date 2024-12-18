@@ -61,14 +61,18 @@ class PasswordController extends Controller
      */
     public function update(Request $request)
 {
+   
+
     // Validasi input
     $request->validate([
         'password' => 'required|string|confirmed',
     ]);
     
     // Perbarui password
-    $userId = Auth::user()->id;
+    $userId = Auth::user()->id_pengguna;
+    
     $user = User::findOrFail(id: $userId);
+
     $user->password = Hash::make(value: $request->password);
     $user->save();
 
