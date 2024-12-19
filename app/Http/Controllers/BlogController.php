@@ -47,7 +47,7 @@ class BlogController extends Controller
             galeri_artikel::create([
                 'id_artikel' => $artikel->id_artikel,
                 'judul' => $validatedData['judul'],
-                'deskripsi' => $validatedData['konten'],
+                'deskripsi' => $validatedData['judul'],
                 'url_media' => 'images/galeri_artikel/' . $imageName,
                 $foreignKey => $artikel[$foreignKey],
             ]);
