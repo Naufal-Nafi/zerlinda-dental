@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <link rel="icon" href="{{ asset('images/logo_simple.png') }}">
     <!-- jquery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -15,7 +16,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="icon" href="{{ asset('images/logo_simple.png') }}">
 </head>
 
 <body>
@@ -208,11 +208,11 @@
             hapusModal.addEventListener('show.bs.modal', function (event) {
                 // Dapatkan tombol yang diklik
                 var button = event.relatedTarget;
-                var serviceId = button.getAttribute('data-id');
+                var Id = button.getAttribute('data-id');
                 var form = document.getElementById('deleteForm');
 
                 // Set action form berdasarkan ID service
-                form.action = '/admin' + serviceId;
+                form.action = '/admin' + Id;
             });
         });
     </script>

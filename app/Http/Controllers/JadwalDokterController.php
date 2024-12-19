@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokterr;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Storage;
 
 class JadwalDokterController extends Controller
 {
@@ -16,7 +17,7 @@ class JadwalDokterController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         // Validasi input
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
@@ -33,7 +34,7 @@ class JadwalDokterController extends Controller
                         "jadwal.$day.jadwal_akhir" => 'Jam akhir diperlukan jika jam mulai diisi.',
                     ]);
                 }
-        
+
                 if (strtotime($schedule['jadwal_awal']) >= strtotime($schedule['jadwal_akhir'])) {
                     throw ValidationException::withMessages([
                         "jadwal.$day.jadwal_akhir" => 'Jam akhir harus setelah jam mulai.',
@@ -41,7 +42,7 @@ class JadwalDokterController extends Controller
                 }
             }
         }
-        
+
         // dd(true);
         // Menyimpan gambar jika ada
         $gambarPath = $request->hasFile('gambar') ? $request->file('gambar')->store('gambar_dokter', 'public') : null;
@@ -55,4 +56,28 @@ class JadwalDokterController extends Controller
 
         return redirect()->back()->with('success', 'Jadwal berhasil disimpan!');
     }
+
+    public function destroy($id)
+    {
+        // Cari jadwal berdasarkan ID
+        $jadwal = Dokterr::findOrFail($id);
+
+        // Hapus gambar dari storage jika ada
+        if ($jadwal->gambar) {
+            // dd($jadwal->gambar);
+            Storage::delete( $jadwal->gambar);
+        }
+
+        // Hapus data jadwal dari database
+        $jadwal->delete();
+
+        // Kembali ke halaman sebelumnya
+        return back();
+    }
+
+    public function update(Request $request,$id) {
+        dd($request->all());
+        Dokterr::findOrFail($id);
+    }
+
 }

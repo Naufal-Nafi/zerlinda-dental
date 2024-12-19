@@ -52,8 +52,8 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
     Route::get('/admin/doctor/create', [DoctorController::class, 'create'])->name('admin.doctor.create');
     // Route::post('/admin/doctor/store', [DoctorController::class, 'store'])->name('admin.doctor.store');
     Route::post('/admin/doctor/store', [JadwalDokterController::class, 'store'])->name('admin.doctor.store');
-    Route::get('/admin/doctor/edit/{id}', [DoctorController::class, 'edit'])->name('admin.doctor.edit');
-    Route::delete('/admin/doctor/destroy/{id}', [DoctorController::class, 'destroy'])->name('admin.doctor.destroy');
+    Route::put('/admin/doctor/update/{id}', [JadwalDokterController::class, 'update'])->name('admin.doctor.update');
+    Route::delete('/admin/doctor/destroy/{id}', [JadwalDokterController::class, 'destroy'])->name('admin.doctor.destroy');
 
     
     Route::get('/admin/landingpage', [LandingPageController::class, 'index'])->name('admin.landingpage');
@@ -108,3 +108,5 @@ Route::get('/pelayanan/{id}', [PublicServiceController::class, 'show'])->name('s
 Route::get('/blog',[PublicBlogController::class, 'index'])->name('blog');
 Route::get('/artikel/{id}',[PublicBlogController::class, 'show'])->name('blog.show');
 Route::get('/jadwal',[PublicDoctorController::class, 'index'])->name('schedule');
+Route::get('/jadwal/cekJadwal',[PublicDoctorController::class, 'getSchedule'])->name('schedule.search');
+
