@@ -49,7 +49,6 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
     Route::delete('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
 
     Route::get('/admin/doctor', [JadwalDokterController::class, 'index'])->name('admin.doctor');
-    Route::get('/admin/doctor/create', [DoctorController::class, 'create'])->name('admin.doctor.create');
     // Route::post('/admin/doctor/store', [DoctorController::class, 'store'])->name('admin.doctor.store');
     Route::post('/admin/doctor/store', [JadwalDokterController::class, 'store'])->name('admin.doctor.store');
     Route::put('/admin/doctor/update/{id}', [JadwalDokterController::class, 'update'])->name('admin.doctor.update');
