@@ -12,7 +12,7 @@ class ServiceController extends Controller
     public function index()
     {
         $services = layanan::with("galeri_layanan")->get();
-
+        // dd($services->first()->galeri_layanan->first()->url_media);
         return view('admin.service', compact('services'));
     }
 
@@ -46,7 +46,7 @@ class ServiceController extends Controller
                 // Buat entry di tabel galeri_layanan
                 galeri_layanan::create([
                     'judul' => $validatedData['nama_layanan'],
-                    'deskripsi' => $validatedData['deskripsi'],
+                    'deskripsi' => 'deskripsi',
                     'url_media' => 'images/layanan/' . $imageName, // Path ke gambar
                     'id_layanan' => $layanan->id_layanan // Foreign key ke tabel layanan
                 ]);
