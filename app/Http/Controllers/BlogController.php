@@ -25,12 +25,12 @@ class BlogController extends Controller
 
 
     public function store(Request $request)
-    {
+    {        
         $validatedData = $request->validate([
             'judul' => 'required|max:100',
             'konten' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        ]);    
 
         $artikel = artikel::create([
             'judul' => $validatedData['judul'],
@@ -38,21 +38,21 @@ class BlogController extends Controller
         ]);
 
         $foreignKey = 'id_artikel';
-
+        
 
         if ($request->hasFile("gambar")) {
-
+            
             $imageName = time() . '_' . $request->gambar->getClientOriginalName();
             $request->file('gambar')->storeAs('images/galeri_artikel', $imageName, 'public');
             galeri_artikel::create([
                 'id_artikel' => $artikel->id_artikel,
                 'judul' => $validatedData['judul'],
-                'deskripsi' => $validatedData['konten'],
+                'deskripsi' => 'deskripsi',
                 'url_media' => 'images/galeri_artikel/' . $imageName,
                 $foreignKey => $artikel[$foreignKey],
             ]);
         }
-
+        
         return redirect()->back()->with('success', 'Artikel berhasil ditambahkan!');
     }
 

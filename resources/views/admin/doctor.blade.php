@@ -26,7 +26,7 @@
                         <td>{{ $dokter->nama }}</td>
                         <td>
                             @foreach ($dokter->jadwal as $jadwal)
-                                <li>
+                                <li style="list-style:none;">
                                     Hari: {{ucfirst($jadwal['hari'])}} <br>
                                     Jam: {{$jadwal['jadwal_awal']}} - {{$jadwal['jadwal_akhir']}}
                                 </li>
@@ -44,31 +44,8 @@
         </table>
     @else
         <p>Tidak ada data.</p>
-    @endif
-    <div class="modal fade text-start" id="editServiceModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content bg-light-pink" style="padding: 50px;">
-                <form id="editForm" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn text-white bg-pink">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @endif    
 </div>
-
-@endsection
-
-@section('formAction')
-{{ route('admin.doctor.store') }}
-@endsection
-
 <div class="modal fade" id="createDoctorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content bg-light-pink" style="padding: 50px;">
@@ -177,8 +154,8 @@
                                                     {{ isset($dokter->jadwal[$day]) ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="{{ $day }}">{{ ucfirst($day) }}</label>
                                             </div>
-                                            <div id="scheduleEdit-{{ $day }}" class="schedule-times mx-3 mb-3"
-                                                style="{{ isset($dokter->jadwal[$day]) ? '' : 'display:none;' }} width: 200px;">
+                                            <div id="Edit-schedule-{{ $day }}" class="schedule-times mx-3 mb-3 {{ isset($dokter->jadwal[$day]) ? '' : 'd-none' }}"
+                                                style=" width: 200px;">
                                                 <label for="jadwal_awal-{{ $day }}" class="form-label">Jam Mulai - {{ ucfirst($day) }}</label>
                                                 <input 
                                                     type="time" 
@@ -211,59 +188,59 @@
         </div>
     </div>   
 @endforeach
+@endsection
+
+@section('formAction')
+{{ route('admin.doctor.store') }}
+@endsection
+
+
 
 @section('script')
 <script>
-   $(document).ready(function () {
+    $(document).ready(function () {
     // Fungsi untuk toggle jadwal berdasarkan status checkbox
     function toggleSchedule(day, isChecked, isEdit = false) {
-        const prefix = isEdit ? "Edit-" : ""; // Prefix untuk form edit
-        const scheduleDiv = $(`#${prefix}schedule-${day}`); // Div jadwal
-        const startInput = $(`#${prefix}jadwal_awal-${day}`); // Input jam mulai
-        const endInput = $(`#${prefix}jadwal_akhir-${day}`); // Input jam akhir
+        const prefix = isEdit ? "Edit-" : "";
+        const scheduleDiv = $(`#${prefix}schedule-${day}`);
+        const startInput = $(`#${prefix}jadwal_awal-${day}`);
+        const endInput = $(`#${prefix}jadwal_akhir-${day}`);
 
         if (isChecked) {
-            // Jika checkbox dicentang
-            scheduleDiv.show(); // Tampilkan div jadwal
-            startInput.prop("disabled", false); // Aktifkan input jam mulai
-            endInput.prop("disabled", false); // Aktifkan input jam akhir
-
-            // Jika tidak ada nilai default (input kosong), kosongkan nilai
-            if (!startInput.val()) startInput.val('');
-            if (!endInput.val()) endInput.val('');
+            scheduleDiv.css("display", "block");
+            startInput.prop("disabled", false);
+            endInput.prop("disabled", false);
         } else {
-            // Jika checkbox tidak dicentang
-            scheduleDiv.hide(); // Sembunyikan div jadwal
-            startInput.prop("disabled", true).val(''); // Nonaktifkan dan kosongkan input
-            endInput.prop("disabled", true).val(''); // Nonaktifkan dan kosongkan input
+            scheduleDiv.css("display", "none");
+            startInput.prop("disabled", true).val('');
+            endInput.prop("disabled", true).val('');
         }
     }
 
-    // Event listener untuk checkbox di form create
+    // Event listener untuk form create
     $(".form-check-input-doctor").on("change", function () {
-        const day = $(this).val(); // Ambil nama hari dari nilai checkbox
-        const isChecked = $(this).is(":checked"); // Periksa apakah checkbox dicentang
-        toggleSchedule(day, isChecked, false); // Panggil fungsi toggle
+        const day = $(this).val();
+        const isChecked = $(this).is(":checked");
+        toggleSchedule(day, isChecked, false);
     });
 
-    // Event listener untuk checkbox di form edit
-    $(".form-check-input-doctor-edit").on("change", function () {
-        const day = $(this).val(); // Ambil nama hari dari nilai checkbox
-        const isChecked = $(this).is(":checked"); // Periksa apakah checkbox dicentang
-        toggleSchedule(day, isChecked, true); // Panggil fungsi toggle
+    // Event listener untuk form edit (dengan delegation)
+    $(document).on("change", ".form-check-input-doctor-edit", function () {
+        const day = $(this).val();
+        const isChecked = $(this).is(":checked");
+        toggleSchedule(day, isChecked, true);
     });
 
     // Inisialisasi awal untuk form edit
     $(".form-check-input-doctor-edit").each(function () {
-        const day = $(this).val(); // Ambil nama hari
-        const isChecked = $(this).is(":checked"); // Periksa apakah checkbox dicentang
-        toggleSchedule(day, isChecked, true); // Setel status awal berdasarkan kondisi
+        const day = $(this).val();
+        const isChecked = $(this).is(":checked");
+        toggleSchedule(day, isChecked, true);
     });
 });
 
-
-
-
 </script>
+
+
 
 @endsection

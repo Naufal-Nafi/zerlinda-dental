@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class PublicBlogController extends Controller
 {
     public function index(Request $request) {    
+        $contacts = kontak::all();
         // Ambil keyword dari input
         $keyword = $request->input('keyword');
     
@@ -30,7 +31,8 @@ class PublicBlogController extends Controller
             return view('user.blog', [
                 'topBlog' => null,
                 'middleBlogs' => collect(),
-                'remainingBlogs' => collect()
+                'remainingBlogs' => collect(),
+                'contacts' => $contacts
             ]);
         }
     
@@ -41,11 +43,11 @@ class PublicBlogController extends Controller
     
         // Ambil remainingBlogs (sisanya)
         $remainingBlogs = $allBlogs
-            ->whereNotIn('id_artikel', $middleBlogs->pluck('id_artikel')->push($topBlog->id_artikel));
-
-        $contacts = kontak::all();
+            ->whereNotIn('id_artikel', $middleBlogs->pluck('id_artikel')->push($topBlog->id_artikel));        
             
-        return view('user.blog', compact('topBlog', 'middleBlogs', 'remainingBlogs', 'contacts'));
+        
+        
+        return view('user.blog', compact('contacts','topBlog', 'middleBlogs', 'remainingBlogs'));
     }
     
 

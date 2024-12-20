@@ -14,60 +14,78 @@
     </div>
 
     <!-- Blog paling atas  -->
-    <div
-        class="md:h-[630px] h-[350px] md:border-4 md:rounded-[65px] rounded-xl border-pink-secondary my-12 hover:opacity-80 duration-300 cursor-pointer">
-        <a href="{{ route('blog.show', $topBlog->id_artikel) }}">
-            @foreach ($topBlog->galeri_artikel as $galeri)
-                <img class="w-full h-4/5 md:rounded-t-[60px] rounded-t-xl object-cover"
-                    src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
-            @endforeach
-            <div class="h-1/5 bg-pink-secondary md:rounded-b-[60px] rounded-b-xl flex flex-col justify-center">
-                <p class="text-lg font-bold">{{ $topBlog->judul }}</p>
-            </div>
-        </a>
-    </div>
+    @if (isset($topBlog))
+        <div
+            class="md:h-[630px] h-[350px] md:border-4 md:rounded-[65px] rounded-xl border-pink-secondary my-12 hover:opacity-80 duration-300 cursor-pointer">
+            <a href="{{ route('blog.show', $topBlog->id_artikel) }}">
+                @foreach ($topBlog->galeri_artikel as $galeri)
+                    @if (isset($galeri->url_media))
+                        <img class="w-full h-4/5 md:rounded-t-[60px] rounded-t-xl object-cover"
+                            src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
+                    @endif
+                @endforeach
+                <div class="h-1/5 bg-pink-secondary md:rounded-b-[60px] rounded-b-xl flex flex-col justify-center">
+                    <p class="text-lg font-bold">{{ $topBlog->judul }}</p>
+                </div>
+            </a>
+        </div>
+    @else
+    <p>belum ada artikel</p>
+    @endif
 
     <!-- 3 blog kedua  -->
     <div class="grid md:grid-cols-3 grid-cols-1 gap-9">
-        @foreach ($middleBlogs as $artikel)
-            <div
-                class="xl:h-[400px] h-[350px] rounded-xl hover:rounded-3xl hover:opacity-80 duration-300 cursor-pointer bg-pink-secondary">
-                <a href="{{ route('blog.show', $artikel->id_artikel) }}">
-                    @foreach ($artikel->galeri_artikel as $galeri)
-                        <img class="w-full h-4/5 rounded-t-xl hover:rounded-t-3xl duration-300 object-cover"
-                            src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
-                    @endforeach
-                    <div class="h-1/5 bg-pink-secondary rounded-b-xl hover:rounded-b-3xl duration-300 flex flex-col justify-center">
-                        <p class="line-clamp-2">{{ $artikel->judul }}</p>
-                    </div>
-                </a>
-            </div>
-        @endforeach
+        @if ($middleBlogs && $middleBlogs->isNotEmpty())
+            @foreach ($middleBlogs as $artikel)
+                <div
+                    class="xl:h-[400px] h-[350px] rounded-xl hover:rounded-3xl hover:opacity-80 duration-300 cursor-pointer bg-pink-secondary">
+                    <a href="{{ route('blog.show', $artikel->id_artikel) }}">
+                        @if ($artikel->galeri_artikel && $artikel->galeri_artikel->isNotEmpty())
+                            @foreach ($artikel->galeri_artikel as $galeri)
+                                @if (isset($galeri->url_media))
+                                    <img class="w-full h-4/5 rounded-t-xl hover:rounded-t-3xl duration-300 object-cover"
+                                        src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
+                                @endif
+                            @endforeach
+                        @endif
+                        <div
+                            class="h-1/5 bg-pink-secondary rounded-b-xl hover:rounded-b-3xl duration-300 flex flex-col justify-center">
+                            <p class="line-clamp-2">{{ $artikel->judul }}</p>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+        @endif
     </div>
-</div>
 
-
-<!-- Blog lainnya  -->
-<div class="my-12 bg-pink-secondary bg-opacity-20 ">
-    <div class="w-4/5 mx-auto ">
-        <!-- for each -->
-        @foreach ($remainingBlogs as $artikel)                  
-            <div class="w-full py-8 hover:opacity-80 duration-300 cursor-pointer">
-                <a href="{{ route('blog.show', $artikel->id_artikel) }}" class="md:flex block">
-                    @foreach ($artikel->galeri_artikel as $galeri)
-                        <img class="md:w-1/4 h-full rounded-[50px] object-cover border-2 border-pink-secondary me-8"
-                            src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
-                    @endforeach
-                    <div class="md:text-left flex flex-col justify-center">
-                        <h5 class="text-pink-primary font-bold text-3xl my-2">{{ $artikel->judul }}</h5>
-                        <p class="text-justify line-clamp-3">
-                            {{ $artikel->konten }}
-                        </p>
+    <!-- Blog lainnya  -->
+    <div class="my-12 bg-pink-secondary bg-opacity-20 ">
+        <div class="w-4/5 mx-auto ">
+            <!-- for each -->
+            @if ($remainingBlogs && $remainingBlogs->isNotEmpty())
+                @foreach ($remainingBlogs as $artikel)
+                    <div class="w-full py-8 hover:opacity-80 duration-300 cursor-pointer">
+                        <a href="{{ route('blog.show', $artikel->id_artikel) }}" class="md:flex block">
+                            @if ($artikel->galeri_artikel && $artikel->galeri_artikel->isNotEmpty())
+                                @foreach ($artikel->galeri_artikel as $galeri)
+                                    @if (isset($galeri->url_media))
+                                        <img class="md:w-1/4 h-full rounded-[50px] object-cover border-2 border-pink-secondary me-8"
+                                            src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
+                                    @endif
+                                @endforeach
+                            @endif
+                            <div class="md:text-left flex flex-col justify-center">
+                                <h5 class="text-pink-primary font-bold text-3xl my-2">{{ $artikel->judul }}</h5>
+                                <p class="text-justify line-clamp-3">
+                                    {{ $artikel->konten }}
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-        @endforeach
-        <!-- end for each  -->
+                @endforeach            
+            @endif
+            <!-- end for each  -->
+        </div>
     </div>
-</div>
-@endsection
+
+    @endsection
