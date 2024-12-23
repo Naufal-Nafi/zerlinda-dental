@@ -46,7 +46,7 @@ class ServiceController extends Controller
                 // Buat entry di tabel galeri_layanan
                 galeri_layanan::create([
                     'judul' => $validatedData['nama_layanan'],
-                    'deskripsi' => 'deskripsi',
+                    'deskripsi' => 'nama_layanan',
                     'url_media' => 'images/layanan/' . $imageName, // Path ke gambar
                     'id_layanan' => $layanan->id_layanan // Foreign key ke tabel layanan
                 ]);
@@ -114,7 +114,7 @@ class ServiceController extends Controller
                 // Buat entry di tabel galeri_layanan
                 galeri_layanan::create([
                     'judul' => $validated['nama_pelayanan'],
-                    'deskripsi' => $validated['deskripsi'],
+                    'deskripsi' => $validated['nama_pelayanan'],
                     'url_media' => 'images/layanan/' . $imageName, // Path ke gambar
                     'id_layanan' => $service->id_layanan // Foreign key ke tabel layanan
                 ]);

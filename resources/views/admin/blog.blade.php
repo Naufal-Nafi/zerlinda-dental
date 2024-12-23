@@ -88,7 +88,28 @@
         document.getElementById("editForm").action = "{{route('admin.blog.update', "")}}/" + id;
         document.getElementById("EditFormJudul").value = data[1].innerText;
         document.getElementById("EditFormKonten").value = data[2].innerText;
+
+        // Set image preview
+        var imageUrl = data[0].getElementsByTagName('img')[0].src; // Ambil src dari gambar
+        var previewImage = document.getElementById("previewImage2");
+        previewImage.src = imageUrl; // Set src untuk preview
+        previewImage.style.display = 'block'; // Tampilkan gambar
     }
+    document.getElementById('gambar_edit').addEventListener('change', function(event) {
+        const preview = document.getElementById('previewImage2');
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        } else {
+            // Jika tidak ada file, tampilkan gambar dari database
+            preview.src = imageUrl; // Ganti dengan URL gambar dari database
+        }
+    });
 </script>
 
 @endsection

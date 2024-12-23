@@ -17,33 +17,33 @@ class DatabaseSeeder extends Seeder
         DB::table('kontak')->insert([
             [
                 'jenis_kontak' => 'Gmail',
-                'nama_akun' => 'F5E5O@example.com',
-                'url' => 'F5E5O@example.com',
+                'nama_akun' => '-',
+                'url' => '-',
             ],
             [
                 'jenis_kontak' => 'Instagram',
-                'nama_akun' => 'admin',
-                'url' => 'admin',
+                'nama_akun' => '-',
+                'url' => '-',
             ],
             [
                 'jenis_kontak' => 'Facebook',
-                'nama_akun' => 'admin',
-                'url' => 'admin',
+                'nama_akun' => '-',
+                'url' => '-',
             ],
             [
                 'jenis_kontak' => 'Tiktok',
-                'nama_akun' => 'admin',
-                'url' => 'admin',
+                'nama_akun' => '-',
+                'url' => '-',
             ],
             [
                 'jenis_kontak' => 'WhatsApp',
-                'nama_akun' => 'admin',
-                'url' => 'admin',
+                'nama_akun' => '-',
+                'url' => '-',
             ],
         ]);
 
         DB::table('pengguna')->insert([
-            'email' => 'F5E5O@example.com',
+            'email' => 'ninoauliyanahara@gmail.com',
             'username' => 'admin',
             'password' => bcrypt('admin'),
             'level' => 'admin',

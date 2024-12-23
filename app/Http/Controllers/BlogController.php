@@ -95,7 +95,7 @@ class BlogController extends Controller
                 // Update data galeri_artikel
                 $oldImage->update([
                     'judul' => $validatedData['judul'],
-                    'deskripsi' => $validatedData['konten'],
+                    'deskripsi' => $validatedData['judul'],
                     'url_media' => $this->storeImage($request), // Simpan gambar baru
                 ]);
             } else {

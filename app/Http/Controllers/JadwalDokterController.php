@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokterr;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class JadwalDokterController extends Controller
 {
@@ -18,7 +18,7 @@ class JadwalDokterController extends Controller
     public function store(Request $request)
     {        
         // Validasi input
-        $validatedData = $request->validate([
+        $request->validate([
             'nama' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'jadwal' => 'array', // Validasi array utama
@@ -70,12 +70,55 @@ class JadwalDokterController extends Controller
         $jadwal->delete();
 
         // Kembali ke halaman sebelumnya
-        return back();
+        return back()->with('success', 'Dokter berhasil dihapus!');
     }
 
-    public function update(Request $request,$id) {
-        
-        Dokterr::findOrFail($id);
+    public function update(Request $request, $id) {
+        $dokter = Dokterr::findOrFail($id);
+
+        // Validasi input
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'jadwal' => 'array',
+        ]);
+
+        foreach ($request->jadwal as $day => $schedule) {
+            if (isset($schedule['jadwal_awal']) || isset($schedule['jadwal_akhir'])) {
+                if (!$schedule['jadwal_awal'] || !$schedule['jadwal_akhir']) {
+                    throw ValidationException::withMessages([
+                        "jadwal.$day.jadwal_awal" => 'Jam mulai diperlukan jika jam akhir diisi.',
+                        "jadwal.$day.jadwal_akhir" => 'Jam akhir diperlukan jika jam mulai diisi.',
+                    ]);
+                }
+
+                if (strtotime($schedule['jadwal_awal']) >= strtotime($schedule['jadwal_akhir'])) {
+                    throw ValidationException::withMessages([
+                        "jadwal.$day.jadwal_akhir" => 'Jam akhir harus setelah jam mulai.',
+                    ]);
+                }
+            }
+        }
+
+        // Menangani unggahan gambar
+        if ($request->hasFile('gambar')) {
+            // Hapus gambar lama jika ada
+            if ($dokter->gambar) {
+                Storage::delete($dokter->gambar);
+            }
+            $gambarPath = $request->file('gambar')->store('gambar_dokter', 'public');
+            $validatedData['gambar'] = $gambarPath;
+        }
+
+        // Memperbarui data dokter
+        $dokter->update($validatedData);
+
+            // Menyimpan jadwal dokter
+        $dokter->jadwal = $request->jadwal; // Simpan jadwal yang telah diperbarui
+        $dokter->save(); // Simpan perubahan ke database
+
+        return redirect()->back()->with('success', 'Dokter berhasil diperbarui!');
     }
+
 
 }
