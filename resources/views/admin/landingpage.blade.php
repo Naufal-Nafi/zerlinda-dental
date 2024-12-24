@@ -32,6 +32,10 @@
     @endif
 </div>
 
+<div class="text-center">
+    {{ $landingpages->links() }}
+</div>
+
 @endsection
 @php
     $createModalName = 'createLandingPageModal';

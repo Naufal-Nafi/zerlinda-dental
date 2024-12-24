@@ -35,7 +35,7 @@
                                 data-bs-target="#editServiceModal" data-id="{{ $service->id_layanan }}"
                                 data-nama="{{ $service->nama_layanan }}" data-deskripsi="{{ $service->deskripsi }}"
                                 data-tipe="{{ $service->jenis_layanan }}"
-                                data-gambar="{{ asset('storage/public/' . $service->galeri_layanan->first()->url_media) }}"
+                                data-gambar="{{ asset('storage/' . $service->galeri_layanan->first()->url_media) }}"
                                 data-gambar-lainnya='@json($service->galeri_layanan->skip(1)->map(fn($galeri) => ['url' => asset("storage/$galeri->url_media"), "id" => $galeri->id_galeri]))'
                                 data-gambar-lainnya-path="{{ implode(',', $service->galeri_layanan->skip(1)->pluck('url_media')->map(fn($url) => str_replace('public/', '', $url))->toArray()) }}">
                                 Edit
@@ -129,6 +129,10 @@
     @else
     <p>Tidak ada layanan.</p>
     @endif
+</div>
+
+<div class="text-center">
+    {{ $services->links() }}
 </div>
 
 <script>

@@ -11,7 +11,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = layanan::with("galeri_layanan")->get();
+        $services = layanan::with("galeri_layanan")->simplePaginate(5);
         // dd($services->first()->galeri_layanan->first()->url_media);
         return view('admin.service', compact('services'));
     }

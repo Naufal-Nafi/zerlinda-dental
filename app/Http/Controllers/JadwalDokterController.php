@@ -11,12 +11,13 @@ class JadwalDokterController extends Controller
 {
     public function index()
     {
-        $dokterList = Dokter::all();
+        $dokterList = Dokter::simplePaginate(5);
 
         return view('admin.doctor', compact('dokterList'));
     }
     public function store(Request $request)
     {
+        dd($request->all());
         // Validasi input
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',

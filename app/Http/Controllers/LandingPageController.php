@@ -13,7 +13,7 @@ class LandingPageController
      */
     public function index()
     {
-        $landingpages = landing_page::all();
+        $landingpages = landing_page::simplePaginate(5);
         return view('admin.landingpage', compact('landingpages'));
     }
 

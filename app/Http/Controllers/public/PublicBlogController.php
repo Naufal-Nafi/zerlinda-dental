@@ -44,13 +44,16 @@ class PublicBlogController extends Controller
             ->take(3)
             ->get();
 
+        // dd($middleBlogs);
+
         // Ambil remainingBlogs (sisanya)
         $excludedIds = $middleBlogs->pluck('id_artikel')->push($topBlog->id_artikel);
 
         // Gunakan query builder untuk menyaring data
         $remainingBlogs = artikel::whereNotIn('id_artikel', $excludedIds)
             ->latest('id_artikel') 
-            ->paginate(10); 
+            ->paginate(5)
+            ->withQueryString(); 
 
         return view('user.blog', compact('contacts', 'topBlog', 'middleBlogs', 'remainingBlogs'));
     }

@@ -46,6 +46,11 @@
         <p>Tidak ada data.</p>
     @endif    
 </div>
+
+<div class="text-center">
+    {{ $dokterList->links() }}
+</div>
+
 <div class="modal fade" id="createDoctorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content bg-light-pink" style="padding: 50px;">

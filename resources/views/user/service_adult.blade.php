@@ -20,5 +20,8 @@
         @endforeach
         <!-- end for each  -->
     </div>
+    <div class="w-4/5 mx-auto my-12">
+        {{ $services->links() }}            
+    </div>
 </div>
 @endsection

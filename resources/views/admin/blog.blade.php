@@ -26,8 +26,11 @@
                         <td style="display: none; ">{{ $artikel->konten }}</td>
                         <td>
                             <span><button type="button" id="editbtn{{$artikel->getKey()}}" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#editBlogModal"
-                                    data-id="{{'/blog/update/' . $artikel->getKey()}}">Edit</button></span>
+                                    data-bs-toggle="modal" data-bs-target="#editBlogModal" data-id="{{$artikel->id_artikel}}"
+                                    data-judul="{{ $artikel->judul }}" data-gambar="{{ $artikel->url_media }}"
+                                    data-konten="{{ $artikel->konten }}">
+                                    Edit
+                                </button></span>
                             <span><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal"
                                     data-id="{{'/blog/destroy/' . $artikel->getKey()}}">Hapus</button></span>
                         </td>
@@ -35,6 +38,7 @@
                 @endforeach
             </tbody>
         </table>
+
         <div class="modal fade text-start" id="editBlogModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -51,7 +55,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="formFile2" class="form-label">Gambar</label>
-                                <img id="previewImage2" src="" alt="Preview Image"
+                                <img id="previewImage" src="" alt="Preview Image"
                                     style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
                                 <input class="form-control border-black image-input" type="file" id="gambar_edit"
                                     name="gambar">
@@ -74,6 +78,46 @@
         <p>Belum ada artikel</p>
     @endif
 </div>
+
+<div class="text-center">
+    {{ $artikels->links() }}
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Event listener untuk tombol edit
+        $(document).on('click', 'button[id^="editbtn"]', function () {
+            // Ambil data dari atribut tombol edit
+            var idArtikel = $(this).data('id');
+            var judul = $(this).data('judul');
+            var gambar = $(this).data('gambar');
+            var konten = $(this).data('konten');
+
+            // Set nilai-nilai data ke dalam form di modal
+            $('#EditFormJudul').val(judul);
+            $('#EditFormKonten').val(konten);
+
+            // Tampilkan gambar preview jika ada
+            if (gambar) {
+                $('#previewImage').attr('src', "{{ asset('storage') }}/" + gambar).show();
+
+            } else {
+                $('#previewImage').hide();
+            }
+
+            // Update action form dengan id artikel yang sesuai
+            var updateAction = $('#editForm').attr('action').replace(/\d+$/, idArtikel);
+            $('#editForm').attr('action', updateAction);
+        });
+
+        // Reset modal saat ditutup
+        $('#editBlogModal').on('hidden.bs.modal', function () {
+            $('#editForm')[0].reset();
+            $('#previewImage2').hide().attr('src', '');
+        });
+    });
+
+</script>
 @endsection
 
 @php

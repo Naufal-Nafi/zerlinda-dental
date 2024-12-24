@@ -14,7 +14,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $artikels = artikel::latest()->get();
+        $artikels = artikel::latest()->simplePaginate(5);
         return view('admin.blog', compact('artikels'));
     }
 
@@ -70,8 +70,8 @@ class BlogController extends Controller
 
             // Simpan gambar baru dan update kolom `url_media`
             $gambarBaru = $request->file('gambar')->store('galeri_artikel', 'public');
-            $gambar = 'galeri_artikel/' . $gambarBaru;
-            $artikel->url_media = $gambar;
+            // $gambar = 'galeri_artikel/' . $gambarBaru;
+            $artikel->url_media = $gambarBaru;
         }
 
         // Update judul dan konten artikel
@@ -87,16 +87,16 @@ class BlogController extends Controller
 
 
     // Fungsi untuk menyimpan gambar
-    private function storeImage(Request $request)
-    {
-        $image = $request->file('gambar');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+    // private function storeImage(Request $request)
+    // {
+    //     $image = $request->file('gambar');
+    //     $imageName = time() . '.' . $image->getClientOriginalExtension();
 
-        // Simpan gambar ke folder public/images/galeri_artikel
-        $image->storeAs('galeri_artikel', $imageName, 'public');
+    //     // Simpan gambar ke folder public/images/galeri_artikel
+    //     $image->storeAs('galeri_artikel', $imageName, 'public');
 
-        return 'galeri_artikel/' . $imageName;
-    }
+    //     return 'galeri_artikel/' . $imageName;
+    // }
 
 
     public function destroy(string $id)

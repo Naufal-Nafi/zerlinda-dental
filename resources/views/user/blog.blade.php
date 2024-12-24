@@ -71,4 +71,7 @@
             <!-- end for each  -->
         </div>
     </div>
+    <div class="my-12">
+        {{ $remainingBlogs->links() }}
+    </div>
     @endsection

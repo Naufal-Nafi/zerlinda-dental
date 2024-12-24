@@ -12,7 +12,7 @@ class PublicServiceController extends Controller
     public function adultService()
     {
         $contacts = kontak::all();
-        $services = layanan::where('jenis_layanan', 'dewasa')->get();
+        $services = layanan::where('jenis_layanan', 'dewasa')->paginate(6);
 
         return view('user.service_adult', compact('services', 'contacts'));
     }
@@ -20,7 +20,7 @@ class PublicServiceController extends Controller
     public function childService()
     {
         $contacts = kontak::all();
-        $services = layanan::where('jenis_layanan', 'anak')->get();
+        $services = layanan::where('jenis_layanan', 'anak')->paginate(6);
 
         return view('user.service_child', compact('services', 'contacts'));
     }
@@ -28,7 +28,7 @@ class PublicServiceController extends Controller
     public function umumService()
     {
         $contacts = kontak::all();
-        $services = layanan::where('jenis_layanan', 'umum')->get();
+        $services = layanan::where('jenis_layanan', 'umum')->paginate(6);
 
         return view('user.service_umum', compact('services', 'contacts'));
     }
