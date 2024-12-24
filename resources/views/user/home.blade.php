@@ -7,13 +7,8 @@
 <div id="wrapper" class="relative h-screen flex items-center">
     <div id="slider-area" class="owl-carousel absolute h-screen w-full top-0 left-0 -z-10 ">
         @foreach ($images as $image)
-            <div style="background-image: url('{{ asset($image->url_media) }}')"></div>
+            <div style="background-image: url('{{ asset('storage/' . $image->url_media) }}')"></div>
         @endforeach
-        <!-- <div style="background-image: url('{{ asset('images/landing-page.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/artikel_3.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/artikel_4.png') }}')"></div>        
-        <div style="background-image: url('{{ asset('images/Vector.png') }}')"></div> -->
-
     </div>
     <div class="slider-text z-10 text-left mx-5 md:mx-12" data-aos="fade-up" data-aos-delay="100">
         <h1 data-aos="fade-left" class="text-white font-semibold lg:text-8xl md:text-6xl text-4xl">
@@ -83,7 +78,7 @@
                         class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                         <div class="flex justify-center items-center ">
                             @if ($galeri = $service->galeri_layanan->first())
-                                <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt="Circular Image"
+                                <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
                                     class="xl:size-[250px] size-[200px] rounded-full object-cover">
                             @endif
                         </div>
@@ -116,7 +111,7 @@
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center ">
                         @if ($galeri = $service->galeri_layanan->first())
-                            <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt="Circular Image"
+                            <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
                                 class="xl:size-[250px] size-[200px] rounded-full object-cover">
                         @endif
                     </div>
@@ -203,10 +198,8 @@
                 <a href="{{ route('blog.show', $artikel->id_artikel) }}" class="">
                     <div
                         class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
-                        @foreach ($artikel->galeri_artikel as $galeri)
-                            <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Gambar"
-                                class="w-full h-40 object-cover">
-                        @endforeach
+                        <img src="{{ asset('storage/' . $artikel->url_media) }}" alt="Gambar"
+                            class="w-full h-40 object-cover">
                         <div class="p-4">
                             <p class="font-semibold">{{ $artikel->judul }}</p>
                         </div>
@@ -312,11 +305,12 @@
         <div class="md:border-4 border-2 border-pink-secondary h-450 rounded-3xl " data-aos="fade-up"
             data-aos-delay="500">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13296.709523125111!2d110.37424616862342!3d-7.77546504897429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59d1b10eefdd%3A0xe65afca3cae0ac31!2sDepartemen%20Teknik%20Elektro%20Dan%20Informatika%20UGM!5e0!3m2!1sid!2sid!4v1729664735391!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d11182.850707198562!2d110.4820929790275!3d-7.711581817977542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwNDInNDQuMiJTIDExMMKwMjknMDAuNCJF!5e0!3m2!1sid!2sid!4v1734955420708!5m2!1sid!2sid"
                 width="100%" height="100%" class="rounded-3xl " style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <p class="text-base mt-4" data-aos="fade-up">Jalan Kalasan</p>
+        <p class="text-base mt-4" data-aos="fade-up">Pucung, Tamanmartani, Kec. Kalasan, Kabupaten Sleman, Daerah Istimewa
+        Yogyakarta</p>
     </div>
 </div>
 <!-- Lokasi ends  -->

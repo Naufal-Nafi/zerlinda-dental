@@ -18,19 +18,15 @@
         <div
             class="md:h-[630px] h-[350px] md:border-4 md:rounded-[65px] rounded-xl border-pink-secondary my-12 hover:opacity-80 duration-300 cursor-pointer">
             <a href="{{ route('blog.show', $topBlog->id_artikel) }}">
-                @foreach ($topBlog->galeri_artikel as $galeri)
-                    @if (isset($galeri->url_media))
-                        <img class="w-full h-4/5 md:rounded-t-[60px] rounded-t-xl object-cover"
-                            src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
-                    @endif
-                @endforeach
+                <img class="w-full h-4/5 md:rounded-t-[60px] rounded-t-xl object-cover"
+                    src="{{ asset('storage/' . $topBlog->url_media) }}" alt="">
                 <div class="h-1/5 bg-pink-secondary md:rounded-b-[60px] rounded-b-xl flex flex-col justify-center">
                     <p class="text-lg font-bold">{{ $topBlog->judul }}</p>
                 </div>
             </a>
         </div>
     @else
-    <p>belum ada artikel</p>
+        <p>belum ada artikel</p>
     @endif
 
     <!-- 3 blog kedua  -->
@@ -40,14 +36,8 @@
                 <div
                     class="xl:h-[400px] h-[350px] rounded-xl hover:rounded-3xl hover:opacity-80 duration-300 cursor-pointer bg-pink-secondary">
                     <a href="{{ route('blog.show', $artikel->id_artikel) }}">
-                        @if ($artikel->galeri_artikel && $artikel->galeri_artikel->isNotEmpty())
-                            @foreach ($artikel->galeri_artikel as $galeri)
-                                @if (isset($galeri->url_media))
-                                    <img class="w-full h-4/5 rounded-t-xl hover:rounded-t-3xl duration-300 object-cover"
-                                        src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
-                                @endif
-                            @endforeach
-                        @endif
+                        <img class="w-full h-4/5 rounded-t-xl hover:rounded-t-3xl duration-300 object-cover"
+                            src="{{ asset('storage/' . $artikel->url_media) }}" alt="">
                         <div
                             class="h-1/5 bg-pink-secondary rounded-b-xl hover:rounded-b-3xl duration-300 flex flex-col justify-center">
                             <p class="line-clamp-2">{{ $artikel->judul }}</p>
@@ -66,14 +56,8 @@
                 @foreach ($remainingBlogs as $artikel)
                     <div class="w-full py-8 hover:opacity-80 duration-300 cursor-pointer">
                         <a href="{{ route('blog.show', $artikel->id_artikel) }}" class="md:flex block">
-                            @if ($artikel->galeri_artikel && $artikel->galeri_artikel->isNotEmpty())
-                                @foreach ($artikel->galeri_artikel as $galeri)
-                                    @if (isset($galeri->url_media))
-                                        <img class="md:w-1/4 h-full rounded-[50px] object-cover border-2 border-pink-secondary me-8"
-                                            src="{{ asset('storage/' . $galeri->url_media) }}" alt="">
-                                    @endif
-                                @endforeach
-                            @endif
+                            <img class="md:w-1/4 h-full rounded-[50px] object-cover border-2 border-pink-secondary me-8"
+                                src="{{ asset('storage/' . $artikel->url_media) }}" alt="">
                             <div class="md:text-left flex flex-col justify-center">
                                 <h5 class="text-pink-primary font-bold text-3xl my-2">{{ $artikel->judul }}</h5>
                                 <p class="text-justify line-clamp-3">
@@ -82,10 +66,9 @@
                             </div>
                         </a>
                     </div>
-                @endforeach            
+                @endforeach
             @endif
             <!-- end for each  -->
         </div>
     </div>
-
     @endsection

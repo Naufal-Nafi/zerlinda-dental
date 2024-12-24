@@ -15,11 +15,7 @@ class artikel extends Model
     protected $fillable = [
         'id_artikel',
         'judul',
-        'konten'
+        'konten',
+        'url_media'
     ];
-
-    function galeri_artikel()
-    {
-        return $this->hasMany(galeri_artikel::class, 'id_artikel', 'id_artikel');
-    }
 }

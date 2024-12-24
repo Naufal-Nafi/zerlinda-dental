@@ -25,6 +25,14 @@ class PublicServiceController extends Controller
         return view('user.service_child', compact('services', 'contacts'));
     }
 
+    public function umumService()
+    {
+        $contacts = kontak::all();
+        $services = layanan::where('jenis_layanan', 'umum')->get();
+
+        return view('user.service_umum', compact('services', 'contacts'));
+    }
+
     public function show($id)
     {
         $contacts = kontak::all();

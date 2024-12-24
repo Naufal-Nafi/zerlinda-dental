@@ -21,15 +21,12 @@
             <tbody class="fw-semibold">
                 @foreach ($artikels as $artikel)
                     <tr>
-                        @foreach ($artikel->galeri_artikel as $galeri)                
-                            <td><img src="{{ asset('storage/' . $galeri->url_media) }}" alt="asas" width="250"></td>
-                        @endforeach
+                        <td><img src="{{ asset('storage/' . $artikel->url_media) }}" alt="asas" width="250"></td>
                         <td>{{ $artikel->judul }}</td>
                         <td style="display: none; ">{{ $artikel->konten }}</td>
                         <td>
                             <span><button type="button" id="editbtn{{$artikel->getKey()}}" class="btn btn-primary"
-                                    data-bs-toggle="modal" onclick="openEditModal({{$artikel->getKey()}})"
-                                    data-bs-target="#editBlogModal"
+                                    data-bs-toggle="modal" data-bs-target="#editBlogModal"
                                     data-id="{{'/blog/update/' . $artikel->getKey()}}">Edit</button></span>
                             <span><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal"
                                     data-id="{{'/blog/destroy/' . $artikel->getKey()}}">Hapus</button></span>
@@ -77,20 +74,6 @@
         <p>Belum ada artikel</p>
     @endif
 </div>
-<script>
-    function openEditModal(id) {
-        var editbtn = document.getElementById("editbtn" + id);
-        var row = editbtn.closest('tr');
-        var data = row.getElementsByTagName('td');
-        console.log("{{route('admin.blog.update', "")}}/" + id);
-
-
-        document.getElementById("editForm").action = "{{route('admin.blog.update', "")}}/" + id;
-        document.getElementById("EditFormJudul").value = data[1].innerText;
-        document.getElementById("EditFormKonten").value = data[2].innerText;
-    }
-</script>
-
 @endsection
 
 @php
@@ -105,9 +88,7 @@
 @endsection
 
 
-
 @section('createModalContent')
-
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label ">Judul</label>
     <input type="text" class="form-control border-black" id="CreateForm" name="judul">

@@ -7,10 +7,8 @@
         <span>{{ $artikel->judul }}</span>
     </p>
 
-    <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">{{ $artikel->judul }}</h1>
-    @foreach ($artikel->galeri_artikel as $galeri)
-    <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="" class="border-4 border-pink-secondary rounded-lg mx-auto">
-    @endforeach
+    <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">{{ $artikel->judul }}</h1>    
+    <img src="{{ asset('storage/' . $artikel->url_media) }}" alt="" class="border-4 border-pink-secondary rounded-lg mx-auto">    
     <p class="my-12 text-black text-justify text-xs md:text-base">
         {!! Str::of($artikel->konten)->replace("\n", '<br>') !!}
     </p>

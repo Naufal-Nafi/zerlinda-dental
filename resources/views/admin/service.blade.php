@@ -24,7 +24,7 @@
             <tbody class="fw-semibold">
                 @foreach($services as $service)   
                     <tr>
-                        <td><img src="{{ asset('storage/public/' . $service->galeri_layanan->first()->url_media) }}" alt=""
+                        <td><img src="{{ asset('storage/' . $service->galeri_layanan->first()->url_media) }}" alt=""
                                 width="250"></td>
                         <td>{{ $service->nama_layanan }}</td>
                         <td>{{ $service->jenis_layanan }}</td>
@@ -36,7 +36,7 @@
                                 data-nama="{{ $service->nama_layanan }}" data-deskripsi="{{ $service->deskripsi }}"
                                 data-tipe="{{ $service->jenis_layanan }}"
                                 data-gambar="{{ asset('storage/public/' . $service->galeri_layanan->first()->url_media) }}"
-                                data-gambar-lainnya='@json($service->galeri_layanan->skip(1)->map(fn($galeri) => ['url' => asset("storage/public/$galeri->url_media"), "id" => $galeri->id_galeri]))'
+                                data-gambar-lainnya='@json($service->galeri_layanan->skip(1)->map(fn($galeri) => ['url' => asset("storage/$galeri->url_media"), "id" => $galeri->id_galeri]))'
                                 data-gambar-lainnya-path="{{ implode(',', $service->galeri_layanan->skip(1)->pluck('url_media')->map(fn($url) => str_replace('public/', '', $url))->toArray()) }}">
                                 Edit
                             </button>
@@ -68,11 +68,18 @@
                                         Anak
                                     </label>
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check me-5">
                                     <input class="form-check-input" id="edttipeDewasa" type="radio" name="tipe_layanan"
                                         value="dewasa">
                                     <label class="form-check-label" for="edttipeDewasa">
                                         Dewasa
+                                    </label>
+                                </div>
+                                <div class="form-check me-5">
+                                    <input class="form-check-input" id="edttipeUmum" type="radio" name="tipe_layanan"
+                                        value="umum">
+                                    <label class="form-check-label" for="edttipeUmum">
+                                        Umum
                                     </label>
                                 </div>
                             </div>
@@ -194,6 +201,8 @@
                 $('#edttipeAnak').prop('checked', true);
             } else if (tipe === 'dewasa') {
                 $('#edttipeDewasa').prop('checked', true);
+            } else if (tipe === 'umum') {
+                $('#edttipeUmum').prop('checked', true);
             }
 
             // Ambil kontainer gambar
@@ -267,6 +276,12 @@
             <input class="form-check-input" type="radio" name="tipe_layanan" value="dewasa" id="tipeDewasa">
             <label class="form-check-label" for="tipeDewasa">
                 Dewasa
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipe_layanan" value="umum" id="tipeUmum">
+            <label class="form-check-label" for="tipeDewasa">
+                Umum
             </label>
         </div>
     </div>

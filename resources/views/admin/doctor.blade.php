@@ -49,7 +49,7 @@
 <div class="modal fade" id="createDoctorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content bg-light-pink" style="padding: 50px;">
-            <form action="@yield('formAction')" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.doctor.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body text-20">
                     <div class="mb-3">
@@ -155,7 +155,7 @@
                                                 <label class="form-check-label" for="{{ $day }}">{{ ucfirst($day) }}</label>
                                             </div>
                                             <div id="Edit-schedule-{{ $day }}" class="schedule-times mx-3 mb-3 {{ isset($dokter->jadwal[$day]) ? '' : 'd-none' }}"
-                                                style=" width: 200px;">
+                                                style=" width: 200px; ">
                                                 <label for="jadwal_awal-{{ $day }}" class="form-label">Jam Mulai - {{ ucfirst($day) }}</label>
                                                 <input 
                                                     type="time" 
@@ -190,11 +190,6 @@
 @endforeach
 @endsection
 
-@section('formAction')
-{{ route('admin.doctor.store') }}
-@endsection
-
-
 
 @section('script')
 <script>
@@ -207,11 +202,16 @@
         const endInput = $(`#${prefix}jadwal_akhir-${day}`);
 
         if (isChecked) {
-            scheduleDiv.css("display", "block");
+            scheduleDiv.attr("style", function(i, style) {
+                return (style || "") + "display: block !important;";
+            });
+
             startInput.prop("disabled", false);
             endInput.prop("disabled", false);
         } else {
-            scheduleDiv.css("display", "none");
+            scheduleDiv.attr("style", function(i, style) {
+                return (style || "") + "display: none !important;";
+            });
             startInput.prop("disabled", true).val('');
             endInput.prop("disabled", true).val('');
         }

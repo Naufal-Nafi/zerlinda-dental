@@ -80,6 +80,8 @@
                                     <div
                                         class="absolute py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
                                         <a class="block px-4 py-2 active:text-blue-primary text-black hover:bg-pink-secondary"
+                                            href="{{ route('service.umum') }}">Umum</a>
+                                        <a class="block px-4 py-2 active:text-blue-primary text-black hover:bg-pink-secondary"
                                             href="{{ route('service.adult') }}">Dewasa</a>
                                         <a class="block px-4 py-2 active:text-blue-primary2 text-black hover:bg-pink-secondary"
                                             href="{{ route('service.child') }}">Anak-anak</a>
@@ -101,6 +103,8 @@
                                 </a>
                                 <div
                                     class="dropdown absolute peer py-2 hidden group-hover:block bg-white shadow-md text-left rounded-lg border-2 border-pink-primary w-44">
+                                    <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
+                                        href="{{ route('service.umum') }}">Umum</a>
                                     <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
                                         href="{{ route('service.adult') }}">Dewasa</a>
                                     <a class="block px-4 py-2 text-black hover:bg-pink-secondary"
@@ -157,6 +161,8 @@
                                     Dewasa</a></li>
                             <li><a href="{{ route('service.child') }}" class="hover:text-pink-primary">Pelayanan
                                     Anak</a></li>
+                            <li><a href="{{ route('service.umum') }}" class="hover:text-pink-primary">Pelayanan
+                                    Umum</a></li>
                             <li><a href="{{ route('schedule') }}" class="hover:text-pink-primary">Jadwal Dokter</a></li>
                             <li><a href="{{ route('blog') }}" class="hover:text-pink-primary">Blog</a></li>
                         </ul>
@@ -187,11 +193,11 @@
                     <!-- Jadwal Klinik & Lokasi Klinik -->
                     <div>
                         <h3 class="text-xl font-semibold  mb-4">Jadwal Klinik :</h3>
-                        <p class="">Senin - Jumat : 15:00 - 21:00</p>
-                        <p class="">Sabtu : 18:00 - 20:00</p>
+                        <p class="">Senin - Jumat : 08:00 - 21:00</p>
+                        <p class="">Sabtu : 08:00 - 12:00</p>
 
                         <h3 class="text-xl font-semibold  mt-6 mb-4">Lokasi Klinik :</h3>
-                        <p class="">Jalan Kalasan</p>
+                        <p class="">Pucung, Tamanmartani, Kec. Kalasan,<br> Kabupaten Sleman, Daerah Istimewa <br> Yogyakarta</p>
                     </div>
                 </div>
 

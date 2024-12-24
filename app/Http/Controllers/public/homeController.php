@@ -13,9 +13,7 @@ class homeController extends Controller
     public function index()
     {
         $images = \App\Models\landing_page::all();
-        $artikels = artikel::with('galeri_artikel')
-            ->latest()
-            ->get();
+        $artikels = artikel::latest()->get();
 
         $layanan2_anak = layanan::with('galeri_layanan')
             ->where('jenis_layanan', 'anak')

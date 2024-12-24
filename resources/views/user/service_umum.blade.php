@@ -4,11 +4,12 @@
 
 @section('content')
 <div class="min-h-screen mx-auto text-pink-primary font-bold">
-    <h1 class="md:text-5xl text-3xl my-20">Layanan Gigi Dewasa</h1>
+    <h1 class="md:text-5xl text-3xl my-20">Layanan Umum</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 xl:mx-60 lg:mx-32 mx-10 mb-20">
         <!-- for each  -->
         @foreach ($services as $service)                  
-            <a href="{{ route('service.show', $service->id_layanan) }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
+            <a href="{{ route('service.show', $service->id_layanan) }}"
+                class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
                 <div class="flex justify-center items-center ">
                     @if ($galeri = $service->galeri_layanan->first())
                         <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"

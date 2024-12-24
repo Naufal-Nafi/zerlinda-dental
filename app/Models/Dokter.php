@@ -10,22 +10,8 @@ class Dokter extends Model
     use HasFactory;
 
     protected $table = 'dokter';
-
-    protected $primaryKey = 'id_dokter';
-
-    protected $fillable = [
-        
-        'nama',
-        'jadwal',
-    ];
-
+    protected $fillable = ['nama', 'gambar', 'jadwal'];
     protected $casts = [
-        'jadwal' => 'array',
+        'jadwal' => 'array', // Otomatis casting JSON menjadi array PHP
     ];
-
-    function galeri_dokter()
-    {
-        return $this->hasMany(galeri_dokter::class, 'id_galeri', 'id_dokter');
-    }
-        
 }
