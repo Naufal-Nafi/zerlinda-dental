@@ -11,14 +11,17 @@
             <a href="{{ route('service.show', $service->id_layanan) }}" class="duration-500 group hover:-translate-y-6 block py-6 cursor-pointer">
                 <div class="flex justify-center items-center ">
                     @if ($galeri = $service->galeri_layanan->first())
-                        <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt="Circular Image"
+                        <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
                             class="xl:size-[250px] size-[200px] rounded-full object-cover group-hover:opacity-75 duration-500">
                     @endif
                 </div>
                 <p class="md:text-3xl text-xl mt-12">{{ $service->nama_layanan }}</p>
             </a>
         @endforeach
-        <!-- end for each  -->             
+        <!-- end for each  --> 
+    </div>
+    <div class="w-4/5 mx-auto my-12">
+        {{ $services->links() }}            
     </div>
 </div>
 @endsection

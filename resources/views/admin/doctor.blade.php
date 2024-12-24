@@ -229,18 +229,6 @@ $(document).ready(function () {
             startInput.prop("disabled", true).val('');
             endInput.prop("disabled", true).val('');
         }
-
-        // if (isChecked) {
-        //     console.log(`Enabling schedule for ${day}`);
-        //     scheduleDiv.css("display", "block");
-        //     startInput.prop("disabled", false);
-        //     endInput.prop("disabled", false);
-        // } else {
-        //     console.log(`Disabling schedule for ${day}`);
-        //     scheduleDiv.css("display", "none");
-        //     startInput.prop("disabled", true).val('');
-        //     endInput.prop("disabled", true).val('');
-        // }
     }
 
     // Event listener untuk form create

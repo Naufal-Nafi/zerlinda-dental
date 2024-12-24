@@ -9,7 +9,7 @@
     <h1 class="lg:text-5xl text-2xl font-bold lg:my-20 my-12">{{ $service->nama_layanan }}</h1>
 
     @if ($galeri = $service->galeri_layanan->first())
-        <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt=""
+        <img src="{{ asset('storage/' . $galeri->url_media) }}" alt=""
             class="border-2 border-pink-secondary rounded-lg mx-auto">
     @endif
 
@@ -34,7 +34,7 @@
     ">
         @foreach ($images as $index => $image)
             <li class="" style="--index: {{ $index + 1 }}">
-                <img class="rounded-3xl" src="{{ asset('storage/public/' . $image) }}" alt="Image {{ $index + 1 }}">
+                <img class="rounded-3xl" src="{{ asset('storage/' . $image) }}" alt="Image {{ $index + 1 }}">
             </li>
         @endforeach
     </ul>

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kontak;
 use Illuminate\Http\Request;
 use App\Models\artikel;
-use App\Models\galeri_artikel;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
-
 
 
 class BlogController extends Controller
@@ -18,41 +14,31 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $artikels = artikel::with('galeri_artikel')->latest()->get();
-
+        $artikels = artikel::latest()->simplePaginate(5);
         return view('admin.blog', compact('artikels'));
-    }    
+    }
 
 
     public function store(Request $request)
-    {        
+    {
         $validatedData = $request->validate([
             'judul' => 'required|max:100',
             'konten' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);    
-
-        $artikel = artikel::create([
-            'judul' => $validatedData['judul'],
-            'konten' => $validatedData['konten'],
         ]);
 
-        $foreignKey = 'id_artikel';
-        
-
         if ($request->hasFile("gambar")) {
-            
             $imageName = time() . '_' . $request->gambar->getClientOriginalName();
-            $request->file('gambar')->storeAs('images/galeri_artikel', $imageName, 'public');
-            galeri_artikel::create([
-                'id_artikel' => $artikel->id_artikel,
-                'judul' => $validatedData['judul'],
-                'deskripsi' => 'deskripsi',
-                'url_media' => 'images/galeri_artikel/' . $imageName,
-                $foreignKey => $artikel[$foreignKey],
-            ]);
+            $request->file('gambar')->storeAs('galeri_artikel', $imageName, 'public');
+            $gambar = 'galeri_artikel/' . $imageName;
         }
-        
+
+        artikel::create([
+            'judul' => $validatedData['judul'],
+            'konten' => $validatedData['konten'],
+            'url_media' => $gambar
+        ]);
+
         return redirect()->back()->with('success', 'Artikel berhasil ditambahkan!');
     }
 
@@ -70,80 +56,65 @@ class BlogController extends Controller
 
         // Cari artikel berdasarkan ID
         $artikel = artikel::find($id);
-        
 
         if (!$artikel) {
             return redirect()->back()->with('error', 'Artikel tidak ditemukan.');
         }
 
-        // Update data artikel
-        $artikel->update([
-            'judul' => $validatedData['judul'],
-            'konten' => $validatedData['konten'],
-        ]);
-
         // Jika ada gambar baru yang diupload
         if ($request->hasFile('gambar')) {
-            // Cari gambar lama berdasarkan artikel
-            $oldImage = galeri_artikel::where('id_artikel', $artikel->id_artikel)->first();
-
-            // Jika gambar lama ada, hapus gambar lama tersebut
-            if ($oldImage) {
-                // Hapus file gambar lama
-                Storage::delete('public/' . $oldImage->url_media);
-
-                // Update data galeri_artikel
-                $oldImage->update([
-                    'judul' => $validatedData['judul'],
-                    'deskripsi' => $validatedData['judul'],
-                    'url_media' => $this->storeImage($request), // Simpan gambar baru
-                ]);
-            } else {
-                // Jika gambar belum ada, buat data galeri_artikel baru
-                galeri_artikel::create([
-                    'id_artikel' => $artikel->id, // Pastikan id_artikel diisi dengan benar
-                    'judul' => $validatedData['judul'],
-                    'deskripsi' => $validatedData['konten'],
-                    'url_media' => $this->storeImage($request), // Simpan gambar baru
-                ]);
+            // Hapus gambar lama jika ada
+            if ($artikel->url_media) {
+                Storage::delete($artikel->url_media);
             }
+
+            // Simpan gambar baru dan update kolom `url_media`
+            $gambarBaru = $request->file('gambar')->store('galeri_artikel', 'public');
+            // $gambar = 'galeri_artikel/' . $gambarBaru;
+            $artikel->url_media = $gambarBaru;
         }
+
+        // Update judul dan konten artikel
+        $artikel->judul = $validatedData['judul'];
+        $artikel->konten = $validatedData['konten'];
+
+        // Simpan perubahan pada artikel
+        $artikel->save();
 
         // Redirect ke halaman sebelumnya dengan pesan sukses
         return redirect()->back()->with('success', 'Artikel berhasil diupdate!');
     }
 
+
     // Fungsi untuk menyimpan gambar
-    private function storeImage(Request $request)
-    {
-        $image = $request->file('gambar');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+    // private function storeImage(Request $request)
+    // {
+    //     $image = $request->file('gambar');
+    //     $imageName = time() . '.' . $image->getClientOriginalExtension();
 
-        // Simpan gambar ke folder public/images/galeri_artikel
-        $image->storeAs('images/galeri_artikel', $imageName, 'public');
+    //     // Simpan gambar ke folder public/images/galeri_artikel
+    //     $image->storeAs('galeri_artikel', $imageName, 'public');
 
-        return 'images/galeri_artikel/' . $imageName;
-    }
-
-
+    //     return 'galeri_artikel/' . $imageName;
+    // }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
+        // Cari artikel berdasarkan ID
         $artikel = artikel::find($id);
+
         if ($artikel) {
-            $galeri = galeri_artikel::where('id_artikel', $id)->get();
-            foreach ($galeri as $galeriItem) {
-                Storage::delete('public/images/galeri_artikel/' . basename($galeriItem->url_media));
-                $galeriItem->delete();
+            // Hapus file gambar jika ada
+            if ($artikel->url_media) {
+                Storage::delete($artikel->url_media);
             }
+            // Hapus artikel
             $artikel->delete();
+
+            return redirect()->back()->with('success', 'Artikel berhasil dihapus!');
         } else {
             return redirect()->back()->with('error', 'Artikel tidak ditemukan.');
         }
-        return redirect()->back()->with('success', 'Artikel berhasil dihapus!');
     }
 }

@@ -21,16 +21,16 @@
             <tbody class="fw-semibold">
                 @foreach ($artikels as $artikel)
                     <tr>
-                        @foreach ($artikel->galeri_artikel as $galeri)                
-                            <td><img src="{{ asset('storage/' . $galeri->url_media) }}" alt="asas" width="250"></td>
-                        @endforeach
+                        <td><img src="{{ asset('storage/' . $artikel->url_media) }}" alt="asas" width="250"></td>
                         <td>{{ $artikel->judul }}</td>
                         <td style="display: none; ">{{ $artikel->konten }}</td>
                         <td>
                             <span><button type="button" id="editbtn{{$artikel->getKey()}}" class="btn btn-primary"
-                                    data-bs-toggle="modal" onclick="openEditModal({{$artikel->getKey()}})"
-                                    data-bs-target="#editBlogModal"
-                                    data-id="{{'/blog/update/' . $artikel->getKey()}}">Edit</button></span>
+                                    data-bs-toggle="modal" data-bs-target="#editBlogModal" data-id="{{$artikel->id_artikel}}"
+                                    data-judul="{{ $artikel->judul }}" data-gambar="{{ $artikel->url_media }}"
+                                    data-konten="{{ $artikel->konten }}">
+                                    Edit
+                                </button></span>
                             <span><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal"
                                     data-id="{{'/blog/destroy/' . $artikel->getKey()}}">Hapus</button></span>
                         </td>
@@ -38,6 +38,7 @@
                 @endforeach
             </tbody>
         </table>
+
         <div class="modal fade text-start" id="editBlogModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -54,7 +55,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="formFile2" class="form-label">Gambar</label>
-                                <img id="previewImage2" src="" alt="Preview Image"
+                                <img id="previewImage" src="" alt="Preview Image"
                                     style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
                                 <input class="form-control border-black image-input" type="file" id="gambar_edit"
                                     name="gambar">
@@ -77,41 +78,46 @@
         <p>Belum ada artikel</p>
     @endif
 </div>
+
+<div class="text-center">
+    {{ $artikels->links() }}
+</div>
+
 <script>
-    function openEditModal(id) {
-        var editbtn = document.getElementById("editbtn" + id);
-        var row = editbtn.closest('tr');
-        var data = row.getElementsByTagName('td');
-        console.log("{{route('admin.blog.update', "")}}/" + id);
+    $(document).ready(function () {
+        // Event listener untuk tombol edit
+        $(document).on('click', 'button[id^="editbtn"]', function () {
+            // Ambil data dari atribut tombol edit
+            var idArtikel = $(this).data('id');
+            var judul = $(this).data('judul');
+            var gambar = $(this).data('gambar');
+            var konten = $(this).data('konten');
 
+            // Set nilai-nilai data ke dalam form di modal
+            $('#EditFormJudul').val(judul);
+            $('#EditFormKonten').val(konten);
 
-        document.getElementById("editForm").action = "{{route('admin.blog.update', "")}}/" + id;
-        document.getElementById("EditFormJudul").value = data[1].innerText;
-        document.getElementById("EditFormKonten").value = data[2].innerText;
+            // Tampilkan gambar preview jika ada
+            if (gambar) {
+                $('#previewImage').attr('src', "{{ asset('storage') }}/" + gambar).show();
 
-        // Set image preview
-        var imageUrl = data[0].getElementsByTagName('img')[0].src; // Ambil src dari gambar
-        var previewImage = document.getElementById("previewImage2");
-        previewImage.src = imageUrl; // Set src untuk preview
-        previewImage.style.display = 'block'; // Tampilkan gambar
-    }
-    document.getElementById('gambar_edit').addEventListener('change', function(event) {
-        const preview = document.getElementById('previewImage2');
-        const file = event.target.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                preview.src = e.target.result;
+            } else {
+                $('#previewImage').hide();
             }
-            reader.readAsDataURL(file);
-        } else {
-            // Jika tidak ada file, tampilkan gambar dari database
-            preview.src = imageUrl; // Ganti dengan URL gambar dari database
-        }
-    });
-</script>
 
+            // Update action form dengan id artikel yang sesuai
+            var updateAction = $('#editForm').attr('action').replace(/\d+$/, idArtikel);
+            $('#editForm').attr('action', updateAction);
+        });
+
+        // Reset modal saat ditutup
+        $('#editBlogModal').on('hidden.bs.modal', function () {
+            $('#editForm')[0].reset();
+            $('#previewImage2').hide().attr('src', '');
+        });
+    });
+
+</script>
 @endsection
 
 @php
@@ -126,9 +132,7 @@
 @endsection
 
 
-
 @section('createModalContent')
-
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label ">Judul</label>
     <input type="text" class="form-control border-black" id="CreateForm" name="judul">

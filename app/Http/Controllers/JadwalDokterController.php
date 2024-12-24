@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokterr;
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
@@ -11,7 +11,7 @@ class JadwalDokterController extends Controller
 {
     public function index()
     {
-        $dokterList = Dokterr::all();
+        $dokterList = Dokter::simplePaginate(5);
 
         return view('admin.doctor', compact('dokterList'));
     }
@@ -46,7 +46,7 @@ class JadwalDokterController extends Controller
         $gambarPath = $request->hasFile('gambar') ? $request->file('gambar')->store('gambar_dokter', 'public') : null;
 
         // Menyimpan data dokter dengan jadwal dalam bentuk JSON
-        Dokterr::create([
+        Dokter::create([
             'nama' => $request->nama,
             'gambar' => $gambarPath,
             'jadwal' => $request->jadwal, // Array akan diubah ke JSON
@@ -58,7 +58,7 @@ class JadwalDokterController extends Controller
     public function destroy($id)
     {
         // Cari jadwal berdasarkan ID
-        $jadwal = Dokterr::findOrFail($id);
+        $jadwal = Dokter::findOrFail($id);
 
         // Hapus gambar dari storage jika ada
         if ($jadwal->gambar) {
@@ -74,7 +74,7 @@ class JadwalDokterController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $dokter = Dokterr::findOrFail($id);
+        $dokter = Dokter::findOrFail($id);
 
         // Validasi input
         $validatedData = $request->validate([
@@ -112,10 +112,6 @@ class JadwalDokterController extends Controller
 
         // Memperbarui data dokter
         $dokter->update($validatedData);
-
-            // Menyimpan jadwal dokter
-        $dokter->jadwal = $request->jadwal; // Simpan jadwal yang telah diperbarui
-        $dokter->save(); // Simpan perubahan ke database
 
         return redirect()->back()->with('success', 'Dokter berhasil diperbarui!');
     }

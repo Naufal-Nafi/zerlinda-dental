@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\public;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dokterr;
+use App\Models\Dokter;
 use App\Models\kontak;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -23,8 +23,8 @@ class PublicDoctorController extends Controller
         }
 
         $hari = strtolower(Carbon::parse($tanggal)->translatedFormat('l'));
-
-        $data = DB::table('dokterr')
+        
+        $data = DB::table('dokter')
             ->whereRaw("JSON_CONTAINS(jadwal, '{}', '$.\"$hari\"')")
             ->get();
 
@@ -44,6 +44,6 @@ class PublicDoctorController extends Controller
         });
 
         // Kembalikan view dengan data dokter, keyword, dan kontak
-        return view('user.doctor', compact('filteredData', 'contacts'));
+        return view('user.doctor', compact('filteredData', 'contacts', 'hari'));
     }
 }

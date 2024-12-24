@@ -11,19 +11,17 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = layanan::with("galeri_layanan")->get();
-        // dd($services->first()->galeri_layanan->first()->url_media);
+        $services = layanan::with("galeri_layanan")->simplePaginate(5);
         return view('admin.service', compact('services'));
     }
 
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'nama_layanan' => 'required|max:100',
             'deskripsi' => 'required',
             'gambar.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'tipe_layanan' => 'required|in:anak,dewasa' // Enum: anak atau dewasa
+            'tipe_layanan' => 'required|in:anak,dewasa,umum' // Enum: anak atau dewasa
         ]);
 
         
@@ -41,13 +39,11 @@ class ServiceController extends Controller
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
                 // Simpan gambar ke folder 'public/images/layanan'
-                $image->storeAs('public/images/layanan', $imageName, 'public');
+                $image->storeAs('galeri_layanan', $imageName, 'public');
 
                 // Buat entry di tabel galeri_layanan
-                galeri_layanan::create([
-                    'judul' => $validatedData['nama_layanan'],
-                    'deskripsi' => 'nama_layanan',
-                    'url_media' => 'images/layanan/' . $imageName, // Path ke gambar
+                galeri_layanan::create([                    
+                    'url_media' => 'galeri_layanan/' . $imageName, // Path ke gambar
                     'id_layanan' => $layanan->id_layanan // Foreign key ke tabel layanan
                 ]);
             }
@@ -59,7 +55,6 @@ class ServiceController extends Controller
 
     public function update(Request $request, $id)
     {
-        
         // Temukan layanan yang sesuai dengan ID
         $service = layanan::findOrFail($id);
         // dd($request->all());
@@ -67,14 +62,14 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'nama_pelayanan' => 'required|max:100',
             'deskripsi' => 'required',
-            'tipe_layanan' => 'required|in:anak,dewasa',
+            'tipe_layanan' => 'required|in:anak,dewasa,umum',
             'gambar.*' => 'image|mimes:jpeg,png,jpg|max:2048', 
             'gambar_hapus' => 'array',
             'gambar_hapus.*' => 'integer', 
             'gambar_1' => 'image|mimes:jpeg,png,jpg|max:2048', 
         ]);
         
-        
+                
         // Update data layanan
         $service->nama_layanan = $validated['nama_pelayanan'];
         $service->deskripsi = $validated['deskripsi'];
@@ -88,9 +83,9 @@ class ServiceController extends Controller
             Storage::delete($topImage->url_media);
 
             $imageName = time() . '_' . $image->getClientOriginalName();                
-            $image->storeAs('public/images/layanan', $imageName, 'public');
+            $image->storeAs('galeri_layanan', $imageName, 'public');
 
-            $topImage->url_media = 'images/layanan/' . $imageName;
+            $topImage->url_media = 'galeri_layanan/' . $imageName;
             $topImage->save();
         }
         
@@ -98,7 +93,7 @@ class ServiceController extends Controller
         if ($request->has('gambar_hapus')) {            
             $imagesToDelete = galeri_layanan::whereIn('id_galeri', $validated['gambar_hapus'])->get();
             foreach ($imagesToDelete as $image) {                
-                Storage::delete('public/'.$image->url_media);
+                Storage::delete($image->url_media);
                 $image->delete();
             }
         }
@@ -109,18 +104,17 @@ class ServiceController extends Controller
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
                 // Simpan gambar ke folder 'public/images/layanan'
-                $image->storeAs('public/images/layanan', $imageName, 'public');
+                $image->storeAs('galeri_layanan', $imageName, 'public');
 
                 // Buat entry di tabel galeri_layanan
-                galeri_layanan::create([
-                    'judul' => $validated['nama_pelayanan'],
-                    'deskripsi' => $validated['nama_pelayanan'],
-                    'url_media' => 'images/layanan/' . $imageName, // Path ke gambar
+                galeri_layanan::create([                    
+                    'url_media' => 'galeri_layanan/' . $imageName, // Path ke gambar
                     'id_layanan' => $service->id_layanan // Foreign key ke tabel layanan
                 ]);
             }
             $service->save();
         }
+        $service->save();
         
         // Redirect dengan pesan sukses
         return redirect()->route('admin.service')->with('success', 'Layanan berhasil diperbarui.');
@@ -140,7 +134,7 @@ class ServiceController extends Controller
 
             // Hapus setiap file gambar dari storage dan hapus galeri
             foreach ($galeriLayanan as $galeri) {
-                Storage::delete('public/images/layanan/' . basename($galeri->url_media));
+                Storage::delete($galeri->url_media);
                 $galeri->delete();
             }
 

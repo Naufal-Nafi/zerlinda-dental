@@ -7,13 +7,8 @@
 <div id="wrapper" class="relative h-screen flex items-center">
     <div id="slider-area" class="owl-carousel absolute h-screen w-full top-0 left-0 -z-10 ">
         @foreach ($images as $image)
-            <div style="background-image: url('{{ asset($image->url_media) }}')"></div>
+            <div style="background-image: url('{{ asset('storage/' . $image->url_media) }}')"></div>
         @endforeach
-        <!-- <div style="background-image: url('{{ asset('images/landing-page.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/artikel_3.png') }}')"></div>
-        <div style="background-image: url('{{ asset('images/artikel_4.png') }}')"></div>        
-        <div style="background-image: url('{{ asset('images/Vector.png') }}')"></div> -->
-
     </div>
     <div class="slider-text z-10 text-left mx-5 md:mx-12" data-aos="fade-up" data-aos-delay="100">
         <h1 data-aos="fade-left" class="text-white font-semibold lg:text-8xl md:text-6xl text-4xl">
@@ -70,6 +65,10 @@
                     class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
                     ANAK-ANAK
                 </button>
+                <button id="button-umum" data-aos="fade-left"
+                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
+                    UMUM
+                </button>
             </div>
         </div>
 
@@ -83,7 +82,7 @@
                         class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                         <div class="flex justify-center items-center ">
                             @if ($galeri = $service->galeri_layanan->first())
-                                <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt="Circular Image"
+                                <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
                                     class="xl:size-[250px] size-[200px] rounded-full object-cover">
                             @endif
                         </div>
@@ -116,7 +115,7 @@
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center ">
                         @if ($galeri = $service->galeri_layanan->first())
-                            <img src="{{ asset('storage/public/' . $galeri->url_media) }}" alt="Circular Image"
+                            <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
                                 class="xl:size-[250px] size-[200px] rounded-full object-cover">
                         @endif
                     </div>
@@ -138,39 +137,93 @@
                 <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">lainnya</p>
             </a>
         </div>
+
+        <!-- umum section -->
+        <div id="umum-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 hidden">
+            @foreach ($layanan2_umum as $service)                        
+                <a href="{{ route('service.show', $service->id_layanan) }}"
+                    class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
+                    <div class="flex justify-center items-center ">
+                        @if ($galeri = $service->galeri_layanan->first())
+                            <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
+                                class="xl:size-[250px] size-[200px] rounded-full object-cover">
+                        @endif
+                    </div>
+                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}</p>
+                </a>
+            @endforeach
+
+            <!-- lainnya  -->
+            <a href="{{ route('service.umum') }}"
+                class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
+                <div class="flex justify-center items-center">
+                    <svg class="xl:size-[250px] size-[200px] p-12 bg-pink-secondary rounded-full" width="75"
+                        height="130" viewBox="0 0 75 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2.86799 2.8615C1.03161 4.69427 0 7.17971 0 9.77125C0 12.3628 1.03161 14.8482 2.86799 16.681L51.3557 65.059L2.86799 113.437C1.08366 115.28 0.0963264 117.749 0.118645 120.312C0.140963 122.874 1.17115 125.325 2.98731 127.137C4.80348 128.95 7.26032 129.977 9.82867 130C12.397 130.022 14.8714 129.037 16.7188 127.257L72.132 71.9688C73.9684 70.136 75 67.6505 75 65.059C75 62.4675 73.9684 59.982 72.132 58.1493L16.7188 2.8615C14.8819 1.02928 12.3908 0 9.79341 0C7.19599 0 4.70492 1.02928 2.86799 2.8615Z"
+                            fill="#DA0C81" />
+                    </svg>
+                </div>
+                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">lainnya</p>
+            </a>
+        </div>
     </div>
 
     <!-- jquery untuk menampilkan dewasa /Anak-Anak  -->
     <script>
         const buttonDewasa = $('#button-dewasa');
         const buttonAnak = $('#button-anak');
+        const buttonUmum = $('#button-umum');
         const dewasaSection = $('#dewasa-section');
         const anakSection = $('#anak-section');
+        const umumSection = $('#umum-section');
 
         buttonDewasa.on('click', function () {
-            // Tampilkan bagian Dewasa dan sembunyikan Anak-Anak
+            // Tampilkan bagian Dewasa dan sembunyikan lainnya
             dewasaSection.removeClass('hidden');
             anakSection.addClass('hidden');
+            umumSection.addClass('hidden');
 
-            // Tambahkan kelas aktif pada tombol Dewasa, hilangkan dari Anak-Anak
+            // Tambahkan kelas aktif pada tombol Dewasa, hilangkan dari lainnya
             buttonDewasa.addClass('bg-pink-primary text-white')
                 .removeClass('bg-pink-secondary text-pink-primary');
             buttonAnak.addClass('bg-pink-secondary text-pink-primary')
                 .removeClass('bg-pink-primary text-white');
+            buttonUmum.addClass('bg-pink-secondary text-pink-primary')
+                .removeClass('bg-pink-primary text-white');
         });
 
         buttonAnak.on('click', function () {
-            // Tampilkan bagian Anak-Anak dan sembunyikan Dewasa
+            // Tampilkan bagian Anak-Anak dan sembunyikan lainnya
             anakSection.removeClass('hidden');
             dewasaSection.addClass('hidden');
+            umumSection.addClass('hidden');
 
-            // Tambahkan kelas aktif pada tombol Anak-Anak, hilangkan dari Dewasa
+            // Tambahkan kelas aktif pada tombol Anak-Anak, hilangkan dari lainnya
             buttonAnak.addClass('bg-pink-primary text-white')
                 .removeClass('bg-pink-secondary text-pink-primary');
             buttonDewasa.addClass('bg-pink-secondary text-pink-primary')
                 .removeClass('bg-pink-primary text-white');
+            buttonUmum.addClass('bg-pink-secondary text-pink-primary')
+                .removeClass('bg-pink-primary text-white');
+        });
+
+        buttonUmum.on('click', function () {
+            // Tampilkan bagian Umum dan sembunyikan lainnya
+            umumSection.removeClass('hidden');
+            dewasaSection.addClass('hidden');
+            anakSection.addClass('hidden');
+
+            // Tambahkan kelas aktif pada tombol Umum, hilangkan dari lainnya
+            buttonUmum.addClass('bg-pink-primary text-white')
+                .removeClass('bg-pink-secondary text-pink-primary');
+            buttonDewasa.addClass('bg-pink-secondary text-pink-primary')
+                .removeClass('bg-pink-primary text-white');
+            buttonAnak.addClass('bg-pink-secondary text-pink-primary')
+                .removeClass('bg-pink-primary text-white');
         });
     </script>
+
 </section>
 <!-- Service section ends  -->
 
@@ -203,10 +256,8 @@
                 <a href="{{ route('blog.show', $artikel->id_artikel) }}" class="">
                     <div
                         class="bg-pink-secondary rounded-lg hover:rounded-[45px] h-[240px] duration-300 overflow-hidden shadow-lg">
-                        @foreach ($artikel->galeri_artikel as $galeri)
-                            <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Gambar"
-                                class="w-full h-40 object-cover">
-                        @endforeach
+                        <img src="{{ asset('storage/' . $artikel->url_media) }}" alt="Gambar"
+                            class="w-full h-40 object-cover">
                         <div class="p-4">
                             <p class="font-semibold">{{ $artikel->judul }}</p>
                         </div>
@@ -292,7 +343,7 @@
                 <div class="flex items-center">
                     <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
                         src="{{ asset('images/person_5.png') }}" alt="">
-                    <h2 class="ms-4 font-bold text-xl">Queen Elizabeth II</h2>
+                    <h2 class="ms-4 font-bold text-xl">Sarah</h2>
                 </div>
             </div>
         </div>
@@ -312,11 +363,13 @@
         <div class="md:border-4 border-2 border-pink-secondary h-450 rounded-3xl " data-aos="fade-up"
             data-aos-delay="500">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13296.709523125111!2d110.37424616862342!3d-7.77546504897429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59d1b10eefdd%3A0xe65afca3cae0ac31!2sDepartemen%20Teknik%20Elektro%20Dan%20Informatika%20UGM!5e0!3m2!1sid!2sid!4v1729664735391!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d11182.850707198562!2d110.4820929790275!3d-7.711581817977542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwNDInNDQuMiJTIDExMMKwMjknMDAuNCJF!5e0!3m2!1sid!2sid!4v1734955420708!5m2!1sid!2sid"
                 width="100%" height="100%" class="rounded-3xl " style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <p class="text-base mt-4" data-aos="fade-up">Jalan Kalasan</p>
+        <p class="text-base mt-4" data-aos="fade-up">Pucung, Tamanmartani, Kec. Kalasan, Kabupaten Sleman, Daerah
+            Istimewa
+            Yogyakarta</p>
     </div>
 </div>
 <!-- Lokasi ends  -->

@@ -3,116 +3,88 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Nette\Schema\Schema as SchemaSchema;
 
-return new class extends Migration
-{
+
+return new class extends Migration {
     public function up(): void
-{
-    
-
-    Schema::create('artikel', function (Blueprint $table) {
-        $table->id('id_artikel'); // Primary key
-        $table->string('judul', 255);
-        $table->text('konten')->nullable();
-        $table->timestamps();
-
-        
-    });
+    {
+        Schema::create('artikel', function (Blueprint $table) {
+            $table->id('id_artikel'); // Primary key
+            $table->string('judul', 255);
+            $table->text('konten')->nullable();
+            $table->text('url_media');
+            $table->timestamps();
+        });
 
         Schema::create('dokter', function (Blueprint $table) {
-            $table->id('id_dokter'); // Primary key
-            $table->string('nama', 100);
+            $table->id();
+            $table->string('nama');
+            $table->string('gambar')->nullable();
             $table->json('jadwal')->nullable();
             $table->timestamps();
-
-            
         });
 
         Schema::create('layanan', function (Blueprint $table) {
             $table->id('id_layanan'); // Primary key
             $table->string('nama_layanan', 100);
             $table->text('deskripsi');
-            $table->enum('jenis_layanan', ['anak', 'dewasa']);
+            $table->enum('jenis_layanan', ['anak', 'dewasa', 'umum']);
             $table->timestamps();
         });
-        
-
-    Schema::create('kontak', function (Blueprint $table) {
-        $table->id('id_kontak');
-        $table->string('jenis_kontak', 255);
-        $table->string('nama_akun', 255);
-        $table->string('url', 255);
-        $table->timestamps();
-    });
-
-    Schema::create('pengguna', function (Blueprint $table) {
-        $table->id('id_pengguna');
-        $table->string('email', 100);
-        $table->string('username', 255);
-        $table->string('password', 255);
-        $table->string('level', 255);
-        $table->string('token', 255);
-        $table->string('reset_token', 255)->nullable();
-        $table->timestamp('token_expires_at')->nullable();
-        $table->timestamps();
-    });
-    
-    Schema::create('galeri_layanan', function (Blueprint $table) {
-        $table->id('id_galeri');
-        $table->string('judul', 100);
-        $table->string('deskripsi');
-        $table->text('url_media');
-        $table->timestamps();
-        $table->foreignId('id_layanan')->references('id_layanan')->on('layanan')->onDelete('cascade');
-    });
-    
-
-    Schema::create('galeri_dokter', function (Blueprint $table) {
-        $table->id('id_galeri');
-        $table->string('judul', 100);
-        $table->string('deskripsi');
-        $table->text('url_media');
-        $table->timestamps();
-        $table->foreignId('id_dokter')->references('id_dokter')->on('dokter')->onDelete('cascade');
-    });
-
-    Schema::create('galeri_artikel', function (Blueprint $table) {
-        $table->id('id_galeri');
-        $table->string('judul', 100);
-        $table->string('deskripsi');
-        $table->text('url_media');
-        $table->timestamps();
-
-        $table->foreignId('id_artikel')->references('id_artikel')->on('artikel')->onDelete('cascade');
-    });
-
-    Schema::create('landing_page', function (Blueprint $table) {
-        $table->id('id_galeri');
-        $table->string('keterangan');
-        $table->text('url_media');
-        $table->timestamps();
-    });
-
-    Schema::create('sessions', function (Blueprint $table) {
-        $table->string('id')->primary();
-        $table->foreignId('user_id')->nullable()->index();
-        $table->string('ip_address', 45)->nullable();
-        $table->text('user_agent')->nullable();
-        $table->longText('payload');
-        $table->integer('last_activity')->index();
-    });
-
-    Schema::create('cache', function (Blueprint $table) {
-        $table->string('key')->primary();
-        $table->mediumtext('value');
-        $table->integer('expires_at')->nullable();
-    });
-
-}
 
 
-    
+        Schema::create('kontak', function (Blueprint $table) {
+            $table->id('id_kontak');
+            $table->string('jenis_kontak', 255);
+            $table->string('nama_akun', 255);
+            $table->string('url', 255);
+            $table->timestamps();
+        });
+
+        Schema::create('pengguna', function (Blueprint $table) {
+            $table->id('id_pengguna');
+            $table->string('email', 100);
+            $table->string('username', 255);
+            $table->string('password', 255);
+            $table->string('level', 255);
+            $table->string('token', 255);
+            $table->string('reset_token', 255)->nullable();
+            $table->timestamp('token_expires_at')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('galeri_layanan', function (Blueprint $table) {
+            $table->id('id_galeri');            
+            $table->text('url_media');
+            $table->timestamps();
+            $table->foreignId('id_layanan')->references('id_layanan')->on('layanan')->onDelete('cascade');
+        });        
+
+        Schema::create('landing_page', function (Blueprint $table) {
+            $table->id('id_galeri');
+            $table->string('keterangan');
+            $table->text('url_media');
+            $table->timestamps();
+        });
+
+        Schema::create('sessions', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->longText('payload');
+            $table->integer('last_activity')->index();
+        });
+
+        Schema::create('cache', function (Blueprint $table) {
+            $table->string('key')->primary();
+            $table->mediumtext('value');
+            $table->integer('expires_at')->nullable();
+        });
+
+    }
+
+
     public function down(): void
     {
         Schema::dropIfExists('artikel');
@@ -129,6 +101,4 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('cache');
     }
-
-
 };
