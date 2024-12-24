@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokter;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class JadwalDokterController extends Controller
 {
