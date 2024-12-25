@@ -327,7 +327,7 @@
 
 
 <script>
-    let counter = 3; // Start counter for new div IDs
+    let counter = 2; // Start counter for new div IDs
 
     $('#addNewField').on('click', function () {
         const container = $('#container');
@@ -336,7 +336,7 @@
         const newDiv = $(`
             <div class="me-3 d-flex flex-column justify-content-between" style="min-width: 300px; min-height: 240px;">
                 <div style="min-height:38px;"></div>
-                <label for="gambar${counter}" class="form-label">Gambar ${counter}</label>
+                <label for="gambar${counter}" class="form-label">Contoh Perawatan ${counter}</label>
                 <img id="previewImage${counter}" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
                 <input class="form-control border-black image-input" type="file" id="gambar${counter}" name="gambar[]" accept="image/*" required>
             </div>

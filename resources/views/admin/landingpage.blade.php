@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('page-title', 'Landing Page')
+@section('page-title', 'Ubah Landing Page')
 
 @section('content')
 <!-- Button trigger modal -->

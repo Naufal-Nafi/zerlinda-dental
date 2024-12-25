@@ -15,33 +15,33 @@
             </tr>
         </thead>
         <tbody class="fw-semibold">
-            @foreach ($contact as $service)
+            @foreach ($contact as $contact)
             <tr>
                 <td>
-                    @if ($service->jenis_kontak == "Gmail")
+                    @if ($contact->jenis_kontak == "Gmail")
                     <i class="bi bi-envelope"></i>
-                    @elseif ($service->jenis_kontak == "Instagram")
+                    @elseif ($contact->jenis_kontak == "Instagram")
                     <i class="bi bi-instagram"></i>
-                    @elseif ($service->jenis_kontak == "Facebook")
+                    @elseif ($contact->jenis_kontak == "Facebook")
                     <i class="bi bi-facebook"></i>
-                    @elseif ($service->jenis_kontak == "Tiktok")
+                    @elseif ($contact->jenis_kontak == "Tiktok")
                     <i class="bi bi-tiktok"></i>
-                    @elseif ($service->jenis_kontak == "WhatsApp")
+                    @elseif ($contact->jenis_kontak == "WhatsApp")
                     <i class="bi bi-whatsapp"></i>
                     @endif
                 </td>
-                <td>{{ $service->jenis_kontak }}</td>
-                <td>{{ $service->nama_akun }}</td>
-                <td>{{ $service->url }}</td>
+                <td>{{ $contact->jenis_kontak }}</td>
+                <td>{{ $contact->nama_akun }}</td>
+                <td>{{ $contact->url }}</td>
                 <td>
                     <button 
-                        id="editbtn{{ $service->id_kontak }}" 
+                        id="editbtn{{ $contact->id_kontak }}" 
                         type="button" 
                         class="btn btn-primary" 
-                        data-id="{{ $service->id_kontak }}" 
-                        data-nama-akun="{{ $service->nama_akun }}" 
-                        data-url="{{ $service->url }}" 
-                        data-jenis="{{$service->jenis_kontak}}"
+                        data-id="{{ $contact->id_kontak }}" 
+                        data-nama-akun="{{ $contact->nama_akun }}" 
+                        data-url="{{ $contact->url }}" 
+                        data-jenis="{{$contact->jenis_kontak}}"
                         data-bs-toggle="modal" 
                         data-bs-target="#editContactModal">
                         Edit
@@ -61,7 +61,7 @@
                 @csrf
                 <div class="modal-body text-20" id="editModalContent">
                     <div>
-                        <h2 id="namaKontak" class="mb-3 fw-bold">Edit Kontak</h2>
+                        <h2 class="mb-3 fw-bold" id="modalTitle">Edit Kontak</h2>
                     </div>
                     <div class="mb-3">
                         <label for="nama_akun" class="form-label">Nama Akun</label>
@@ -84,26 +84,26 @@
 
 @section('script')
 <script>
-    $(document).ready(function () {
-        const $editContactModal = $("#editContactModal");
-        const $editForm = $("#editForm");
-        const $namaAkunInput = $("#edtnamaakun");
-        const $urlInput = $("#edtlink");
-        const $namaKontak = $("#namaKontak");
+    document.addEventListener("DOMContentLoaded", function () {
+        const editContactModal = document.getElementById("editContactModal");
+        const editForm = document.getElementById("editForm");
+        const namaAkunInput = document.getElementById("edtnamaakun");
+        const urlInput = document.getElementById("edtlink");
+        const modalTitle = document.getElementById("modalTitle");
 
         // Event listener untuk modal
-        $editContactModal.on("show.bs.modal", function (event) {
-            const $button = $(event.relatedTarget); // Tombol yang membuka modal
-            const id = $button.data("id");
-            const namaAkun = $button.data("nama-akun");
-            const url = $button.data("url");
-            const jenis = $button.data("jenis");
+        editContactModal.addEventListener("show.bs.modal", function (event) {
+            const button = event.relatedTarget; // Tombol yang membuka modal
+            const id = button.getAttribute("data-id");
+            const namaAkun = button.getAttribute("data-nama-akun");
+            const url = button.getAttribute("data-url");
+            const jenisKontak = button.getAttribute("data-jenis");
 
             // Update form action dan isi field
-            $editForm.attr("action", `/admin/contact/edit/${id}`);
-            $namaAkunInput.val(namaAkun);
-            $urlInput.val(url);
-            $namaKontak.text(`Edit ${jenis}`);
+            editForm.action = `/admin/contact/edit/${id}`;
+            namaAkunInput.value = namaAkun;
+            urlInput.value = url;
+            modalTitle.textContent = `Kontak ${jenisKontak}`;
         });
     });
 </script>

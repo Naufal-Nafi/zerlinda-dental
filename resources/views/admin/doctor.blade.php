@@ -46,11 +46,6 @@
         <p>Tidak ada data.</p>
     @endif    
 </div>
-
-<div class="text-center">
-    {{ $dokterList->links() }}
-</div>
-
 <div class="modal fade" id="createDoctorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content bg-light-pink" style="padding: 50px;">
@@ -60,6 +55,9 @@
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control border-black" id="nama" name="nama" required>
+                        @error('nama')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="gambar" class="form-label">Foto</label>
@@ -67,6 +65,9 @@
                             style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
                         <input class="form-control border-black image-input" type="file" id="gambar" name="gambar"
                             required>
+                        @error('gambar')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div>
                         <h5>Jadwal</h5>
@@ -109,8 +110,7 @@
 </div>
 
 @foreach($dokterList as $dokter)
-    <div class="modal fade" id="editDoctorModal{{ $dokter->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="editDoctorModal{{ $dokter->id }}" tabindex="-1" aria-labelledby="editDoctorModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content bg-light-pink" style="padding: 50px;">
                 <form action="{{route('admin.doctor.update', $dokter->id)}}" method="POST" enctype="multipart/form-data">
@@ -126,6 +126,9 @@
                                 name="nama" 
                                 value="{{ old('nama', $dokter->nama) }}" 
                                 required>
+                            @error('nama')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="gambar" class="form-label">Foto</label>
@@ -160,7 +163,7 @@
                                                 <label class="form-check-label" for="{{ $day }}">{{ ucfirst($day) }}</label>
                                             </div>
                                             <div id="Edit-schedule-{{ $day }}" class="schedule-times mx-3 mb-3 {{ isset($dokter->jadwal[$day]) ? '' : 'd-none' }}"
-                                                style=" width: 200px; ">
+                                                style="width: 200px;">
                                                 <label for="jadwal_awal-{{ $day }}" class="form-label">Jam Mulai - {{ ucfirst($day) }}</label>
                                                 <input 
                                                     type="time" 
@@ -195,10 +198,15 @@
 @endforeach
 @endsection
 
+@section('formAction')
+{{ route('admin.doctor.store') }}
+@endsection
+
+
 
 @section('script')
 <script>
-    $(document).ready(function () {
+$(document).ready(function () {
     // Fungsi untuk toggle jadwal berdasarkan status checkbox
     function toggleSchedule(day, isChecked, isEdit = false) {
         const prefix = isEdit ? "Edit-" : "";
@@ -206,17 +214,18 @@
         const startInput = $(`#${prefix}jadwal_awal-${day}`);
         const endInput = $(`#${prefix}jadwal_akhir-${day}`);
 
+        // Log parameter untuk debugging
+        console.log(`Day: ${day}, isChecked: ${isChecked}, isEdit: ${isEdit}`);
+        console.log("Schedule Div:", scheduleDiv);
+        console.log("Start Input:", startInput, "End Input:", endInput);
         if (isChecked) {
-            scheduleDiv.attr("style", function(i, style) {
-                return (style || "") + "display: block !important;";
-            });
-
+            console.log(`Enabling schedule for ${day}`);
+            scheduleDiv.css("display", "block").removeClass("d-none");
             startInput.prop("disabled", false);
             endInput.prop("disabled", false);
         } else {
-            scheduleDiv.attr("style", function(i, style) {
-                return (style || "") + "display: none !important;";
-            });
+            console.log(`Disabling schedule for ${day}`);
+            scheduleDiv.css("display", "none").addClass("d-none");
             startInput.prop("disabled", true).val('');
             endInput.prop("disabled", true).val('');
         }
@@ -243,9 +252,5 @@
         toggleSchedule(day, isChecked, true);
     });
 });
-
 </script>
-
-
-
 @endsection

@@ -194,7 +194,7 @@
                     <div>
                         <h3 class="text-xl font-semibold  mb-4">Jadwal Klinik :</h3>
                         <p class="">Senin - Jumat : 08:00 - 21:00</p>
-                        <p class="">Sabtu : 08:00 - 12:00</p>
+                        <p class="">Sabtu - Minggu : 08:00 - 12:00</p>
 
                         <h3 class="text-xl font-semibold  mt-6 mb-4">Lokasi Klinik :</h3>
                         <p class="">Pucung, Tamanmartani, Kec. Kalasan,<br> Kabupaten Sleman, Daerah Istimewa <br>
@@ -212,12 +212,12 @@
         <!-- footer ends  -->
 
 
-
+        <?php
+            $whatsapp = \App\Models\kontak::where('jenis_kontak', 'WhatsApp')->value('url');
+        ?>
         <!-- Ikon WhatsApp di pojok kanan bawah -->
-        @php
-            $url = \App\Models\kontak::where('jenis_kontak', 'whatsapp')->value('url');
-        @endphp
-        <a href="{{$url}}" target="_blank" class="fixed bottom-5 right-5 group">
+        @if(isset($whatsapp) && $whatsapp && str_contains($whatsapp, 'https://wa.me/'))
+        <a href="{{$whatsapp}}" target="_blank" class="fixed bottom-5 right-5 group">
             <div class="bg-pink-primary text-white p-4 rounded-full hover:scale-105 shadow-lg transition duration-300">
                 <!-- SVG Ikon WhatsApp -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
@@ -235,6 +235,7 @@
                 </div>
             </div>
         </a>
+        @endif
         <!-- ikon whatsapp  -->
     </div>
 

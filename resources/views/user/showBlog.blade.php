@@ -1,4 +1,5 @@
 @extends('layout.user')
+@section('title', 'Artikel Blog')
 @section('content')
 <div class="min-h-screen mx-auto text-pink-primary md:w-4/5 w-[85%]">
     <p class="text-start mt-8 md:text-base text-xs">

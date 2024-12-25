@@ -11,13 +11,12 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = layanan::with("galeri_layanan")->simplePaginate(5);
-        // dd($services->first()->galeri_layanan->first()->url_media);
+        $services = layanan::with("galeri_layanan")->latest()->simplePaginate(5);
         return view('admin.service', compact('services'));
     }
 
     public function store(Request $request)
-    {
+    {   
         $validatedData = $request->validate([
             'nama_layanan' => 'required|max:100',
             'deskripsi' => 'required',

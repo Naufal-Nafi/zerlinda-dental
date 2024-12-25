@@ -8,7 +8,7 @@
         <h1 class="text-center mb-4 fw-bold">Ubah Password</h1>
         <form action="{{ route('password.validate') }}" method="POST">       
             @csrf     
-            <div class="mb-3">        
+            <div class="mb-3">      
                 <input type="password" class="form-control" placeholder="Current Password" name="current_password" id="current_password"> <!-- required -->
             </div>
             <button type="submit" class="btn btn-login w-100 mt-3">lanjutkan</button>

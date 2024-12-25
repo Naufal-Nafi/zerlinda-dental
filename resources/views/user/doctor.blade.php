@@ -1,4 +1,5 @@
 @extends('layout.user')
+@section('title', 'Jadwal Dokter')
 @section('content')
 <div class="min-h-screen w-4/5 mx-auto">
     <!-- kotak pencarian jadwal  -->

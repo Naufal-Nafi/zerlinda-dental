@@ -76,6 +76,9 @@ span {
 }
 /* navbar ends */
 
+.d-none {
+    display: none !important;
+}
 
 @media (min-width: 1023px) {
     .navbar {
