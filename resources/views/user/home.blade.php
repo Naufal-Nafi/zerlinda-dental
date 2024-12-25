@@ -259,7 +259,7 @@
                         <img src="{{ asset('storage/' . $artikel->url_media) }}" alt="Gambar"
                             class="w-full h-40 object-cover">
                         <div class="p-4">
-                            <p class="font-semibold">{{ $artikel->judul }}</p>
+                            <p class="font-semibold line-clamp-2">{{ $artikel->judul }}</p>
                         </div>
                     </div>
                 </a>

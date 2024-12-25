@@ -13,7 +13,7 @@ class homeController extends Controller
     public function index()
     {
         $images = \App\Models\landing_page::all();
-        $artikels = artikel::latest()->get();
+        $artikels = artikel::latest()->limit(6)->get();
 
         $layanan2_anak = layanan::with('galeri_layanan')
             ->where('jenis_layanan', 'anak')
@@ -30,7 +30,7 @@ class homeController extends Controller
             ->take(2)
             ->get();
 
-        $contacts = kontak::all();        
+        $contacts = kontak::all();   
         
         return view('user.home', compact('images', 'artikels','layanan2_anak','layanan2_dewasa', 'layanan2_umum', 'contacts'));
     }     

@@ -1,7 +1,7 @@
 @extends('layout.user')
 @section('title', 'Artikel Blog')
 @section('content')
-@if (isset($topBlog)&&$middleBlogs && $middleBlogs && $remainingBlogs && $remainingBlogs->isEmpty())
+@if (isset($topBlog))
     <div class="min-h-screen w-4/5 mx-auto ">
         <!-- Judul & Search Bar -->
         <div class="md:flex justify-between md:mt-20 mt-12">
@@ -41,7 +41,7 @@
                             <img class="w-full h-4/5 rounded-t-xl hover:rounded-t-3xl duration-300 object-cover"
                                 src="{{ asset('storage/' . $artikel->url_media) }}" alt="">
                             <div
-                                class="h-1/5 bg-pink-secondary rounded-b-xl hover:rounded-b-3xl duration-300 flex flex-col justify-center">
+                                class="p-2 h-1/5 bg-pink-secondary rounded-b-xl hover:rounded-b-3xl duration-300 flex flex-col justify-center">
                                 <p class="line-clamp-2">{{ $artikel->judul }}</p>
                             </div>
                         </a>

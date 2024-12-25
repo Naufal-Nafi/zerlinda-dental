@@ -96,7 +96,8 @@ Route::get('/',[homeController::class, 'index'])->name('home');
 
 Route::get('/location', function () {
   $contacts = kontak::all(); // Mengambil semua data dari model Kontak
-  return view('user.maps', compact('contacts')); // Mengirim data ke view
+  $whatsapp = kontak::where('jenis_kontak', 'WhatsApp')->get(); 
+  return view('user.maps', compact('contacts','whatsapp')); // Mengirim data ke view
 })->name('location');
 
 Route::get('/layananGigiAnak', [PublicServiceController::class, 'childService'])->name('service.child');

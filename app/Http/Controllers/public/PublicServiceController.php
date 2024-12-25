@@ -35,7 +35,7 @@ class PublicServiceController extends Controller
 
     public function show($id)
     {
-        $contacts = kontak::all();
+        $contacts = kontak::all();  
 
         // Ambil layanan berdasarkan ID
         $service = layanan::with('galeri_layanan')->findOrFail($id);        

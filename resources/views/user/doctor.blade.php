@@ -32,7 +32,7 @@
                     <img class="mx-auto rounded-xl" src="{{ asset('storage/' . $dokter['gambar'])  }}" alt="">
                     <div class="md:text-left my-auto">
                         <p>Dokter</p>
-                        <p class="group-hover:text-2xl duration-300">{{ $dokter['nama'] }}</p>
+                        <p class="group-hover:text-2xl absolute duration-300">{{ $dokter['nama'] }}</p>
                     </div>
                 </div>
                 <div class="my-auto gap-max">

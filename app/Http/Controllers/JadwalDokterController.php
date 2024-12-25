@@ -11,7 +11,7 @@ class JadwalDokterController extends Controller
 {
     public function index()
     {
-        $dokterList = Dokter::simplePaginate(5);
+        $dokterList = Dokter::latest()->simplePaginate(5);
 
         return view('admin.doctor', compact('dokterList'));
     }
