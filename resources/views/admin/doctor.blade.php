@@ -159,28 +159,31 @@
                                                     type="checkbox"
                                                     value="{{ $day }}" 
                                                     id="{{ $day }}" 
+                                                    data-dokter-id="{{ $dokter->id }}" 
                                                     {{ isset($dokter->jadwal[$day]) ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="{{ $day }}">{{ ucfirst($day) }}</label>
                                             </div>
-                                            <div id="Edit-schedule-{{ $day }}" class="schedule-times mx-3 mb-3 {{ isset($dokter->jadwal[$day]) ? '' : 'd-none' }}"
+                                            <div id="Edit-{{ $dokter->id }}-schedule-{{ $day }}" 
+                                                class="schedule-times mx-3 mb-3 {{ isset($dokter->jadwal[$day]) ? 'd-block' : 'd-none' }}"
                                                 style="width: 200px;">
-                                                <label for="jadwal_awal-{{ $day }}" class="form-label">Jam Mulai - {{ ucfirst($day) }}</label>
+                                                <label for="Edit-jadwal_awal-{{ $dokter->id }}-{{ $day }}" class="form-label">Jam Mulai - {{ ucfirst($day) }}</label>
                                                 <input 
                                                     type="time" 
                                                     class="form-control border-black" 
-                                                    id="Edit-jadwal_awal-{{ $day }}"
+                                                    id="Edit-{{ $dokter->id }}-jadwal_awal-{{ $day }}"
                                                     name="jadwal[{{ $day }}][jadwal_awal]" 
                                                     value="{{ $dokter->jadwal[$day]['jadwal_awal'] ?? '' }}" 
                                                     {{ isset($dokter->jadwal[$day]) ? '' : 'disabled' }}>
-                                                <label for="jadwal_akhir-{{ $day }}" class="form-label">Jam Akhir - {{ ucfirst($day) }}</label>
+                                                <label for="Edit-jadwal_akhir-{{ $dokter->id }}-{{ $day }}" class="form-label">Jam Akhir - {{ ucfirst($day) }}</label>
                                                 <input 
                                                     type="time" 
                                                     class="form-control border-black"
-                                                    id="Edit-jadwal_akhir-{{ $day }}" 
+                                                    id="Edit-{{ $dokter->id }}-jadwal_akhir-{{ $day }}" 
                                                     name="jadwal[{{ $day }}][jadwal_akhir]" 
                                                     value="{{ $dokter->jadwal[$day]['jadwal_akhir'] ?? '' }}" 
                                                     {{ isset($dokter->jadwal[$day]) ? '' : 'disabled' }}>
                                             </div>
+
                                         @endforeach
                                     </div>
                                 </div>
@@ -196,40 +199,38 @@
         </div>
     </div>   
 @endforeach
+
 @endsection
 
-@section('formAction')
-{{ route('admin.doctor.store') }}
-@endsection
+@push('script')
 
 
-
-@section('script')
 <script>
 $(document).ready(function () {
     // Fungsi untuk toggle jadwal berdasarkan status checkbox
-    function toggleSchedule(day, isChecked, isEdit = false) {
-        const prefix = isEdit ? "Edit-" : "";
+    function toggleSchedule(day, isChecked, isEdit = false, dokterId) {
+        const prefix = isEdit ? `Edit-${dokterId}-` : '';
         const scheduleDiv = $(`#${prefix}schedule-${day}`);
         const startInput = $(`#${prefix}jadwal_awal-${day}`);
         const endInput = $(`#${prefix}jadwal_akhir-${day}`);
 
-        // Log parameter untuk debugging
-        console.log(`Day: ${day}, isChecked: ${isChecked}, isEdit: ${isEdit}`);
-        console.log("Schedule Div:", scheduleDiv);
-        console.log("Start Input:", startInput, "End Input:", endInput);
+        
+
         if (isChecked) {
-            console.log(`Enabling schedule for ${day}`);
-            scheduleDiv.css("display", "block").removeClass("d-none");
+            scheduleDiv.addClass("d-block").removeClass("d-none");
             startInput.prop("disabled", false);
             endInput.prop("disabled", false);
         } else {
-            console.log(`Disabling schedule for ${day}`);
-            scheduleDiv.css("display", "none").addClass("d-none");
+            scheduleDiv.addClass("d-none").removeClass("d-block");
             startInput.prop("disabled", true).val('');
             endInput.prop("disabled", true).val('');
         }
+
+        // console.log(Day: ${day}, isChecked: ${isChecked}, isEdit: ${isEdit});
+        console.log("Schedule Div:", scheduleDiv);
+        console.log("Start Input:", startInput, "End Input:", endInput);
     }
+
 
     // Event listener untuk form create
     $(".form-check-input-doctor").on("change", function () {
@@ -240,17 +241,26 @@ $(document).ready(function () {
 
     // Event listener untuk form edit (dengan delegation)
     $(document).on("change", ".form-check-input-doctor-edit", function () {
+        const dokterId = $(this).data('dokter-id'); // Tambahkan data dokterId di checkbox
         const day = $(this).val();
         const isChecked = $(this).is(":checked");
-        toggleSchedule(day, isChecked, true);
+        toggleSchedule(day, isChecked, true, dokterId);
     });
 
     // Inisialisasi awal untuk form edit
     $(".form-check-input-doctor-edit").each(function () {
+        const dokterId = $(this).data('dokter-id'); // Tambahkan data dokterId di checkbox
         const day = $(this).val();
         const isChecked = $(this).is(":checked");
-        toggleSchedule(day, isChecked, true);
+        toggleSchedule(day, isChecked, true, dokterId);
     });
+
 });
 </script>
+@endpush
+
+
+
+@section('formAction')
+{{ route('admin.doctor.store') }}
 @endsection

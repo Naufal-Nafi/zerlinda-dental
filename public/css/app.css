@@ -30,6 +30,14 @@ span {
   cursor: default;
 }
 
+.d-blocka {
+    display: block !important;
+}
+.d-nonea {
+    display: none !important;
+}
+
+
 .bg-pink {
     background-color: var(--primary-color) !important;
    
