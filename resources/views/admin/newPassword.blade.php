@@ -11,7 +11,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark position-fixed w-100">
+    <nav class="navbar navbar-expand-lg navbar-dark position-fixed w-100" style="width: 100% !important; left: 0 !important;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <span>Zerlinda - Admin</span>

@@ -41,6 +41,7 @@
                         data-id="{{ $service->id_kontak }}" 
                         data-nama-akun="{{ $service->nama_akun }}" 
                         data-url="{{ $service->url }}" 
+                        data-jenis="{{$service->jenis_kontak}}"
                         data-bs-toggle="modal" 
                         data-bs-target="#editContactModal">
                         Edit
@@ -60,7 +61,7 @@
                 @csrf
                 <div class="modal-body text-20" id="editModalContent">
                     <div>
-                        <h2 class="mb-3 fw-bold">Edit Kontak</h2>
+                        <h2 id="namaKontak" class="mb-3 fw-bold">Edit Kontak</h2>
                     </div>
                     <div class="mb-3">
                         <label for="nama_akun" class="form-label">Nama Akun</label>
@@ -83,24 +84,28 @@
 
 @section('script')
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const editContactModal = document.getElementById("editContactModal");
-        const editForm = document.getElementById("editForm");
-        const namaAkunInput = document.getElementById("edtnamaakun");
-        const urlInput = document.getElementById("edtlink");
+    $(document).ready(function () {
+        const $editContactModal = $("#editContactModal");
+        const $editForm = $("#editForm");
+        const $namaAkunInput = $("#edtnamaakun");
+        const $urlInput = $("#edtlink");
+        const $namaKontak = $("#namaKontak");
 
         // Event listener untuk modal
-        editContactModal.addEventListener("show.bs.modal", function (event) {
-            const button = event.relatedTarget; // Tombol yang membuka modal
-            const id = button.getAttribute("data-id");
-            const namaAkun = button.getAttribute("data-nama-akun");
-            const url = button.getAttribute("data-url");
+        $editContactModal.on("show.bs.modal", function (event) {
+            const $button = $(event.relatedTarget); // Tombol yang membuka modal
+            const id = $button.data("id");
+            const namaAkun = $button.data("nama-akun");
+            const url = $button.data("url");
+            const jenis = $button.data("jenis");
 
             // Update form action dan isi field
-            editForm.action = `/admin/contact/edit/${id}`;
-            namaAkunInput.value = namaAkun;
-            urlInput.value = url;
+            $editForm.attr("action", `/admin/contact/edit/${id}`);
+            $namaAkunInput.val(namaAkun);
+            $urlInput.val(url);
+            $namaKontak.text(`Edit ${jenis}`);
         });
     });
 </script>
+
 @endsection
