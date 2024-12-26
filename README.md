@@ -64,7 +64,7 @@ Open the `.env` file and set up the following environment variables:
   - `MAIL_PORT=<YOUR_MAIL_PORT>`
   - `MAIL_USERNAME=<YOUR_EMAIL_ADDRESS>`
   - `MAIL_PASSWORD=<YOUR_EMAIL_PASSWORD>`
-  - `MAIL_ENCRYPTION=<YOUR_MAIL_ENCRYPTION_METHOD>` (usually `tls` or `ssl`)
+  - `MAIL_ENCRYPTION=<YOUR_MAIL_ENCRYPTION_METHOD>` (`tls` or `ssl`)
   - `MAIL_FROM_ADDRESS=<FROM_EMAIL_ADDRESS>`
   - `MAIL_FROM_NAME="${APP_NAME}"`
 
@@ -146,7 +146,7 @@ php artisan view:clear
 
 
 ---
-### Troubleshooting
+## Troubleshooting
 Ensure that the storage directory has the correct permissions:
 
 ```bash
