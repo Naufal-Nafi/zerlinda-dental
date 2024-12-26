@@ -222,6 +222,18 @@
         </div>
     `;
             gambarContainer.append(gambarPertamaDiv);
+            // Delegasikan event listener untuk elemen dinamis
+            $(document).on('change', '#edit_gambar', function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        // Perbarui gambar pratinjau
+                        $(event.target).siblings('img').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
 
             // Tambahkan gambar lainnya
             $.each(gambarLainnya, function (index, gambar) {
