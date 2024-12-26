@@ -1,5 +1,3 @@
----
-
 ## Installation Instructions
 
 ### 1. Clone the Repository
@@ -18,8 +16,6 @@ Navigate to the project directory:
 cd <PROJECT-DIRECTORY>
 ```
 
----
-
 ### 2. Install Backend Dependencies (Composer)
 
 Make sure you have [Composer](https://getcomposer.org/) installed. Then, install the required PHP dependencies by running the following command:
@@ -30,7 +26,7 @@ composer install
 
 This will install the necessary libraries and dependencies for the Laravel application.
 
----
+
 
 ### 3. Install Frontend Dependencies (npm)
 
@@ -42,7 +38,7 @@ npm install
 
 This will install Tailwind CSS, Bootstrap, and other JavaScript/CSS dependencies.
 
----
+
 
 ### 4. Set Up the Environment Configuration
 
@@ -78,7 +74,7 @@ Generate the application key by running:
 php artisan key:generate
 ```
 
----
+
 
 ### 5. Create a Storage Link
 
@@ -90,7 +86,7 @@ php artisan storage:link
 
 This will link the `storage/app/public` folder to the `public/storage` directory.
 
----
+
 
 ### 6. Run Database Migrations
 
@@ -106,7 +102,7 @@ If there are any seeders for the database, you can also run them with:
 php artisan db:seed
 ```
 
----
+
 
 ### 7. Compile the Frontend Assets
 
@@ -122,7 +118,6 @@ For production builds (minified assets), use:
 npm run build
 ```
 
----
 
 ### 8. Serve the Application
 
@@ -138,7 +133,6 @@ You can now access the application in your browser at:
 http://127.0.0.1:8000
 ```
 
----
 
 ### 9. Optional: Clear Cache
 
@@ -150,7 +144,6 @@ php artisan config:clear
 php artisan view:clear
 ```
 
----
 
 Troubleshooting
 Ensure that the storage directory has the correct permissions:
@@ -169,4 +162,4 @@ Mail::raw('Test email', function($message) {
     $message->to('recipient@example.com')->subject('Test Email');
 });
 ```
----
+
