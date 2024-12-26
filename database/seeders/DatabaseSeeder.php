@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('pengguna')->insert([
-            'email' => 'ninoauliyanahara@gmail.com',
+            'email' => 'zerlindadental@gmail.com',
             'username' => 'admin',
             'password' => bcrypt('admin'),
             'level' => 'admin',
