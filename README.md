@@ -145,7 +145,8 @@ php artisan view:clear
 ```
 
 
-Troubleshooting
+---
+### Troubleshooting
 Ensure that the storage directory has the correct permissions:
 
 ```bash
