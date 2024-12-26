@@ -26,13 +26,13 @@
 
     <!-- list dokter  -->
     <div class="grid grid-cols-1 gap-6 mb-20">
-        @foreach ($filteredData as $dokter)      <div
-                class="group p-4 bg-pink-secondary rounded-xl md:flex justify-between block font-bold md:text-xl text-base">
+        @foreach ($filteredData as $dokter)      
+            <div class="group p-4 bg-pink-secondary rounded-xl md:flex justify-between block font-bold md:text-xl text-base">
                 <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
-                    <img class="mx-auto rounded-xl" src="{{ asset('storage/' . $dokter['gambar'])  }}" alt="">
+                    <img class="rounded-xl" src="{{ asset('storage/' . $dokter['gambar'])  }}" alt="">
                     <div class="md:text-left my-auto">
                         <p>Dokter</p>
-                        <p class="group-hover:text-2xl absolute duration-300">{{ $dokter['nama'] }}</p>
+                        <p>{{ $dokter['nama'] }}</p>
                     </div>
                 </div>
                 <div class="my-auto gap-max">
