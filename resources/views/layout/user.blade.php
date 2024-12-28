@@ -32,7 +32,9 @@
             <nav class="border-b-4 bg-white fixed top-0 left-0 right-0 z-50">
                 <div class="mx-auto px-4 py-3">
                     <div class="flex justify-between items-center">
-                        <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" class="w-40">
+                        <a href="{{ route('home') }}">
+                            <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" class="w-40">
+                        </a>
 
                         <!-- Navbar Toggler -->
                         <button
@@ -192,13 +194,27 @@
 
                     <!-- Jadwal Klinik & Lokasi Klinik -->
                     <div>
-                        <h3 class="text-xl font-semibold  mb-4">Jadwal Klinik :</h3>
-                        <p class="">Senin - Jumat : 08:00 - 21:00</p>
-                        <p class="">Sabtu - Minggu : 08:00 - 12:00</p>
+                        <h3 class="text-xl font-semibold mb-4">Jadwal Klinik:</h3>
+                        <div id="jadwal-klinik">
+                            @if(empty($jadwalPraktek))
+                                <h5>-</h5>
+                            @else
+                            @foreach($jadwalPraktek as $day => $schedules)
+                                <p>{{ ucwords($day) }} : 
+                                    @foreach($schedules as $schedule)
+                                        {{ date('H:i', $schedule['start']) }} - {{ date('H:i', $schedule['end']) }}
+                                        @if(!$loop->last) | @endif
+                                    @endforeach
+                                </p>
+                            @endforeach
+                            @endif
+                        </div>
 
                         <h3 class="text-xl font-semibold  mt-6 mb-4">Lokasi Klinik :</h3>
-                        <p class="">Pucung, Tamanmartani, Kec. Kalasan,<br> Kabupaten Sleman, Daerah Istimewa <br>
-                            Yogyakarta</p>
+                        <a href="https://maps.app.goo.gl/BdmWeFtMHdZEFW2x7" class="hover:text-pink-primary" >
+                            Pucung, Tamanmartani, Kec. Kalasan,<br> Kabupaten Sleman, Daerah Istimewa <br>
+                            Yogyakarta
+                        </a>
                     </div>
                 </div>
 

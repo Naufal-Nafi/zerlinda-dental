@@ -5,6 +5,7 @@ namespace App\Http\Controllers\public;
 use App\Http\Controllers\Controller;
 use App\Models\artikel;
 use App\Models\kontak;
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 
 class PublicBlogController extends Controller
@@ -12,6 +13,51 @@ class PublicBlogController extends Controller
     public function index(Request $request)
 {
     $contacts = kontak::all();
+    // Mengambil jadwal dokter dari semua dokter
+    $dokters = Dokter::all();
+    $jadwalPraktek = [];
+    $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
+
+    foreach ($dokters as $dokter) {
+        foreach ($days as $day) {
+            // Periksa apakah dokter memiliki jadwal untuk hari ini
+            if (isset($dokter->jadwal[$day])) {
+                $schedule = $dokter->jadwal[$day];
+                if (!empty($schedule['jadwal_awal']) && !empty($schedule['jadwal_akhir'])) {
+                    // Simpan jadwal dalam array berdasarkan hari
+                    $startTime = strtotime($schedule['jadwal_awal']);
+                    $endTime = strtotime($schedule['jadwal_akhir']);
+                    $jadwalPraktek[$day][] = ['start' => $startTime, 'end' => $endTime];
+                }
+            }
+        }
+    }
+
+
+    // Gabungkan jadwal dan urutkan
+    foreach ($jadwalPraktek as $day => $schedule) {
+        usort($schedule, function($a, $b) {
+            return $a['start'] - $b['start'];
+        });
+
+        // Gabungkan jadwal yang tumpang tindih
+        $jadwalMerged = [];
+        foreach ($schedule as $sched) {
+            if (empty($jadwalMerged)) {
+                $jadwalMerged[] = $sched;
+            } else {
+                $last = &$jadwalMerged[count($jadwalMerged) - 1];
+                if ($sched['start'] <= $last['end']) {
+                    $last['end'] = max($last['end'], $sched['end']);
+                } else {
+                    $jadwalMerged[] = $sched;
+                }
+            }
+        }
+
+        $jadwalPraktek[$day] = $jadwalMerged;
+    }
+
 
     // Ambil keyword dari input
     $keyword = $request->input('keyword');
@@ -38,6 +84,7 @@ class PublicBlogController extends Controller
             'middleBlogs' => collect(),
             'remainingBlogs' => collect(),
             'contacts' => $contacts,
+            'jadwalPraktek'=>$jadwalPraktek,
             'keyword' => $keyword // Menambahkan keyword ke view
         ]);
     }
@@ -63,9 +110,9 @@ class PublicBlogController extends Controller
         })
         ->latest('id_artikel') 
         ->paginate(5)
-        ->withQueryString(); 
+        ->withQueryString();
 
-    return view('user.blog', compact('contacts', 'topBlog', 'middleBlogs', 'remainingBlogs', 'keyword'));
+    return view('user.blog', compact('jadwalPraktek','contacts', 'topBlog', 'middleBlogs', 'remainingBlogs', 'keyword'));
 }
 
 
@@ -80,7 +127,52 @@ class PublicBlogController extends Controller
 
         $contacts = kontak::all();
 
-        return view('user.showBlog', compact('artikel', 'contacts'));
+        // Mengambil jadwal dokter dari semua dokter
+    $dokters = Dokter::all();
+    $jadwalPraktek = [];
+    $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
+
+    foreach ($dokters as $dokter) {
+        foreach ($days as $day) {
+            // Periksa apakah dokter memiliki jadwal untuk hari ini
+            if (isset($dokter->jadwal[$day])) {
+                $schedule = $dokter->jadwal[$day];
+                if (!empty($schedule['jadwal_awal']) && !empty($schedule['jadwal_akhir'])) {
+                    // Simpan jadwal dalam array berdasarkan hari
+                    $startTime = strtotime($schedule['jadwal_awal']);
+                    $endTime = strtotime($schedule['jadwal_akhir']);
+                    $jadwalPraktek[$day][] = ['start' => $startTime, 'end' => $endTime];
+                }
+            }
+        }
+    }
+
+
+    // Gabungkan jadwal dan urutkan
+    foreach ($jadwalPraktek as $day => $schedule) {
+        usort($schedule, function($a, $b) {
+            return $a['start'] - $b['start'];
+        });
+
+        // Gabungkan jadwal yang tumpang tindih
+        $jadwalMerged = [];
+        foreach ($schedule as $sched) {
+            if (empty($jadwalMerged)) {
+                $jadwalMerged[] = $sched;
+            } else {
+                $last = &$jadwalMerged[count($jadwalMerged) - 1];
+                if ($sched['start'] <= $last['end']) {
+                    $last['end'] = max($last['end'], $sched['end']);
+                } else {
+                    $jadwalMerged[] = $sched;
+                }
+            }
+        }
+
+        $jadwalPraktek[$day] = $jadwalMerged;
+    }
+
+
+        return view('user.showBlog', compact('artikel', 'contacts', 'jadwalPraktek'));
     }
 }
-

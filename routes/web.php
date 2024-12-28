@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\public\PublicBlogController;
+use App\Http\Controllers\public\PublicLocationController;
 use App\Http\Controllers\public\PublicDoctorController;
 use App\Http\Controllers\public\PublicServiceController;
 use App\Http\Controllers\ServiceController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Middleware\CustomAuthRedirect;
 use App\Http\Middleware\admin;
 use App\Models\kontak;
+use App\Models\Dokter;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -94,12 +96,7 @@ Route::post('admin/password/reset/password/update', [ForgotPasswordController::c
 // Route::get('/', '');
 Route::get('/',[homeController::class, 'index'])->name('home');
 
-Route::get('/location', function () {
-  $contacts = kontak::all(); // Mengambil semua data dari model Kontak
-  $whatsapp = kontak::where('jenis_kontak', 'WhatsApp')->get(); 
-  return view('user.maps', compact('contacts','whatsapp')); // Mengirim data ke view
-})->name('location');
-
+Route::get('/location', [PublicLocationController::class, 'index'])->name('location');
 Route::get('/layananGigiAnak', [PublicServiceController::class, 'childService'])->name('service.child');
 Route::get('/layananGigiDewasa', [PublicServiceController::class, 'adultService'])->name('service.adult');
 Route::get('/layananUmum', [PublicServiceController::class, 'umumService'])->name('service.umum');
