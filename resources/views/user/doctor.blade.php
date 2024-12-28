@@ -31,7 +31,6 @@
                 <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
                     <img class="rounded-xl" src="{{ asset('storage/' . $dokter['gambar'])  }}" alt="">
                     <div class="md:text-left my-auto">
-                        <p>Dokter</p>
                         <p>{{ $dokter['nama'] }}</p>
                     </div>
                 </div>

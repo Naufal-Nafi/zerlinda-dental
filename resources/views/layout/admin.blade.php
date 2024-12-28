@@ -23,7 +23,9 @@
         <!-- Sidebar -->
         <div class="sidebar top-0">
             <div class="w-100 mb-4 d-flex justify-content-center">
-                <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" style="width: 80%;">
+                <a href="{{ route('admin.dashboard') }}">
+                    <img src="{{ asset('images/logo_horizontal.png') }}" alt="Logo" style="width: 80%;">
+                </a>
             </div>
             <nav class="sidenav" style="">
                 <div>

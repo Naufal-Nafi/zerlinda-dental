@@ -57,17 +57,17 @@
         <!-- buttons -->
         <div class="flex justify-center">
             <div class="flex justify-between space-x-4">
-                <button id="button-umum" data-aos="fade-right"
+                <button id="button-umum" data-aos="fade-left"
+                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
+                    UMUM
+                </button>
+                <button id="button-dewasa" data-aos="fade-right"
                     class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-primary text-white hover:ring-2 hover:ring-pink-primary">
                     UMUM
                 </button>
                 <button id="button-anak" data-aos="fade-left"
                     class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
                     ANAK-ANAK
-                </button>
-                <button id="button-dewasa" data-aos="fade-left"
-                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
-                    DEWASA
                 </button>
             </div>
         </div>
@@ -270,43 +270,159 @@
         <h2 class="text-3xl font-bold text-pink-600 mb-4" data-aos="fade-right">
             Testimoni Pasien
         </h2>
-        <div class="grid lg:grid-cols-3 grid-cols-1 gap-9" data-aos="fade-up" data-aos-delay="500">
-            <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
-                <p class="text-xl mb-12">
-                    Pelayanan di Zerlinda Dental Care sangat ramah dan profesional,
-                    tempatnya bersih dan nyaman sekali.
-                </p>
-                <div class="flex items-center">
-                    <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
-                        src="{{ asset('images/person_3.png') }}" alt="">
-                    <h2 class="ms-4 font-bold text-xl">Nino</h2>
+        <div id="wrapper-testimoni" class="relative h-full w-full " data-aos="fade-up" data-aos-delay="500">
+            <div id="slider-area-testimoni" class="owl-carousel">
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Pelayanan cepat dan ramah, hasil perawatan gigi saya sangat memuaskan. 
+                        Terima kasih, Klinik Zerlinda!
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/iwan.png') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Iwan</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
-                <p class="text-xl mb-12">
-                    Perawatan gigi di Zerlinda Dental Care sangat memuaskan,
-                    hasilnya rapi dengan dokter yang berpengalaman.
-                </p>
-                <div class="flex items-center">
-                    <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
-                        src="{{ asset('images/person_4.png') }}" alt="">
-                    <h2 class="ms-4 font-bold text-xl">Naufal</h2>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Dokter sangat profesional dan tempatnya nyaman. 
+                        Gigi saya jadi lebih sehat setelah perawatan.
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/gattha.jpg') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Gattha</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="p-10 rounded-xl bg-pink-secondary hover:scale-110 duration-300">
-                <p class="text-xl mb-12">
-                    Tempatnya modern dan steril, pelayanan cepat dan perawatan
-                    di Zerlinda Dental Care sangat berkualitas.
-                </p>
-                <div class="flex items-center">
-                    <img class="size-[75px] rounded-full ring-2 ring-blue-primary "
-                        src="{{ asset('images/person_5.png') }}" alt="">
-                    <h2 class="ms-4 font-bold text-xl">Sarah</h2>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Kemaren aku cabut gigi di sini, ga sakit sama sekali cuy... 
+                        OKE BANGET...
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/dika.png') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Dika</h2>
+                    </div>
+                </div>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Sangat puas dengan hasil perawatan. 
+                        Dokter sangat teliti dan sabar banget guys...
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/nino.png') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Nino</h2>
+                    </div>
+                </div>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Perawatan yang sangat memuaskan, tempatnya nyaman, 
+                        dokter sangat sabar menjelaskan prosedur.
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/nafi.jpg') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Nafi</h2>
+                    </div>
+                </div>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Kliniknya oke banget, pelayanan ramah. 
+                        Gigiku terasa lebih rapi setelah memaikai behel dari klinik ini.
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/peter.jpg') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Peter</h2>
+                    </div>
+                </div>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Perawatan giginya nyaman banget. 
+                        Kebersihannya pun menurutku sudah sesuai prosedur. 10/10!
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/naufal.png') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Naufal</h2>
+                    </div>
+                </div>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Perawatan gigi di Zerlinda Dental Care sangat memuaskan,
+                        hasilnya rapi dan dokternya pun sangat berpengalaman. Oke!
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/wahhab.png') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Wahhab</h2>
+                    </div>
+                </div>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Pelayanan sangat cepat dan ramah. 
+                        Gigiku terasa jauh lebih sehat setelah datang ke sini.
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/samuel.jpg') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Samuel</h2>
+                    </div>
+                </div>
+                <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
+                    <p class="text-xl mb-8">
+                        Zerlinda Dental Care memberikan layanan yang profesional 
+                        dan sangat oke banget. Mantap!
+                    </p>
+                    <div class="flex items-center">
+                        <img class="max-w-[75px] h-auto rounded-full ring-1 ring-blue-primary "
+                            src="{{ asset('images/isa.jpg') }}" alt="">
+                        <h2 class="ms-4 font-bold text-xl">Isa</h2>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        const owlTestimoni = $('#slider-area-testimoni');
+        owlTestimoni.owlCarousel({
+            loop: true,
+            autoplay: true,
+            autoplayHoverPause: true,
+            autoplayTimeout: 1500,
+            margin: 24,  // Increased margin between items
+            nav: false,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    margin: 16
+                },
+                600: {
+                    items: 2,
+                    margin: 20
+                },
+                960: {
+                    items: 3,
+                    margin: 24
+                }
+            }
+        });
+    
+        // $('#customPrevBtnTestimoni').click(function() {
+        //     owlTestimoni.trigger('prev.owl.carousel');
+        // });
+    
+        // $('#customNextBtnTestimoni').click(function() {
+        //     owlTestimoni.trigger('next.owl.carousel');
+        // });
+    });
+    </script>
 <!-- Testimoni ends  -->
 
 
