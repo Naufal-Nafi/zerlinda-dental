@@ -17,17 +17,17 @@ class homeController extends Controller
 
         $layanan2_anak = layanan::with('galeri_layanan')
             ->where('jenis_layanan', 'anak')
-            ->take(2)
+            ->take(6)
             ->get();
         
         $layanan2_dewasa = layanan::with('galeri_layanan')
             ->where('jenis_layanan', 'dewasa')
-            ->take(2)
+            ->take(6)
             ->get();
         
         $layanan2_umum = layanan::with('galeri_layanan')
             ->where('jenis_layanan', 'umum')
-            ->take(2)
+            ->take(6)
             ->get();
 
         $contacts = kontak::all();   
