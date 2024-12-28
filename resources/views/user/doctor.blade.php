@@ -31,7 +31,7 @@
                 <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
                     <img class="rounded-xl" src="{{ asset('storage/' . $dokter['gambar'])  }}" alt="">
                     <div class="md:text-left my-auto">
-                        <p class="group-hover:text-2xl absolute duration-300">{{ $dokter['nama'] }}</p>
+                        <p>{{ $dokter['nama'] }}</p>
                     </div>
                 </div>
                 <div class="my-auto gap-max">
