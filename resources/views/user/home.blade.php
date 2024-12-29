@@ -57,13 +57,13 @@
         <!-- buttons -->
         <div class="flex justify-center">
             <div class="flex justify-between space-x-4">
-                <button id="button-umum" data-aos="fade-left"
-                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
-                    UMUM
-                </button>
-                <button id="button-dewasa" data-aos="fade-right"
+                <button id="button-umum" data-aos="fade-right"
                     class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-primary text-white hover:ring-2 hover:ring-pink-primary">
                     UMUM
+                </button>
+                <button id="button-dewasa" data-aos="fade-up"
+                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
+                    DEWASA
                 </button>
                 <button id="button-anak" data-aos="fade-left"
                     class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">

@@ -20,6 +20,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- aos  -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- flatpickr calendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
+
     @vite('resources/css/app.css')
     <link rel="icon" href="{{ asset('images/logo_simple.png') }}">
 </head>
@@ -199,19 +205,19 @@
                             @if(empty($jadwalPraktek))
                                 <h5>-</h5>
                             @else
-                            @foreach($jadwalPraktek as $day => $schedules)
-                                <p>{{ ucwords($day) }} : 
-                                    @foreach($schedules as $schedule)
-                                        {{ date('H:i', $schedule['start']) }} - {{ date('H:i', $schedule['end']) }}
-                                        @if(!$loop->last) | @endif
-                                    @endforeach
-                                </p>
-                            @endforeach
+                                @foreach($jadwalPraktek as $day => $schedules)
+                                    <p>{{ ucwords($day) }} :
+                                        @foreach($schedules as $schedule)
+                                            {{ date('H:i', $schedule['start']) }} - {{ date('H:i', $schedule['end']) }}
+                                            @if(!$loop->last) | @endif
+                                        @endforeach
+                                    </p>
+                                @endforeach
                             @endif
                         </div>
 
                         <h3 class="text-xl font-semibold  mt-6 mb-4">Lokasi Klinik :</h3>
-                        <a href="https://maps.app.goo.gl/BdmWeFtMHdZEFW2x7" class="hover:text-pink-primary" >
+                        <a href="https://maps.app.goo.gl/BdmWeFtMHdZEFW2x7" class="hover:text-pink-primary">
                             Pucung, Tamanmartani, Kec. Kalasan,<br> Kabupaten Sleman, Daerah Istimewa <br>
                             Yogyakarta
                         </a>
@@ -229,28 +235,28 @@
 
 
         <?php
-            $whatsapp = \App\Models\kontak::where('jenis_kontak', 'WhatsApp')->value('url');
+$whatsapp = \App\Models\kontak::where('jenis_kontak', 'WhatsApp')->value('url');
         ?>
         <!-- Ikon WhatsApp di pojok kanan bawah -->
         @if(isset($whatsapp) && $whatsapp && str_contains($whatsapp, 'https://wa.me/'))
-        <a href="{{$whatsapp}}" target="_blank" class="fixed bottom-5 right-5 group">
-            <div class="bg-pink-primary text-white p-4 rounded-full hover:scale-105 shadow-lg transition duration-300">
-                <!-- SVG Ikon WhatsApp -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
-                    <path
-                        d="M20.52 3.47A11.42 11.42 0 0012 0a11.42 11.42 0 00-8.48 3.47A11.56 11.56 0 000 12.06a11.25 11.25 0 001.56 5.77L.03 24l6.4-1.66a11.5 11.5 0 005.57 1.44h.01a11.56 11.56 0 008.47-3.47A11.56 11.56 0 0024 12.06a11.42 11.42 0 00-3.48-8.59zM12 21.45a9.77 9.77 0 01-5-1.36l-.36-.21-3.8 1 1-3.7-.24-.38A9.9 9.9 0 012.4 12.06a9.92 9.92 0 012.93-7.07A9.77 9.77 0 0112 2.28c2.63 0 5.1 1.03 7 2.91a9.77 9.77 0 012.92 7.07c0 2.64-1.03 5.12-2.92 7.01a9.82 9.82 0 01-7 2.91zm5.38-7.71c-.3-.15-1.78-.88-2.06-.98s-.48-.15-.68.15-.78.98-.96 1.18-.35.22-.65.07a8.12 8.12 0 01-2.38-1.47 8.64 8.64 0 01-1.6-1.99c-.16-.3 0-.45.14-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5s.05-.38-.02-.52c-.07-.15-.68-1.65-.94-2.27-.25-.6-.5-.5-.68-.5h-.58c-.2 0-.5.07-.76.38s-1 1-.98 2.42 1.03 2.78 1.17 2.98c.15.2 2.03 3.1 4.9 4.34.68.3 1.2.48 1.6.62.67.21 1.28.18 1.75.11.54-.08 1.78-.73 2.03-1.44.25-.7.25-1.3.18-1.44-.08-.15-.28-.22-.58-.37z" />
-                </svg>
-            </div>
-            <div class="hidden group-hover:block">
-                <div
-                    class="group absolute -top-16 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center rounded-sm text-center text-sm text-slate-300 before:-top-2">
-                    <div class="rounded-sm bg-black py-1 px-2">
-                        <p class="whitespace-nowrap">Chat via <br> Whatsapp</p>
-                    </div>
-                    <div class="h-0 w-fit border-l-8 border-r-8 border-t-8 border-transparent border-t-black"></div>
+            <a href="{{$whatsapp}}" target="_blank" class="fixed bottom-5 right-5 group">
+                <div class="bg-pink-primary text-white p-4 rounded-full hover:scale-105 shadow-lg transition duration-300">
+                    <!-- SVG Ikon WhatsApp -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                        <path
+                            d="M20.52 3.47A11.42 11.42 0 0012 0a11.42 11.42 0 00-8.48 3.47A11.56 11.56 0 000 12.06a11.25 11.25 0 001.56 5.77L.03 24l6.4-1.66a11.5 11.5 0 005.57 1.44h.01a11.56 11.56 0 008.47-3.47A11.56 11.56 0 0024 12.06a11.42 11.42 0 00-3.48-8.59zM12 21.45a9.77 9.77 0 01-5-1.36l-.36-.21-3.8 1 1-3.7-.24-.38A9.9 9.9 0 012.4 12.06a9.92 9.92 0 012.93-7.07A9.77 9.77 0 0112 2.28c2.63 0 5.1 1.03 7 2.91a9.77 9.77 0 012.92 7.07c0 2.64-1.03 5.12-2.92 7.01a9.82 9.82 0 01-7 2.91zm5.38-7.71c-.3-.15-1.78-.88-2.06-.98s-.48-.15-.68.15-.78.98-.96 1.18-.35.22-.65.07a8.12 8.12 0 01-2.38-1.47 8.64 8.64 0 01-1.6-1.99c-.16-.3 0-.45.14-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5s.05-.38-.02-.52c-.07-.15-.68-1.65-.94-2.27-.25-.6-.5-.5-.68-.5h-.58c-.2 0-.5.07-.76.38s-1 1-.98 2.42 1.03 2.78 1.17 2.98c.15.2 2.03 3.1 4.9 4.34.68.3 1.2.48 1.6.62.67.21 1.28.18 1.75.11.54-.08 1.78-.73 2.03-1.44.25-.7.25-1.3.18-1.44-.08-.15-.28-.22-.58-.37z" />
+                    </svg>
                 </div>
-            </div>
-        </a>
+                <div class="hidden group-hover:block">
+                    <div
+                        class="group absolute -top-16 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center rounded-sm text-center text-sm text-slate-300 before:-top-2">
+                        <div class="rounded-sm bg-black py-1 px-2">
+                            <p class="whitespace-nowrap">Chat via <br> Whatsapp</p>
+                        </div>
+                        <div class="h-0 w-fit border-l-8 border-r-8 border-t-8 border-transparent border-t-black"></div>
+                    </div>
+                </div>
+            </a>
         @endif
         <!-- ikon whatsapp  -->
     </div>

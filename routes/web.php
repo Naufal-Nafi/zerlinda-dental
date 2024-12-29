@@ -3,7 +3,6 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\JadwalDokterController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
@@ -15,19 +14,12 @@ use App\Http\Controllers\public\PublicDoctorController;
 use App\Http\Controllers\public\PublicServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Middleware\CustomAuthRedirect;
 use App\Http\Middleware\admin;
-use App\Models\kontak;
-use App\Models\Dokter;
-use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 
 
-
-
-// login&logout
 
 Route::controller(LoginController::class)->group(function () {
   Route::get('/admin', 'showLoginForm')->name('admin.login');
@@ -50,8 +42,7 @@ Route::middleware([CustomAuthRedirect::class, admin::class])->group(function () 
     Route::put('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
     Route::delete('/admin/blog/destroy/{id}', [BlogController::class, 'destroy'])->name('admin.blog.destroy');
 
-    Route::get('/admin/doctor', [JadwalDokterController::class, 'index'])->name('admin.doctor');
-    // Route::post('/admin/doctor/store', [DoctorController::class, 'store'])->name('admin.doctor.store');
+    Route::get('/admin/doctor', [JadwalDokterController::class, 'index'])->name('admin.doctor');    
     Route::post('/admin/doctor/store', [JadwalDokterController::class, 'store'])->name('admin.doctor.store');
     Route::put('/admin/doctor/update/{id}', [JadwalDokterController::class, 'update'])->name('admin.doctor.update');
     Route::delete('/admin/doctor/destroy/{id}', [JadwalDokterController::class, 'destroy'])->name('admin.doctor.destroy');
@@ -86,11 +77,6 @@ Route::post('admin/password/reset/password/update', [ForgotPasswordController::c
 
 
 
-// Rute Layanan
-// // Route::get('/password/forgot', [ForgotPasswordController::class, 'index'])->name('admin.forgotPassword');
-// Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
-// Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
 
 
 // Route::get('/', '');
@@ -106,5 +92,4 @@ Route::get('/pelayanan/{id}', [PublicServiceController::class, 'show'])->name('s
 Route::get('/blog',[PublicBlogController::class, 'index'])->name('blog');
 Route::get('/artikel/{id}',[PublicBlogController::class, 'show'])->name('blog.show');
 Route::get('/jadwal',[PublicDoctorController::class, 'index'])->name('schedule');
-Route::get('/jadwal/cekJadwal',[PublicDoctorController::class, 'getSchedule'])->name('schedule.search');
 
