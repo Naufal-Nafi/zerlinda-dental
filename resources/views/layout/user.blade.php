@@ -239,7 +239,7 @@ $whatsapp = \App\Models\kontak::where('jenis_kontak', 'WhatsApp')->value('url');
         ?>
         <!-- Ikon WhatsApp di pojok kanan bawah -->
         @if(isset($whatsapp) && $whatsapp && str_contains($whatsapp, 'https://wa.me/'))
-            <a href="{{$whatsapp}}" target="_blank" class="fixed bottom-5 right-5 group">
+            <a href="{{$whatsapp}}" target="_blank" class="fixed bottom-5 right-5 group z-50">
                 <div class="bg-pink-primary text-white p-4 rounded-full hover:scale-105 shadow-lg transition duration-300">
                     <!-- SVG Ikon WhatsApp -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">

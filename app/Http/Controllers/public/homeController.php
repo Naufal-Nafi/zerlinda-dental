@@ -17,18 +17,15 @@ class homeController extends Controller
         $artikels = artikel::latest()->limit(6)->get();
 
         $layanan2_anak = layanan::with('galeri_layanan')
-            ->where('jenis_layanan', 'anak')
-            ->take(6)
+            ->where('jenis_layanan', 'anak')            
             ->get();
         
         $layanan2_dewasa = layanan::with('galeri_layanan')
-            ->where('jenis_layanan', 'dewasa')
-            ->take(6)
+            ->where('jenis_layanan', 'dewasa')            
             ->get();
         
         $layanan2_umum = layanan::with('galeri_layanan')
-            ->where('jenis_layanan', 'umum')
-            ->take(6)
+            ->where('jenis_layanan', 'umum')            
             ->get();
 
         $contacts = kontak::all();   
