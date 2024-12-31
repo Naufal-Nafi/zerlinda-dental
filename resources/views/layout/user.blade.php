@@ -217,7 +217,7 @@
                         </div>
 
                         <h3 class="text-xl font-semibold  mt-6 mb-4">Lokasi Klinik :</h3>
-                        <a href="https://maps.app.goo.gl/BdmWeFtMHdZEFW2x7" class="hover:text-pink-primary">
+                        <a href="https://maps.app.goo.gl/BdmWeFtMHdZEFW2x7" target="_blank" class="hover:text-pink-primary">
                             Pucung, Tamanmartani, Kec. Kalasan,<br> Kabupaten Sleman, Daerah Istimewa <br>
                             Yogyakarta
                         </a>
@@ -234,11 +234,11 @@
 
 
         <?php
-$whatsapp = \App\Models\kontak::where('jenis_kontak', 'WhatsApp')->value('url');
+            $whatsapp = \App\Models\kontak::where('jenis_kontak', 'WhatsApp')->value('url');
         ?>
         <!-- Ikon WhatsApp di pojok kanan bawah -->
         @if(isset($whatsapp) && $whatsapp && str_contains($whatsapp, 'https://wa.me/'))
-            <a href="{{$whatsapp}}" target="_blank" class="fixed bottom-5 right-5 group">
+            <a href="{{$whatsapp}}" target="_blank" class="fixed bottom-5 right-5 group z-50">
                 <div class="bg-pink-primary text-white p-4 rounded-full hover:scale-105 shadow-lg transition duration-300">
                     <!-- SVG Ikon WhatsApp -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">

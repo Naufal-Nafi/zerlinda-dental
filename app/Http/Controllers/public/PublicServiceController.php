@@ -13,7 +13,7 @@ class PublicServiceController extends Controller
     public function adultService()
     {
         $contacts = kontak::all();
-        $services = layanan::where('jenis_layanan', 'dewasa')->paginate(6);
+        $services = layanan::where('jenis_layanan', 'dewasa')->latest()->paginate(6);
         // Mengambil jadwal dokter dari semua dokter
         $dokters = Dokter::all();
         $jadwalPraktek = [];
@@ -65,7 +65,7 @@ class PublicServiceController extends Controller
     public function childService()
     {
         $contacts = kontak::all();
-        $services = layanan::where('jenis_layanan', 'anak')->paginate(6);
+        $services = layanan::where('jenis_layanan', 'anak')->latest()->paginate(6);
         // Mengambil jadwal dokter dari semua dokter
         $dokters = Dokter::all();
         $jadwalPraktek = [];
@@ -118,7 +118,7 @@ class PublicServiceController extends Controller
     public function umumService()
     {
         $contacts = kontak::all();
-        $services = layanan::where('jenis_layanan', 'umum')->paginate(6);
+        $services = layanan::where('jenis_layanan', 'umum')->latest()->paginate(6);
         // Mengambil jadwal dokter dari semua dokter
         $dokters = Dokter::all();
         $jadwalPraktek = [];

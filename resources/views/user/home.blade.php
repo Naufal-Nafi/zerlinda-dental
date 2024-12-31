@@ -52,7 +52,7 @@
 
 
 <!-- Service section  -->
-<section class="my-40 flex items-center mx-12">
+<section class="my-40 flex items-center">
     <div class="container mx-auto">
         <!-- buttons -->
         <div class="flex justify-center">
@@ -71,71 +71,119 @@
                 </button>
             </div>
         </div>
-        <div class="flex justify-end">
-            <div data-aos="fade-left">
-                <button id="customPrevBtnService"
-                    class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
-                    <span>&lt;</span>
-                </button>
-                <button id="customNextBtnService"
-                    class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
-                    <span>&gt;</span>
-                </button>
-            </div>
-        </div>        
-
 
         <!-- Umum section -->
         <div id="umum-section">
-            <div data-aos="fade-right" data-aos-delay="500"
-                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
-                @foreach ($layanan2_umum as $service)                                
-                    <a href="{{ route('service.show', $service->id_layanan) }}"
-                        class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                        <div class="flex justify-center items-center ">
-                            @if ($galeri = $service->galeri_layanan->first())
-                                <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
-                                    class="xl:size-[250px] size-[200px] rounded-full object-cover">
-                            @endif
-                        </div>
-                        <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}
-                        </p>
-                    </a>
-                @endforeach                
+            <div id="umum-layanan" class="flex justify-between items-center w-4/5 h-12 my-6 mx-auto">
+                <h2 class="md:text-4xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
+                    Layanan Umum
+                </h2>
+                <div data-aos="fade-left text-right">
+                    <button id="customPrevBtnUmum"
+                        class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
+                        <span>&lt;</span>
+                    </button>
+                    <button id="customNextBtnUmum"
+                        class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
+                        <span>&gt;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="owl-carousel owl-umum">
+                @foreach ($layanan2_umum->chunk(6) as $chunk)
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
+                        @foreach ($chunk as $service)
+                            <a href="{{ route('service.show', $service->id_layanan) }}"
+                                class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
+                                <div class="xl:w-[250px] w-[200px] mx-auto">
+                                    @if ($galeri = $service->galeri_layanan->first())
+                                        <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
+                                            class="xl:size-[250px] size-[200px] rounded-full object-cover">
+                                    @endif
+                                </div>
+                                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}
+                                </p>
+                            </a>
+                        @endforeach
+                    </div>
+                @endforeach
             </div>
         </div>
 
-
-        <!-- Child section -->
-        <div id="anak-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 hidden">
-            @foreach ($layanan2_anak as $service)                        
-                <a href="{{ route('service.show', $service->id_layanan) }}"
-                    class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                    <div class="flex justify-center items-center ">
-                        @if ($galeri = $service->galeri_layanan->first())
-                            <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
-                                class="xl:size-[250px] size-[200px] rounded-full object-cover">
-                        @endif
+        <!-- Anak section -->
+        <div id="anak-section" class="hidden1">
+            <div id="anak-layanan" class="flex justify-between items-center w-4/5 h-12 my-6 mx-auto">
+                <h2 class="md:text-4xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
+                    Layanan untuk Anak-Anak
+                </h2>
+                <div data-aos="fade-left text-right">
+                    <button id="customPrevBtnAnak"
+                        class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
+                        <span>&lt;</span>
+                    </button>
+                    <button id="customNextBtnAnak"
+                        class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
+                        <span>&gt;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="owl-carousel owl-anak">
+                @foreach ($layanan2_anak->chunk(6) as $chunk)
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
+                        @foreach ($chunk as $service)
+                            <a href="{{ route('service.show', $service->id_layanan) }}"
+                                class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
+                                <div class="xl:w-[250px] w-[200px] mx-auto">
+                                    @if ($galeri = $service->galeri_layanan->first())
+                                        <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
+                                            class="xl:size-[250px] size-[200px] rounded-full object-cover">
+                                    @endif
+                                </div>
+                                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}
+                                </p>
+                            </a>
+                        @endforeach
                     </div>
-                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}</p>
-                </a>
-            @endforeach            
+                @endforeach
+            </div>
         </div>
 
-        <!-- dewasa section -->
-        <div id="dewasa-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 hidden">
-            @foreach ($layanan2_dewasa as $service)                        
-                <a href="{{ route('service.show', $service->id_layanan) }}"
-                    class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                    <div class="flex justify-center items-center ">
-                        @if ($galeri = $service->galeri_layanan->first())
-                            <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
-                                class="xl:size-[250px] size-[200px] rounded-full object-cover">
-                        @endif
+        <!-- Dewasa section -->
+        <div id="dewasa-section" class="hidden1">
+            <div id="dewasa-layanan" class="flex justify-between items-center w-4/5 h-12 my-6 mx-auto">
+                <h2 class="md:text-4xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
+                    Layanan untuk Dewasa
+                </h2>
+                <div data-aos="fade-left text-right">
+                    <button id="customPrevBtnDewasa"
+                        class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
+                        <span>&lt;</span>
+                    </button>
+                    <button id="customNextBtnDewasa"
+                        class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
+                        <span>&gt;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="owl-carousel owl-dewasa">
+                @foreach ($layanan2_dewasa->chunk(6) as $chunk)
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
+                        @foreach ($chunk as $service)
+                            <a href="{{ route('service.show', $service->id_layanan) }}"
+                                class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
+                                <div class="xl:w-[250px] w-[200px] mx-auto">
+                                    @if ($galeri = $service->galeri_layanan->first())
+                                        <img src="{{ asset('storage/' . $galeri->url_media) }}" alt="Circular Image"
+                                            class="xl:size-[250px] size-[200px] rounded-full object-cover">
+                                    @endif
+                                </div>
+                                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}
+                                </p>
+                            </a>
+                        @endforeach
                     </div>
-                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}</p>
-                </a>
-            @endforeach            
+                @endforeach
+            </div>
         </div>
     </div>
 
@@ -150,9 +198,9 @@
 
         buttonDewasa.on('click', function () {
             // Tampilkan bagian Dewasa dan sembunyikan lainnya
-            dewasaSection.removeClass('hidden');
-            anakSection.addClass('hidden');
-            umumSection.addClass('hidden');
+            dewasaSection.removeClass('hidden1').show();
+            anakSection.addClass('hidden1').hide();
+            umumSection.addClass('hidden1').hide();
 
             // Tambahkan kelas aktif pada tombol Dewasa, hilangkan dari lainnya
             buttonDewasa.addClass('bg-pink-primary text-white')
@@ -165,9 +213,9 @@
 
         buttonAnak.on('click', function () {
             // Tampilkan bagian Anak-Anak dan sembunyikan lainnya
-            anakSection.removeClass('hidden');
-            dewasaSection.addClass('hidden');
-            umumSection.addClass('hidden');
+            anakSection.removeClass('hidden1').show();
+            dewasaSection.addClass('hidden1').hide();
+            umumSection.addClass('hidden1').hide();
 
             // Tambahkan kelas aktif pada tombol Anak-Anak, hilangkan dari lainnya
             buttonAnak.addClass('bg-pink-primary text-white')
@@ -180,9 +228,9 @@
 
         buttonUmum.on('click', function () {
             // Tampilkan bagian Umum dan sembunyikan lainnya
-            umumSection.removeClass('hidden');
-            dewasaSection.addClass('hidden');
-            anakSection.addClass('hidden');
+            umumSection.removeClass('hidden1').show();
+            dewasaSection.addClass('hidden1').hide();
+            anakSection.addClass('hidden1').hide();
 
             // Tambahkan kelas aktif pada tombol Umum, hilangkan dari lainnya
             buttonUmum.addClass('bg-pink-primary text-white')
@@ -191,6 +239,62 @@
                 .removeClass('bg-pink-primary text-white');
             buttonAnak.addClass('bg-pink-secondary text-pink-primary')
                 .removeClass('bg-pink-primary text-white');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            const owlUmum = $(".owl-umum")
+            const owlAnak = $(".owl-anak")
+            const owlDewasa = $(".owl-dewasa")
+            owlUmum.owlCarousel({
+                items: 1,                
+            });
+            owlAnak.owlCarousel({
+                items: 1,                
+            });
+            owlDewasa.owlCarousel({
+                items: 1,                
+            });
+            
+            if (owlUmum.find(".owl-item").length <= 1) {
+                $("#customPrevBtnUmum, #customNextBtnUmum").hide();
+                $("#umum-layanan").removeClass("justify-between");
+                $("#umum-layanan").addClass("justify-center");
+            } else {
+                $("#customPrevBtnUmum").click(function() {
+                    owlUmum.trigger('prev.owl.carousel');
+                });
+                $("#customNextBtnUmum").click(function() {
+                    owlUmum.trigger('next.owl.carousel');
+                });
+            }
+
+            if (owlAnak.find(".owl-item").length <= 1) {
+                $("#customPrevBtnAnak, #customNextBtnAnak").hide();
+                $("#anak-layanan").removeClass("justify-between");
+                $("#anak-layanan").addClass("justify-center");
+            } else {
+                $("#customPrevBtnAnak").click(function() {
+                    owlAnak.trigger('prev.owl.carousel');
+                });
+                $("#customNextBtnAnak").click(function() {
+                    owlAnak.trigger('next.owl.carousel');
+                });
+            }
+
+            if (owlDewasa.find(".owl-item").length <= 1) {
+                $("#customPrevBtnDewasa, #customNextBtnDewasa").hide();            
+                $("#dewasa-layanan").removeClass("justify-between");
+                $("#dewasa-layanan").addClass("justify-center");
+            } else {
+                $("#customPrevBtnDewasa").click(function() {
+                    owlDewasa.trigger('prev.owl.carousel');
+                });
+                $("#customNextBtnDewasa").click(function() {
+                    owlDewasa.trigger('next.owl.carousel');
+                });
+            }
         });
     </script>
 
@@ -286,7 +390,7 @@
             <div id="slider-area-testimoni" class="owl-carousel">
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Pelayanan cepat dan ramah, hasil perawatan gigi saya sangat memuaskan. 
+                        Pelayanan cepat dan ramah, hasil perawatan gigi saya sangat memuaskan.
                         Terima kasih, Klinik Zerlinda!
                     </p>
                     <div class="flex items-center">
@@ -297,7 +401,7 @@
                 </div>
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Dokter sangat profesional dan tempatnya nyaman. 
+                        Dokter sangat profesional dan tempatnya nyaman.
                         Gigi saya jadi lebih sehat setelah perawatan.
                     </p>
                     <div class="flex items-center">
@@ -308,7 +412,7 @@
                 </div>
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Kemaren aku cabut gigi di sini, ga sakit sama sekali cuy... 
+                        Kemaren aku cabut gigi di sini, ga sakit sama sekali cuy...
                         OKE BANGET...
                     </p>
                     <div class="flex items-center">
@@ -319,7 +423,7 @@
                 </div>
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Sangat puas dengan hasil perawatan. 
+                        Sangat puas dengan hasil perawatan.
                         Dokter sangat teliti dan sabar banget guys...
                     </p>
                     <div class="flex items-center">
@@ -330,7 +434,7 @@
                 </div>
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Perawatan yang sangat memuaskan, tempatnya nyaman, 
+                        Perawatan yang sangat memuaskan, tempatnya nyaman,
                         dokter sangat sabar menjelaskan prosedur.
                     </p>
                     <div class="flex items-center">
@@ -341,7 +445,7 @@
                 </div>
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Kliniknya oke banget, pelayanan ramah. 
+                        Kliniknya oke banget, pelayanan ramah.
                         Gigiku terasa lebih rapi setelah memaikai behel dari klinik ini.
                     </p>
                     <div class="flex items-center">
@@ -352,7 +456,7 @@
                 </div>
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Perawatan giginya nyaman banget. 
+                        Perawatan giginya nyaman banget.
                         Kebersihannya pun menurutku sudah sesuai prosedur. 10/10!
                     </p>
                     <div class="flex items-center">
@@ -374,7 +478,7 @@
                 </div>
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Pelayanan sangat cepat dan ramah. 
+                        Pelayanan sangat cepat dan ramah.
                         Gigiku terasa jauh lebih sehat setelah datang ke sini.
                     </p>
                     <div class="flex items-center">
@@ -385,7 +489,7 @@
                 </div>
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
                     <p class="text-xl mb-8">
-                        Zerlinda Dental Care memberikan layanan yang profesional 
+                        Zerlinda Dental Care memberikan layanan yang profesional
                         dan sangat oke banget. Mantap!
                     </p>
                     <div class="flex items-center">
@@ -400,13 +504,13 @@
 </section>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         const owlTestimoni = $('#slider-area-testimoni');
         owlTestimoni.owlCarousel({
             loop: true,
             autoplay: true,
             autoplayHoverPause: true,
-            autoplayTimeout: 1500,
+            autoplayTimeout: 5000,
             margin: 24,  // Increased margin between items
             nav: false,
             dots: false,
@@ -425,16 +529,16 @@
                 }
             }
         });
-    
+
         // $('#customPrevBtnTestimoni').click(function() {
         //     owlTestimoni.trigger('prev.owl.carousel');
         // });
-    
+
         // $('#customNextBtnTestimoni').click(function() {
         //     owlTestimoni.trigger('next.owl.carousel');
         // });
     });
-    </script>
+</script>
 <!-- Testimoni ends  -->
 
 

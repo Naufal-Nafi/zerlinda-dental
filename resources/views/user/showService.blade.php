@@ -25,7 +25,7 @@
 <div class="slider my-12">
     @php
         $quantity = count($images); // Total gambar
-        $time = $quantity * 6; // Waktu animasi
+        $time = 18; // Waktu animasi $quantity * 6
     @endphp
 
     <ul class="list py-4" style="        
