@@ -3,10 +3,10 @@
 @section('content')
 <div class="min-h-screen w-full">
     <!-- kotak pencarian jadwal  -->
-    <div class="py-12 w-4/5 mx-auto bg-pink-secondary md:my-20 my-12 md:rounded-[65px] rounded-xl">
+    <div class="py-8 w-5/5 mx-auto bg-pink-secondary md:mb-8 md:rounded-[10px] rounded-xl">
         <div class="w-4/5 mx-auto grid grid-cols-1 gap-6">
             <div class="">
-                <h1 class="text-4xl font-bold ">JADWAL</h1>
+                <h1 class="text-4xl font-bold ">Jadwal Praktek Dokter</h1>
             </div>            
         </div>
     </div>
@@ -20,7 +20,7 @@
         <div class="w-full lg:w-[65%] p-4">
             @foreach (['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'] as $day)
                         <div id="jadwal-hari-{{$day}}" class="hidden">
-                            <h2 class="md:text-4xl text-2xl text-pink-primary font-bold mb-4">Jadwal hari {{$day}}:</h2>
+                            <h2 class="md:text-4xl text-2xl text-pink-primary font-bold mb-4">Jadwal hari {{ucwords($day)}}:</h2>
                             @php
                                 $dokterHariIni = $dokters->filter(function ($dokter) use ($day) {
                                     return isset($dokter['jadwal'][$day]); // Cek apakah dokter memiliki jadwal di hari ini

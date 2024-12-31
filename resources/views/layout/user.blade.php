@@ -217,7 +217,7 @@
                         </div>
 
                         <h3 class="text-xl font-semibold  mt-6 mb-4">Lokasi Klinik :</h3>
-                        <a href="https://maps.app.goo.gl/BdmWeFtMHdZEFW2x7" class="hover:text-pink-primary">
+                        <a href="https://maps.app.goo.gl/BdmWeFtMHdZEFW2x7" target="_blank" class="hover:text-pink-primary">
                             Pucung, Tamanmartani, Kec. Kalasan,<br> Kabupaten Sleman, Daerah Istimewa <br>
                             Yogyakarta
                         </a>
@@ -225,9 +225,8 @@
                 </div>
 
                 <!-- copyright & credit  -->
-                <div class="md:flex justify-between mt-12">
-                    <p>&copy; Zerlinda Dental Care 2024</p>
-                    <p style="margin-right: 70px">Developed by NPN</p>
+                <div class="md:flex justify-center mt-12">
+                    <p>&copy; Zerlinda Dental Care 2025</p>
                 </div>
             </div>
         </footer>
@@ -235,7 +234,7 @@
 
 
         <?php
-$whatsapp = \App\Models\kontak::where('jenis_kontak', 'WhatsApp')->value('url');
+            $whatsapp = \App\Models\kontak::where('jenis_kontak', 'WhatsApp')->value('url');
         ?>
         <!-- Ikon WhatsApp di pojok kanan bawah -->
         @if(isset($whatsapp) && $whatsapp && str_contains($whatsapp, 'https://wa.me/'))

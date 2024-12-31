@@ -516,7 +516,7 @@
             loop: true,
             autoplay: true,
             autoplayHoverPause: true,
-            autoplayTimeout: 3000,
+            autoplayTimeout: 5000,
             margin: 24,  // Increased margin between items            
             responsive: {
                 0: {
