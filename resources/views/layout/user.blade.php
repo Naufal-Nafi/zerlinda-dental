@@ -226,7 +226,7 @@
 
                 <!-- copyright & credit  -->
                 <div class="md:flex justify-center mt-12">
-                    <p>&copy; Zerlinda Dental Care 2024</p>
+                    <p>&copy; Zerlinda Dental Care 2025</p>
                 </div>
             </div>
         </footer>
