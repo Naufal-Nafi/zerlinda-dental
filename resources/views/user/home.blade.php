@@ -75,7 +75,7 @@
         <!-- Umum section -->
         <div id="umum-section">
             <div id="umum-layanan" class="flex justify-between items-center w-4/5 h-12 my-6 mx-auto">
-                <h2 class="md:text-4xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
+                <h2 class="md:text-3xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
                     Layanan Umum
                 </h2>
                 <div data-aos="fade-left text-right">
@@ -113,7 +113,7 @@
         <!-- Anak section -->
         <div id="anak-section" class="hidden1">
             <div id="anak-layanan" class="flex justify-between items-center w-4/5 h-12 my-6 mx-auto">
-                <h2 class="md:text-4xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
+                <h2 class="md:text-3xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
                     Layanan untuk Anak-Anak
                 </h2>
                 <div data-aos="fade-left text-right">
@@ -151,7 +151,7 @@
         <!-- Dewasa section -->
         <div id="dewasa-section" class="hidden1">
             <div id="dewasa-layanan" class="flex justify-between items-center w-4/5 h-12 my-6 mx-auto">
-                <h2 class="md:text-4xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
+                <h2 class="md:text-3xl text-xl text-center font-bold text-pink-primary" data-aos="fade-right">
                     Layanan untuk Dewasa
                 </h2>
                 <div data-aos="fade-left text-right">
@@ -258,9 +258,7 @@
             });
             
             if (owlUmum.find(".owl-item").length <= 1) {
-                $("#customPrevBtnUmum, #customNextBtnUmum").hide();
-                $("#umum-layanan").removeClass("justify-between");
-                $("#umum-layanan").addClass("justify-center");
+                $("#customPrevBtnUmum, #customNextBtnUmum").hide();                
             } else {
                 $("#customPrevBtnUmum").click(function() {
                     owlUmum.trigger('prev.owl.carousel');
@@ -271,9 +269,7 @@
             }
 
             if (owlAnak.find(".owl-item").length <= 1) {
-                $("#customPrevBtnAnak, #customNextBtnAnak").hide();
-                $("#anak-layanan").removeClass("justify-between");
-                $("#anak-layanan").addClass("justify-center");
+                $("#customPrevBtnAnak, #customNextBtnAnak").hide();                
             } else {
                 $("#customPrevBtnAnak").click(function() {
                     owlAnak.trigger('prev.owl.carousel');
@@ -284,9 +280,7 @@
             }
 
             if (owlDewasa.find(".owl-item").length <= 1) {
-                $("#customPrevBtnDewasa, #customNextBtnDewasa").hide();            
-                $("#dewasa-layanan").removeClass("justify-between");
-                $("#dewasa-layanan").addClass("justify-center");
+                $("#customPrevBtnDewasa, #customNextBtnDewasa").hide();                            
             } else {
                 $("#customPrevBtnDewasa").click(function() {
                     owlDewasa.trigger('prev.owl.carousel');
@@ -383,9 +377,21 @@
 <!-- Testimoni  -->
 <section class="my-40">
     <div class="text-start w-4/5 mx-auto">
-        <h2 class="text-3xl font-bold text-pink-600 mb-4" data-aos="fade-right">
-            Testimoni Pasien
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="text-3xl font-bold text-pink-600 mb-4" data-aos="fade-right">
+                Testimoni Pasien
+            </h2>
+            <div data-aos="fade-left">
+                <button id="customPrevBtnTestimoni"
+                    class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
+                    <span>&lt;</span>
+                </button>
+                <button id="customNextBtnTestimoni"
+                    class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
+                    <span>&gt;</span>
+                </button>
+            </div>
+        </div>
         <div id="wrapper-testimoni" class="relative h-full w-full " data-aos="fade-up" data-aos-delay="500">
             <div id="slider-area-testimoni" class="owl-carousel">
                 <div class="p-10 my-10 rounded-xl bg-pink-secondary hover:scale-110 duration-100">
@@ -510,10 +516,8 @@
             loop: true,
             autoplay: true,
             autoplayHoverPause: true,
-            autoplayTimeout: 1500,
-            margin: 24,  // Increased margin between items
-            nav: false,
-            dots: false,
+            autoplayTimeout: 3000,
+            margin: 24,  // Increased margin between items            
             responsive: {
                 0: {
                     items: 1,
@@ -530,13 +534,13 @@
             }
         });
 
-        // $('#customPrevBtnTestimoni').click(function() {
-        //     owlTestimoni.trigger('prev.owl.carousel');
-        // });
+        $('#customPrevBtnTestimoni').click(function() {
+            owlTestimoni.trigger('prev.owl.carousel');
+        });
 
-        // $('#customNextBtnTestimoni').click(function() {
-        //     owlTestimoni.trigger('next.owl.carousel');
-        // });
+        $('#customNextBtnTestimoni').click(function() {
+            owlTestimoni.trigger('next.owl.carousel');
+        });
     });
 </script>
 <!-- Testimoni ends  -->

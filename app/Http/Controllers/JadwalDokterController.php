@@ -21,7 +21,7 @@ class JadwalDokterController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'jadwal' => 'array', // Validasi array utama
+            'jadwal' => 'required|array', // Validasi array utama
         ]);
         
         // Validasi manual untuk elemen `jadwal` menggunakan loop
@@ -80,7 +80,7 @@ class JadwalDokterController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'jadwal' => 'array',
+            'jadwal' => 'required|array',
         ]);
 
         foreach ($request->jadwal as $day => $schedule) {
