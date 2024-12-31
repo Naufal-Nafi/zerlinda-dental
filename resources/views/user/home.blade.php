@@ -52,17 +52,17 @@
 
 
 <!-- Service section  -->
-<section class="my-40 flex items-center">
+<section class="my-40 flex items-center mx-12">
     <div class="container mx-auto">
-        <!-- buttons for adult and child  -->
+        <!-- buttons -->
         <div class="flex justify-center">
             <div class="flex justify-between space-x-4">
-                <button id="button-umum" data-aos="fade-left"
-                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
+                <button id="button-umum" data-aos="fade-right"
+                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-primary text-white hover:ring-2 hover:ring-pink-primary">
                     UMUM
                 </button>
-                <button id="button-dewasa" data-aos="fade-right"
-                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-primary text-white hover:ring-2 hover:ring-pink-primary">
+                <button id="button-dewasa" data-aos="fade-up"
+                    class="py-2 md:px-12 px-6 md:text-xl font-bold rounded-full bg-pink-secondary text-pink-primary hover:ring-2 hover:ring-pink-primary">
                     DEWASA
                 </button>
                 <button id="button-anak" data-aos="fade-left"
@@ -71,13 +71,25 @@
                 </button>
             </div>
         </div>
+        <div class="flex justify-end">
+            <div data-aos="fade-left">
+                <button id="customPrevBtnService"
+                    class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2 mr-2">
+                    <span>&lt;</span>
+                </button>
+                <button id="customNextBtnService"
+                    class="bg-pink-primary hover:bg-pink-800 text-white rounded-full md:py-2 md:px-4 py-1 px-2">
+                    <span>&gt;</span>
+                </button>
+            </div>
+        </div>        
 
 
-        <!-- Adult section -->
-        <div id="dewasa-section" class="">
+        <!-- Umum section -->
+        <div id="umum-section">
             <div data-aos="fade-right" data-aos-delay="500"
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10">
-                @foreach ($layanan2_dewasa as $service)                                
+                @foreach ($layanan2_umum as $service)                                
                     <a href="{{ route('service.show', $service->id_layanan) }}"
                         class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                         <div class="flex justify-center items-center ">
@@ -89,21 +101,7 @@
                         <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}
                         </p>
                     </a>
-                @endforeach
-
-                <!-- lainnya  -->
-                <a href="{{ route('service.adult') }}"
-                    class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                    <div class="flex justify-center items-center">
-                        <svg class="xl:size-[250px] size-[200px] p-12 bg-pink-secondary rounded-full" width="75"
-                            height="130" viewBox="0 0 75 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M2.86799 2.8615C1.03161 4.69427 0 7.17971 0 9.77125C0 12.3628 1.03161 14.8482 2.86799 16.681L51.3557 65.059L2.86799 113.437C1.08366 115.28 0.0963264 117.749 0.118645 120.312C0.140963 122.874 1.17115 125.325 2.98731 127.137C4.80348 128.95 7.26032 129.977 9.82867 130C12.397 130.022 14.8714 129.037 16.7188 127.257L72.132 71.9688C73.9684 70.136 75 67.6505 75 65.059C75 62.4675 73.9684 59.982 72.132 58.1493L16.7188 2.8615C14.8819 1.02928 12.3908 0 9.79341 0C7.19599 0 4.70492 1.02928 2.86799 2.8615Z"
-                                fill="#DA0C81" />
-                        </svg>
-                    </div>
-                    <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">lainnya</p>
-                </a>
+                @endforeach                
             </div>
         </div>
 
@@ -121,26 +119,12 @@
                     </div>
                     <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}</p>
                 </a>
-            @endforeach
-
-            <!-- lainnya  -->
-            <a href="{{ route('service.child') }}"
-                class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                <div class="flex justify-center items-center">
-                    <svg class="xl:size-[250px] size-[200px] p-12 bg-pink-secondary rounded-full" width="75"
-                        height="130" viewBox="0 0 75 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M2.86799 2.8615C1.03161 4.69427 0 7.17971 0 9.77125C0 12.3628 1.03161 14.8482 2.86799 16.681L51.3557 65.059L2.86799 113.437C1.08366 115.28 0.0963264 117.749 0.118645 120.312C0.140963 122.874 1.17115 125.325 2.98731 127.137C4.80348 128.95 7.26032 129.977 9.82867 130C12.397 130.022 14.8714 129.037 16.7188 127.257L72.132 71.9688C73.9684 70.136 75 67.6505 75 65.059C75 62.4675 73.9684 59.982 72.132 58.1493L16.7188 2.8615C14.8819 1.02928 12.3908 0 9.79341 0C7.19599 0 4.70492 1.02928 2.86799 2.8615Z"
-                            fill="#DA0C81" />
-                    </svg>
-                </div>
-                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">lainnya</p>
-            </a>
+            @endforeach            
         </div>
 
-        <!-- umum section -->
-        <div id="umum-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 hidden">
-            @foreach ($layanan2_umum as $service)                        
+        <!-- dewasa section -->
+        <div id="dewasa-section" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10 hidden">
+            @foreach ($layanan2_dewasa as $service)                        
                 <a href="{{ route('service.show', $service->id_layanan) }}"
                     class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
                     <div class="flex justify-center items-center ">
@@ -151,21 +135,7 @@
                     </div>
                     <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">{{ $service->nama_layanan }}</p>
                 </a>
-            @endforeach
-
-            <!-- lainnya  -->
-            <a href="{{ route('service.umum') }}"
-                class="hover:scale-105 transition duration-300 hover:opacity-80 block py-6 cursor-pointer">
-                <div class="flex justify-center items-center">
-                    <svg class="xl:size-[250px] size-[200px] p-12 bg-pink-secondary rounded-full" width="75"
-                        height="130" viewBox="0 0 75 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M2.86799 2.8615C1.03161 4.69427 0 7.17971 0 9.77125C0 12.3628 1.03161 14.8482 2.86799 16.681L51.3557 65.059L2.86799 113.437C1.08366 115.28 0.0963264 117.749 0.118645 120.312C0.140963 122.874 1.17115 125.325 2.98731 127.137C4.80348 128.95 7.26032 129.977 9.82867 130C12.397 130.022 14.8714 129.037 16.7188 127.257L72.132 71.9688C73.9684 70.136 75 67.6505 75 65.059C75 62.4675 73.9684 59.982 72.132 58.1493L16.7188 2.8615C14.8819 1.02928 12.3908 0 9.79341 0C7.19599 0 4.70492 1.02928 2.86799 2.8615Z"
-                            fill="#DA0C81" />
-                    </svg>
-                </div>
-                <p class="font-bold md:text-3xl text-xl text-pink-primary mt-12">lainnya</p>
-            </a>
+            @endforeach            
         </div>
     </div>
 

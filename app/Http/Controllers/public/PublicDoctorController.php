@@ -13,35 +13,7 @@ class PublicDoctorController extends Controller
 {
     public function index(Request $request)
     {        
-        $contacts = kontak::all();
-
-        Carbon::setLocale('id');
-        $tanggal = $request->input('keyword');
-        
-        if(!$tanggal) {
-            $tanggal = Carbon::today()->format('Y-m-d');
-        }
-
-        $hari = strtolower(Carbon::parse($tanggal)->translatedFormat('l'));
-        
-        $data = DB::table('dokter')
-            ->whereRaw("JSON_CONTAINS(jadwal, '{}', '$.\"$hari\"')")
-            ->get();
-
-        // dd($data);
-
-        // Filter untuk mengembalikan hanya data hari tertentu
-        $filteredData = $data->map(function ($item) use ($hari) {
-            $jadwal = json_decode($item->jadwal, true);
-
-            return [
-                'nama' => $item->nama,
-                'jadwal' => [
-                    $hari => $jadwal[$hari] ?? null,
-                ],
-                'gambar' => $item->gambar,
-            ];
-        });
+        $contacts = kontak::all();        
 
         // Mengambil jadwal dokter dari semua dokter
         $dokters = Dokter::all();
@@ -88,6 +60,6 @@ class PublicDoctorController extends Controller
             $jadwalPraktek[$day] = $jadwalMerged;
         }
 
-        return view('user.doctor', compact('filteredData', 'contacts', 'hari', 'jadwalPraktek'));
+        return view('user.doctor', compact( 'contacts',  'jadwalPraktek', 'dokters'));
     }
 }

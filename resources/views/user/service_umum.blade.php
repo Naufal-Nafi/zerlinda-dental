@@ -19,7 +19,7 @@
                 <p class="md:text-3xl text-xl mt-12">{{ $service->nama_layanan }}</p>
             </a>
         @endforeach
-        <!-- end for each  -->
+        <!-- end for each  -->        
     </div>
     <div class="w-4/5 mx-auto my-12">
         {{ $services->links() }}            
