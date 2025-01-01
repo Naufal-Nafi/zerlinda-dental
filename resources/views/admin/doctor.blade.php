@@ -7,6 +7,15 @@
 <button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createDoctorModal">
     Tambah Dokter
 </button>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="table-responsive text-center">
     @if($dokterList->count() > 0)
         <table class="table table-hover mt-4 fw-bold">
@@ -55,19 +64,13 @@
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control border-black" id="nama" name="nama" required>
-                        @error('nama')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="gambar" class="form-label">Foto</label>
                         <img id="previewImage1" src="" alt="Preview Image"
                             style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-                        <input class="form-control border-black image-input" type="file" id="gambar" name="gambar"
+                        <input class="form-control border-black image-input" type="file" id="gambar" name="gambar" accept="image/*"
                             required>
-                        @error('gambar')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div>
                         <h5>Jadwal</h5>
@@ -126,9 +129,6 @@
                                 name="nama" 
                                 value="{{ old('nama', $dokter->nama) }}" 
                                 required>
-                            @error('nama')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="gambar" class="form-label">Foto</label>
@@ -143,7 +143,8 @@
                                 class="form-control border-black image-input" 
                                 type="file" 
                                 id="gambar" 
-                                name="gambar">
+                                name="gambar"
+                                accept="image/*">
                         </div>
                         <div>
                             <h5>Jadwal</h5>

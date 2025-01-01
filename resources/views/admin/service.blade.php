@@ -7,6 +7,15 @@
 <button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createServiceModal">
     Tambah Layanan
 </button>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <!-- Table to display services -->
 
@@ -62,10 +71,10 @@
                         <div id="tesParent" class="modal-body text-20" id="editModalContent">
                             <div class="mb-3 d-flex">
                                 <div class="form-check me-5">
-                                    <input class="form-check-input" id="edttipeAnak" type="radio" name="tipe_layanan"
-                                        value="anak">
-                                    <label class="form-check-label" for="edttipeAnak">
-                                        Anak
+                                    <input class="form-check-input" id="edttipeUmum" type="radio" name="tipe_layanan"
+                                        value="umum">
+                                    <label class="form-check-label" for="edttipeUmum">
+                                        Umum
                                     </label>
                                 </div>
                                 <div class="form-check me-5">
@@ -76,10 +85,10 @@
                                     </label>
                                 </div>
                                 <div class="form-check me-5">
-                                    <input class="form-check-input" id="edttipeUmum" type="radio" name="tipe_layanan"
-                                        value="umum">
-                                    <label class="form-check-label" for="edttipeUmum">
-                                        Umum
+                                    <input class="form-check-input" id="edttipeAnak" type="radio" name="tipe_layanan"
+                                        value="anak">
+                                    <label class="form-check-label" for="edttipeAnak">
+                                        Anak
                                     </label>
                                 </div>
                             </div>
@@ -269,23 +278,13 @@
 
 
 @section('createModalContent')
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-
 <div class="mb-3">
     <label class="form-label">Tipe Layanan</label>
     <div class="d-flex gap-3">
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipe_layanan" value="anak" id="tipeAnak" re>
-            <label class="form-check-label" for="tipeAnak">
-                Anak
+            <input class="form-check-input" type="radio" name="tipe_layanan" value="umum" id="tipeUmum">
+            <label class="form-check-label" for="tipeDewasa">
+                Umum
             </label>
         </div>
         <div class="form-check">
@@ -295,9 +294,9 @@
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipe_layanan" value="umum" id="tipeUmum">
-            <label class="form-check-label" for="tipeDewasa">
-                Umum
+            <input class="form-check-input" type="radio" name="tipe_layanan" value="anak" id="tipeAnak" re>
+            <label class="form-check-label" for="tipeAnak">
+                Anak
             </label>
         </div>
     </div>

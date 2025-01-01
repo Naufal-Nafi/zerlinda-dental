@@ -7,6 +7,15 @@
 <button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createBlogModal">
     Tambah Artikel
 </button>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <div class="table-responsive text-center">
     @if ($artikels->count() > 0)
@@ -57,7 +66,7 @@
                                 <label for="formFile2" class="form-label">Gambar</label>
                                 <img id="previewImage" src="" alt="Preview Image"
                                     style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-                                <input class="form-control border-black image-input" type="file" id="gambar_edit"
+                                <input class="form-control border-black image-input" type="file" id="gambar_edit" accept="image/*"
                                     name="gambar">
                             </div>
                             <div class="mb-3">
@@ -135,16 +144,16 @@
 @section('createModalContent')
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label ">Judul</label>
-    <input type="text" class="form-control border-black" id="CreateForm" name="judul">
+    <input type="text" class="form-control border-black" id="CreateForm" name="judul" required>
 </div>
 <div class="mb-3">
     <label for="gambar1" class="form-label">Gambar</label>
     <img id="previewImage1" src="" alt="Preview Image"
         style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-    <input class="form-control border-black image-input" type="file" id="formFile1" name="gambar" id="gambar_create">
+    <input class="form-control border-black image-input" type="file" id="formFile1" name="gambar" id="gambar_create" accept="image/*" required>
 </div>
 <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Artikel</label>
-    <textarea class="form-control border-black" id="exampleFormControlTextarea1" rows="3" name="konten"></textarea>
+    <textarea class="form-control border-black" id="exampleFormControlTextarea1" rows="3" name="konten" required></textarea>
 </div>
 @endsection

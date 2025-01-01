@@ -7,6 +7,15 @@
 <button type="button" class="btn text-white bg-pink" data-bs-toggle="modal" data-bs-target="#createLandingPageModal">
     Tambah Gambar
 </button>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="table-responsive text-center">
     @if ($landingpages->count() > 0)
     <table class="table table-hover mt-4 fw-bold">
@@ -51,11 +60,11 @@
 <div class="mb-3">
     <label for="judul" class="form-label">Upload Gambar</label>
     <img id="previewImageLandingPage1" src="" alt="Preview Image" style="display:none; max-width: 276px; height: auto; margin-bottom: 10px;">
-    <input class="form-control border-black image-input" type="file" id="image" name="image">
+    <input class="form-control border-black image-input" type="file" id="image" name="image" accept="image/*" required>
 </div>
 <div class="mb-3">
     <label for="keterangan" class="form-label">Keterangan</label>
-    <textarea class="form-control border-black h-50" id="keterangan" name="keterangan" rows="3"></textarea>
+    <textarea class="form-control border-black h-50" id="keterangan" name="keterangan" rows="3" required></textarea>
 </div>
 @endsection
 
